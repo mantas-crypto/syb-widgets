@@ -14,7 +14,9 @@
  *   data-sort="photos"         photos | newest | random   (default photos: reviews with photos first, then newest)
  *   data-header="true"         show the stars + count pill above the cards
  *   data-theme="dark"          dark | light
- *   data-google-url="https://g.page/r/..."   where "See all on Google" and the pill link to
+ *   data-google-url="https://g.page/r/..."   where the pill (and the optional footer link) go
+ *   data-footer="true"         also show a "See all reviews on Google" link under the cards
+ *                              (off by default; it shows automatically when data-header="false" so there is always one link)
  */
 (function () {
   var SCRIPT = document.currentScript;
@@ -160,6 +162,7 @@
       sort: ds.sort || "photos",
       minRating: Number(ds.minRating || 5),
       header: ds.header !== "false",
+      footer: ds.footer === "true" || ds.header === "false",
       theme: ds.theme || "dark",
       googleUrl: ds.googleUrl || GOOGLE_URL_DEFAULT
     };
@@ -186,7 +189,7 @@
         '<div class="vp"><button class="nav prev" type="button" aria-label="Previous reviews" disabled>' + ARROW + "</button>" +
         '<div class="track" tabindex="0" aria-label="Google reviews">' + items.map(card).join("") + "</div>" +
         '<button class="nav next" type="button" aria-label="Next reviews">' + ARROW + "</button></div>" +
-        '<div class="foot"><a class="all" href="' + esc(opt.googleUrl) + '" target="_blank" rel="noopener">See all reviews on Google →</a></div>' +
+        (opt.footer ? '<div class="foot"><a class="all" href="' + esc(opt.googleUrl) + '" target="_blank" rel="noopener">See all reviews on Google →</a></div>' : "") +
         "</div>";
 
       // Broken avatar -> initial; broken photo -> drop it
