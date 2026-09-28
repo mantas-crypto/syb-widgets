@@ -20,13 +20,16 @@ Password-protected guide pages were not scanned; check them before cancelling.
 
 ## Where it is hosted
 
-Public repo github.com/mantas-crypto/syb-widgets, served by jsDelivr and pinned to a release tag, so a page never changes unless we point it at a new tag.
+Public repo github.com/mantas-crypto/syb-widgets, served by jsDelivr and pinned to a commit SHA, so a page never changes unless we point it at a new commit.
+(Tags could not be pushed from the build session. If you create a release like v1.0.0 on GitHub, you can swap the SHA for the tag.)
 
-    https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@v1.0.0/dist/syb-reviews.min.js
-    https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@v1.0.0/dist/syb-instagram.min.js
-    https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@v1.0.0/dist/syb-whatsapp.min.js
+    https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-reviews.min.js
+    https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-instagram.min.js
+    https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-whatsapp.min.js
 
-To ship a change: edit src/, run `npm run build`, commit, tag the next version (v1.0.1), then update the tag in the Easol blocks. Old tags keep working, so rolling back is just pointing a block at the previous tag.
+To ship a change: edit src/, run `npm run build`, commit, push, then put the new commit SHA in the Easol blocks. Old SHAs keep working forever, so rolling back is just pointing a block at the previous SHA.
+
+Loading: each widget renders when it scrolls near (IntersectionObserver), with a scroll/resize check as backup and a forced render 4 seconds after page load, so it can never stay blank.
 
 ## Test page
 
@@ -37,18 +40,18 @@ surfyogabeer.com/ibiza (Ibiza-ly Does It, Aug 15-21 2028, waitlist only) is the 
 Reviews, one per trip page (swap the trip name):
 
     <div class="syb-reviews" data-trip="morocco"></div>
-    <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@v1.0.0/dist/syb-reviews.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-reviews.min.js" defer></script>
 
 Trip names with a review file: ibiza, morocco, croatia, bali, egypt, nicaragua, nye, philippines, iceland, kenya, amalfi, dolomites, turkey, japan, belize, chamonix, greece, riviera. No data-trip = the 40 newest reviews with photos (homepage).
 
 Instagram grid, one per trip page (the file lists the posts and their photos, which live in the repo):
 
     <div class="syb-instagram" data-tag="sybibiza"></div>
-    <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@v1.0.0/dist/syb-instagram.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-instagram.min.js" defer></script>
 
 WhatsApp, once in Easol head HTML (sitewide):
 
-    <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@v1.0.0/dist/syb-whatsapp.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-whatsapp.min.js" defer></script>
 
 ## Rebuild the review files
 

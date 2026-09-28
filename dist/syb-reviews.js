@@ -253,12 +253,48 @@
   }
 
   function boot() {
-    var els = document.querySelectorAll(".syb-reviews");
-    if (!("IntersectionObserver" in window)) { els.forEach(render); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { io.unobserve(en.target); render(en.target); } });
-    }, { rootMargin: "600px 0px" });
-    els.forEach(function (el) { io.observe(el); });
+    var els = Array.prototype.slice.call(document.querySelectorAll(".syb-reviews"));
+    if (!els.length) return;
+    function near(el) {
+      var r = el.getBoundingClientRect();
+      var h = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < h + 600 && r.bottom > -600;
+    }
+    function check() {
+      els = els.filter(function (el) {
+        if (el.__sybDone) return false;
+        if (near(el)) { render(el); return false; }
+        return true;
+      });
+      if (!els.length) stop();
+    }
+    var io = null, t = null, pending = false;
+    function onScroll() {
+      if (pending) return;
+      pending = true;
+      setTimeout(function () { pending = false; check(); }, 150);
+    }
+    function stop() {
+      if (io) io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      clearTimeout(t);
+    }
+    // 1) IntersectionObserver when it works
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { io.unobserve(en.target); render(en.target); } });
+      }, { rootMargin: "600px 0px" });
+      els.forEach(function (el) { io.observe(el); });
+    }
+    // 2) plain scroll/resize check as a backup
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    check();
+    // 3) never stay blank: render everything left 4s after load
+    function late() { t = setTimeout(function () { els.forEach(render); stop(); }, 4000); }
+    if (document.readyState === "complete") late();
+    else window.addEventListener("load", late);
   }
 
   window.SYBReviews = { render: render, boot: boot };
