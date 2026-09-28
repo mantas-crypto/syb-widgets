@@ -1,0 +1,10 @@
+{
+  "name": "syb-widgets",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SurfYogaBeer website widgets (Google reviews, WhatsApp button, Instagram grid). Replaces Elfsight.",
+  "scripts": {
+    "build": "python3 scripts/build-reviews.py && cp src/*.js dist/ && for f in syb-reviews syb-whatsapp syb-instagram; do npx -y terser@5 dist/$f.js -c -m -o dist/$f.min.js; done",
+    "dev": "npx -y serve -l 5173 ."
+  }
+}
