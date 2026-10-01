@@ -10,8 +10,8 @@ Account has about 95 widgets across 18 apps. Only these are on a public page:
 | Widget | Where | Replacement |
 |---|---|---|
 | WhatsApp Chat | every page except the exclusion list | src/syb-whatsapp.js (built) |
-| Google Reviews | homepage, /newbie, /morocco, /croatia, /bali, /egypt, /nicaragua/classic, /philippines | src/syb-reviews.js (built) |
-| Instagram Feed (hashtag) | /morocco, /croatia, /bali, /egypt, /nicaragua/classic, /philippines, nicasurfcamp.com | Cursor prompt 3 |
+| Google Reviews | homepage, /newbie, /morocco, /croatia, /bali, /belize, /egypt, /nicaragua/classic, /philippines | src/syb-reviews.js (built) |
+| Instagram Feed (hashtag) | /morocco, /croatia, /bali, /egypt, /nicaragua/classic, /philippines, nicasurfcamp.com (/belize swapped Oct 1 2026) | Cursor prompt 3 |
 | Testimonials Slider, Photo Gallery, Number Counter | /book-it | Cursor prompt 4 |
 | (one dead widget id, status 0) | /book-it | delete |
 
@@ -35,7 +35,11 @@ Loading: each widget renders when it scrolls near (IntersectionObserver), with a
 
 surfyogabeer.com/ibiza (Ibiza-ly Does It, Aug 15-21 2028, waitlist only) is the first page running these widgets.
 
-surfyogabeer.com/belize runs the Instagram grid (data-tag="sybbelize", added Oct 1 2026). Its 29 tiles are hand-picked #SYBBelize and #SYBelize posts (2017 to 2026), all Belize, none repeating a photo already on the page. Its Google reviews were never on Elfsight.
+surfyogabeer.com/belize runs the Instagram grid (data-tag="sybbelize", added Oct 1 2026). Its 29 tiles are hand-picked #SYBBelize and #SYBelize posts (2017 to 2026), all Belize, none repeating a photo already on the page. Belize's Google reviews block is still Elfsight on purpose (see below).
+
+## Known gap: review photos
+
+The photo links in data/google-reviews.json (Sep 28 export) are dead: Google answers 403 for every one, so syb-reviews.js drops the photos and shows text-only cards. Elfsight still shows them because it cached small copies (300px) on its own proxy. Google's official Business Profile API does not return review photos at all, so the planned refresh job will not fix this either. Before swapping a reviews block that shows guest photos (Belize does: Cole Untiedt, Ely Goldberg), save those photos into the repo and point the review file at them.
 
 ## Embed snippets
 
