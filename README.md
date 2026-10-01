@@ -33,7 +33,9 @@ Loading: each widget renders when it scrolls near (IntersectionObserver), with a
 
 ## Test page
 
-surfyogabeer.com/ibiza (Ibiza-ly Does It, Aug 15-21 2028, waitlist only) is the first page running these widgets. No other page was changed.
+surfyogabeer.com/ibiza (Ibiza-ly Does It, Aug 15-21 2028, waitlist only) is the first page running these widgets.
+
+surfyogabeer.com/belize runs the Instagram grid (data-tag="sybbelize", added Oct 1 2026). Its 29 tiles are hand-picked #SYBBelize and #SYBelize posts (2017 to 2026), all Belize, none repeating a photo already on the page. Its Google reviews were never on Elfsight.
 
 ## Embed snippets
 
