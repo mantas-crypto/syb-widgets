@@ -5,15 +5,13 @@ Build small per-trip review files from data/google-reviews.json.
   python3 scripts/build-reviews.py
 
 Writes dist/reviews/<trip>.json and dist/reviews/all.json.
+Review photos saved in the repo are stored as paths relative to dist/reviews/ (photos/<id>.jpg).
 Each file: {"meta": {...}, "reviews": [...]} with 5-star, text-bearing reviews only,
 newest first, capped so a trip page never downloads more than it shows.
 Trip keyword lists mirror the filters the Elfsight widgets used (e.g. Morocco = "morocco", "sybmorocco").
 """
 import json, os, sys, datetime
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "data", "google-reviews.json")
-OUT = os.path.join(ROOT, "dist", "reviews")
 CAP = 40  # max reviews per trip file
 
 TRIPS = {
@@ -53,26 +51,21 @@ def slim(r):
     }
 
 
-def main():
-    reviews = json.load(open(SRC, encoding="utf-8"))
+def build(reviews, updated=None):
+    """Return {file name: JSON text} for dist/reviews/. Pure function, used by scripts/refresh.py too."""
     total = len(reviews)
     rating = round(sum(r["rating"] for r in reviews) / total, 1)
-    meta = {"total": total, "rating": f"{rating:.1f}", "updated": datetime.date.today().isoformat()}
+    meta = {"total": total, "rating": f"{rating:.1f}", "updated": updated or datetime.date.today().isoformat()}
     good = sorted([r for r in reviews if keep(r)], key=lambda r: r["date"], reverse=True)
+    out = {}
 
-    os.makedirs(OUT, exist_ok=True)
-
-    def write(name, items):
-        path = os.path.join(OUT, name + ".json")
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump({"meta": meta, "reviews": [slim(r) for r in items]}, f, ensure_ascii=False, separators=(",", ":"))
-        return os.path.getsize(path)
+    def pack(items):
+        return json.dumps({"meta": meta, "reviews": [slim(r) for r in items]}, ensure_ascii=False, separators=(",", ":"))
 
     # homepage / generic: newest with photos first
     withp = [r for r in good if r.get("images")]
     nop = [r for r in good if not r.get("images")]
-    size = write("all", (withp + nop)[:CAP])
-    print(f"all            {min(CAP, len(good)):>3} reviews  {size/1024:6.1f} KB")
+    out["all.json"] = pack((withp + nop)[:CAP])
 
     for trip, kws in TRIPS.items():
         hits = [r for r in good if any(k in r["text"].lower() for k in kws)]
@@ -80,10 +73,20 @@ def main():
         if trip == "riviera":
             hits = [r for r in hits if any(k in r["text"].lower() for k in kws if k != "nice")
                     or " in nice" in r["text"].lower()]
-        size = write(trip, hits[:CAP])
-        print(f"{trip:<14} {min(CAP, len(hits)):>3} reviews  {size/1024:6.1f} KB")
+        out[trip + ".json"] = pack(hits[:CAP])
+    return out
 
-    print(f"\nsource: {total} reviews, rating {meta['rating']}")
+
+def main():
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    reviews = json.load(open(os.path.join(root, "data", "google-reviews.json"), encoding="utf-8"))
+    out_dir = os.path.join(root, "dist", "reviews")
+    os.makedirs(out_dir, exist_ok=True)
+    for name, text in build(reviews).items():
+        with open(os.path.join(out_dir, name), "w", encoding="utf-8") as f:
+            f.write(text)
+        print(f"{name:<18} {len(json.loads(text)['reviews']):>3} reviews  {len(text.encode())/1024:6.1f} KB")
+    print(f"\nsource: {len(reviews)} reviews")
 
 
 if __name__ == "__main__":

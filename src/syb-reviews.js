@@ -100,6 +100,11 @@
     return cache[src];
   }
 
+  // data-ref="main": load data from a moving branch while the code stays pinned to a commit
+  function dataBase(ds) {
+    return ds.ref ? BASE.replace(/@[^/]+\//, "@" + ds.ref + "/") : BASE;
+  }
+
   function pick(list, opt) {
     var kws = (opt.keywords || "").toLowerCase().split(",").map(function (s) { return s.trim(); }).filter(Boolean);
     var out = list.filter(function (r) {
@@ -156,7 +161,7 @@
     host.__sybDone = true;
     var ds = host.dataset;
     var opt = {
-      src: ds.src || (ds.trip ? BASE + "reviews/" + ds.trip + ".json" : BASE + "reviews/all.json"),
+      src: ds.src || (ds.trip ? dataBase(ds) + "reviews/" + ds.trip + ".json" : dataBase(ds) + "reviews/all.json"),
       keywords: ds.keywords || "",
       limit: Number(ds.limit || 24),
       sort: ds.sort || "photos",
@@ -172,6 +177,14 @@
     var data = window.SYB_REVIEWS && !ds.src && !ds.trip ? Promise.resolve(window.SYB_REVIEWS) : load(opt.src);
     data.then(function (payload) {
       var list = Array.isArray(payload) ? payload : payload.reviews || [];
+      // photo paths saved in the repo are relative to the data file
+      var dir = opt.src.replace(/[^/]*$/, "");
+      list = list.map(function (r) {
+        if (!r.images || !r.images.length) return r;
+        var c = {}; for (var k in r) c[k] = r[k];
+        c.images = r.images.map(function (u) { return /^(https?:)?\/\//.test(u) ? u : dir + u; });
+        return c;
+      });
       var meta = Array.isArray(payload) ? {} : payload.meta || {};
       var items = pick(list, opt);
       if (!items.length) { host.style.display = "none"; return; }

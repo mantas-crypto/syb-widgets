@@ -58,7 +58,9 @@
     host.__sybDone = true;
     var ds = host.dataset;
     var tag = (ds.tag || "surfyogabeer").replace(/^#/, "").toLowerCase();
-    var src = ds.src || BASE + "instagram/" + tag + ".json";
+    // data-ref="main": load data from a moving branch while the code stays pinned to a commit
+    var base = ds.ref ? BASE.replace(/@[^/]+\//, "@" + ds.ref + "/") : BASE;
+    var src = ds.src || base + "instagram/" + tag + ".json";
     var dir = src.replace(/[^/]*$/, "");
     var rows = ds.rows === "1" ? 1 : 2;
     var root = host.shadowRoot || host.attachShadow({ mode: "open" });
@@ -72,12 +74,12 @@
       var tiles = posts.map(function (p) {
         var img = /^https?:/.test(p.img) ? p.img : dir + p.img;
         return '<a class="t" href="https://www.instagram.com/p/' + esc(p.code) + '/" target="_blank" rel="noopener" aria-label="Open @' + esc(p.user) + ' on Instagram">' +
-          '<img src="' + esc(img) + '" alt="#' + esc(tag) + ' photo by @' + esc(p.user) + '" loading="lazy" width="360" height="360"><span class="u">@' + esc(p.user) + "</span></a>";
+          '<img src="' + esc(img) + '" alt="' + esc(data.alt || "#" + tag) + ' photo by @' + esc(p.user) + '" loading="lazy" width="360" height="360"><span class="u">@' + esc(p.user) + "</span></a>";
       }).join("");
       root.innerHTML =
         "<style>" + css + '</style><div class="w">' +
         '<button class="nav prev" type="button" aria-label="Previous photos" disabled>' + ARROW + "</button>" +
-        '<div class="track' + (rows === 2 ? " r2" : "") + '" tabindex="0" aria-label="#' + esc(tag) + ' on Instagram">' + tiles + "</div>" +
+        '<div class="track' + (rows === 2 ? " r2" : "") + '" tabindex="0" aria-label="' + esc(data.alt || "#" + tag) + ' on Instagram">' + tiles + "</div>" +
         '<button class="nav next" type="button" aria-label="More photos">' + ARROW + "</button></div>" +
         (ds.follow !== "false" ? '<div class="foot"><a class="fol" href="https://www.instagram.com/surfyogabeer/" target="_blank" rel="noopener">' + IG_ICON + "Follow @surfyogabeer</a></div>" : "");
 
