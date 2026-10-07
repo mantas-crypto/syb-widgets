@@ -111,7 +111,7 @@ def _ig_media(pages):
 
 def _day(v):
     if isinstance(v, (int, float)):
-        return datetime.datetime.utcfromtimestamp(v).date().isoformat()
+        return datetime.datetime.fromtimestamp(v, datetime.timezone.utc).date().isoformat()
     return str(v or "")[:10]
 
 
@@ -186,41 +186,40 @@ def refresh(full=False, budget=140, reviews=True, dry=False):
 
     cands = {t: sorted(((v["date"], c) for c, v in index.items() if v.get("dest") == [t]), reverse=True)
              for t in GRIDS}
-    need = {}
-    for t in GRIDS:
-        for _, code in cands[t][:PER_TRIP * 3]:
-            if not ready(code) and fresh.get(code):
-                need[code] = fresh[code]
-
     def fetch_ig(code):
-        raw = _get(need[code])
+        raw = _get(fresh[code])
         try:
             return code, _jpeg(raw, IMG_PX) if raw else None
         except Exception:
             return code, None
-    got = {}
-    with ThreadPoolExecutor(8) as ex:
-        for code, r in ex.map(fetch_ig, list(need)):
-            if r:
-                got[code] = r[0]
-                index[code]["h"] = r[1]
 
-    used, changed_json, new_imgs = set(), [], 0
+    got, used, changed_json, new_imgs = {}, set(), [], 0
     for t in GRIDS:
         posts, keys, hashes = [], set(), []
-        for date, code in cands[t]:
-            v = index[code]
-            if not (code in got or ready(code)):
-                continue              # image not saved and no fresh link: waits for a full run
-            if v["k"] in keys or not _far(v["h"], hashes):
-                continue              # same caption or same picture as a tile already on the grid
-            keys.add(v["k"])
-            hashes.append(v["h"])
-            posts.append({"code": code, "user": "surfyogabeer", "date": date, "img": "p/%s.jpg" % code})
-            used.add(path_of(code))
-            if code in got and path_of(code) not in files:
-                files[path_of(code)] = got[code]
-                new_imgs += 1
+        for i in range(0, len(cands[t]), 16):     # small batches keep the workbench's memory low
+            batch = cands[t][i:i + 16]
+            want = [c for _, c in batch if c not in got and not ready(c) and fresh.get(c)]
+            if want and time.time() - t0 < budget * 0.6:
+                with ThreadPoolExecutor(4) as ex:
+                    for code, r in ex.map(fetch_ig, want):
+                        if r:
+                            got[code] = r[0]
+                            index[code]["h"] = r[1]
+            for date, code in batch:
+                v = index[code]
+                if not (code in got or ready(code)):
+                    continue          # image not saved and no fresh link: waits for a full run
+                if v["k"] in keys or not _far(v["h"], hashes):
+                    continue          # same caption or same picture as a tile already on the grid
+                keys.add(v["k"])
+                hashes.append(v["h"])
+                posts.append({"code": code, "user": "surfyogabeer", "date": date, "img": "p/%s.jpg" % code})
+                used.add(path_of(code))
+                if code in got and path_of(code) not in files:
+                    files[path_of(code)] = got[code]
+                    new_imgs += 1
+                if len(posts) >= PER_TRIP:
+                    break
             if len(posts) >= PER_TRIP:
                 break
         path = "dist/instagram/%s.json" % t
