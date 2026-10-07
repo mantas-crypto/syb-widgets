@@ -27,7 +27,7 @@ Public repo github.com/mantas-crypto/syb-widgets, served by jsDelivr and pinned 
     https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-instagram.min.js
     https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-whatsapp.min.js
 
-To ship a change: edit src/, run `npm run build`, commit, push, then put the new commit SHA in the Easol blocks. Old SHAs keep working forever, so rolling back is just pointing a block at the previous SHA.
+To ship a CODE change: edit src/, run `npm run build`, commit, push, then put the new commit SHA in the Easol blocks. Data changes need no Easol edit (see Auto refresh). Old SHAs keep working forever, so rolling back is just pointing a block at the previous SHA.
 
 Loading: each widget renders when it scrolls near (IntersectionObserver), with a scroll/resize check as backup and a forced render 4 seconds after page load, so it can never stay blank.
 
@@ -37,22 +37,54 @@ surfyogabeer.com/ibiza (Ibiza-ly Does It, Aug 15-21 2028, waitlist only) is the 
 
 surfyogabeer.com/belize runs the Instagram grid (data-tag="sybbelize", added Oct 1 2026). Its 29 tiles are hand-picked #SYBBelize and #SYBelize posts (2017 to 2026), all Belize, none repeating a photo already on the page. Belize's Google reviews block is still Elfsight on purpose (see below).
 
+## Status (Oct 7 2026)
+
+Elfsight is off every published page except two things: the Belize reviews block (waiting on a photo decision) and the
+sitewide WhatsApp button (it lives in Google Tag Manager, not in Easol). Swapped pages: homepage, /newbie,
+/testimonials, /morocco, /croatia, /bali, /egypt, /philippines, /nicaragua/classic, /nicaragua/surf-camp,
+/nicaragua/reset-recharge, /nicaragua/nye, /france/chamonix, /turkey, /japan, /kenya, /iceland, /iceland-north,
+/amalfi, /dolomites, /book-it, plus /ibiza and the Belize Instagram grid from before.
+
+## Auto refresh
+
+Pages load widget CODE pinned to a commit SHA and DATA from the main branch (`data-ref="main"` on the div), so a data
+commit updates the site without touching Easol.
+
+`scripts/refresh.py` does the refresh. It runs inside the Composio workbench (that is where the connected Instagram
+account and the GitHub connection live, so no token or key is ever in this repo). A Claude cloud scheduled task runs
+it every day at 6:12am New York time. A run with nothing new makes no commit.
+
+- Instagram: our own @surfyogabeer posts, matched to a trip by caption words. A post lands on a trip grid only when
+  its caption names that one destination, and never twice with the same caption or the same picture. Newest 24 per
+  trip. Images are copied to dist/instagram/p/ because Instagram's own links expire.
+- Reviews: merged into data/google-reviews.json, guest photos copied to dist/reviews/photos/ while Google's links
+  still work (they die within days), per-trip files rebuilt by scripts/build-reviews.py.
+  Source today: Elfsight's public endpoint, which stops when Elfsight is cancelled.
+  Source later: Google Business Profile API (access request case 7-4355000041774, project syb-website-widgets).
+  Until that lands, reviews stay as the last snapshot after the cancel.
+- jsDelivr caches @main for up to 12 hours; the script purges the changed JSON files after each commit.
+
+To add a trip grid: add its words to DEST_WORDS and its name to GRIDS in scripts/refresh.py, then run
+`refresh(full=True)` twice in the workbench.
+
 ## Known gap: review photos
 
-The photo links in data/google-reviews.json (Sep 28 export) are dead: Google answers 403 for every one, so syb-reviews.js drops the photos and shows text-only cards. Elfsight still shows them because it cached small copies (300px) on its own proxy. Google's official Business Profile API does not return review photos at all, so the planned refresh job will not fix this either. Before swapping a reviews block that shows guest photos (Belize does: Cole Untiedt, Ely Goldberg), save those photos into the repo and point the review file at them.
+Google's photo links expire. On Oct 7 2026, 156 of 631 were still alive and are saved in dist/reviews/photos/
+(42 reviews have photos); the rest are gone for good. Elfsight only ever kept tiny cached copies. Google's official
+API returns no review photos at all, so new photos are only caught while the Elfsight endpoint still answers.
 
 ## Embed snippets
 
 Reviews, one per trip page (swap the trip name):
 
-    <div class="syb-reviews" data-trip="morocco"></div>
+    <div class="syb-reviews" data-trip="morocco" data-ref="main"></div>
     <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-reviews.min.js" defer></script>
 
 Trip names with a review file: ibiza, morocco, croatia, bali, egypt, nicaragua, nye, philippines, iceland, kenya, amalfi, dolomites, turkey, japan, belize, chamonix, greece, riviera. No data-trip = the 40 newest reviews with photos (homepage).
 
 Instagram grid, one per trip page (the file lists the posts and their photos, which live in the repo):
 
-    <div class="syb-instagram" data-tag="sybibiza"></div>
+    <div class="syb-instagram" data-tag="morocco" data-ref="main"></div>
     <script src="https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@<SHA>/dist/syb-instagram.min.js" defer></script>
 
 WhatsApp, once in Easol head HTML (sitewide):
