@@ -77,7 +77,7 @@ def _jpeg(raw, px):
 
 
 def _far(h, others):
-    return all(bin(int(h, 16) ^ int(o, 16)).count("1") > 8 for o in others)
+    return all(bin(int(h, 16) ^ int(o, 16)).count("1") > 5 for o in others)
 
 
 def _get(url, timeout=10):
@@ -188,7 +188,7 @@ def refresh(full=False, budget=140, reviews=True, dry=False):
              for t in GRIDS}
     need = {}
     for t in GRIDS:
-        for _, code in cands[t][:PER_TRIP + PER_TRIP // 2]:
+        for _, code in cands[t][:PER_TRIP * 3]:
             if not ready(code) and fresh.get(code):
                 need[code] = fresh[code]
 
