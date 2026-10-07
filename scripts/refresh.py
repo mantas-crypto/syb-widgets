@@ -9,10 +9,11 @@ One workbench cell:
     import requests
     exec(requests.get("https://raw.githubusercontent.com/mantas-crypto/syb-widgets/main/scripts/refresh.py").text)
     print(refresh())                 # daily
-    print(refresh(full=True))        # re-read every Instagram post (after changing TRIP_WORDS)
+    print(refresh(full=True))        # re-read every Instagram post (after changing DEST_WORDS)
 
 What it does
-  Instagram  our own posts, matched to trips by caption words (same idea as the old Elfsight filters),
+  Instagram  our own posts, matched to trips by caption words (same idea as the old Elfsight filters,
+             but stricter: one destination per caption, no repeated caption, no repeated picture),
              newest 24 per trip, images copied into dist/instagram/p/ (Instagram's own links expire).
   Reviews    merged into data/google-reviews.json, photos copied into dist/reviews/photos/ while Google's
              links still work, then per-trip files rebuilt with scripts/build-reviews.py.
@@ -34,14 +35,21 @@ PER_TRIP = 24
 IMG_PX = 480
 PLACE = "ChIJyTABhtFZwokRR1ZQGo0WF7Y"  # SYB on Google Maps
 
-# caption words per Instagram grid (file name -> words). Lowercase.
-TRIP_WORDS = {
+# Caption words per destination (lowercase). A post goes on a trip's grid only when its caption names
+# that destination and no other one, so roundups ("summer 2027 is live", monthly recaps) stay off.
+DEST_WORDS = {
     "morocco": ["morocco"], "croatia": ["croatia"], "bali": ["bali"], "egypt": ["egypt"],
     "nicaragua": ["nicaragua"], "philippines": ["palawan", "philippines"],
     "chamonix": ["chamonix"], "turkey": ["turkey"], "japan": ["japan"], "iceland": ["iceland"],
     "kenya": ["kenya", "safari"], "amalfi": ["amalfi"], "dolomites": ["dolomites"],
+    "belize": ["belize"], "greece": ["greece"], "ibiza": ["ibiza"], "riviera": ["riviera"],
+    "costarica": ["costa rica", "costarica"], "portugal": ["portugal"], "colombia": ["colombia"],
+    "mexico": ["mexico", "tulum"], "australia": ["australia"], "china": ["china"],
+    "thailand": ["thailand"], "peru": ["peru"], "spain": ["spain", "mallorca"],
 }
-ROUNDUP = 4  # a caption naming this many trips is a roundup post, not a trip post
+# Grids this job owns (dist/instagram/<name>.json). sybbelize and sybibiza are hand-picked and left alone.
+GRIDS = ["morocco", "croatia", "bali", "egypt", "nicaragua", "philippines", "chamonix", "turkey",
+         "japan", "iceland", "kenya", "amalfi", "dolomites"]
 
 
 def _gh(method, path, body=None, query=None):
@@ -57,12 +65,19 @@ def _blob_sha(b):
 
 
 def _jpeg(raw, px):
+    """Return (jpeg bytes, 64-bit average hash as hex). The hash spots the same picture posted twice."""
     from PIL import Image
     im = Image.open(io.BytesIO(raw)).convert("RGB")
     im.thumbnail((px, px))
     out = io.BytesIO()
     im.save(out, "JPEG", quality=80, optimize=True, progressive=True)
-    return out.getvalue()
+    g = list(im.convert("L").resize((8, 8)).getdata())
+    avg = sum(g) / 64.0
+    return out.getvalue(), "%016x" % int("".join("1" if v > avg else "0" for v in g), 2)
+
+
+def _far(h, others):
+    return all(bin(int(h, 16) ^ int(o, 16)).count("1") > 8 for o in others)
 
 
 def _get(url, timeout=10):
@@ -151,33 +166,31 @@ def refresh(full=False, budget=140, reviews=True, dry=False):
     fresh = {}
     for m in items:
         cap = (m.get("caption") or "").lower()
-        trips = [t for t, ws in TRIP_WORDS.items() if any(w in cap for w in ws)]
         code = m.get("shortcode") or m["permalink"].rstrip("/").split("/")[-1]
-        url = m.get("thumbnail_url") if m.get("media_type") == "VIDEO" else m.get("media_url")
-        fresh[code] = url
-        index[code] = {"date": m["timestamp"][:10], "trips": trips}
+        fresh[code] = m.get("thumbnail_url") if m.get("media_type") == "VIDEO" else m.get("media_url")
+        e = index.setdefault(code, {})
+        e["date"] = m["timestamp"][:10]
+        e["dest"] = [d for d, ws in DEST_WORDS.items() if any(w in cap for w in ws)]
+        e["k"] = hashlib.sha1("".join(ch for ch in cap if ch.isalnum())[:60].encode()).hexdigest()[:8]
     if items:  # posts deleted on Instagram inside the window we just read
         oldest = min(m["timestamp"][:10] for m in items)
         for code in [c for c, v in index.items() if c not in fresh and (complete or v["date"] > oldest)]:
             del index[code]
     log["instagram_posts_read"] = len(items)
 
-    used, need = set(), {}
-    grids = {}
-    for trip in TRIP_WORDS:
-        cand = sorted([(v["date"], c) for c, v in index.items() if trip in v["trips"] and len(v["trips"]) < ROUNDUP],
-                      reverse=True)
-        posts = []
-        for date, code in cand:
-            path = "dist/instagram/p/%s.jpg" % code
-            if path not in tree:
-                if not fresh.get(code):
-                    continue          # image not saved and no fresh link: skip until a full run
+    def path_of(code):
+        return "dist/instagram/p/%s.jpg" % code
+
+    def ready(code):
+        return path_of(code) in tree and index[code].get("h")
+
+    cands = {t: sorted(((v["date"], c) for c, v in index.items() if v.get("dest") == [t]), reverse=True)
+             for t in GRIDS}
+    need = {}
+    for t in GRIDS:
+        for _, code in cands[t][:PER_TRIP + PER_TRIP // 2]:
+            if not ready(code) and fresh.get(code):
                 need[code] = fresh[code]
-            posts.append({"code": code, "user": "surfyogabeer", "date": date, "img": "p/%s.jpg" % code})
-            if len(posts) >= PER_TRIP:
-                break
-        grids[trip] = posts
 
     def fetch_ig(code):
         raw = _get(need[code])
@@ -187,24 +200,36 @@ def refresh(full=False, budget=140, reviews=True, dry=False):
             return code, None
     got = {}
     with ThreadPoolExecutor(8) as ex:
-        for code, b in ex.map(fetch_ig, list(need)):
-            if b:
-                got[code] = b
-    log["instagram_images_new"] = len(got)
+        for code, r in ex.map(fetch_ig, list(need)):
+            if r:
+                got[code] = r[0]
+                index[code]["h"] = r[1]
 
-    changed_json = []
-    for trip, posts in grids.items():
-        posts = [p for p in posts if "dist/instagram/p/%s.jpg" % p["code"] in tree or p["code"] in got]
-        for p in posts:
-            used.add("dist/instagram/p/%s.jpg" % p["code"])
-            if p["code"] in got:
-                files["dist/instagram/p/%s.jpg" % p["code"]] = got[p["code"]]
-        path = "dist/instagram/%s.json" % trip
+    used, changed_json, new_imgs = set(), [], 0
+    for t in GRIDS:
+        posts, keys, hashes = [], set(), []
+        for date, code in cands[t]:
+            v = index[code]
+            if not (code in got or ready(code)):
+                continue              # image not saved and no fresh link: waits for a full run
+            if v["k"] in keys or not _far(v["h"], hashes):
+                continue              # same caption or same picture as a tile already on the grid
+            keys.add(v["k"])
+            hashes.append(v["h"])
+            posts.append({"code": code, "user": "surfyogabeer", "date": date, "img": "p/%s.jpg" % code})
+            used.add(path_of(code))
+            if code in got and path_of(code) not in files:
+                files[path_of(code)] = got[code]
+                new_imgs += 1
+            if len(posts) >= PER_TRIP:
+                break
+        path = "dist/instagram/%s.json" % t
         old = json.loads(read(path) or b"{}")
         if old.get("posts") != posts and posts:
-            files[path] = json.dumps({"tag": trip, "alt": "SurfYogaBeer " + trip.title(), "updated": today,
+            files[path] = json.dumps({"tag": t, "alt": "SurfYogaBeer " + t.title(), "updated": today,
                                       "posts": posts}, indent=1).encode()
             changed_json.append(path)
+    log["instagram_images_new"] = new_imgs
     deletes = [p for p in tree if p.startswith("dist/instagram/p/") and p not in used]
     files["data/instagram-posts.json"] = json.dumps(index, separators=(",", ":"), sort_keys=True).encode()
 
@@ -231,7 +256,7 @@ def refresh(full=False, budget=140, reviews=True, dry=False):
             def fetch_ph(ku):
                 raw = _get(ku[1], 8)
                 try:
-                    return ku, _jpeg(raw, 720) if raw else None
+                    return ku, _jpeg(raw, 720)[0] if raw else None
                 except Exception:
                     return ku, None
             saved = 0
