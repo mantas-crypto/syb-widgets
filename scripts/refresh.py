@@ -9,7 +9,8 @@ One workbench cell:
     import requests
     exec(requests.get("https://raw.githubusercontent.com/mantas-crypto/syb-widgets/main/scripts/refresh.py").text)
     print(refresh())                 # daily
-    print(refresh(full=True))        # re-read every Instagram post (after changing DEST_WORDS)
+    print(refresh(full=True))        # re-read every Instagram post (after changing DEST_WORDS);
+                                     # run it in a cell of its own, twice, the second run finishes the photos
 
 What it does
   Instagram  our own posts, matched to trips by caption words (same idea as the old Elfsight filters,
@@ -142,7 +143,14 @@ def _elfsight_reviews():
     } for x in out]
 
 
-def refresh(full=False, budget=140, reviews=True, dry=False):
+def refresh(**kw):
+    """Quiet wrapper: the workbench helpers print every API response, which would bury the summary."""
+    import contextlib
+    with contextlib.redirect_stdout(io.StringIO()):
+        return _refresh(**kw)
+
+
+def _refresh(full=False, budget=140, reviews=True, dry=False):
     t0 = time.time()
     today = datetime.date.today().isoformat()
     log = {"date": today}
@@ -162,7 +170,21 @@ def refresh(full=False, budget=140, reviews=True, dry=False):
 
     # ---------- Instagram ----------
     index = json.loads(read("data/instagram-posts.json") or b"{}")
-    items, complete = _ig_media(60 if full else 3)
+    if full:
+        # reading every post takes about 90 seconds, so keep the list for two hours:
+        # call refresh(full=True) again if the first call reports "partial" or too few new images
+        cache = "/home/user/syb-ig-full.json"
+        try:
+            c = json.load(open(cache))
+            items, complete = (c["items"], True) if time.time() - c["at"] < 7200 else (None, None)
+        except Exception:
+            items = None
+        if items is None:
+            items, complete = _ig_media(60)
+            json.dump({"at": time.time(), "items": items}, open(cache, "w"))
+            budget += 90      # the read itself should not eat the time meant for photos
+    else:
+        items, complete = _ig_media(3)
     fresh = {}
     for m in items:
         cap = (m.get("caption") or "").lower()
