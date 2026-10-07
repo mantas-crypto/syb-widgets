@@ -94,6 +94,12 @@ def _ig_media(pages):
     return items, False
 
 
+def _day(v):
+    if isinstance(v, (int, float)):
+        return datetime.datetime.utcfromtimestamp(v).date().isoformat()
+    return str(v or "")[:10]
+
+
 def _elfsight_reviews():
     out, page = [], 1
     while page < 12:
@@ -114,7 +120,7 @@ def _elfsight_reviews():
         "name": x.get("reviewer_name") or "",
         "avatar": x.get("reviewer_picture_url") or "",
         "rating": x.get("rating") or 0,
-        "date": str(x.get("published_at") or "")[:10],
+        "date": _day(x.get("published_at")),
         "text": x.get("text") or "",
         "url": x.get("url") or "",
         "src_images": [i.get("url") if isinstance(i, dict) else i for i in (x.get("images") or [])],
