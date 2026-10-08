@@ -342,7 +342,8 @@ def _refresh(full=False, budget=140, reviews=True, dry=False):
     _gh("PATCH", "/git/refs/heads/" + BRANCH, {"sha": commit})
     log["commit"] = commit
     purged = 0
-    for p in changed_json:
+    # new photos first: until purged, @main can still point at the old commit and answer 404 for a new file
+    for p in [x for x in shas if x.endswith(".jpg")] + changed_json:
         try:
             purged += requests.get("https://purge.jsdelivr.net/gh/%s@%s/%s" % (REPO, BRANCH, p), timeout=15).status_code == 200
         except Exception:
