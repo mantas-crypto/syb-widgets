@@ -1,0 +1,48 @@
+name: Widgets data refresh
+
+# Reads the newest @surfyogabeer Instagram posts and the Google reviews, copies new images into the
+# repo and commits to main. Pages load data from main, so a commit here updates the site.
+# A run with nothing new makes no commit.
+#
+# Needs one repo secret: COMPOSIO_API_KEY (Settings, Secrets and variables, Actions).
+# Optional repo variable: COMPOSIO_IG_ACCOUNT (only if Composio holds more than one Instagram connection).
+
+on:
+  schedule:
+    - cron: "12 10 * * *"   # 10:12 UTC = 6:12am New York in summer, 5:12am in winter
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: "Test only: read everything, commit nothing"
+        type: boolean
+        default: false
+      full:
+        description: "Re-read every Instagram post (after changing DEST_WORDS)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: widgets-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet requests pillow
+      - name: Refresh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMPOSIO_API_KEY: ${{ secrets.COMPOSIO_API_KEY }}
+          COMPOSIO_IG_ACCOUNT: ${{ vars.COMPOSIO_IG_ACCOUNT }}
+          REFRESH_DRY: ${{ inputs.dry }}
+          REFRESH_FULL: ${{ inputs.full }}
+        run: python scripts/run_in_actions.py
