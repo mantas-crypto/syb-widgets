@@ -53,9 +53,12 @@ commit updates the site without touching Easol.
 10:12 UTC (6:12am New York in summer), no computer needed. A run with nothing new makes no commit.
 
 - Keys: the job commits with its own GitHub token. Instagram is read through Composio, using one repo secret,
-  `COMPOSIO_API_KEY` (Settings, Secrets and variables, Actions). Nothing secret is written in this repo.
-  If Composio ever holds more than one Instagram connection, put the right one's id in the repo variable
-  `COMPOSIO_IG_ACCOUNT`.
+  `COMPOSIO_API_KEY` (Settings, Secrets and variables, Actions). It is the personal key from Composio's app
+  (Settings, Sessions & API Key; it starts with `ck_`), which reaches the same connections Claude uses.
+  Regenerating that key in Composio kills the old one, so update the secret if you ever do.
+  Composio holds two Instagram connections; the job picks the one that answers as @surfyogabeer.
+- Safety stop: a daily run that would delete more than 40 files stops without committing (a cut-short
+  Instagram answer looks like mass deletion). Real clean-ups go through a "full" run.
 - Run it by hand: Actions, "Widgets data refresh", Run workflow. Tick "dry" to test without committing.
 - GitHub's own schedule can run hours late or skip a day, so a Claude cloud scheduled task also starts the job each
   morning and checks that it ran. Two runs on one day are harmless: the second finds nothing new.
