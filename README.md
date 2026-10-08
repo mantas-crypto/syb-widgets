@@ -39,11 +39,10 @@ surfyogabeer.com/belize runs the Instagram grid (data-tag="sybbelize", added Oct
 
 ## Status (Oct 8 2026)
 
-Elfsight is off every published page except the sitewide WhatsApp button, which lives in Google Tag Manager
-(tag "Whatsapp"), not in Easol. Swapped pages: homepage, /newbie, /testimonials, /morocco, /croatia, /bali, /egypt,
-/philippines, /nicaragua/classic, /nicaragua/surf-camp, /nicaragua/reset-recharge, /nicaragua/nye, /france/chamonix,
-/turkey, /japan, /kenya, /iceland, /iceland-north, /amalfi, /dolomites, /belize, /ibiza, /book-it.
-Full live re-check on Oct 8: all pages pass on desktop and at phone width.
+Elfsight is off surfyogabeer.com. Reviews and Instagram grids are ours on every published page that had them.
+The WhatsApp button is ours too: Google Tag Manager version 38 paused the Elfsight "Whatsapp" tag and added
+"SYB WhatsApp button (syb-widgets)" (All Pages) loading dist/syb-whatsapp.min.js at the pinned commit.
+Still on Elfsight: nicasurfcamp.com (a GoHighLevel page, Instagram widget aa5a2f84).
 
 ## Auto refresh
 
