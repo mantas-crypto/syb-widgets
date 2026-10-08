@@ -37,13 +37,13 @@ surfyogabeer.com/ibiza (Ibiza-ly Does It, Aug 15-21 2028, waitlist only) is the 
 
 surfyogabeer.com/belize runs the Instagram grid (data-tag="sybbelize", added Oct 1 2026). Its 29 tiles are hand-picked #SYBBelize and #SYBelize posts (2017 to 2026), all Belize, none repeating a photo already on the page. Belize's Google reviews block is still Elfsight on purpose (see below).
 
-## Status (Oct 7 2026)
+## Status (Oct 8 2026)
 
-Elfsight is off every published page except two things: the Belize reviews block (waiting on a photo decision) and the
-sitewide WhatsApp button (it lives in Google Tag Manager, not in Easol). Swapped pages: homepage, /newbie,
-/testimonials, /morocco, /croatia, /bali, /egypt, /philippines, /nicaragua/classic, /nicaragua/surf-camp,
-/nicaragua/reset-recharge, /nicaragua/nye, /france/chamonix, /turkey, /japan, /kenya, /iceland, /iceland-north,
-/amalfi, /dolomites, /book-it, plus /ibiza and the Belize Instagram grid from before.
+Elfsight is off every published page except the sitewide WhatsApp button, which lives in Google Tag Manager
+(tag "Whatsapp"), not in Easol. Swapped pages: homepage, /newbie, /testimonials, /morocco, /croatia, /bali, /egypt,
+/philippines, /nicaragua/classic, /nicaragua/surf-camp, /nicaragua/reset-recharge, /nicaragua/nye, /france/chamonix,
+/turkey, /japan, /kenya, /iceland, /iceland-north, /amalfi, /dolomites, /belize, /ibiza, /book-it.
+Full live re-check on Oct 8: all pages pass on desktop and at phone width.
 
 ## Auto refresh
 
