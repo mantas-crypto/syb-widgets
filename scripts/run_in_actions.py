@@ -70,10 +70,28 @@ def proxy_execute(method, endpoint, toolkit, query_params=None, body=None):
     return r.json(), None
 
 
+_key_header = None   # which header this key works with, once known
+
+
+def _key_shape(k):
+    """Describes the key without showing it, for the log."""
+    kind = next((p for p in ("uak_", "ak_") if k.startswith(p)), "something else")
+    odd = ", has spaces or line breaks inside" if len(k.split()) > 1 else ""
+    return "length %d, starts with %s%s" % (len(k), kind, odd)
+
+
 def _composio(method, path, **kw):
-    r = _request(method, COMPOSIO + path, headers={"x-api-key": _need("COMPOSIO_API_KEY")}, **kw)
+    global _key_header
+    key = _need("COMPOSIO_API_KEY")
+    # project keys go in x-api-key, personal (user) keys in x-user-api-key: use whichever is accepted
+    for h in ([_key_header] if _key_header else ["x-api-key", "x-user-api-key"]):
+        r = _request(method, COMPOSIO + path, headers={h: key}, **kw)
+        if r.status_code not in (401, 403):
+            _key_header = h
+            break
     if r.status_code in (401, 403):
-        raise RuntimeError("Composio rejected the API key (HTTP %s). Check the COMPOSIO_API_KEY secret." % r.status_code)
+        raise RuntimeError("Composio rejected the API key (HTTP %s). The saved key: %s. Composio said: %s"
+                           % (r.status_code, _key_shape(key), r.text[:200].replace(key, "<key>")))
     if r.status_code >= 400:
         raise RuntimeError("Composio HTTP %s %s" % (r.status_code, r.text[:300]))
     return r.json()
