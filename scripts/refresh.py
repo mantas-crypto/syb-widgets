@@ -146,6 +146,9 @@ def _elfsight_reviews():
 def refresh(**kw):
     """Quiet wrapper: the workbench helpers print every API response, which would bury the summary."""
     import contextlib
+    if "run_composio_tool" not in globals() or "proxy_execute" not in globals():
+        # Seen Oct 8 2026: a long-lived workbench lost its helpers. A fresh workbench has them.
+        return {"error": "HELPERS_MISSING", "fix": "run import os; os._exit(0) in its own cell, then run again"}
     with contextlib.redirect_stdout(io.StringIO()):
         return _refresh(**kw)
 
