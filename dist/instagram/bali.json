@@ -1,8 +1,14 @@
 {
  "tag": "bali",
  "alt": "SurfYogaBeer Bali",
- "updated": "2026-10-07",
+ "updated": "2026-10-08",
  "posts": [
+  {
+   "code": "DeM8Q3dPWh7",
+   "user": "surfyogabeer",
+   "date": "2026-10-07",
+   "img": "p/DeM8Q3dPWh7.jpg"
+  },
   {
    "code": "Ddm1JKRmuVr",
    "user": "surfyogabeer",
@@ -140,12 +146,6 @@
    "user": "surfyogabeer",
    "date": "2024-04-08",
    "img": "p/C5gbluNO2fB.jpg"
-  },
-  {
-   "code": "C5Oz7AwOBHi",
-   "user": "surfyogabeer",
-   "date": "2024-04-01",
-   "img": "p/C5Oz7AwOBHi.jpg"
   }
  ]
 }
