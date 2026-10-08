@@ -50,9 +50,18 @@ sitewide WhatsApp button (it lives in Google Tag Manager, not in Easol). Swapped
 Pages load widget CODE pinned to a commit SHA and DATA from the main branch (`data-ref="main"` on the div), so a data
 commit updates the site without touching Easol.
 
-`scripts/refresh.py` does the refresh. It runs inside the Composio workbench (that is where the connected Instagram
-account and the GitHub connection live, so no token or key is ever in this repo). A Claude cloud scheduled task runs
-it every day at 6:12am New York time. A run with nothing new makes no commit.
+`scripts/refresh.py` does the refresh. It runs in GitHub Actions: `.github/workflows/refresh.yml`, every day at
+10:12 UTC (6:12am New York in summer), no computer needed. A run with nothing new makes no commit.
+
+- Keys: the job commits with its own GitHub token. Instagram is read through Composio, using one repo secret,
+  `COMPOSIO_API_KEY` (Settings, Secrets and variables, Actions). Nothing secret is written in this repo.
+  If Composio ever holds more than one Instagram connection, put the right one's id in the repo variable
+  `COMPOSIO_IG_ACCOUNT`.
+- Run it by hand: Actions, "Widgets data refresh", Run workflow. Tick "dry" to test without committing.
+- GitHub's own schedule can run hours late or skip a day, so a Claude cloud scheduled task also starts the job each
+  morning and checks that it ran. Two runs on one day are harmless: the second finds nothing new.
+- A failed run means the site keeps yesterday's data; nothing breaks.
+- The script can still be run by hand in the Composio workbench (see the top of scripts/refresh.py).
 
 - Instagram: our own @surfyogabeer posts, matched to a trip by caption words. A post lands on a trip grid only when
   its caption names that one destination, and never twice with the same caption or the same picture. Newest 24 per
@@ -65,7 +74,7 @@ it every day at 6:12am New York time. A run with nothing new makes no commit.
 - jsDelivr caches @main for up to 12 hours; the script purges the changed JSON files after each commit.
 
 To add a trip grid: add its words to DEST_WORDS and its name to GRIDS in scripts/refresh.py, then run
-`refresh(full=True)` twice in the workbench.
+the workflow by hand with "full" ticked.
 
 ## Known gap: review photos
 

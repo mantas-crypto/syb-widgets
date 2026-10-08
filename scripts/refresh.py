@@ -1,16 +1,21 @@
 """
-SYB widgets data refresh. Runs inside the Composio workbench (not on a laptop, not in GitHub Actions).
+SYB widgets data refresh.
 
-Why there: the workbench already holds the connected Instagram account (@surfyogabeer) and a GitHub
-connection with push access to this repo, so no token or key ever lives in this repo.
+Runs every day in GitHub Actions (.github/workflows/refresh.yml, through scripts/run_in_actions.py).
+It can also still run by hand inside the Composio workbench, where it was first written.
 
-One workbench cell:
+It needs two helpers from whatever runs it:
+    proxy_execute(...)       GitHub API calls
+    run_composio_tool(...)   the connected Instagram account (@surfyogabeer) through Composio
+The workbench has both built in. In GitHub Actions run_in_actions.py supplies them, using the job's own
+GitHub token and one repo secret, COMPOSIO_API_KEY. No key is ever written in this repo.
 
-    import requests
-    exec(requests.get("https://raw.githubusercontent.com/mantas-crypto/syb-widgets/main/scripts/refresh.py").text)
+By hand, one workbench cell (paste this file's contents in first):
+
     print(refresh())                 # daily
     print(refresh(full=True))        # re-read every Instagram post (after changing DEST_WORDS);
                                      # run it in a cell of its own, twice, the second run finishes the photos
+In GitHub: Actions, "Widgets data refresh", Run workflow (tick "full" for the every-post read).
 
 What it does
   Instagram  our own posts, matched to trips by caption words (same idea as the old Elfsight filters,
@@ -25,7 +30,7 @@ What it does
 Pages load widget code pinned to a commit SHA and data from @main (data-ref="main"), so a commit here
 updates the site without touching Easol. A run with nothing new makes no commit.
 """
-import base64, datetime, hashlib, io, json, time
+import base64, datetime, hashlib, io, json, os, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
@@ -173,7 +178,7 @@ def _refresh(full=False, budget=140, reviews=True, dry=False):
     if full:
         # reading every post takes about 90 seconds, so keep the list for two hours:
         # call refresh(full=True) again if the first call reports "partial" or too few new images
-        cache = "/home/user/syb-ig-full.json"
+        cache = os.path.join(tempfile.gettempdir(), "syb-ig-full.json")
         try:
             c = json.load(open(cache))
             items, complete = (c["items"], True) if time.time() - c["at"] < 7200 else (None, None)
