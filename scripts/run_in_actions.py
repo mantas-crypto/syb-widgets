@@ -29,6 +29,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 COMPOSIO = os.environ.get("COMPOSIO_BASE_URL", "https://backend.composio.dev/api/v3.1")
 _ig_account = None
 MAX_DAILY_DELETES = 40
+_media_page = 20         # posts per call through Composio Connect; halves itself if answers get cut
 
 
 def _flag(name):
@@ -211,14 +212,52 @@ def _connect_instagram_account(first_error):
                        "Put the right one in the repo variable COMPOSIO_IG_ACCOUNT." % (IG_USERNAME, ", ".join(names)))
 
 
-def _run_via_connect(tool_slug, arguments, account=None):
+def _connect_resolved(tool_slug, arguments, account=None):
+    """_connect_tool, plus choosing the Instagram connection the first time."""
     global _ig_account
+    _ig_account = _ig_account or os.environ.get("COMPOSIO_IG_ACCOUNT", "").strip() or None
+    r, e = _connect_tool(tool_slug, arguments, account or _ig_account)
+    if e and "Specify which to use" in e and not (account or _ig_account):
+        r, e = _connect_tool(tool_slug, arguments, _connect_instagram_account(e))
+    return r, e
+
+
+def _connect_media(arguments, account=None):
+    """Composio Connect cuts a large answer down to a preview (the full copy stays on its side), and a
+    100-post page is large. So read small pages and stitch them back into the page that was asked for."""
+    global _media_page
+    want = int(arguments.get("limit") or 25)
+    rows, after, paging = [], arguments.get("after"), {}
+    while len(rows) < want:
+        a = dict(arguments, limit=min(_media_page, want - len(rows)))
+        a.pop("after", None)
+        if after:
+            a["after"] = after
+        r, e = _connect_resolved("INSTAGRAM_GET_IG_USER_MEDIA", a, account)
+        if e:
+            return None, e
+        d = r.get("data")
+        if not isinstance(d, dict) or not isinstance(d.get("data"), list):
+            if _media_page > 1:          # cut down to a preview: ask for less and try again
+                _media_page = max(1, _media_page // 2)
+                continue
+            return None, "Composio returned no usable post list (keys: %s)" % ", ".join(sorted(r))[:200]
+        rows += d["data"]
+        paging = d.get("paging") or {}
+        after = (paging.get("cursors") or {}).get("after")
+        if not d["data"] or not after or not paging.get("next"):
+            break
+    return {"successful": True, "data": {"data": rows, "paging": paging}}, None
+
+
+def _run_via_connect(tool_slug, arguments, account=None):
     try:
-        _ig_account = _ig_account or os.environ.get("COMPOSIO_IG_ACCOUNT", "").strip() or None
-        r, e = _connect_tool(tool_slug, arguments, account or _ig_account)
-        if e and "Specify which to use" in e and not (account or _ig_account):
-            r, e = _connect_tool(tool_slug, arguments, _connect_instagram_account(e))
-        return r, e
+        if tool_slug == "INSTAGRAM_GET_IG_USER_MEDIA":
+            return _connect_media(arguments, account)
+        r, e = _connect_resolved(tool_slug, arguments, account)
+        if not e and "data" not in r:
+            e = "Composio returned no data (keys: %s)" % ", ".join(sorted(r))[:200]
+        return (None, e) if e else (r, None)
     except RuntimeError as ex:
         return None, str(ex)
 
