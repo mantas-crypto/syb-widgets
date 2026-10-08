@@ -42,7 +42,7 @@ surfyogabeer.com/belize runs the Instagram grid (data-tag="sybbelize", added Oct
 Elfsight is off surfyogabeer.com. Reviews and Instagram grids are ours on every published page that had them.
 The WhatsApp button is ours too: Google Tag Manager version 38 paused the Elfsight "Whatsapp" tag and added
 "SYB WhatsApp button (syb-widgets)" (All Pages) loading dist/syb-whatsapp.min.js at the pinned commit.
-Still on Elfsight: nicasurfcamp.com (a GoHighLevel page, Instagram widget aa5a2f84).
+nicasurfcamp.com (GoHighLevel) runs the Instagram grid too (data-tag="nicaragua"). Elfsight auto-renewal was cancelled Oct 8 2026; the plan ends Oct 28 2026.
 
 ## Auto refresh
 
