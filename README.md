@@ -57,6 +57,8 @@ commit updates the site without touching Easol.
   (Settings, Sessions & API Key; it starts with `ck_`), which reaches the same connections Claude uses.
   Regenerating that key in Composio kills the old one, so update the secret if you ever do.
   Composio holds two Instagram connections; the job picks the one that answers as @surfyogabeer.
+  Instagram is read 10 posts per call: Composio Connect does not send back a larger answer (it saves it to
+  a file on its side instead), which is what failed every run from Oct 8 to Oct 10 2026.
 - Safety stop: a daily run that would delete more than 40 files stops without committing (a cut-short
   Instagram answer looks like mass deletion). Real clean-ups go through a "full" run.
 - Run it by hand: Actions, "Widgets data refresh", Run workflow. Tick "dry" to test without committing.
