@@ -1,10 +1,14 @@
 name: Widgets data refresh
 
-# Reads the newest @surfyogabeer Instagram posts and the Google reviews, copies new images into the
+# Reads the newest @surfyogabeer Instagram posts and the Google reviews (straight from Google), copies new images into the
 # repo and commits to main. Pages load data from main, so a commit here updates the site.
 # A run with nothing new makes no commit.
 #
-# Needs one repo secret: COMPOSIO_API_KEY (Settings, Secrets and variables, Actions).
+# Repo secrets (Settings, Secrets and variables, Actions):
+#   COMPOSIO_API_KEY       Instagram, through Composio
+#   GOOGLE_CLIENT_SECRET   Google reviews (Business Profile API), with GOOGLE_REFRESH_TOKEN below
+#   GOOGLE_REFRESH_TOKEN   from the one-time Google sign-in (Oct 10 2026). Without the two Google
+#                          secrets, reviews come from Elfsight's endpoint, which stops after Oct 28 2026.
 # Optional repo variable: COMPOSIO_IG_ACCOUNT (only if Composio holds more than one Instagram connection).
 
 on:
@@ -43,6 +47,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMPOSIO_API_KEY: ${{ secrets.COMPOSIO_API_KEY }}
           COMPOSIO_IG_ACCOUNT: ${{ vars.COMPOSIO_IG_ACCOUNT }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           REFRESH_DRY: ${{ inputs.dry }}
           REFRESH_FULL: ${{ inputs.full }}
         run: python scripts/run_in_actions.py

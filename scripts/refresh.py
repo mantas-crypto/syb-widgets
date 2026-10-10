@@ -7,8 +7,11 @@ It can also still run by hand inside the Composio workbench, where it was first 
 It needs two helpers from whatever runs it:
     proxy_execute(...)       GitHub API calls
     run_composio_tool(...)   the connected Instagram account (@surfyogabeer) through Composio
-The workbench has both built in. In GitHub Actions run_in_actions.py supplies them, using the job's own
-GitHub token and one repo secret, COMPOSIO_API_KEY. No key is ever written in this repo.
+and uses a third one when it is there:
+    google_api(...)          Google Business Profile API calls (the reviews), signed in as SYB's Google account
+The workbench has the first two built in. In GitHub Actions run_in_actions.py supplies all three, using the
+job's own GitHub token and repo secrets (COMPOSIO_API_KEY, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN).
+No key is ever written in this repo.
 
 By hand, one workbench cell (paste this file's contents in first):
 
@@ -23,8 +26,11 @@ What it does
              newest 24 per trip, images copied into dist/instagram/p/ (Instagram's own links expire).
   Reviews    merged into data/google-reviews.json, photos copied into dist/reviews/photos/ while Google's
              links still work, then per-trip files rebuilt with scripts/build-reviews.py.
-             Source today: Elfsight's public endpoint (works until Elfsight is cancelled).
-             Source later: Google Business Profile API (waiting on Google, case 7-4355000041774).
+             Source: Google Business Profile API (access approved Oct 7 2026, case 7-4355000041774,
+             signed in Oct 10 2026). If the google_api helper is missing or Google fails, it falls back
+             to Elfsight's public endpoint, which only works until the Elfsight plan ends (Oct 28 2026).
+             Google also sends review photos, so reviews whose photos were lost get them back, a few
+             dozen reviews per run.
   Commit     one commit on main through the GitHub API, then a jsDelivr purge for changed JSON.
 
 Pages load widget code pinned to a commit SHA and data from @main (data-ref="main"), so a commit here
@@ -40,6 +46,8 @@ BRANCH = "main"
 PER_TRIP = 24
 IMG_PX = 480
 PLACE = "ChIJyTABhtFZwokRR1ZQGo0WF7Y"  # SYB on Google Maps
+STARS = {"ONE": 1, "TWO": 2, "THREE": 3, "FOUR": 4, "FIVE": 5}
+PHOTO_BACKFILL = 40   # older reviews per run that get their lost photos back from Google
 
 # Caption words per destination (lowercase). A post goes on a trip's grid only when its caption names
 # that destination and no other one, so roundups ("summer 2027 is live", monthly recaps) stay off.
@@ -149,6 +157,86 @@ def _elfsight_reviews():
         "url": x.get("url") or "",
         "src_images": [i.get("url") if isinstance(i, dict) else i for i in (x.get("images") or [])],
     } for x in out]
+
+
+# ---------- Google Business Profile ----------
+GBP_ACCOUNTS = "https://mybusinessaccountmanagement.googleapis.com/v1/accounts"
+GBP_INFO = "https://mybusinessbusinessinformation.googleapis.com/v1/"
+GBP_V4 = "https://mybusiness.googleapis.com/v4/"
+_gbp = {}
+
+
+def _gbp_location():
+    """accounts/<a>/locations/<l> of the profile whose Maps place id is PLACE, found once per run, so a move
+    of the profile to another Google account or location group needs no code change."""
+    if "loc" not in _gbp:
+        for acct in google_api("GET", GBP_ACCOUNTS).get("accounts") or []:  # noqa: F821
+            token = None
+            while True:
+                q = {"readMask": "name,metadata", "pageSize": 100}
+                if token:
+                    q["pageToken"] = token
+                j = google_api("GET", GBP_INFO + acct["name"] + "/locations", q)  # noqa: F821
+                for loc in j.get("locations") or []:
+                    if (loc.get("metadata") or {}).get("placeId") == PLACE:
+                        _gbp["loc"] = acct["name"] + "/" + loc["name"]
+                        return _gbp["loc"]
+                token = j.get("nextPageToken")
+                if not token:
+                    break
+        raise RuntimeError("google: this sign-in sees no Business Profile with place id %s" % PLACE)
+    return _gbp["loc"]
+
+
+def _g_text(c):
+    """Google sends non-English reviews as '(Translated by Google) ... (Original) ...': keep the English."""
+    c = (c or "").strip()
+    if "(Translated by Google)" in c:
+        c = c.split("(Translated by Google)", 1)[1].split("(Original)", 1)[0]
+    return c.strip()
+
+
+def _g_big(u):
+    """Review photos come as small thumbnails; the same link with =s1200 gives the full picture."""
+    base, sep, opts = u.rpartition("=")
+    return (base if sep and "/" not in opts else u) + "=s1200"
+
+
+def _google_reviews():
+    loc = _gbp_location()
+    rows, token = [], None
+    for _ in range(40):
+        q = {"pageSize": 50}
+        if token:
+            q["pageToken"] = token
+        j = google_api("GET", GBP_V4 + loc + "/reviews", q)  # noqa: F821
+        rows += j.get("reviews") or []
+        token = j.get("nextPageToken")
+        if not token:
+            break
+    if len(rows) < 100:
+        raise RuntimeError("google returned only %d reviews" % len(rows))
+    out = []
+    for x in rows:
+        who = x.get("reviewer") or {}
+        out.append({
+            "gid": x.get("reviewId") or (x.get("name") or "").split("/")[-1],
+            "name": (who.get("displayName") or "").strip() or "A Google user",
+            "avatar": who.get("profilePhotoUrl") or "",
+            "rating": STARS.get(x.get("starRating"), 0),
+            "date": (x.get("createTime") or "")[:10],
+            "text": _g_text(x.get("comment")),
+            "url": "",
+            "src_images": [_g_big(m["thumbnailUrl"]) for m in x.get("reviewMediaItems") or [] if m.get("thumbnailUrl")],
+        })
+    return out
+
+
+def _next_day(d, n):
+    try:
+        return (datetime.date.fromisoformat(d) + datetime.timedelta(days=n)).isoformat()
+    except ValueError:
+        return d
 
 
 def refresh(**kw):
@@ -269,18 +357,67 @@ def _refresh(full=False, budget=140, reviews=True, dry=False):
     if reviews:
         try:
             data = json.loads(read("data/google-reviews.json"))
-            key = lambda r: r.get("url") or (r["name"] + "|" + r["date"])
+            # one key per review: its Maps link (Elfsight era), else its Google id, else name and date
+            key = lambda r: r.get("url") or ("g:" + r["gid"] if r.get("gid") else r["name"] + "|" + r["date"])
             have = {key(r): r for r in data}
-            new = 0
-            for r in _elfsight_reviews():
-                cur = have.get(key(r))
+            rows, source = None, "elfsight"
+            if "google_api" in globals():
+                try:
+                    rows, source = _google_reviews(), "google"
+                except Exception as e:  # Elfsight's endpoint still answers until Oct 28 2026
+                    log["google_error"] = str(e)[:200]
+            if rows is None:
+                rows = _elfsight_reviews()
+            log["reviews_source"] = source
+            # Reviews saved from Elfsight carry its Maps link but no Google review id, so a Google review is
+            # matched by its id first, then by reviewer name and date (a day either way, for time zones).
+            by_gid = {r["gid"]: k for k, r in have.items() if r.get("gid")}
+            by_who = {}
+            for k, r in have.items():
+                by_who.setdefault((r["name"].strip().lower(), r["date"]), []).append(k)
+
+            def match(r):
+                if r.get("gid"):
+                    if r["gid"] in by_gid:
+                        return by_gid[r["gid"]]
+                    who = r["name"].strip().lower()
+                    for d in (r["date"], _next_day(r["date"], -1), _next_day(r["date"], 1)):
+                        for k in by_who.get((who, d), []):
+                            c = have[k]
+                            if not c.get("gid") and (d == r["date"] or c["rating"] == r["rating"]):
+                                return k
+                    return None
+                if key(r) in have:
+                    return key(r)
+                # Elfsight fallback: a review first saved from Google has no Maps link to match on
+                return next((k for k in by_who.get((r["name"].strip().lower(), r["date"]), [])
+                             if not have[k].get("url")), None)
+
+            new, backfill = 0, 0
+            for r in rows:
+                k = match(r)
+                cur = have.get(k) if k else None
                 if cur is None:
                     r["images"] = []
-                    have[key(r)] = cur = r
+                    if r.get("gid"):
+                        r["g_media"] = True
+                        by_gid[r["gid"]] = key(r)
+                    have[key(r)] = r
                     new += 1
+                    continue
+                for f in ("name", "avatar", "rating", "date", "text"):
+                    if r[f] not in ("", 0, None):
+                        cur[f] = r[f]
+                if r.get("gid"):
+                    cur["gid"] = r["gid"]
+                    by_gid[r["gid"]] = k
+                    # Elfsight-era reviews lost most guest photos (Google's old links die within days).
+                    # Google's API sends them again: bring them back, a few dozen reviews per run.
+                    if r["src_images"] and not cur.get("images") and not cur.get("g_media") \
+                            and backfill < PHOTO_BACKFILL:
+                        cur["src_images"], cur["photos_checked"], cur["g_media"] = r["src_images"], False, True
+                        backfill += 1
                 else:
-                    for k in ("name", "avatar", "rating", "date", "text"):
-                        cur[k] = r[k]
                     cur.setdefault("src_images", r["src_images"])
             # copy guest photos while Google's links are alive (they die within days)
             todo = [(k, u) for k, r in have.items() if not r.get("photos_checked") for u in (r.get("src_images") or [])[:4]]
@@ -315,6 +452,8 @@ def _refresh(full=False, budget=140, reviews=True, dry=False):
                     changed_json.append("dist/reviews/" + n)
             files["data/google-reviews.json"] = json.dumps(data, ensure_ascii=False, indent=1).encode()
             log["reviews_total"], log["reviews_new"], log["review_photos_saved"] = len(data), new, saved
+            if backfill:
+                log["reviews_photos_back"] = backfill
         except Exception as e:  # the Instagram half still ships
             log["reviews_error"] = str(e)[:200]
 
