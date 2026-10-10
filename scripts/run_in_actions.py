@@ -193,7 +193,44 @@ def _connect_tool(tool_slug, arguments, account=None):
     resp = row["response"]
     if not resp.get("successful", True) or resp.get("error"):
         return None, str(resp.get("error") or "tool call was not successful")[:400]
+    if "data" not in resp:
+        # Seen Oct 8-10 2026: an answer over a few thousand words is not sent back. Composio saves it to a
+        # file in its own sandbox and returns only a shortened "data_preview", which is no use here.
+        return None, TOO_BIG if "data_preview" in resp else "Composio answered without data (it sent: %s)" \
+            % ", ".join(sorted(resp))[:200]
     return resp, None
+
+
+TOO_BIG = "answer too large for Composio Connect to send back"
+MEDIA_PAGE = 10      # posts per call: 10 come back whole, 20 do not (measured Oct 10 2026)
+
+
+def _connect_media(arguments, account=None):
+    """INSTAGRAM_GET_IG_USER_MEDIA in small calls, joined up to look like the one big page that was asked
+    for. If even a small call is too large (very long captions), the call size is halved and tried again."""
+    want = int(arguments.get("limit") or 25)
+    after, size, rows, paging = arguments.get("after"), MEDIA_PAGE, [], {}
+    while len(rows) < want:
+        a = dict(arguments, limit=min(size, want - len(rows)))
+        a.pop("after", None)
+        if after:
+            a["after"] = after
+        r, e = _connect_tool("INSTAGRAM_GET_IG_USER_MEDIA", a, account)
+        if e == TOO_BIG and a["limit"] > 1:
+            size = max(1, a["limit"] // 2)
+            continue
+        if e:
+            return None, e
+        d = r.get("data")
+        if not isinstance(d, dict) or not isinstance(d.get("data"), list):
+            return None, "Instagram answered without a list of posts: %s" % json.dumps(d)[:300]
+        rows += d["data"]
+        paging = d.get("paging") or {}
+        after = (paging.get("cursors") or {}).get("after")
+        if not d["data"] or not after or not paging.get("next"):
+            paging = {k: v for k, v in paging.items() if k != "next"}     # the end of the account
+            break
+    return {"successful": True, "data": {"data": rows, "paging": paging}}, None
 
 
 def _connect_instagram_account(first_error):
@@ -215,18 +252,30 @@ def _run_via_connect(tool_slug, arguments, account=None):
     global _ig_account
     try:
         _ig_account = _ig_account or os.environ.get("COMPOSIO_IG_ACCOUNT", "").strip() or None
-        r, e = _connect_tool(tool_slug, arguments, account or _ig_account)
+        call = _connect_media if tool_slug == "INSTAGRAM_GET_IG_USER_MEDIA" else \
+            (lambda args, acc=None: _connect_tool(tool_slug, args, acc))
+        r, e = call(arguments, account or _ig_account)
         if e and "Specify which to use" in e and not (account or _ig_account):
-            r, e = _connect_tool(tool_slug, arguments, _connect_instagram_account(e))
+            r, e = call(arguments, _connect_instagram_account(e))
         return r, e
     except RuntimeError as ex:
         return None, str(ex)
 
 
+_seen = {}   # answers already fetched in this job
+
+
 def run_composio_tool(tool_slug, arguments, account=None):
     """Same call shape as the workbench helper. Returns (result, error); result["data"] is the tool output."""
     if _need("COMPOSIO_API_KEY").startswith("ck_"):
-        return _run_via_connect(tool_slug, arguments, account)
+        # a daily job reads Instagram twice (rehearsal, then the real run): fetch each page once
+        k = json.dumps([tool_slug, arguments, account], sort_keys=True)
+        if k not in _seen:
+            r, e = _run_via_connect(tool_slug, arguments, account)
+            if e:
+                return None, e
+            _seen[k] = r
+        return json.loads(json.dumps(_seen[k])), None
     try:
         j = _composio("POST", "/tools/execute/" + tool_slug,
                       json={"arguments": arguments, "connected_account_id": account or _instagram_account()})

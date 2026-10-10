@@ -106,8 +106,11 @@ def _ig_media(pages):
         r, e = run_composio_tool("INSTAGRAM_GET_IG_USER_MEDIA", a)  # noqa: F821
         if e:
             raise RuntimeError("instagram: %s" % e)
-        d = r["data"]
-        items += d.get("data", [])
+        d = r.get("data") if isinstance(r, dict) else None
+        if not isinstance(d, dict) or not isinstance(d.get("data"), list):
+            raise RuntimeError("instagram: the answer held no list of posts (it held: %s)"
+                               % (", ".join(sorted(r)) if isinstance(r, dict) else type(r).__name__)[:200])
+        items += d["data"]
         pg = d.get("paging") or {}
         after = (pg.get("cursors") or {}).get("after")
         if not after or not pg.get("next"):
