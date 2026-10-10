@@ -43,6 +43,7 @@ Elfsight is off surfyogabeer.com. Reviews and Instagram grids are ours on every 
 The WhatsApp button is ours too: Google Tag Manager version 38 paused the Elfsight "Whatsapp" tag and added
 "SYB WhatsApp button (syb-widgets)" (All Pages) loading dist/syb-whatsapp.min.js at the pinned commit.
 nicasurfcamp.com (GoHighLevel) runs the Instagram grid too (data-tag="nicaragua"). Elfsight auto-renewal was cancelled Oct 8 2026; the plan ends Oct 28 2026.
+Since Oct 10 2026 the reviews come straight from Google (Business Profile API), so nothing here depends on Elfsight.
 
 ## Auto refresh
 
@@ -57,6 +58,11 @@ commit updates the site without touching Easol.
   (Settings, Sessions & API Key; it starts with `ck_`), which reaches the same connections Claude uses.
   Regenerating that key in Composio kills the old one, so update the secret if you ever do.
   Composio holds two Instagram connections; the job picks the one that answers as @surfyogabeer.
+  Google reviews use two more secrets, `GOOGLE_CLIENT_SECRET` and `GOOGLE_REFRESH_TOKEN`: the OAuth client
+  "SYB widgets daily refresh" in Google Cloud project syb-website-widgets (Google Auth Platform, user type
+  Internal) and the one-time sign-in as mantas@surfyogabeer.com, done Oct 10 2026 in the OAuth Playground with
+  scope business.manage. Revoking that sign-in, or deleting the client, stops the Google read; the log then
+  says "Google sign-in failed" and the fix is the same one-time sign-in again.
   Instagram is read 10 posts per call: Composio Connect does not send back a larger answer (it saves it to
   a file on its side instead), which is what failed every run from Oct 8 to Oct 10 2026.
 - Safety stop: a daily run that would delete more than 40 files stops without committing (a cut-short
@@ -72,19 +78,23 @@ commit updates the site without touching Easol.
   trip. Images are copied to dist/instagram/p/ because Instagram's own links expire.
 - Reviews: merged into data/google-reviews.json, guest photos copied to dist/reviews/photos/ while Google's links
   still work (they die within days), per-trip files rebuilt by scripts/build-reviews.py.
-  Source today: Elfsight's public endpoint, which stops when Elfsight is cancelled.
-  Source later: Google Business Profile API (access request case 7-4355000041774, project syb-website-widgets).
-  Until that lands, reviews stay as the last snapshot after the cancel.
+  Source: the Google Business Profile API (access approved Oct 7 2026, case 7-4355000041774), straight from
+  Google, every review on every run. The profile is found by its Maps place id, so no account ids live here.
+  Reviews saved in the Elfsight era are matched to Google's by reviewer name and date, then by Google's id.
+  If Google cannot be read, the run falls back to Elfsight's endpoint (until the plan ends Oct 28 2026) and
+  logs `google_error`; after that date a Google failure means reviews stay as they are until it is fixed.
 - jsDelivr caches @main for up to 12 hours; the script purges the changed JSON files after each commit.
 
 To add a trip grid: add its words to DEST_WORDS and its name to GRIDS in scripts/refresh.py, then run
 the workflow by hand with "full" ticked.
 
-## Known gap: review photos
+## Review photos
 
-Google's photo links expire. On Oct 7 2026, 156 of 631 were still alive and are saved in dist/reviews/photos/
-(42 reviews have photos); the rest are gone for good. Elfsight only ever kept tiny cached copies. Google's official
-API returns no review photos at all, so new photos are only caught while the Elfsight endpoint still answers.
+Google's photo links expire, so every photo is copied into dist/reviews/photos/ the first time it is seen.
+On Oct 7 2026 only 156 of 631 Elfsight-era links still worked (42 reviews had photos). Google's API does send review
+photos (reviewMediaItems: a thumbnail link; the same link ending in =s1200 gives the full picture), so new reviews
+keep theirs, and older reviews that lost their photos get them back, 40 reviews per run (`reviews_photos_back`
+in the log), until every one has been tried once (`g_media` on the review).
 
 ## Embed snippets
 

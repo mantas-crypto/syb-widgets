@@ -16,6 +16,12 @@ Environment
                           finds the one that answers as @surfyogabeer.
     REFRESH_DRY           "true" = read everything, commit nothing (the test button)
     REFRESH_FULL          "true" = re-read every Instagram post
+    GOOGLE_CLIENT_SECRET  repo secret: the OAuth client "SYB widgets daily refresh" in Google Cloud project
+                          syb-website-widgets (Google Auth Platform, Clients)
+    GOOGLE_REFRESH_TOKEN  repo secret: from the one-time Google sign-in as mantas@surfyogabeer.com (Oct 10 2026,
+                          OAuth Playground, scope business.manage)
+    GOOGLE_CLIENT_ID      optional; that client's id (not a secret) is the default
+Without the two Google secrets the job still runs: reviews then come from Elfsight's endpoint (until Oct 28 2026).
 """
 import json
 import os
@@ -262,6 +268,49 @@ def _run_via_connect(tool_slug, arguments, account=None):
         return None, str(ex)
 
 
+# ---------- Google Business Profile (the reviews) ----------
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "").strip() or \
+    "161209962706-29sspdd568sdpqdsc1ghack1iiv7ifnq.apps.googleusercontent.com"
+_google = {"token": None, "until": 0, "seen": {}}
+
+
+def _google_token():
+    if _google["token"] and time.time() < _google["until"]:
+        return _google["token"]
+    r = _request("POST", "https://oauth2.googleapis.com/token",
+                 data={"client_id": GOOGLE_CLIENT_ID, "client_secret": _need("GOOGLE_CLIENT_SECRET"),
+                       "refresh_token": _need("GOOGLE_REFRESH_TOKEN"), "grant_type": "refresh_token"})
+    try:
+        j = r.json()
+    except ValueError:
+        j = {}
+    if r.status_code != 200 or not j.get("access_token"):
+        why = "%s %s" % (j.get("error") or r.status_code, (j.get("error_description") or "").rstrip("."))
+        if j.get("error") == "invalid_grant":
+            why += ". The saved Google sign-in no longer works: redo the one-time sign-in and update the " \
+                   "GOOGLE_REFRESH_TOKEN secret"
+        elif j.get("error") == "invalid_client":
+            why += ". Check the GOOGLE_CLIENT_SECRET secret"
+        raise RuntimeError("Google sign-in failed: " + why.strip())
+    _google["token"] = j["access_token"]
+    _google["until"] = time.time() + int(j.get("expires_in") or 3600) - 120
+    return _google["token"]
+
+
+def google_api(method, url, params=None):
+    """One Google API call, signed in as SYB's Google account. GET answers are kept for the rest of the job
+    (a daily job reads everything twice: the rehearsal, then the real run)."""
+    k = json.dumps([method, url, params], sort_keys=True)
+    if method == "GET" and k in _google["seen"]:
+        return json.loads(_google["seen"][k])
+    r = _request(method, url, params=params, headers={"Authorization": "Bearer " + _google_token()})
+    if r.status_code >= 400:
+        raise RuntimeError("Google HTTP %s on %s: %s" % (r.status_code, url.split("?")[0], r.text[:300]))
+    if method == "GET":
+        _google["seen"][k] = r.text
+    return r.json()
+
+
 _seen = {}   # answers already fetched in this job
 
 
@@ -294,6 +343,11 @@ def main():
     _need("COMPOSIO_API_KEY")
     path = os.path.join(HERE, "refresh.py")
     ns = {"__name__": "syb_refresh", "proxy_execute": proxy_execute, "run_composio_tool": run_composio_tool}
+    if os.environ.get("GOOGLE_CLIENT_SECRET", "").strip() and os.environ.get("GOOGLE_REFRESH_TOKEN", "").strip():
+        ns["google_api"] = google_api
+    else:
+        print("::warning title=Google reviews not connected::The GOOGLE_CLIENT_SECRET and GOOGLE_REFRESH_TOKEN "
+              "secrets are not both set, so reviews come from Elfsight's endpoint, which stops after Oct 28 2026.")
     with open(path) as f:
         exec(compile(f.read(), path, "exec"), ns)
 
@@ -322,6 +376,8 @@ def main():
     if summary:
         with open(summary, "a") as f:
             f.write("### Widgets data refresh%s\n\n```json\n%s\n```\n" % (" (dry run)" if kw["dry"] else "", text))
+    if out.get("google_error"):
+        print("::warning title=Google reviews not read::%s" % out["google_error"])
     if out.get("reviews_error"):
         print("::warning title=Reviews not refreshed::%s" % out["reviews_error"])
     return 0
