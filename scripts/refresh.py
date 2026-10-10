@@ -232,11 +232,31 @@ def _google_reviews():
     return out
 
 
-def _next_day(d, n):
+def _norm(s):
+    """Lowercase letters and digits only, single spaces: for comparing names and review words."""
+    return " ".join("".join(ch if ch.isalnum() else " " for ch in (s or "").lower()).split())
+
+
+def _ratio(a, b):
+    import difflib
+    return difflib.SequenceMatcher(None, _norm(a)[:300], _norm(b)[:300]).ratio()
+
+
+def _same_words(a, b):
+    """True when two texts are the same review (Elfsight and Google can differ in spacing and punctuation,
+    and a reviewer may have edited a few words)."""
+    a, b = _norm(a), _norm(b)
+    if not a or not b:
+        return False
+    n = min(len(a), len(b), 60)
+    return (n >= 20 and a[:n] == b[:n]) or _ratio(a, b) >= 0.8
+
+
+def _days(a, b):
     try:
-        return (datetime.date.fromisoformat(d) + datetime.timedelta(days=n)).isoformat()
+        return abs((datetime.date.fromisoformat(a) - datetime.date.fromisoformat(b)).days)
     except ValueError:
-        return d
+        return 9999
 
 
 def refresh(**kw):
@@ -369,38 +389,56 @@ def _refresh(full=False, budget=140, reviews=True, dry=False):
             if rows is None:
                 rows = _elfsight_reviews()
             log["reviews_source"] = source
-            # Reviews saved from Elfsight carry its Maps link but no Google review id, so a Google review is
-            # matched by its id first, then by reviewer name and date (a day either way, for time zones).
+            # Reviews saved from Elfsight carry its Maps link but no Google review id. Elfsight also stored
+            # rough dates for older reviews, so a Google review is matched by its id, then by reviewer name
+            # and the words of the review, then name and date, then the words alone (a renamed account), then
+            # the name alone when that person has just one review on Google.
             by_gid = {r["gid"]: k for k, r in have.items() if r.get("gid")}
-            by_who = {}
+            by_name, by_words = {}, {}
             for k, r in have.items():
-                by_who.setdefault((r["name"].strip().lower(), r["date"]), []).append(k)
+                by_name.setdefault(_norm(r["name"]), []).append(k)
+                if len(_norm(r["text"])) >= 40:
+                    by_words.setdefault(_norm(r["text"])[:60], []).append(k)
+            g_names = {}
+            for r in rows:
+                g_names[_norm(r["name"])] = g_names.get(_norm(r["name"]), 0) + 1
+            how = {}
 
             def match(r):
                 if r.get("gid"):
                     if r["gid"] in by_gid:
-                        return by_gid[r["gid"]]
-                    who = r["name"].strip().lower()
-                    for d in (r["date"], _next_day(r["date"], -1), _next_day(r["date"], 1)):
-                        for k in by_who.get((who, d), []):
-                            c = have[k]
-                            if not c.get("gid") and (d == r["date"] or c["rating"] == r["rating"]):
-                                return k
-                    return None
+                        return by_gid[r["gid"]], "id"
+                    free = [k for k in by_name.get(_norm(r["name"]), []) if not have[k].get("gid")]
+                    for k in free:
+                        if _same_words(have[k]["text"], r["text"]):
+                            return k, "name and words"
+                    for k in free:
+                        c = have[k]
+                        if c["date"] == r["date"] or (_days(c["date"], r["date"]) <= 1 and c["rating"] == r["rating"]):
+                            return k, "name and date"
+                    if len(_norm(r["text"])) >= 40:
+                        for k in by_words.get(_norm(r["text"])[:60], []):
+                            if not have[k].get("gid"):
+                                return k, "words"
+                    if free and g_names.get(_norm(r["name"])) == 1:
+                        return max(free, key=lambda k: (_ratio(have[k]["text"], r["text"]), have[k]["date"])), "name"
+                    return None, None
                 if key(r) in have:
-                    return key(r)
+                    return key(r), "link"
                 # Elfsight fallback: a review first saved from Google has no Maps link to match on
-                return next((k for k in by_who.get((r["name"].strip().lower(), r["date"]), [])
-                             if not have[k].get("url")), None)
+                return next((k for k in by_name.get(_norm(r["name"]), [])
+                             if not have[k].get("url") and have[k]["date"] == r["date"]), None), "name and date"
 
-            new, backfill = 0, 0
+            new, backfill, new_gids = 0, 0, set()
             for r in rows:
-                k = match(r)
+                k, why = match(r)
                 cur = have.get(k) if k else None
+                how[why or "new"] = how.get(why or "new", 0) + 1
                 if cur is None:
                     r["images"] = []
                     if r.get("gid"):
                         r["g_media"] = True
+                        new_gids.add(r["gid"])
                         by_gid[r["gid"]] = key(r)
                     have[key(r)] = r
                     new += 1
@@ -454,6 +492,13 @@ def _refresh(full=False, budget=140, reviews=True, dry=False):
             log["reviews_total"], log["reviews_new"], log["review_photos_saved"] = len(data), new, saved
             if backfill:
                 log["reviews_photos_back"] = backfill
+            log["reviews_matched_by"] = how
+            if source == "google":
+                # on the site but not on Google any more (deleted by the reviewer, or an Elfsight duplicate)
+                log["reviews_not_on_google"] = sum(1 for r in data if not r.get("gid"))
+                if new:
+                    log["reviews_new_list"] = ["%s %s" % (r["name"], r["date"]) for r in data
+                                               if r.get("gid") and r.get("g_media") and r["gid"] in new_gids][:10]
         except Exception as e:  # the Instagram half still ships
             log["reviews_error"] = str(e)[:200]
 
