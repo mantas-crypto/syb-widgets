@@ -52,7 +52,7 @@ PLACES = {
     "Nicaragua": ("Nicaragua", "Nicaragua", "/nicaragua"),
     "Bali": ("Bali, Indonesia", "Bali", "/bali"),
     "Finland": ("Finnish Lapland", "Lapland", "/finland"),
-    "France (riviera)": ("South of France", "Côte d'Azur", "/south-of-france"),
+    "France (riviera)": ("South of France", "Côte d’Azur", "/south-of-france"),
     "France (ski)": ("French Alps", "French Alps", "/chamonix"),
     "Amalfi": ("Amalfi Coast, Italy", "Amalfi", "/amalfi"),
     "Dolomites": ("Dolomites, Italy", "Dolomites", "/dolomites"),
