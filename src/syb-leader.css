@@ -24,14 +24,14 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl a:focus-visible,.syl button:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
 
 /* hero: her story */
-.syl.syl-hero{padding:0;overflow:hidden}
+.syl.syl-hero{padding:76px 0 0;overflow:hidden}
 .syl .syl-reel{position:relative;aspect-ratio:4/5;max-height:84vh;width:100%;overflow:hidden;background:#101014;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .syl .syl-slide{position:absolute;inset:0;opacity:0;transition:opacity .45s ease}
 .syl .syl-slide.is-on{opacity:1}
 .syl .syl-slide img,.syl .syl-slide video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 35%)}
-.syl .syl-reel::before{content:"";position:absolute;inset:0 0 auto;height:170px;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0));pointer-events:none}
+.syl .syl-reel::before{content:"";position:absolute;inset:0 0 auto;height:110px;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0));pointer-events:none}
 .syl .syl-reel::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 44%,rgba(0,0,0,.55) 74%,#000 100%);pointer-events:none}
-.syl .syl-bars{position:absolute;top:84px;left:14px;right:14px;z-index:4;display:flex;gap:4px}
+.syl .syl-bars{position:absolute;top:12px;left:12px;right:12px;z-index:4;display:flex;gap:4px}
 .syl .syl-bars i{flex:1;height:3px;border-radius:3px;background:rgba(244,242,238,.32);overflow:hidden}
 .syl .syl-bars b{display:block;height:100%;width:0;background:var(--ink)}
 .syl .syl-bars i.is-done b{width:100%}
@@ -39,12 +39,12 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl .syl-reel.is-paused .syl-bars i.is-on b,.syl .syl-reel.is-still .syl-bars i.is-on b{animation-play-state:paused}
 .syl .syl-reel.is-still .syl-bars i.is-on b{animation:none;width:100%}
 @keyframes sylBar{from{width:0}to{width:100%}}
-.syl .syl-cap{position:absolute;top:98px;left:14px;right:56px;z-index:4;font-family:var(--med);font-size:13.5px;line-height:1.35;color:var(--ink);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.syl .syl-cap{position:absolute;top:26px;left:14px;right:56px;z-index:4;font-family:var(--med);font-size:13.5px;line-height:1.35;color:var(--ink);text-shadow:0 1px 8px rgba(0,0,0,.6)}
 .syl .syl-tap{position:absolute;top:0;bottom:0;z-index:3;-webkit-tap-highlight-color:transparent}
 .syl .syl-tap-prev{left:0;width:32%}
 .syl .syl-tap-next{right:0;width:68%}
 .syl .syl-tap:focus-visible{outline:2px solid var(--violet);outline-offset:-4px}
-.syl .syl-pause{position:absolute;top:92px;right:8px;z-index:5;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:var(--ink)}
+.syl .syl-pause{position:absolute;top:20px;right:8px;z-index:5;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:var(--ink)}
 .syl .syl-pause svg{width:15px;height:15px;fill:currentColor}
 .syl .syl-pause .is-play,.syl .syl-reel.is-held .syl-pause .is-pause{display:none}
 .syl .syl-reel.is-held .syl-pause .is-play{display:block}
@@ -142,7 +142,6 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 @media (min-width:900px){
 .syl{padding-top:128px;font-size:18px}
 .syl.syl-hero{padding:132px 0 0}
-.syl .syl-bars{top:14px}.syl .syl-cap{top:28px}.syl .syl-pause{top:21px}.syl .syl-reel::before{height:120px}
 .syl .syl-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:64px;align-items:center;max-width:1180px;margin:0 auto;padding:0 20px}
 .syl .syl-reel{order:2;border-radius:22px;max-height:none;max-width:460px;justify-self:end}
 .syl .syl-reel::after{background:linear-gradient(180deg,rgba(0,0,0,0) 70%,rgba(0,0,0,.35) 100%)}
