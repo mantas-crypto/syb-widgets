@@ -202,7 +202,7 @@
   }
   function tagHtml(first, r) {
     var s = day(r.trip_start);
-    return '<b>' + esc(first) + '’s ' + esc(r.tag) + ' trip</b>, ' + MONTH[s.getMonth()] + ' ' + s.getFullYear();
+    return '<b>' + esc(first) + '’s ' + esc(r.tag) + ' trip</b>, ' + MON[s.getMonth()] + ' ' + s.getFullYear();
   }
   function renderReviews(data) {
     var box = $('.syl [data-reviews]');
