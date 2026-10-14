@@ -1,0 +1,14 @@
+{%- comment -%} SYB leader pages: every upcoming departure, printed live by Easol on each visit. syb-leader.js picks this leader's trips from it (spots left, sold out, price, link, photo). {%- endcomment -%}
+<div id="syl-live" hidden>
+{%- product_search page_size: 100, departure_date: { greater_or_equal_than: 'now' }, sort: 'departure_date_asc' -%}
+{%- for p in result.items -%}
+{%- assign en = p.enquire_only | append: '' | downcase -%}
+{%- if en == 'true' -%}{%- continue -%}{%- endif -%}
+{%- assign rem = p.remaining_stock -%}
+{%- assign rn = rem | plus: 0 -%}{%- assign so = 0 -%}{%- if rn < 11 -%}{%- if p.sold_out -%}{%- assign so = 1 -%}{%- endif -%}{%- endif -%}
+{%- assign im = p.hero_image -%}{%- unless im -%}{%- assign im = p.gallery | first -%}{%- endunless -%}
+{%- assign fv = p.featured_variant -%}
+<i data-n="{{ p.name | escape }}" data-d="{{ p.depart_on | date: '%Y-%m-%d' }}" data-dur="{{ p.duration | escape }}" data-u="{{ p.url }}" data-r="{{ rem }}" data-so="{{ so }}" data-p="{% if fv %}{{ fv.price | money }}{% endif %}" data-img="{{ im.medium_url }}"></i>
+{%- endfor -%}
+{%- endproduct_search -%}
+</div>
