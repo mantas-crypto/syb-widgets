@@ -1,0 +1,13 @@
+{
+  "_about": "Leader pages config. One entry per leader who has a page. 'feed' = how the leader is written in SYB HQ and the Leader Hub Feed (TRIPS tab, leaders column). 'aliases' = names that count as the leader in a guest review. 'exclude_names' = names never quoted on any leader page (review sentences that contain them are left out).",
+  "exclude_names": ["Rob"],
+  "leaders": {
+    "erin": {
+      "name": "Erin MacLeod",
+      "first": "Erin",
+      "feed": ["Erin M."],
+      "aliases": ["Erin"],
+      "page": "/trip-leaders/erin-preview"
+    }
+  }
+}

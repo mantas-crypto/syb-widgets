@@ -1,0 +1,24 @@
+{
+  "_about": "Hand-picked quotes. Key = review id (Google gid, or the id in extra-reviews.json). q = the big line, more = extra lines (each its own quote), feature = the one shown large at the top, hide = never show. Reviews with no entry here get an automatic excerpt: the sentences that name the leader, or the opening sentences.",
+  "AbFvOqkKIGLK0rK7gdeOWfe7ROin9J2y0LQJQw4p_1sR31QZQfGdoOl8e017UomcjECEvF_T5gw_6w": {
+    "feature": true,
+    "q": "Watching her lead a large group was incredible.",
+    "more": [
+      "Whether she was leading a killer morning yoga session, planning an unforgettable SHELLONA beach club day … or being the first one ready to celebrate and have fun at night, she brought such an authentic, positive energy that made everyone want to have fun.",
+      "If you ever have the opportunity to join a trip with Erin, Holly, Christian, and Matas, consider yourself lucky."
+    ]
+  },
+  "tp:6a677ca2353929d1cf30021b": {
+    "q": "A special shout-out to Erin for putting together an absolutely baller day at Shellona Saint-Tropez. It was easily one of the highlights of the week.",
+    "more": ["Erin, Holly, Christian, and Matas were an outstanding leadership team."]
+  },
+  "AbFvOqkf_ZKA27Wyc8ne23oYhQMBeRNHueofOHT1vzZQARVAuqnGJJPVGBO-bGnCsXM24DHDkOf9Wg": {
+    "q": "Surf Yoga Beer was truly a life-changing experience. … I met so many amazing, like minded people. I’m already planning my next SYB trip."
+  },
+  "AbFvOqmJoAx_JYSXiXGx_-Mjx6a5plfcvxq-M9sIxe3Jh8i4RDZ0v-2bsg3XlWhmAuOpQtuWbZSx": {
+    "q": "I had the absolute best time in Nicaragua with Surf Yoga Beer! This trip was the perfect combination of adventure, fun, friendship and relaxation. … This was the experience I didn’t know I needed but am so thankful for."
+  },
+  "AbFvOqnwMrf4jaiUnG9V6jLlvqSXM5X-HVXBS8_60-wki4LmEHETwh5yYhlSdG_VEWZU80jXzdG8XQ": {
+    "q": "I couldn’t imagine another trip topping SYB Kenya ‘24, but SYB Nica was truly incredible. Both times I’ve left with new friends that feel more like family."
+  }
+}

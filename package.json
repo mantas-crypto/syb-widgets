@@ -2,9 +2,10 @@
   "name": "syb-widgets",
   "version": "1.0.0",
   "private": true,
-  "description": "SurfYogaBeer website widgets (Google reviews, WhatsApp button, Instagram grid). Replaces Elfsight.",
+  "description": "SurfYogaBeer website widgets (Google reviews, WhatsApp button, Instagram grid). Replaces Elfsight, plus the SYB leader pages.",
   "scripts": {
-    "build": "python3 scripts/build-reviews.py && cp src/*.js dist/ && for f in syb-reviews syb-whatsapp syb-instagram; do npx -y terser@5 dist/$f.js -c -m -o dist/$f.min.js; done",
-    "dev": "npx -y serve -l 5173 ."
+    "build": "python3 scripts/build-reviews.py && cp src/*.js dist/ && for f in syb-reviews syb-whatsapp syb-instagram; do npx -y terser@5 dist/$f.js -c -m -o dist/$f.min.js; done && mkdir -p dist/leader && cp src/syb-leader.js src/syb-leader.css dist/leader/ && npx -y terser@5 dist/leader/syb-leader.js -c -m -o dist/leader/syb-leader.min.js && npx -y clean-css-cli@5 -o dist/leader/syb-leader.min.css dist/leader/syb-leader.css",
+    "dev": "npx -y serve -l 5173 .",
+    "leaders": "python3 scripts/build-leaders.py"
   }
 }

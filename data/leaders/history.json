@@ -1,0 +1,2462 @@
+{
+ "trips": {
+  "Nicaragua (Remote) '23": {
+   "trip": "Remote Nicaragua",
+   "start": "2023-01-02",
+   "end": "2023-01-22",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Mantas Z.",
+    "Mike S.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Philippines '23": {
+   "trip": "Island Hopping",
+   "start": "2023-02-19",
+   "end": "2023-02-26",
+   "dest": "Philippines",
+   "booked": 16,
+   "leaders": [
+    "Mantas Z.",
+    "Alex M.",
+    "Cezary",
+    "Chris Saxophone",
+    "Ryan G."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua '23": {
+   "trip": "Surf Yoga Beer",
+   "start": "2023-03-04",
+   "end": "2023-03-10",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Jillian M.",
+    "Joe",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Chamonix, France '23": {
+   "trip": "Ski Yoga Beer",
+   "start": "2023-03-14",
+   "end": "2023-03-19",
+   "dest": "France (ski)",
+   "booked": 22,
+   "leaders": [
+    "Mike S.",
+    "Aaron C.",
+    "Adam F.",
+    "Keegan",
+    "Sarah W.",
+    "Tina"
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Egypt '23": {
+   "trip": "Pharaoh's Fiesta",
+   "start": "2023-05-14",
+   "end": "2023-05-21",
+   "dest": "Egypt",
+   "booked": 23,
+   "leaders": [
+    "Mike S.",
+    "Adam F.",
+    "Duncan",
+    "Juliana T.",
+    "Mark H."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Morocco '23": {
+   "trip": "Desert Dopeness",
+   "start": "2023-06-03",
+   "end": "2023-06-10",
+   "dest": "Morocco",
+   "booked": 46,
+   "leaders": [
+    "Mantas Z.",
+    "Alex M.",
+    "Cezary",
+    "DJ Thailah",
+    "Keegan",
+    "Nikki B.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Italy '23": {
+   "trip": "Mambo Italiano",
+   "start": "2023-06-17",
+   "end": "2023-06-23",
+   "dest": "Amalfi",
+   "booked": 24,
+   "leaders": [
+    "Mantas Z.",
+    "Heather",
+    "Keegan",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Kenya '23": {
+   "trip": "Safari Stylin'",
+   "start": "2023-07-02",
+   "end": "2023-07-08",
+   "dest": "Kenya",
+   "booked": 18,
+   "leaders": [
+    "Steph C.",
+    "Aubrey",
+    "Mark H."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Greece (Sail) '23": {
+   "trip": "Greece (Sail)",
+   "start": "2023-08-19",
+   "end": "2023-08-27",
+   "dest": "Greece",
+   "booked": 18,
+   "leaders": [
+    "Mantas Z.",
+    "Katie D.",
+    "Sam F."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Croatia '23": {
+   "trip": "Island Takeover",
+   "start": "2023-08-27",
+   "end": "2023-09-02",
+   "dest": "Croatia",
+   "booked": 48,
+   "leaders": [
+    "Mantas Z.",
+    "Alex M.",
+    "Chels",
+    "Keegan",
+    "Meag D.",
+    "Molly",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Turkey (Sail) '23": {
+   "trip": "Blue Voyage",
+   "start": "2023-09-02",
+   "end": "2023-09-09",
+   "dest": "Turkey",
+   "booked": 10,
+   "leaders": [
+    "Mantas Z.",
+    "Sam F."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Iceland (Hike) '23": {
+   "trip": "Fire & Ice",
+   "start": "2023-09-03",
+   "end": "2023-09-08",
+   "dest": "Iceland",
+   "booked": 30,
+   "leaders": [
+    "Bradford",
+    "Chuko",
+    "Elena",
+    "Ken"
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Mexico '23": {
+   "trip": "Mexico",
+   "start": "2023-10-27",
+   "end": "2023-11-01",
+   "dest": "Mexico",
+   "booked": 8,
+   "leaders": [
+    "Mantas Z.",
+    "Camila",
+    "Cristina",
+    "Duncan",
+    "Dan D.",
+    "Renata"
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Nov 21 '23": {
+   "trip": "Surf Yoga Beer",
+   "start": "2023-11-21",
+   "end": "2023-11-27",
+   "dest": "Nicaragua",
+   "booked": 18,
+   "leaders": [
+    "Mantas Z.",
+    "Adam F.",
+    "Aubrey",
+    "Duncan",
+    "Ian"
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "NICARAGUA (New Years Eve) '23": {
+   "trip": "Surf Yoga Beer NYE",
+   "start": "2023-12-27",
+   "end": "2024-01-03",
+   "dest": "Nicaragua",
+   "booked": 71,
+   "leaders": [
+    "Mantas Z.",
+    "Alex M.",
+    "Andres",
+    "Cezary",
+    "Duncan",
+    "Jose",
+    "Juliana T.",
+    "Meag D."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua (Remote) '24": {
+   "trip": "Reset & Recharge",
+   "start": "2024-01-02",
+   "end": "2024-01-22",
+   "dest": "Nicaragua",
+   "booked": 18,
+   "leaders": [
+    "Meag D.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Philippines '24": {
+   "trip": "Island Hopping",
+   "start": "2024-02-17",
+   "end": "2024-02-26",
+   "dest": "Philippines",
+   "booked": 13,
+   "leaders": [
+    "Cezary",
+    "Juliana T.",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Chamonix, France '24": {
+   "trip": "Ski Yoga Beer",
+   "start": "2024-03-12",
+   "end": "2024-03-17",
+   "dest": "France (ski)",
+   "booked": 35,
+   "leaders": [
+    "Mike S.",
+    "Aaron C.",
+    "Alex M.",
+    "Maxime",
+    "Molly",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua '24": {
+   "trip": "Surf Yoga Beer",
+   "start": "2024-03-19",
+   "end": "2024-03-25",
+   "dest": "Nicaragua",
+   "booked": 17,
+   "leaders": [
+    "Jillian M.",
+    "Adrian",
+    "Nate",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "NICARAGUA x ATHLETIC '24": {
+   "trip": "Surf Yoga Beer x Athletic Clubs",
+   "start": "2024-04-02",
+   "end": "2024-04-08",
+   "dest": "Nicaragua",
+   "booked": 22,
+   "leaders": [
+    "Sam K.",
+    "Joe"
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Bali '24": {
+   "trip": "Bali Bliss",
+   "start": "2024-04-15",
+   "end": "2024-04-21",
+   "dest": "Bali",
+   "booked": 15,
+   "leaders": [
+    "Ryan G.",
+    "Molly"
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Egypt '24": {
+   "trip": "Pharaoh's Fiesta",
+   "start": "2024-04-27",
+   "end": "2024-05-05",
+   "dest": "Egypt",
+   "booked": 13,
+   "leaders": [
+    "Duncan",
+    "Alex M.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Morocco '24": {
+   "trip": "Desert Dopeness",
+   "start": "2024-06-01",
+   "end": "2024-06-08",
+   "dest": "Morocco",
+   "booked": 14,
+   "leaders": [
+    "Alex M.",
+    "Darryl C.",
+    "Katie D.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Italy '24": {
+   "trip": "Mambo Italiano",
+   "start": "2024-06-16",
+   "end": "2024-06-22",
+   "dest": "Amalfi",
+   "booked": 38,
+   "leaders": [
+    "Steph C.",
+    "Chuko",
+    "Mantas Z.",
+    "Molly"
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Italy Dolomites '24": {
+   "trip": "YOLO - MITES",
+   "start": "2024-06-28",
+   "end": "2024-07-04",
+   "dest": "Dolomites",
+   "booked": 32,
+   "leaders": [
+    "Aaron C.",
+    "Chuko",
+    "Cristina",
+    "Juliana T.",
+    "Mantas Z.",
+    "Santiago A."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Kenya '24": {
+   "trip": "Safari Stylin'",
+   "start": "2024-07-14",
+   "end": "2024-07-20",
+   "dest": "Kenya",
+   "booked": 15,
+   "leaders": [
+    "Steph C.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Kenya Lux & Chill '24": {
+   "trip": "Safari Stylin' (lux & chill)",
+   "start": "2024-07-21",
+   "end": "2024-07-27",
+   "dest": "Kenya",
+   "booked": 5,
+   "leaders": [
+    "Steph C.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Ireland (Hike) '24": {
+   "trip": "Lucky Trails and Charms",
+   "start": "2024-08-04",
+   "end": "2024-08-10",
+   "dest": "Ireland",
+   "booked": 9,
+   "leaders": [
+    "Mantas Z.",
+    "Bradford"
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua YTT '24": {
+   "trip": "Yoga Teacher Training",
+   "start": "2024-08-07",
+   "end": "2024-08-14",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Juliana T.",
+    "Sarah W.",
+    "Bradford",
+    "Mantas Z."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Greece (Sail) '24": {
+   "trip": "Greece (Sail)",
+   "start": "2024-08-17",
+   "end": "2024-08-24",
+   "dest": "Greece",
+   "booked": 11,
+   "leaders": [
+    "Jillian M.",
+    "Alex M."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Croatia '24": {
+   "trip": "Island Takeover",
+   "start": "2024-08-26",
+   "end": "2024-09-01",
+   "dest": "Croatia",
+   "booked": 41,
+   "leaders": [
+    "Mantas Z.",
+    "Chuko",
+    "Darryl C.",
+    "Harry S.",
+    "Sam K.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Iceland (Hike) '24": {
+   "trip": "Fire & Ice",
+   "start": "2024-08-31",
+   "end": "2024-09-05",
+   "dest": "Iceland",
+   "booked": 38,
+   "leaders": [
+    "Bradford",
+    "Bri F.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Turkey (Sail) '24": {
+   "trip": "Blue Voyage",
+   "start": "2024-08-31",
+   "end": "2024-09-07",
+   "dest": "Turkey",
+   "booked": 7,
+   "leaders": [
+    "Steph C.",
+    "Mantas Z."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Turkey Lux & Chill (Sail) '24": {
+   "trip": "Blue Voyage (lux & chill)",
+   "start": "2024-09-07",
+   "end": "2024-09-14",
+   "dest": "Turkey",
+   "booked": 6,
+   "leaders": [
+    "Mantas Z.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Pickleball Pop Up '24": {
+   "trip": "Pickleball Pop-up",
+   "start": "2024-09-29",
+   "end": "2024-09-29",
+   "dest": "",
+   "booked": 38,
+   "leaders": [
+    "Bradford"
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Nyc Welcome Party '24": {
+   "trip": "SYB Welcome Party",
+   "start": "2024-10-18",
+   "end": "2024-10-19",
+   "dest": "NYC",
+   "booked": 72,
+   "leaders": [
+    "Duncan",
+    "Dylan"
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "All Star Pickleball '24": {
+   "trip": "All Star Pickleball",
+   "start": "2024-10-19",
+   "end": "2024-10-19",
+   "dest": "",
+   "booked": 33,
+   "leaders": [
+    "Dylan"
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Black Tie Gala '24": {
+   "trip": "Black Tie Gala",
+   "start": "2024-10-19",
+   "end": "2024-10-20",
+   "dest": "NYC",
+   "booked": 163,
+   "leaders": [
+    "Steph C.",
+    "Dan D.",
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Central Park Recovery Run '24": {
+   "trip": "Central Park Recovery Run",
+   "start": "2024-10-20",
+   "end": "2024-10-20",
+   "dest": "",
+   "booked": 20,
+   "leaders": [
+    "Mantas Z.",
+    "Dylan"
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Manatee Miami Day '24": {
+   "trip": "Miami Manatee Island Day",
+   "start": "2024-11-09",
+   "end": "2024-11-10",
+   "dest": "",
+   "booked": 63,
+   "leaders": [
+    "Drew",
+    "Mantas Z.",
+    "Steph C."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Nicaragua Nov 19 '24": {
+   "trip": "Surf Yoga Beer",
+   "start": "2024-11-19",
+   "end": "2024-11-25",
+   "dest": "Nicaragua",
+   "booked": 19,
+   "leaders": [
+    "Mantas Z.",
+    "Bradford",
+    "Juliana T.",
+    "Sarah C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Nov 26 '24": {
+   "trip": "Surf Yoga Beer",
+   "start": "2024-11-26",
+   "end": "2024-12-02",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Eli E.",
+    "Jenny E.",
+    "Mantas Z."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Dec 3 '24": {
+   "trip": "Surf Yoga Beer",
+   "start": "2024-12-03",
+   "end": "2024-12-09",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Eli E.",
+    "Drew"
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Nye '24": {
+   "trip": "Surf Yoga Beer NYE",
+   "start": "2024-12-27",
+   "end": "2025-01-03",
+   "dest": "Nicaragua",
+   "booked": 52,
+   "leaders": [
+    "Mantas Z.",
+    "Courtney C.",
+    "Duncan",
+    "Eli E.",
+    "Sam K.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua (Remote) '25": {
+   "trip": "Reset & Recharge",
+   "start": "2025-01-02",
+   "end": "2025-01-22",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Mantas Z.",
+    "Courtney C.",
+    "Sam K.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Philippines '25": {
+   "trip": "Island Hopping",
+   "start": "2025-01-16",
+   "end": "2025-01-24",
+   "dest": "Philippines",
+   "booked": 0,
+   "leaders": [
+    "Juliana T.",
+    "Darryl C.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "CANCELLED"
+  },
+  "Nicaragua '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-01-28",
+   "end": "2025-02-03",
+   "dest": "Nicaragua",
+   "booked": 6,
+   "leaders": [
+    "Sam K.",
+    "Courtney C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Japan '25": {
+   "trip": "Japow - wow",
+   "start": "2025-02-01",
+   "end": "2025-02-09",
+   "dest": "Japan",
+   "booked": 17,
+   "leaders": [
+    "Mantas Z.",
+    "Sarah W.",
+    "Aaron C.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua 'Surf Camp' '25": {
+   "trip": "SYB Surf Camp 2.0",
+   "start": "2025-02-02",
+   "end": "2025-02-08",
+   "dest": "Nicaragua",
+   "booked": 6,
+   "leaders": [
+    "Sam K.",
+    "Courtney C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Feb 7 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-02-07",
+   "end": "2025-02-13",
+   "dest": "Nicaragua",
+   "booked": 5,
+   "leaders": [
+    "Sam K.",
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Feb 20 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-02-20",
+   "end": "2025-02-26",
+   "dest": "Nicaragua",
+   "booked": 8,
+   "leaders": [
+    "Eli E.",
+    "Drew"
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "SYB x OTHERSHIP '25": {
+   "trip": "SYB x OTHERSHIP",
+   "start": "2025-02-21",
+   "end": "2025-02-21",
+   "dest": "",
+   "booked": 38,
+   "leaders": [
+    "Bradford",
+    "Mantas Z.",
+    "Mike S.",
+    "Steph C."
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Nicaragua Feb 25 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-02-25",
+   "end": "2025-03-03",
+   "dest": "Nicaragua",
+   "booked": 7,
+   "leaders": [
+    "Eli E.",
+    "Erin M."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Chamonix, France '25": {
+   "trip": "Ski Yoga Beer",
+   "start": "2025-03-02",
+   "end": "2025-03-08",
+   "dest": "France (ski)",
+   "booked": 28,
+   "leaders": [
+    "Bradford",
+    "Alex M.",
+    "Ryan G.",
+    "Samara"
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua (Remote) Mar 2 '25": {
+   "trip": "Reset & Recharge",
+   "start": "2025-03-02",
+   "end": "2025-03-22",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "CANCELLED"
+  },
+  "Boston Punch & Flow '25": {
+   "trip": "Boston Punch & Flow",
+   "start": "2025-03-15",
+   "end": "2025-03-15",
+   "dest": "",
+   "booked": 0,
+   "leaders": [
+    "Adrian",
+    "Claire"
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "San Diego Sweat & Chill '25": {
+   "trip": "San Diego Sweat & Chill",
+   "start": "2025-03-15",
+   "end": "2025-03-15",
+   "dest": "",
+   "booked": 40,
+   "leaders": [
+    "Jillian M.",
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Nicaragua Mar 21 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-03-21",
+   "end": "2025-03-27",
+   "dest": "Nicaragua",
+   "booked": 5,
+   "leaders": [
+    "Jillian M.",
+    "Christian L.",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua 'Surf Camp' Mar 26 '25": {
+   "trip": "SYB Surf Camp 2.0",
+   "start": "2025-03-26",
+   "end": "2025-04-01",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Jillian M.",
+    "Matas G.",
+    "Sarah C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Mar 31 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-03-31",
+   "end": "2025-04-06",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Matas G.",
+    "Lizzie",
+    "Katie D."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Las Vegas Sweat & Splash '25": {
+   "trip": "Las Vegas Sweat & Splash",
+   "start": "2025-04-11",
+   "end": "2025-04-11",
+   "dest": "Las Vegas",
+   "booked": 22,
+   "leaders": [
+    "Sav C."
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Bali '25": {
+   "trip": "Bali Bliss",
+   "start": "2025-04-21",
+   "end": "2025-04-27",
+   "dest": "Bali",
+   "booked": 13,
+   "leaders": [
+    "Mantas Z.",
+    "Adam F.",
+    "Maxime",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Egypt '25": {
+   "trip": "Pharaoh's Fiesta",
+   "start": "2025-04-27",
+   "end": "2025-05-05",
+   "dest": "Egypt",
+   "booked": 14,
+   "leaders": [
+    "Eli E.",
+    "Rebecca",
+    "Santiago A."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Morocco '25": {
+   "trip": "Desert Dopeness",
+   "start": "2025-05-25",
+   "end": "2025-05-31",
+   "dest": "Morocco",
+   "booked": 12,
+   "leaders": [
+    "Darryl C.",
+    "Sarah C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Amalfi, Italy '25": {
+   "trip": "Mambo Italiano",
+   "start": "2025-06-15",
+   "end": "2025-06-21",
+   "dest": "Amalfi",
+   "booked": 39,
+   "leaders": [
+    "Mantas Z.",
+    "Adam F.",
+    "Juliana T.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Kenya '25": {
+   "trip": "Safari Stylin'",
+   "start": "2025-06-19",
+   "end": "2025-06-25",
+   "dest": "Kenya",
+   "booked": 17,
+   "leaders": [
+    "Steph C.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Iceland '25": {
+   "trip": "Fire & Ice",
+   "start": "2025-07-08",
+   "end": "2025-07-13",
+   "dest": "Iceland",
+   "booked": 31,
+   "leaders": [
+    "Bradford",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Ireland '25": {
+   "trip": "Lucky Trails and Charms",
+   "start": "2025-07-28",
+   "end": "2025-08-03",
+   "dest": "Ireland",
+   "booked": 10,
+   "leaders": [
+    "Dan D.",
+    "Bradford",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "San Diego Deep End Fitness '25": {
+   "trip": "Beach Day: DEF x SYB",
+   "start": "2025-08-02",
+   "end": "2025-08-03",
+   "dest": "",
+   "booked": 49,
+   "leaders": [
+    "Jillian M.",
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "NYC Surf Friday '25": {
+   "trip": "Surf Day",
+   "start": "2025-08-08",
+   "end": "2025-08-09",
+   "dest": "NYC",
+   "booked": 13,
+   "leaders": [
+    "Bradford",
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Turkey (2 Gulets) '25": {
+   "trip": "Blue Voyage",
+   "start": "2025-08-16",
+   "end": "2025-08-23",
+   "dest": "Turkey",
+   "booked": 20,
+   "leaders": [
+    "Jillian M.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Croatia '25": {
+   "trip": "Island Takeover",
+   "start": "2025-08-25",
+   "end": "2025-08-31",
+   "dest": "Croatia",
+   "booked": 64,
+   "leaders": [
+    "Mantas Z.",
+    "Courtney C.",
+    "DJ Stefano",
+    "Darryl C.",
+    "Eli E.",
+    "Sam K.",
+    "Sarah C.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Dolomites, Italy '25": {
+   "trip": "YOLO - MITES",
+   "start": "2025-09-01",
+   "end": "2025-09-07",
+   "dest": "Dolomites",
+   "booked": 38,
+   "leaders": [
+    "Aaron C.",
+    "Alex M.",
+    "Cristina",
+    "Eli E.",
+    "Lauren S."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Syb Nyc Party '25": {
+   "trip": "SYB NYC Party",
+   "start": "2025-10-10",
+   "end": "2025-10-11",
+   "dest": "NYC",
+   "booked": 95,
+   "leaders": [
+    "Bradford",
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Black Tie Gala '25": {
+   "trip": "Black Tie Gala",
+   "start": "2025-10-11",
+   "end": "2025-10-12",
+   "dest": "NYC",
+   "booked": 183,
+   "leaders": [
+    "Steph C.",
+    "Eli E.",
+    "Justin",
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "La Lt Days Venice Beach Run '25": {
+   "trip": "Venice Beach Run + Workout",
+   "start": "2025-10-11",
+   "end": "2025-10-12",
+   "dest": "LA",
+   "booked": 49,
+   "leaders": [
+    "Matas G.",
+    "Christian L.",
+    "Jenny E."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "RUMBLE x SYB WORKOUT '25": {
+   "trip": "SYB x Rumble",
+   "start": "2025-10-11",
+   "end": "2025-10-12",
+   "dest": "",
+   "booked": 56,
+   "leaders": [
+    "Bradford"
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Nicaragua Nov 6 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-11-06",
+   "end": "2025-11-12",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Lauren S.",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Nov 11 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-11-11",
+   "end": "2025-11-17",
+   "dest": "Nicaragua",
+   "booked": 12,
+   "leaders": [
+    "Sarah C.",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua 'Academy' '25": {
+   "trip": "Yoga Teacher Training",
+   "start": "2025-11-16",
+   "end": "2025-11-21",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Mantas Z.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Nov 16 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-11-16",
+   "end": "2025-11-22",
+   "dest": "Nicaragua",
+   "booked": 7,
+   "leaders": [
+    "Mantas Z.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Nov 21 '25": {
+   "trip": "Surf Yoga Beer",
+   "start": "2025-11-21",
+   "end": "2025-11-27",
+   "dest": "Nicaragua",
+   "booked": 15,
+   "leaders": [
+    "Eli E.",
+    "Erin M.",
+    "Mantas Z.",
+    "Rob M."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "La Venice Turkey Run '25": {
+   "trip": "Venice Beach Friendsgiving Trot",
+   "start": "2025-11-23",
+   "end": "2025-11-24",
+   "dest": "LA",
+   "booked": 8,
+   "leaders": [
+    "Matas G.",
+    "Christian L.",
+    "Jenny E."
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Nicaragua Primal Reset '25": {
+   "trip": "Primal Reset",
+   "start": "2025-11-26",
+   "end": "2025-12-02",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Eli E.",
+    "Mantas Z.",
+    "Rob M."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Belize '25": {
+   "trip": "Belize the Day",
+   "start": "2025-12-02",
+   "end": "2025-12-08",
+   "dest": "Belize",
+   "booked": 21,
+   "leaders": [
+    "Mike S.",
+    "Matas G.",
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Dec 27 '25": {
+   "trip": "NYE '26",
+   "start": "2025-12-27",
+   "end": "2026-01-03",
+   "dest": "Nicaragua",
+   "booked": 46,
+   "leaders": [
+    "Eli E.",
+    "Mantas Z.",
+    "Carri B.",
+    "Christian L.",
+    "Manu",
+    "Matas G.",
+    "Rob M."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Reset & Recharge '26": {
+   "trip": "Reset & Recharge",
+   "start": "2026-01-02",
+   "end": "2026-01-14",
+   "dest": "Nicaragua",
+   "booked": 7,
+   "leaders": [
+    "Matas G.",
+    "Mantas Z."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Reset & Recharge Jan 13 '26": {
+   "trip": "Nicaragua Reset & Recharge Jan 13",
+   "start": "2026-01-13",
+   "end": "2026-01-24",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "CANCELLED"
+  },
+  "Nicaragua Surf Camp '26": {
+   "trip": "Surf Camp",
+   "start": "2026-01-24",
+   "end": "2026-01-30",
+   "dest": "Nicaragua",
+   "booked": 6,
+   "leaders": [
+    "Bradford",
+    "Kaia H."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Surf Yoga Beer '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-01-29",
+   "end": "2026-02-04",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Jenny E.",
+    "Brycen",
+    "Kaia H."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Japan '26": {
+   "trip": "Japow - wow",
+   "start": "2026-01-31",
+   "end": "2026-02-08",
+   "dest": "Japan",
+   "booked": 15,
+   "leaders": [
+    "Sarah W.",
+    "Ryan G."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nyc Dinner + Party '26": {
+   "trip": "NYC Dinner + Party",
+   "start": "2026-02-06",
+   "end": "2026-02-07",
+   "dest": "NYC",
+   "booked": 67,
+   "leaders": [
+    "Mantas Z.",
+    "Manu"
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Philippines '26": {
+   "trip": "Islands of Palawan",
+   "start": "2026-02-12",
+   "end": "2026-02-20",
+   "dest": "Philippines",
+   "booked": 11,
+   "leaders": [
+    "Ryan G.",
+    "Lizzie"
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Surf Yoga Beer Mar 7 '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-03-07",
+   "end": "2026-03-13",
+   "dest": "Nicaragua",
+   "booked": 5,
+   "leaders": [
+    "Meag D.",
+    "Holly L."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Val Thorens, France '26": {
+   "trip": "Allez Apres",
+   "start": "2026-03-07",
+   "end": "2026-03-14",
+   "dest": "France (ski)",
+   "booked": 23,
+   "leaders": [
+    "Alex M.",
+    "Brycen",
+    "Lauren S."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Surf Camp Mar 12 '26": {
+   "trip": "Surf Camp",
+   "start": "2026-03-12",
+   "end": "2026-03-18",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Carri B.",
+    "Rob M."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Chamonix, France '26": {
+   "trip": "Ski Yoga Beer",
+   "start": "2026-03-15",
+   "end": "2026-03-21",
+   "dest": "France (ski)",
+   "booked": 12,
+   "leaders": [
+    "Bradford",
+    "Charlie",
+    "Jillian M."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "La Venice Knockout '26": {
+   "trip": "Venice Beach Knockout",
+   "start": "2026-03-15",
+   "end": "2026-03-16",
+   "dest": "LA",
+   "booked": 18,
+   "leaders": [
+    "Matas G.",
+    "Christian L.",
+    "Egis",
+    "Jenny E."
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "NYC Run Club '26": {
+   "trip": "NYC Run Club",
+   "start": "2026-03-15",
+   "end": "2026-03-15",
+   "dest": "NYC",
+   "booked": 3,
+   "leaders": [],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Nicaragua Surf Yoga Beer Mar 17 '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-03-17",
+   "end": "2026-03-23",
+   "dest": "Nicaragua",
+   "booked": 8,
+   "leaders": [
+    "Sarah C.",
+    "Matas G.",
+    "Nikki R.",
+    "Rob M."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Surf Yoga Beer Mar 22 '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-03-22",
+   "end": "2026-03-28",
+   "dest": "Nicaragua",
+   "booked": 7,
+   "leaders": [
+    "Matas G.",
+    "Nikki R.",
+    "Rob M.",
+    "Sarah C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Nicaragua Surf Yoga Box '26": {
+   "trip": "Surf Yoga Boxing",
+   "start": "2026-03-27",
+   "end": "2026-04-02",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Rob M.",
+    "Bri F.",
+    "Noah F."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "NYC Ski Day '26": {
+   "trip": "NYC Ski Day",
+   "start": "2026-03-28",
+   "end": "2026-03-29",
+   "dest": "NYC",
+   "booked": 0,
+   "leaders": [
+    "Bradford"
+   ],
+   "kind": "event",
+   "status": "CANCELLED"
+  },
+  "Bali #1 '26": {
+   "trip": "Bali Activated",
+   "start": "2026-04-06",
+   "end": "2026-04-12",
+   "dest": "Bali",
+   "booked": 19,
+   "leaders": [
+    "Adam T.",
+    "Jenny E.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Red Sea, Egypt '26": {
+   "trip": "Pharaoh's Fiesta",
+   "start": "2026-04-16",
+   "end": "2026-04-25",
+   "dest": "Egypt",
+   "booked": 17,
+   "leaders": [
+    "Eli E.",
+    "Mantas Z.",
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Morocco '26": {
+   "trip": "Desert Dopeness",
+   "start": "2026-05-02",
+   "end": "2026-05-08",
+   "dest": "Morocco",
+   "booked": 10,
+   "leaders": [
+    "Sarah C.",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "RECONCILED"
+  },
+  "Nicaragua Surf Camp May 19 '26": {
+   "trip": "Surf Camp",
+   "start": "2026-05-19",
+   "end": "2026-05-25",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Lukas",
+    "Holly L.",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Las Vegas '26": {
+   "trip": "Sin City Social",
+   "start": "2026-06-13",
+   "end": "2026-06-14",
+   "dest": "Las Vegas",
+   "booked": 44,
+   "leaders": [
+    "Sav C."
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Amalfi, Italy '26": {
+   "trip": "Mambo Italiano",
+   "start": "2026-06-14",
+   "end": "2026-06-20",
+   "dest": "Amalfi",
+   "booked": 35,
+   "leaders": [
+    "Sam K.",
+    "Adam T.",
+    "Carri B.",
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Kenya #1 '26": {
+   "trip": "Safari Stylin'",
+   "start": "2026-06-18",
+   "end": "2026-06-24",
+   "dest": "Kenya",
+   "booked": 21,
+   "leaders": [
+    "Eli E.",
+    "Bri F."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Kenya #2 '26": {
+   "trip": "Safari Stylin'",
+   "start": "2026-06-25",
+   "end": "2026-07-01",
+   "dest": "Kenya",
+   "booked": 6,
+   "leaders": [
+    "Eli E.",
+    "Bri F.",
+    "Juliana T."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Iceland North '26": {
+   "trip": "Twice The Ice",
+   "start": "2026-06-27",
+   "end": "2026-07-03",
+   "dest": "Iceland",
+   "booked": 7,
+   "leaders": [
+    "Bradford",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Cote D'Azure, France '26": {
+   "trip": "Bonjour Cote d'Azur",
+   "start": "2026-06-29",
+   "end": "2026-07-05",
+   "dest": "France (riviera)",
+   "booked": 24,
+   "leaders": [
+    "Christian L.",
+    "Matas G.",
+    "Erin M.",
+    "Holly L."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Dolomites, Italy #1 '26": {
+   "trip": "YOLO - MITES",
+   "start": "2026-07-06",
+   "end": "2026-07-12",
+   "dest": "Dolomites",
+   "booked": 11,
+   "leaders": [
+    "Eli E.",
+    "Lauren S."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Croatia #1 '26": {
+   "trip": "Island Takeover",
+   "start": "2026-07-13",
+   "end": "2026-07-19",
+   "dest": "Croatia",
+   "booked": 20,
+   "leaders": [
+    "Eli E.",
+    "Kaia H.",
+    "Lizzie"
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Ireland '26": {
+   "trip": "Lucky Trails and Charms",
+   "start": "2026-07-27",
+   "end": "2026-08-02",
+   "dest": "Ireland",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "CANCELLED"
+  },
+  "Turkey '26": {
+   "trip": "Blue Voyage",
+   "start": "2026-08-15",
+   "end": "2026-08-22",
+   "dest": "Turkey",
+   "booked": 8,
+   "leaders": [
+    "Eli E.",
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Croatia #2 '26": {
+   "trip": "Island Takeover",
+   "start": "2026-08-24",
+   "end": "2026-08-30",
+   "dest": "Croatia",
+   "booked": 27,
+   "leaders": [
+    "Lizzie",
+    "Carri B.",
+    "Nikki R.",
+    "Santiago A."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Iceland South '26": {
+   "trip": "Fire & Ice",
+   "start": "2026-08-29",
+   "end": "2026-09-03",
+   "dest": "Iceland",
+   "booked": 19,
+   "leaders": [
+    "Eli E.",
+    "Christian L.",
+    "Meag D.",
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Dolomites, Italy #2 '26": {
+   "trip": "YOLO - MITES",
+   "start": "2026-08-31",
+   "end": "2026-09-06",
+   "dest": "Dolomites",
+   "booked": 37,
+   "leaders": [
+    "Lauren S.",
+    "Brycen",
+    "Sarah C.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "Black Tie Gala '26": {
+   "trip": "Black Tie Gala",
+   "start": "2026-10-03",
+   "end": "2026-10-04",
+   "dest": "NYC",
+   "booked": 149,
+   "leaders": [
+    "Mantas Z.",
+    "Steph C.",
+    "Eli E."
+   ],
+   "kind": "event",
+   "status": "LIVE"
+  },
+  "Pre-Gala Cycling Class '26": {
+   "trip": "Pre-Gala Cycling Class",
+   "start": "2026-10-03",
+   "end": "2026-10-04",
+   "dest": "NYC",
+   "booked": 20,
+   "leaders": [
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Pre-Gala Mat Class '26": {
+   "trip": "Pre-Gala Mat Class",
+   "start": "2026-10-03",
+   "end": "2026-10-04",
+   "dest": "NYC",
+   "booked": 15,
+   "leaders": [
+    "Mantas Z."
+   ],
+   "kind": "event",
+   "status": "DONE"
+  },
+  "Belize #1 '26": {
+   "trip": "Belize the Day",
+   "start": "2026-10-06",
+   "end": "2026-10-12",
+   "dest": "Belize",
+   "booked": 10,
+   "leaders": [
+    "Sav C.",
+    "Sarah C."
+   ],
+   "kind": "trip",
+   "status": "DONE"
+  },
+  "La Lt Days Venice Beach 5k '26": {
+   "trip": "Venice Beach 5K + Pilates",
+   "start": "2026-10-10",
+   "end": "2026-10-11",
+   "dest": "LA",
+   "booked": 62,
+   "leaders": [
+    "Matas G.",
+    "Lukas"
+   ],
+   "kind": "event",
+   "status": "RUNNING"
+  },
+  "Nicaragua Surf Camp Oct 13 '26": {
+   "trip": "Surf Camp",
+   "start": "2026-10-13",
+   "end": "2026-10-19",
+   "dest": "Nicaragua",
+   "booked": 3,
+   "leaders": [
+    "Bri F."
+   ],
+   "kind": "trip",
+   "status": "RUNNING"
+  },
+  "Bali #2 '26": {
+   "trip": "Bali Activated",
+   "start": "2026-10-19",
+   "end": "2026-10-25",
+   "dest": "Bali",
+   "booked": 17,
+   "leaders": [
+    "Eli E.",
+    "Erin M."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Bali #3 '26": {
+   "trip": "Bali Activated",
+   "start": "2026-11-02",
+   "end": "2026-11-08",
+   "dest": "Bali",
+   "booked": 12,
+   "leaders": [
+    "Eli E.",
+    "Kaia H.",
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Yoga Beer Nov 16 '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-11-16",
+   "end": "2026-11-22",
+   "dest": "Nicaragua",
+   "booked": 7,
+   "leaders": [
+    "Bri F."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Yoga Beer Nov 21 '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-11-21",
+   "end": "2026-11-27",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Jillian M.",
+    "Bri F.",
+    "Carri B."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Yoga Beer (Thx) '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-11-26",
+   "end": "2026-12-02",
+   "dest": "Nicaragua",
+   "booked": 10,
+   "leaders": [
+    "Sam K.",
+    "Mantas Z.",
+    "Erin M."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Academy '26": {
+   "trip": "SYB Academy",
+   "start": "2026-12-01",
+   "end": "2026-12-06",
+   "dest": "Nicaragua",
+   "booked": 2,
+   "leaders": [
+    "Eli E.",
+    "Juliana T.",
+    "Sam K.",
+    "Mantas Z."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua SURF YOGA BEER (w ACADEMY) '26": {
+   "trip": "Surf Yoga Beer",
+   "start": "2026-12-01",
+   "end": "2026-12-07",
+   "dest": "Nicaragua",
+   "booked": 2,
+   "leaders": [
+    "Eli E.",
+    "Juliana T.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua NYE '26": {
+   "trip": "Nicaragua NYE",
+   "start": "2026-12-27",
+   "end": "2027-01-03",
+   "dest": "Nicaragua",
+   "booked": 14,
+   "leaders": [
+    "Meag D.",
+    "Eli E.",
+    "Holly L.",
+    "Sam K.",
+    "Nikki R.",
+    "Mantas Z.",
+    "Steph C."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Bali #4 Nye '26": {
+   "trip": "Bali NYE",
+   "start": "2026-12-28",
+   "end": "2027-01-03",
+   "dest": "Bali",
+   "booked": 18,
+   "leaders": [
+    "Alex M.",
+    "Bri F.",
+    "Christian L."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Belize #2 Nye '26": {
+   "trip": "Belize NYE",
+   "start": "2026-12-29",
+   "end": "2027-01-04",
+   "dest": "Belize",
+   "booked": 26,
+   "leaders": [
+    "Mike S.",
+    "Bradford",
+    "Matas G."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Reset & Recharge '27": {
+   "trip": "Reset & Recharge",
+   "start": "2027-01-02",
+   "end": "2027-01-17",
+   "dest": "Nicaragua",
+   "booked": 2,
+   "leaders": [
+    "Mantas Z.",
+    "Steph C.",
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Chamonix, France '27": {
+   "trip": "Ski Yoga Spritz",
+   "start": "2027-01-16",
+   "end": "2027-01-22",
+   "dest": "France (ski)",
+   "booked": 6,
+   "leaders": [
+    "Bradford",
+    "Adam T.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Japan '27": {
+   "trip": "Japow - wow",
+   "start": "2027-01-30",
+   "end": "2027-02-07",
+   "dest": "Japan",
+   "booked": 17,
+   "leaders": [
+    "Lauren S.",
+    "Maxime"
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Yoga Beer '27": {
+   "trip": "Surf Yoga Beer",
+   "start": "2027-02-08",
+   "end": "2027-02-14",
+   "dest": "Nicaragua",
+   "booked": 3,
+   "leaders": [
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Guatemala '27": {
+   "trip": "Guat A Feeling",
+   "start": "2027-02-09",
+   "end": "2027-02-16",
+   "dest": "Guatemala",
+   "booked": 14,
+   "leaders": [
+    "Bradford",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua SURF YOGA BEER (singles) '27": {
+   "trip": "Surf Yoga Beer",
+   "start": "2027-02-13",
+   "end": "2027-02-19",
+   "dest": "Nicaragua",
+   "booked": 9,
+   "leaders": [
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Zermatt Switzerland '27": {
+   "trip": "Swiss on the Rocks",
+   "start": "2027-02-13",
+   "end": "2027-02-19",
+   "dest": "Switzerland",
+   "booked": 5,
+   "leaders": [
+    "Bradford",
+    "Carri B."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Philippines '27": {
+   "trip": "Islands of Palawan",
+   "start": "2027-02-15",
+   "end": "2027-02-22",
+   "dest": "Philippines",
+   "booked": 4,
+   "leaders": [
+    "Lizzie"
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Finland '27": {
+   "trip": "Northern Delights",
+   "start": "2027-03-13",
+   "end": "2027-03-18",
+   "dest": "Finland",
+   "booked": 36,
+   "leaders": [
+    "Eli E.",
+    "Mantas Z.",
+    "Erin M."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua SURF YOGA BABE (female) '27": {
+   "trip": "Surf Yoga Babe",
+   "start": "2027-03-14",
+   "end": "2027-03-19",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [
+    "Holly L.",
+    "Bri F."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Yoga Beer Mar 19 '27": {
+   "trip": "Surf Yoga Beer",
+   "start": "2027-03-19",
+   "end": "2027-03-25",
+   "dest": "Nicaragua",
+   "booked": 1,
+   "leaders": [
+    "Bri F.",
+    "Sarah C."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Yoga Beer Mar 24 '27": {
+   "trip": "Surf Yoga Beer",
+   "start": "2027-03-24",
+   "end": "2027-03-29",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [
+    "Sarah C."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Yoga Beer Mar 29 '27": {
+   "trip": "Surf Yoga Beer",
+   "start": "2027-03-29",
+   "end": "2027-04-03",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Bali #1 'Singles' '27": {
+   "trip": "Bali Activated",
+   "start": "2027-04-05",
+   "end": "2027-04-11",
+   "dest": "Bali",
+   "booked": 2,
+   "leaders": [
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Bali #2 '27": {
+   "trip": "Bali Activated",
+   "start": "2027-04-12",
+   "end": "2027-04-18",
+   "dest": "Bali",
+   "booked": 1,
+   "leaders": [
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Camp '27": {
+   "trip": "Surf Camp",
+   "start": "2027-05-04",
+   "end": "2027-05-09",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Nicaragua Surf Camp May 9 '27": {
+   "trip": "Surf Camp",
+   "start": "2027-05-09",
+   "end": "2027-05-14",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Egypt '27": {
+   "trip": "Pharaoh's Fiesta",
+   "start": "2027-05-13",
+   "end": "2027-05-22",
+   "dest": "Egypt",
+   "booked": 14,
+   "leaders": [
+    "Nikki R.",
+    "Eli E.",
+    "Sarah C.",
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Morocco '27": {
+   "trip": "Desert Dopeness",
+   "start": "2027-05-25",
+   "end": "2027-05-31",
+   "dest": "Morocco",
+   "booked": 4,
+   "leaders": [
+    "Matas G.",
+    "Meag D.",
+    "Holly L."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Amalfi, Italy #1 '27": {
+   "trip": "Mambo Italiano",
+   "start": "2027-06-13",
+   "end": "2027-06-19",
+   "dest": "Amalfi",
+   "booked": 4,
+   "leaders": [
+    "Nikki R.",
+    "Sarah C.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Norway '27": {
+   "trip": "Fjord Almighty",
+   "start": "2027-06-14",
+   "end": "2027-06-19",
+   "dest": "Norway",
+   "booked": 0,
+   "leaders": [
+    "Christian L.",
+    "Lauren S.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Kenya #1 '27": {
+   "trip": "Safari Stylin'",
+   "start": "2027-06-18",
+   "end": "2027-06-24",
+   "dest": "Kenya",
+   "booked": 3,
+   "leaders": [
+    "Bri F.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Croatia #1 '27": {
+   "trip": "Island Takeover",
+   "start": "2027-06-20",
+   "end": "2027-06-26",
+   "dest": "Croatia",
+   "booked": 1,
+   "leaders": [
+    "Kaia H.",
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Iceland North '27": {
+   "trip": "Twice The Ice",
+   "start": "2027-06-22",
+   "end": "2027-06-28",
+   "dest": "Iceland",
+   "booked": 0,
+   "leaders": [
+    "Eli E.",
+    "Christian L."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Kenya #2 '27": {
+   "trip": "Safari Stylin'",
+   "start": "2027-06-25",
+   "end": "2027-07-01",
+   "dest": "Kenya",
+   "booked": 6,
+   "leaders": [
+    "Bri F.",
+    "Holly L."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Iceland South '27": {
+   "trip": "Fire & Ice",
+   "start": "2027-06-29",
+   "end": "2027-07-04",
+   "dest": "Iceland",
+   "booked": 2,
+   "leaders": [
+    "Meag D.",
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Cote D'Azure, France '27": {
+   "trip": "Bonjour Cote d'Azur",
+   "start": "2027-06-30",
+   "end": "2027-07-06",
+   "dest": "France (riviera)",
+   "booked": 10,
+   "leaders": [
+    "Christian L.",
+    "Erin M."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Portugal '27": {
+   "trip": "Portu-Gnarly",
+   "start": "2027-07-13",
+   "end": "2027-07-19",
+   "dest": "Portugal",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "IDEA"
+  },
+  "Greece '27": {
+   "trip": "Boats & Beaches",
+   "start": "2027-07-24",
+   "end": "2027-07-31",
+   "dest": "Greece",
+   "booked": 0,
+   "leaders": [
+    "Nikki R.",
+    "Eli E."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Dolomites, Italy #1 '27": {
+   "trip": "YOLO - MITES",
+   "start": "2027-08-02",
+   "end": "2027-08-08",
+   "dest": "Dolomites",
+   "booked": 2,
+   "leaders": [],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Turkey '27": {
+   "trip": "Blue Voyage",
+   "start": "2027-08-07",
+   "end": "2027-08-14",
+   "dest": "Turkey",
+   "booked": 0,
+   "leaders": [
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Dolomites, Italy #2 '27": {
+   "trip": "YOLO - MITES",
+   "start": "2027-08-23",
+   "end": "2027-08-29",
+   "dest": "Dolomites",
+   "booked": 2,
+   "leaders": [
+    "Sarah C.",
+    "Sam K."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Amalfi, Italy #2 '27": {
+   "trip": "Mambo Italiano",
+   "start": "2027-08-31",
+   "end": "2027-09-06",
+   "dest": "Amalfi",
+   "booked": 0,
+   "leaders": [
+    "Eli E.",
+    "Carri B.",
+    "Sav C."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Croatia #2 '27": {
+   "trip": "Island Takeover",
+   "start": "2027-09-04",
+   "end": "2027-09-10",
+   "dest": "Croatia",
+   "booked": 1,
+   "leaders": [
+    "Nikki R."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Dolomites, Italy #3 '27": {
+   "trip": "Dolomites, Italy #3",
+   "start": "2027-09-13",
+   "end": "2027-09-19",
+   "dest": "Dolomites",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Greek Islands '27": {
+   "trip": "Greek Islands",
+   "start": "2027-09-18",
+   "end": "2027-09-24",
+   "dest": "Greece",
+   "booked": 0,
+   "leaders": [
+    "Meag D."
+   ],
+   "kind": "trip",
+   "status": "IDEA"
+  },
+  "Nicaragua Surf Camp (2) '27": {
+   "trip": "Nicaragua Surf Camp (2)",
+   "start": "2027-10-05",
+   "end": "2027-10-10",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Bali #3 '27": {
+   "trip": "Bali #3",
+   "start": "2027-10-18",
+   "end": "2027-10-24",
+   "dest": "Bali",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Bali #4 '27": {
+   "trip": "Bali #4",
+   "start": "2027-10-25",
+   "end": "2027-10-31",
+   "dest": "Bali",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Belize #1 '27": {
+   "trip": "Belize #1",
+   "start": "2027-11-09",
+   "end": "2027-11-14",
+   "dest": "Belize",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Nicaragua Surf Yoga Beer Nov 15 '27": {
+   "trip": "Nicaragua Surf Yoga Beer Nov 15",
+   "start": "2027-11-15",
+   "end": "2027-11-20",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Nicaragua Surf Yoga Beer Nov 20 '27": {
+   "trip": "Nicaragua Surf Yoga Beer Nov 20",
+   "start": "2027-11-20",
+   "end": "2027-11-25",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Nicaragua Surf Yoga Beer (Thx) '27": {
+   "trip": "Nicaragua Surf Yoga Beer (Thx)",
+   "start": "2027-11-25",
+   "end": "2027-11-30",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Nicaragua SURF YOGA BEER (w ACADEMY) '27": {
+   "trip": "Nicaragua SURF YOGA BEER (w ACADEMY)",
+   "start": "2027-11-30",
+   "end": "2027-12-05",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Bali #5 Nye '27": {
+   "trip": "Bali #5 Nye",
+   "start": "2027-12-27",
+   "end": "2028-01-02",
+   "dest": "Bali",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Nicaragua Nye '27": {
+   "trip": "Nicaragua Nye",
+   "start": "2027-12-27",
+   "end": "2028-01-02",
+   "dest": "Nicaragua",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  },
+  "Belize #2 Nye '27": {
+   "trip": "Belize #2 Nye",
+   "start": "2027-12-29",
+   "end": "2028-01-03",
+   "dest": "Belize",
+   "booked": 0,
+   "leaders": [],
+   "kind": "trip",
+   "status": "NOT LAUNCHED"
+  }
+ }
+}

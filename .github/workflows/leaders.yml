@@ -1,0 +1,52 @@
+name: Leader pages data
+
+# Rebuilds dist/leaders/<leader>.json from the Leader Hub Feed (synced from SYB HQ), the Google reviews in
+# this repo and data/leaders/. Leader pages load those files from @main, so a commit here updates every page
+# without touching Easol. Spots left, sold out and prices are not in these files: pages read them live from Easol.
+# No keys needed (the feed sheet is link-shared). A run with nothing new makes no commit.
+
+on:
+  schedule:
+    - cron: "40 11 * * *"   # after the morning HQ sync (7:15am New York) and the widgets refresh
+    - cron: "40 23 * * *"   # after the evening HQ sync
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: "Test only: build everything, commit nothing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: widgets-refresh    # same group as the widgets refresh, so the two never commit at the same time
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet requests
+      - name: Build
+        run: python scripts/build-leaders.py ${{ inputs.dry && '--dry' || '' }}
+      - name: Commit and purge the CDN
+        if: ${{ !inputs.dry }}
+        run: |
+          git config user.name "SYB leader pages"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/leaders dist/leaders
+          if git diff --cached --quiet; then echo "Nothing new"; exit 0; fi
+          git commit -q -m "Leader pages data $(TZ=America/New_York date +%F)"
+          for i in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && break
+            sleep 5
+          done
+          for f in $(git diff --name-only HEAD~1 HEAD -- dist/leaders); do
+            curl -s -o /dev/null -w "purge $f %{http_code}\n" "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/$f"
+          done
