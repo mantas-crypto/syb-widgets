@@ -134,8 +134,8 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 /* end */
 .syl.syl-end{padding:96px 0 120px}
 .syl .syl-end-box{border-top:1px solid var(--line);padding-top:60px}
-.syl .syl-end .syl-body{margin-top:-6px}
-.syl .syl-end .syl-link{display:table;margin-top:30px}
+.syl.syl-end .syl-body{margin-top:-6px}
+.syl.syl-end .syl-link{display:table;margin-top:30px}
 
 @media (hover:hover){.syl .syl-poster:hover>img{transform:scale(1.045)}.syl .syl-btn:hover,.syl .syl-chat:hover .syl-chat-go{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}.syl .syl-btn-ghost:hover{border-color:var(--ink)}.syl .syl-link:hover,.syl .syl-cite a:hover,.syl .syl-who a:hover{border-bottom-color:var(--ink)}.syl .syl-led a:hover strong{text-decoration:underline;text-underline-offset:3px}}
 @media (min-width:700px){.syl .syl-posters{grid-auto-columns:46%}.syl .syl-quotes{grid-auto-columns:46%}}

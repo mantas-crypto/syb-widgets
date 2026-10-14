@@ -297,6 +297,20 @@
     show(0);
   }
 
+  /* ---------- the name always fits its column ---------- */
+  function textWidth(el) { var r = document.createRange(); r.selectNodeContents(el); return r.getBoundingClientRect().width; }
+  function fitName() {
+    $$('.syl .syl-name').forEach(function (h) {
+      h.style.removeProperty('font-size');
+      var avail = h.getBoundingClientRect().width, need = 0;
+      $$('span', h).forEach(function (s) { need = Math.max(need, textWidth(s)); });
+      if (need > avail && need > 0) {
+        var fs = parseFloat(getComputedStyle(h).fontSize);
+        h.style.setProperty('font-size', Math.floor(fs * avail / need * 0.97) + 'px', 'important');
+      }
+    });
+  }
+
   /* ---------- start ---------- */
   function getJSON(url, ms) {
     return new Promise(function (res) {
@@ -308,6 +322,10 @@
   }
   function init() {
     $$('.syl [data-reel]').forEach(reel);
+    fitName();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitName);
+    var rt = null;
+    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(fitName, 150); });
     var root = $('.syl[data-leader]');
     var key = root && root.getAttribute('data-leader');
     var liveP = getLive(root);
