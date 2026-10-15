@@ -1692,7 +1692,7 @@
     "Eli E."
    ],
    "kind": "event",
-   "status": "LIVE"
+   "status": "DONE"
   },
   "Pre-Gala Cycling Class '26": {
    "trip": "Pre-Gala Cycling Class",
@@ -1742,7 +1742,7 @@
     "Lukas"
    ],
    "kind": "event",
-   "status": "RUNNING"
+   "status": "DONE"
   },
   "Nicaragua Surf Camp Oct 13 '26": {
    "trip": "Surf Camp",
@@ -2001,6 +2001,20 @@
    "kind": "trip",
    "status": "LIVE"
   },
+  "Finland #1 '27": {
+   "start": "2027-03-13",
+   "end": "2027-03-18",
+   "trip": "Northern Delights",
+   "dest": "Finland",
+   "booked": 36,
+   "leaders": [
+    "Eli E.",
+    "Mantas Z.",
+    "Erin M."
+   ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
   "Finland '27": {
    "trip": "Northern Delights",
    "start": "2027-03-13",
@@ -2025,6 +2039,16 @@
     "Holly L.",
     "Bri F."
    ],
+   "kind": "trip",
+   "status": "LIVE"
+  },
+  "Finland #2 '27": {
+   "start": "2027-03-19",
+   "end": "2027-03-24",
+   "trip": "Northern Delights",
+   "dest": "Finland",
+   "booked": 1,
+   "leaders": [],
    "kind": "trip",
    "status": "LIVE"
   },
