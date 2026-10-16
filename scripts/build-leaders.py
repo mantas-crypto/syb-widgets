@@ -39,7 +39,7 @@ FEED_URLS = [
 ]
 NY = ZoneInfo("America/New_York")
 REVIEW_WINDOW = 45         # days after a trip ends that a review can still be about it (most land within two weeks)
-MAX_REVIEWS = 7          # one big quote plus six cards
+MAX_REVIEWS = 9          # one big quote plus eight cards
 SKIP_STATUS = {"CANCELLED", "IDEA", "NOT LAUNCHED"}
 
 # HQ tab name start -> HQ destination (same words MASTER uses)
@@ -290,7 +290,7 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude, r
             found.append(({"id": r.get("gid") or r.get("url"), "who": short_name(r["name"]), "src": "Google",
                            "date": r["date"], "url": r.get("url", "")}, r.get("text", ""), t))
     for x in extras:
-        if x.get("leader") != key:
+        if key not in (x.get("leaders") or [x.get("leader")]):
             continue
         t = next((o for o in trips_led if o["tab"] == x.get("tab")), None)
         if t:

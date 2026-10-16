@@ -7,18 +7,25 @@ filled in when the block is saved.
 | File | Easol block | Notes |
 |---|---|---|
 | 1-hero.html | Leader page - Hero | loads the fonts and dist/leader/syb-leader.min.css; the story reel |
-| 2-trips.html | Leader page - Upcoming trips | its Liquid also gets live-departures.liquid (see below) |
+| 2-trips.html | Leader page - Upcoming trips | saved trip cards with photos; live spots and prices fill in after the page opens |
 | 3-reviews.html | Leader page - Trip reviews | the big quote is fixed; the cards come from the data file |
 | 4-about.html | Leader page - Meet the leader | Q&A, what they bring, trips led |
 | 5-end.html | Leader page - End | |
 | head.html | page Inject code | tracking, share button, loads dist/leader/syb-leader.min.js |
 
-`live-departures.liquid` is appended to the trips block's Liquid (not its embed code). Easol prints every
-upcoming departure with spots left, sold out, price and photo on each visit; the script picks this
-leader's trips from it. Without it the script reads the same list from /leader-live-data.
+Live departures (spots left, sold out, price, link) are read after the page opens, in the background, from the
+full calendar (/calendar prints every departure as an `article.sc-card` with data attributes), and kept for
+15 minutes in the visitor's session. The leader pages print nothing from Easol themselves: Easol's
+product_search Liquid made each page take 8 to 12 seconds to open (Oct 16 2026), so it was taken out.
+`live-departures.liquid` is kept for a page that wants the list printed in place (the script reads a
+`#syl-live` list on the page first); it is not used on the leader pages.
 
 The cards, the hero line, trips led and review cards rewrite themselves from dist/leaders/<key>.json, so the
-HTML here only matters if that file cannot load. 
+HTML here only matters if that file cannot load.
+
+City chats: every leader's page links their city's SYB WhatsApp chat (`city_chats` in profiles.json, set per
+leader with `chat`); a leader with no city chat gets an Instagram DM button instead.
+
 ## Every leader (pages/leaders/<key>/)
 
 `scripts/render-leader-pages.py` writes the same five blocks plus the Inject code for every leader in

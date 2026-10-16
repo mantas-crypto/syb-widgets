@@ -120,6 +120,32 @@ def hl_names(first, aliases):
     return sorted(out, key=len, reverse=True)
 
 
+# ---------- SYB's next trips (saved on the page of a leader with nothing coming up; the script redraws them live) ----------
+def _builder():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("build_leaders", os.path.join(ROOT, "scripts", "build-leaders.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+def next_sbyb_trips(n):
+    b = _builder()
+    hist = load(os.path.join(DATA, "history.json"), {"trips": {}})["trips"]
+    rows = sorted(hist.items(), key=lambda kv: (kv[1]["start"], kv[0]))
+    out, seen = [], set()
+    for tab, t in rows:
+        if t.get("status") != "LIVE" or t.get("kind", "trip") != "trip" or day(t["start"]) < TODAY:
+            continue
+        if (day(t["end"]) - day(t["start"])).days > 21 or t["trip"] in seen:     # no months-long programs, one card per trip
+            continue
+        seen.add(t["trip"])
+        out.append(b.trip_out(tab, t, False))
+        if len(out) == n:
+            break
+    return out
+
+
 # ---------- photos ----------
 class Photos:
     def __init__(self, doc):
@@ -150,8 +176,20 @@ def leader_tags(data):
     return tags
 
 
-def plan_photos(key, prof, data, ph):
-    """reel: [(url, caption, alt, pos)], about: (url, alt) or None, feature: (url, alt) or None"""
+def poster_photos(trips, ph, taken):
+    """A trip photo for each saved trip card, never one already on the page: {(trip, start): (url, alt)}"""
+    out = {}
+    for u in trips:
+        tag = u.get("tag")
+        p = ph.pick(tag, taken, portrait=True) if tag in POOL_PAGES else None
+        if p:
+            out[(u["trip"], u["start"])] = (blob_url(p), "%s, SYB’s trip to %s" % (u["trip"], u.get("place") or CAPTION.get(tag, tag)))
+    return out
+
+
+def plan_photos(key, prof, data, ph, card_trips):
+    """reel: [(url, caption, alt, pos)], about: (url, alt) or None, feature: (url, alt) or None,
+    cards: {(trip, start): (url, alt)} for the trip cards saved in the block"""
     first = prof["first"]
     taken = set()
     if key == "erin":
@@ -166,7 +204,7 @@ def plan_photos(key, prof, data, ph):
         ]
         about = (blob_url(ph.doc["about"]["erin"]), "Erin MacLeod smiling on a beach at golden hour")
         feature = (blob_url(E["shellona"]), "Erin’s Côte d’Azur crew at one long table at Shellona beach club, Saint-Tropez")
-        return reel, about, feature
+        return reel, about, feature, poster_photos(card_trips, ph, taken)
     sq = ph.doc["squad"][key]
     pos = "50% 30%" if sq.get("h", 1) >= sq.get("w", 1) else "50% 40%"
     reel = [(blob_url(sq), "Hi, I’m %s." % first, "%s, SYB trip leader" % prof["name"], pos)]
@@ -190,6 +228,7 @@ def plan_photos(key, prof, data, ph):
     about = None
     if key in ph.doc["about"] and key != "alex-ski":
         about = (blob_url(ph.doc["about"][key]), "%s on an SYB trip" % prof["name"])
+    cards = poster_photos(card_trips, ph, taken)
     feature = None
     if data.get("reviews"):
         ftag = data["reviews"][0].get("tag")
@@ -198,7 +237,7 @@ def plan_photos(key, prof, data, ph):
             if p and not p["portrait"]:
                 feature = (blob_url(p), "SYB trip photo, %s" % CAPTION.get(tag, tag))
                 break
-    return reel, about, feature
+    return reel, about, feature, cards
 
 
 # ---------- blocks ----------
@@ -225,15 +264,17 @@ def lede(data):
     return " ".join(out)
 
 
-def chat_row(prof, nyc, where):
-    if prof["chat"] == "nyc":
-        return ('<a class="syl-chat" data-syl="whatsapp-nyc-%s" href="%s" target="_blank" rel="noopener"><span class="syl-chat-ic">%s</span>'
-                '<span class="syl-chat-t">Join me in the SYB New York City chat</span><span class="syl-chat-go">Join</span></a>') % (where, e(nyc), ICON_WA)
+def chat_row(prof, chats, where):
+    c = chats.get(prof["chat"])
+    if c:
+        return ('<a class="syl-chat" data-syl="whatsapp-%s-%s" href="%s" target="_blank" rel="noopener"><span class="syl-chat-ic">%s</span>'
+                '<span class="syl-chat-t">Join me in the SYB %s chat</span><span class="syl-chat-go">Join</span></a>') % (
+            prof["chat"], where, e(c["url"]), ICON_WA, e(c["label"]))
     return ('<a class="syl-chat" data-syl="instagram-dm-%s" href="https://ig.me/m/%s" target="_blank" rel="noopener"><span class="syl-chat-ic is-ig">%s</span>'
             '<span class="syl-chat-t">Questions about a trip? Message me on Instagram</span><span class="syl-chat-go">Message</span></a>') % (where, e(prof["ig"]), ICON_IG)
 
 
-def hero(key, prof, data, reel, nyc):
+def hero(key, prof, data, reel, chats):
     first = prof["first"]
     n = len(reel)
     slides = []
@@ -264,7 +305,7 @@ def hero(key, prof, data, reel, nyc):
         '<span class="syl-city">%s%s</span>' % (ICON_PIN, e(prof["city"])),
         '<a class="syl-ig" data-syl="instagram-hero" href="https://www.instagram.com/%s" target="_blank" rel="noopener">%s@%s</a>' % (e(prof["ig"]), ICON_IG, e(prof["ig"])),
         '</div>',
-        chat_row(prof, nyc, "hero"),
+        chat_row(prof, chats, "hero"),
         '</div>',
         '<p class="syl-lede" data-lede>%s</p>' % lede(data),
         '<div class="syl-actions">',
@@ -277,11 +318,12 @@ def hero(key, prof, data, reel, nyc):
     ])
 
 
-def poster(u):
+def poster(u, img=None):
     s, en = day(u["start"]), day(u["end"])
     hol = holiday(s, en)
     where = (u.get("place") or "") + ((", " + hol) if hol and u.get("place") else (hol or ""))
-    return ('<a class="syl-poster" data-name="%s" data-start="%s" data-end="%s" data-syl="trip-%s-%s" href="%s">'
+    pic = ('<img src="%s" alt="%s" loading="lazy">' % (e(img[0]), e(img[1]))) if img else ""
+    return ('<a class="syl-poster" data-name="%s" data-start="%s" data-end="%s" data-syl="trip-%s-%s" href="%s">' + pic +
             '<span class="syl-poster-top"><span></span></span><span class="syl-poster-body"><span class="syl-date">%s %d<i>%d</i></span>'
             '<span class="syl-trip">%s</span><span class="syl-place">%s%s</span><span class="syl-poster-foot"><span class="syl-price"></span>'
             '<span class="syl-cta">See the trip</span></span></span></a>') % (
@@ -289,16 +331,22 @@ def poster(u):
         MON[s.month - 1], s.day, s.year, e(u["trip"]), (e(where) + ". ") if where else "", rng(s, en))
 
 
-def trips(key, prof, data):
+def card_trips(data, general_list):
+    up = [u for u in data["upcoming"] if day(u["end"]) >= TODAY]
+    return up if up else general_list
+
+
+def trips(key, prof, data, cards, general_list):
     first = prof["first"]
     up = [u for u in data["upcoming"] if day(u["end"]) >= TODAY]
     general = not up
     head = '<h2 class="syl-h" data-trips-h><span>Travel</span><span class="syl-g">with %s.</span></h2>' % e("SYB" if general else first)
     sub = '<p class="syl-trips-sub" data-trips-sub%s>%s isn’t on a trip right now. Here’s where SYB goes next.</p>' % ("" if general else " hidden", e(first))
     if general:
-        box = '<div class="syl-posters" data-trips data-general></div>'
+        box = '<div class="syl-posters" data-trips data-general data-n="%d">%s</div>' % (
+            len(general_list), "".join(poster(u, cards.get((u["trip"], u["start"]))) for u in general_list))
     else:
-        box = '<div class="syl-posters" data-trips data-n="%d">%s</div>' % (len(up), "".join(poster(u) for u in up))
+        box = '<div class="syl-posters" data-trips data-n="%d">%s</div>' % (len(up), "".join(poster(u, cards.get((u["trip"], u["start"]))) for u in up))
     note = '<p class="syl-note" data-trips-note><strong>Booking because of %s?</strong> Type %s in the “Who sent you?” box at checkout.</p>' % (e(first), e(prof["name"]))
     return "\n".join(['<section class="syl syl-trips" id="syl-trips"><div class="syl-wrap">', head, sub, box, note, '</div></section>'])
 
@@ -380,12 +428,14 @@ def about(key, prof, data, about_img):
     ])
 
 
-def end(key, prof, nyc):
+def end(key, prof, chats):
     first = prof["first"]
     body = ("SYB has run active and social group trips out of NYC since 2014. Every SYB leader, %s included, graduates our Academy in Nicaragua before leading a trip." % first) \
         if key in ACADEMY else "SYB has run active and social group trips out of NYC since 2014. Most people come solo. By the last night, nobody feels like it."
-    if prof["chat"] == "nyc":
-        chat = '<a class="syl-btn syl-btn-ghost" data-syl="whatsapp-nyc-end" href="%s" target="_blank" rel="noopener">Join the NYC chat</a>' % e(nyc)
+    c = chats.get(prof["chat"])
+    if c:
+        chat = '<a class="syl-btn syl-btn-ghost" data-syl="whatsapp-%s-end" href="%s" target="_blank" rel="noopener">Join the %s chat</a>' % (
+            prof["chat"], e(c["url"]), e(c["short"]))
     else:
         chat = '<a class="syl-btn syl-btn-ghost" data-syl="instagram-dm-end" href="https://ig.me/m/%s" target="_blank" rel="noopener">Message %s</a>' % (e(prof["ig"]), e(first))
     return "\n".join([
@@ -445,7 +495,8 @@ def main():
     keys = sys.argv[1:] or list(conf["leaders"].keys())
     # erin first: her photos are her own; then the rest share the trip photo pool fairly
     keys = sorted(keys, key=lambda k: (k != "erin", k))
-    nyc = profs["nyc_chat"]
+    chats = profs["city_chats"]
+    general_list = next_sbyb_trips(4)
     report = []
     for key in keys:
         prof = profs["leaders"][key]
@@ -453,13 +504,13 @@ def main():
         if not data:
             print("no data for", key, file=sys.stderr)
             continue
-        reel, about_img, feature_img = plan_photos(key, prof, data, ph)
+        reel, about_img, feature_img, cards = plan_photos(key, prof, data, ph, card_trips(data, general_list))
         blocks = {
-            "1-hero.html": hero(key, prof, data, reel, nyc),
-            "2-trips.html": trips(key, prof, data),
+            "1-hero.html": hero(key, prof, data, reel, chats),
+            "2-trips.html": trips(key, prof, data, cards, general_list),
             "3-reviews.html": reviews(key, prof, data, feature_img),
             "4-about.html": about(key, prof, data, about_img),
-            "5-end.html": end(key, prof, nyc),
+            "5-end.html": end(key, prof, chats),
             "head.html": HEAD % {"key": key, "name": prof["name"].replace("'", "\\'")},
         }
         d = os.path.join(OUT, key)
@@ -467,8 +518,8 @@ def main():
         for fn, txt in blocks.items():
             with open(os.path.join(d, fn), "w") as f:
                 f.write(txt.strip() + "\n")
-        report.append("%-10s reel %d  about %s  feature %s  reviews %d  upcoming %d  led %d" % (
-            key, len(reel), "photo" if about_img else "stats", "img" if feature_img else "-", len(data.get("reviews") or []),
+        report.append("%-10s reel %d  cards %d  about %s  feature %s  reviews %d  upcoming %d  led %d" % (
+            key, len(reel), len(cards), "photo" if about_img else "stats", "img" if feature_img else "-", len(data.get("reviews") or []),
             len([u for u in data["upcoming"] if day(u["end"]) >= TODAY]), len(data["led"])))
     print("\n".join(report))
 

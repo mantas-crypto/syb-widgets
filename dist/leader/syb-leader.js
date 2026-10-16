@@ -34,38 +34,60 @@
   function slug(s) { return norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
   function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
 
-  /* ---------- live departures printed by Easol ---------- */
+  /* ---------- live departures ----------
+     Read in the background from the full calendar (/calendar), which prints every departure as a data card
+     (article.sc-card: data-name, data-s, data-e, data-url, data-left, data-st, data-price, data-img). The leader
+     page itself prints nothing from Easol, so it opens fast; the cards saved in the block show until this lands.
+     A page that prints its own list (#syl-live) is read first. */
+  function addLive(m, o) {
+    if (!o.name || !o.start) return;
+    m[norm(o.name) + '|' + o.start] = o;
+    (m[norm(o.name)] = m[norm(o.name)] || []).push(o);
+  }
   function liveFrom(doc) {
     var m = {}, n = 0;
     Array.prototype.forEach.call(doc.querySelectorAll('#syl-live i'), function (i) {
-      var d = i.getAttribute('data-d'), r = i.getAttribute('data-r');
-      var o = {
-        name: i.getAttribute('data-n'), start: d, url: i.getAttribute('data-u') || '',
+      var r = i.getAttribute('data-r');
+      addLive(m, {
+        name: i.getAttribute('data-n'), start: i.getAttribute('data-d'), end: '', url: i.getAttribute('data-u') || '',
         left: r === '' || r == null ? null : +r, soldOut: i.getAttribute('data-so') === '1',
         price: i.getAttribute('data-p') || '', img: i.getAttribute('data-img') || '',
         imgs: (i.getAttribute('data-imgs') || '').split('|').filter(Boolean),
         dur: parseInt(i.getAttribute('data-dur'), 10) || 0
-      };
-      m[norm(o.name) + '|' + d] = o;
-      (m[norm(o.name)] = m[norm(o.name)] || []).push(o);
+      });
+      n++;
+    });
+    Array.prototype.forEach.call(doc.querySelectorAll('article.sc-card[data-s]'), function (a) {
+      if (a.getAttribute('data-enq') === 'true') return;
+      var l = a.getAttribute('data-left');
+      addLive(m, {
+        name: a.getAttribute('data-name'), start: a.getAttribute('data-s'), end: a.getAttribute('data-e') || '',
+        url: (a.getAttribute('data-url') || '').replace(/^https?:\/\/(www\.)?surfyogabeer\.com/, ''),
+        left: l === '' || l == null ? null : +l, soldOut: a.getAttribute('data-st') === 'out',
+        price: a.getAttribute('data-price') || '', img: a.getAttribute('data-img') || '', imgs: [], dur: 0
+      });
       n++;
     });
     return n ? m : null;
   }
-  // Live departures: printed in this page by the trips block, or read from the shared data page.
+  var LIVE_KEY = 'syl_live_v2';
   function getLive(root) {
     var here = liveFrom(document);
     if (here) return Promise.resolve(here);
-    var url = (root && root.getAttribute('data-live')) || '/leader-live-data', key = 'syl_live_v1';
+    var url = (root && root.getAttribute('data-live')) || '/calendar';
     try {
-      var c = JSON.parse(sessionStorage.getItem(key) || 'null');
-      if (c && Date.now() - c.t < 5 * 60e3) return Promise.resolve(liveFrom(new DOMParser().parseFromString(c.h, 'text/html')));
+      var c = JSON.parse(sessionStorage.getItem(LIVE_KEY) || 'null');
+      if (c && c.u === url && Date.now() - c.t < 15 * 60e3) return Promise.resolve(liveFrom(new DOMParser().parseFromString(c.h, 'text/html')));
     } catch (e) {}
     return fetch(url, { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
-      var box = t && new DOMParser().parseFromString(t, 'text/html').getElementById('syl-live');
-      if (!box) return null;
-      try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), h: box.outerHTML })); } catch (e) {}
-      return liveFrom(new DOMParser().parseFromString(box.outerHTML, 'text/html'));
+      if (!t) return null;
+      // keep only what is read: the #syl-live list, and each calendar card's own tag (its data, not its markup)
+      var parts = $$('#syl-live, article.sc-card[data-s]', new DOMParser().parseFromString(t, 'text/html'))
+        .map(function (e) { return e.cloneNode(e.id === 'syl-live').outerHTML; });
+      if (!parts.length) return null;
+      var h = parts.join('');
+      try { sessionStorage.setItem(LIVE_KEY, JSON.stringify({ t: Date.now(), u: url, h: h })); } catch (e) {}
+      return liveFrom(new DOMParser().parseFromString(h, 'text/html'));
     }).catch(function () { return null; });
   }
   function findLive(live, name, start) {
@@ -154,8 +176,19 @@
       return true;
     }).slice(0, n).map(function (o) {
       var e = new Date(day(o.start).getTime()); e.setDate(e.getDate() + Math.max(0, (o.dur || 1) - 1));
-      return { trip: o.name, start: o.start, end: iso(e), place: '', tag: o.name, page: o.url, kind: 'trip' };
+      return { trip: o.name, start: o.start, end: o.end || iso(e), place: '', tag: o.name, page: o.url, kind: 'trip' };
     });
+  }
+  // Photos already on the saved cards stay put when the cards are redrawn (no swap after the page opens).
+  function savedPhotos(box, used) {
+    var keep = {};
+    $$('.syl-poster[data-start]', box).forEach(function (a) {
+      var im = a.querySelector('img');
+      if (!im) return;
+      keep[norm(a.getAttribute('data-name')) + '|' + a.getAttribute('data-start')] = im.getAttribute('src');
+      used[im.getAttribute('src')] = 1;
+    });
+    return keep;
   }
   function setTripsHead(general, first) {
     var h = $('.syl [data-trips-h]'), sub = $('.syl [data-trips-sub]');
@@ -175,10 +208,10 @@
       box.removeAttribute('data-n');
       return;
     }
-    var used = pageImages();
+    var used = pageImages(), keep = savedPhotos(box, used);
     box.innerHTML = list.map(function (u) {
       var lv = findLive(live, u.trip, u.start);
-      return poster(u, lv, t0, pickImg(live, u.trip, lv, used));
+      return poster(u, lv, t0, keep[norm(u.trip) + '|' + u.start] || pickImg(live, u.trip, lv, used));
     }).join('');
     box.setAttribute('data-n', list.length);
   }
@@ -200,8 +233,9 @@
         im.src = src; im.alt = (a.getAttribute('data-name') || 'SYB trip') + ', SYB trip photo'; im.loading = 'lazy';
         a.insertBefore(im, a.firstChild);
       }
-      var pr = $('.syl-price', a);
+      var pr = $('.syl-price', a), cta = $('.syl-cta', a);
       if (pr && lv) pr.textContent = st.out ? 'Sold out' : (lv.price ? 'From ' + money(lv.price) : pr.textContent);
+      if (cta && st.out) { cta.textContent = 'Join Waitlist'; cta.classList.add('syl-cta-ghost'); }
     });
   }
 
@@ -413,13 +447,15 @@
       if (!live) return;
       tidyStatic(live);
       var gb = $('.syl [data-trips][data-general]');
-      if (gb && !gb.children.length) {
-        var t0 = today(), gl = nextDepartures(live, 4), used = pageImages();
-        gb.innerHTML = gl.map(function (u) {
-          var lv = findLive(live, u.trip, u.start);
-          return poster(u, lv, t0, pickImg(live, u.trip, lv, used));
-        }).join('');
-        if (gl.length) gb.setAttribute('data-n', gl.length);
+      if (gb) {
+        var t0 = today(), gl = nextDepartures(live, 4), used = pageImages(), keep = savedPhotos(gb, used);
+        if (gl.length) {
+          gb.innerHTML = gl.map(function (u) {
+            var lv = findLive(live, u.trip, u.start);
+            return poster(u, lv, t0, keep[norm(u.trip) + '|' + u.start] || pickImg(live, u.trip, lv, used));
+          }).join('');
+          gb.setAttribute('data-n', gl.length);
+        }
       }
     });
     if (!key) return;

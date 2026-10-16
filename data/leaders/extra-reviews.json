@@ -1,15 +1,96 @@
 {
-  "_about": "Reviews from places the daily job cannot read (Trustpilot has no free feed). Add one by hand: leader key, the HQ tab of the trip it was about, who wrote it, where, when, the full text and the link.",
+  "_about": "Reviews from places the daily job cannot read (Trustpilot has no free feed). One entry per review: the leaders it names (keys from leaders.json), the HQ tab of the trip it was about, who wrote it, where, when, the full text and the link. Checked against Trustpilot Oct 16 2026 (18 reviews; Chris L. thanks Erin for his 10th trip but was on Turkey, Juan Mejia names Holly on a Costa Rica trip HQ does not list, both left out).",
   "reviews": [
     {
       "id": "tp:6a677ca2353929d1cf30021b",
-      "leader": "erin",
       "tab": "Cote D'Azure, France '26",
       "who": "Timothy Dunn",
       "src": "Trustpilot",
       "date": "2026-07-27",
       "url": "https://www.trustpilot.com/reviews/6a677ca2353929d1cf30021b",
-      "text": "Having now completed six Surf Yoga Beer trips, Côte d’Azur is definitely in the running for my favorite. The South of France is an incredible destination, but what really put this trip over the top for me was the combination of exceptional leadership, a fantastic group of people, and the amount of care that clearly went into every detail. From the itinerary and activities to the restaurants, accommodations, and overall atmosphere, everything felt thoughtfully planned.\n\nOne of the things I appreciate most about Surf Yoga Beer is that they give you everything you need to have an incredible trip—the itinerary, the destinations, the activities, and countless opportunities to connect with great people—but they also give you the freedom to experience it however you want. You can join every activity, spend an afternoon exploring on your own, or do a little of both. The Côte d’Azur trip struck that balance perfectly, and I think that’s one of the things that makes Surf Yoga Beer stand out.\n\nI had only met one person before this trip, so I showed up knowing almost no one. By the end of the week, I left with 26 friends. That’s something I’ll always be grateful for. It says a lot about the people on the trip, the atmosphere that was created, and the kind of experience Surf Yoga Beer strives to create.\n\nEverything was exceptionally well organized. Communication was clear, logistics ran smoothly, and I never found myself wondering what was happening next. Moving a group through multiple cities and activities isn’t easy, but the entire trip felt effortless from our perspective.\n\nErin, Holly, Christian, and Matas were an outstanding leadership team. They were approachable, organized, professional, and genuinely invested in making sure everyone had a great experience. They struck the perfect balance of keeping everything running smoothly while still making the trip feel relaxed and fun. They’re easily among my favorite Surf Yoga Beer leaders, and I’d happily do another trip with any of them. And a special shout-out to Erin for putting together an absolutely baller day at Shellona Saint-Tropez. It was easily one of the highlights of the week.\n\nThe food, accommodations, and activities were all excellent, and every stop felt intentional. Nothing felt like it was included just to fill the itinerary.\n\nThis trip reminded me why I keep coming back to Surf Yoga Beer. Yes, the destinations are incredible, but what keeps me booking these trips are the people you meet, the experiences you share, and the friendships you come home with. If you’re considering this trip—whether you’re traveling solo or with friends—I couldn’t recommend it more highly."
+      "text": "Having now completed six Surf Yoga Beer trips, Côte d’Azur is definitely in the running for my favorite. The South of France is an incredible destination, but what really put this trip over the top for me was the combination of exceptional leadership, a fantastic group of people, and the amount of care that clearly went into every detail. From the itinerary and activities to the restaurants, accommodations, and overall atmosphere, everything felt thoughtfully planned.\n\nOne of the things I appreciate most about Surf Yoga Beer is that they give you everything you need to have an incredible trip—the itinerary, the destinations, the activities, and countless opportunities to connect with great people—but they also give you the freedom to experience it however you want. You can join every activity, spend an afternoon exploring on your own, or do a little of both. The Côte d’Azur trip struck that balance perfectly, and I think that’s one of the things that makes Surf Yoga Beer stand out.\n\nI had only met one person before this trip, so I showed up knowing almost no one. By the end of the week, I left with 26 friends. That’s something I’ll always be grateful for. It says a lot about the people on the trip, the atmosphere that was created, and the kind of experience Surf Yoga Beer strives to create.\n\nEverything was exceptionally well organized. Communication was clear, logistics ran smoothly, and I never found myself wondering what was happening next. Moving a group through multiple cities and activities isn’t easy, but the entire trip felt effortless from our perspective.\n\nErin, Holly, Christian, and Matas were an outstanding leadership team. They were approachable, organized, professional, and genuinely invested in making sure everyone had a great experience. They struck the perfect balance of keeping everything running smoothly while still making the trip feel relaxed and fun. They’re easily among my favorite Surf Yoga Beer leaders, and I’d happily do another trip with any of them. And a special shout-out to Erin for putting together an absolutely baller day at Shellona Saint-Tropez. It was easily one of the highlights of the week.\n\nThe food, accommodations, and activities were all excellent, and every stop felt intentional. Nothing felt like it was included just to fill the itinerary.\n\nThis trip reminded me why I keep coming back to Surf Yoga Beer. Yes, the destinations are incredible, but what keeps me booking these trips are the people you meet, the experiences you share, and the friendships you come home with. If you’re considering this trip—whether you’re traveling solo or with friends—I couldn’t recommend it more highly.",
+      "leaders": [
+        "erin",
+        "christian",
+        "holly"
+      ]
+    },
+    {
+      "id": "tp:6aa8871404eaf34390f3c59b",
+      "leaders": [
+        "christian",
+        "meag"
+      ],
+      "tab": "Iceland South '26",
+      "who": "Divy Tolia",
+      "src": "Trustpilot",
+      "date": "2026-09-15",
+      "url": "https://www.trustpilot.com/reviews/6aa8871404eaf34390f3c59b",
+      "text": "I had the best time in Iceland with the best freaking crew it was laughs hikes and just incredible overall energy. I have never felt more connected to a group of people than ever before. SYB Iceland is and was one for the books best trip and memories. Shout out to the leaders Meag, Christian, and Eli they led with confidence, optimism and determination and the planning and execution on their part was tremendous"
+    },
+    {
+      "id": "tp:6a9c64cae5ee646c14df05e2",
+      "leaders": [
+        "lizzie",
+        "carri",
+        "nikki"
+      ],
+      "tab": "Croatia #2 '26",
+      "who": "Marie",
+      "src": "Trustpilot",
+      "date": "2026-09-05",
+      "url": "https://www.trustpilot.com/reviews/6a9c64cae5ee646c14df05e2",
+      "text": "Best trip ever! Dubrovnik was stunning, the SYB crew was amazing, and Lizzie, Carri & Nikki made it unforgettable. Thank you Santiago for capturing every perfect moment 📸. Came for the adventure, left with family 🫶🏼10/10, would book again!"
+    },
+    {
+      "id": "tp:6a9c5af9f1d58c6ffef96767",
+      "leaders": [
+        "lizzie"
+      ],
+      "tab": "Croatia #2 '26",
+      "who": "Jaley Watkins",
+      "src": "Trustpilot",
+      "date": "2026-09-05",
+      "url": "https://www.trustpilot.com/reviews/6a9c5af9f1d58c6ffef96767",
+      "text": "I this was the literal BEST. TRIP. EVER!! I’ve traveled extensively all over the world with many different people - but SYB took it to the next level! I have amazing friends and memories for life because of SYB and Lizzie!! If you’re ever lucky enough to be on a trip where she is a leader, you’ll understand exactly what I mean! She was incredible in EVERY way and I’m so thankful for this whole experience!"
+    },
+    {
+      "id": "tp:6a677ee1acf392b735b821bc",
+      "leaders": [
+        "christian",
+        "erin",
+        "holly"
+      ],
+      "tab": "Cote D'Azure, France '26",
+      "who": "Ben DiMauro",
+      "src": "Trustpilot",
+      "date": "2026-07-27",
+      "url": "https://www.trustpilot.com/reviews/6a677ee1acf392b735b821bc",
+      "text": "Just wrapped up my sixth SYB trip and France might be my favorite yet. The route from Cassis to St. Tropez was incredible, the Calanques kayaking and the Verdon aqua randonnée were both standouts. Group energy was great from day one, especially the July 4th party and theme nights.\n\nItinerary was always clear, details for the next day were posted in the group chat every night so nobody was ever guessing what was coming. The group itself was easy to click with, people were friendly and open from the start, though like any trip you get out what you put in.\n\nChristian ran point as senior leader and did a great job keeping the group organized and logistics tight, no small feat for a first-time destination. Erin's energy and attention to detail elevated the whole trip, she made sure everyone felt taken care of throughout. Holly and Matas rounded out a strong team, Matas's photography alone captured the trip perfectly.\n\nAlready booked for SYB Japan in early 2027, and looking at a few other trips too."
+    },
+    {
+      "id": "tp:6a672d36b6e102cf2037b332",
+      "leaders": [
+        "lizzie"
+      ],
+      "tab": "Croatia #1 '26",
+      "who": "Gretchen G",
+      "src": "Trustpilot",
+      "date": "2026-07-27",
+      "url": "https://www.trustpilot.com/reviews/6a672d36b6e102cf2037b332",
+      "text": "Absolutely amazing team. Eli, Kaia, and Lizzie were so fun, energetic, upbeat, inclusive and professional. Everything was planned out very well and they kept us on track. Could not have had a better time."
+    },
+    {
+      "id": "tp:6a6672be7c2ddedaf6ddbedd",
+      "leaders": [
+        "lauren"
+      ],
+      "tab": "Dolomites, Italy #1 '26",
+      "who": "Lexi Wright",
+      "src": "Trustpilot",
+      "date": "2026-07-26",
+      "url": "https://www.trustpilot.com/reviews/6a6672be7c2ddedaf6ddbedd",
+      "text": "Had the most phenomenal Dolomites trip with leaders Lauren and Eli. Not only was the trip extremely well-planned and effortless but the leaders and other people on the trip were an amazing crew who brought all the vibes. 100% will be returning."
     }
   ]
 }
