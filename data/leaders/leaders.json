@@ -1,13 +1,331 @@
 {
-  "_about": "Leader pages config. One entry per leader who has a page. 'feed' = how the leader is written in SYB HQ and the Leader Hub Feed (TRIPS tab, leaders column). 'aliases' = names that count as the leader in a guest review. 'exclude_names' = names never quoted on any leader page (review sentences that contain them are left out).",
-  "exclude_names": ["Rob"],
+  "_about": "Leader pages config. One entry per leader with a page (the trip leaders on surfyogabeer.com/our-squad). Key = the squad URL slug (/trip-leaders/<key>). 'feed' = how the leader is written in SYB HQ and the trip list (TRIPS tab, leaders column). 'aliases' = names that count as the leader in a guest review. A name two leaders share (like Sarah) only counts for the one who led a trip in that review's window. 'exclude_names' = names never quoted on any leader page (review sentences that contain them are left out). 'staff' = people whose own Google reviews are never shown as guest reviews (leaders on this list are added automatically). 'staff_first_names' = first names of other SYB leaders and staff, used to pick the review most about one leader for the big quote.",
+  "exclude_names": [
+    "Rob"
+  ],
+  "staff": [
+    "Mantas Zvinas",
+    "Mantas Z.",
+    "Steph Currie",
+    "Steph C.",
+    "Eli Elmore",
+    "Eli E.",
+    "Sam Knollmeyer",
+    "Sam K.",
+    "Matas Gayauskas",
+    "Matas G.",
+    "Kaia Hollerback",
+    "Kaia H.",
+    "Sara Balaban",
+    "Sara B.",
+    "Danielle Kaplan",
+    "Danielle K.",
+    "Santiago Aranguren",
+    "Santiago A.",
+    "Mike Shriner",
+    "Mike S.",
+    "Ryan Green",
+    "Ryan G.",
+    "Aaron Colussi",
+    "Aaron C.",
+    "Jason Duncan",
+    "Jason D.",
+    "Dan DiStefano",
+    "Dan D.",
+    "Maxime",
+    "Brycen Metzger",
+    "Brycen M.",
+    "Adam Turner",
+    "Adam T.",
+    "Katie D.",
+    "Rob Morgan",
+    "Rob M."
+  ],
+  "staff_first_names": [
+    "Mantas",
+    "Steph",
+    "Eli",
+    "Sam",
+    "Matas",
+    "Kaia",
+    "Sara",
+    "Danielle",
+    "Santiago",
+    "Shriner",
+    "Mike",
+    "Ryan",
+    "Aaron",
+    "Duncan",
+    "Cristina",
+    "Christina",
+    "Katie",
+    "Samara",
+    "Maxime",
+    "Brycen",
+    "Keegan",
+    "Dan",
+    "Allison",
+    "DC",
+    "Daryl",
+    "Rob"
+  ],
   "leaders": {
+    "adam": {
+      "name": "Adam Frater",
+      "first": "Adam",
+      "feed": [
+        "Adam F."
+      ],
+      "aliases": [
+        "Adam"
+      ],
+      "page": "/trip-leaders/adam"
+    },
+    "alex": {
+      "name": "Alex Marks",
+      "first": "Alex",
+      "feed": [
+        "Alex M."
+      ],
+      "aliases": [
+        "Alex"
+      ],
+      "page": "/trip-leaders/alex"
+    },
+    "bradford": {
+      "name": "Bradford Rahmlow",
+      "first": "Bradford",
+      "feed": [
+        "Bradford"
+      ],
+      "aliases": [
+        "Bradford",
+        "Brad",
+        "Rahm"
+      ],
+      "page": "/trip-leaders/bradford"
+    },
+    "bri": {
+      "name": "Brianna Funk",
+      "first": "Bri",
+      "feed": [
+        "Bri F."
+      ],
+      "aliases": [
+        "Bri",
+        "Brianna"
+      ],
+      "page": "/trip-leaders/bri"
+    },
+    "carri": {
+      "name": "Carri Bresnahan",
+      "first": "Carri",
+      "feed": [
+        "Carri B."
+      ],
+      "aliases": [
+        "Carri"
+      ],
+      "page": "/trip-leaders/carri"
+    },
+    "cezary": {
+      "name": "Cezary Wojcik",
+      "first": "Cezary",
+      "feed": [
+        "Cezary"
+      ],
+      "aliases": [
+        "Cezary"
+      ],
+      "page": "/trip-leaders/cezary"
+    },
+    "christian": {
+      "name": "Christian Labertew",
+      "first": "Christian",
+      "feed": [
+        "Christian L."
+      ],
+      "aliases": [
+        "Christian"
+      ],
+      "page": "/trip-leaders/christian"
+    },
+    "courtney": {
+      "name": "Courtney Cochran",
+      "first": "Courtney",
+      "feed": [
+        "Courtney C."
+      ],
+      "aliases": [
+        "Courtney"
+      ],
+      "page": "/trip-leaders/courtney"
+    },
+    "dan": {
+      "name": "Dan Brown",
+      "first": "Dan",
+      "feed": [
+        "Dan B."
+      ],
+      "aliases": [
+        "Dan Brown",
+        "Deebs"
+      ],
+      "page": "/trip-leaders/dan"
+    },
+    "darryl": {
+      "name": "Darryl Corley",
+      "first": "Darryl",
+      "feed": [
+        "Darryl C."
+      ],
+      "aliases": [
+        "Darryl",
+        "Daryl"
+      ],
+      "page": "/trip-leaders/darryl"
+    },
     "erin": {
       "name": "Erin MacLeod",
       "first": "Erin",
-      "feed": ["Erin M."],
-      "aliases": ["Erin"],
-      "page": "/trip-leaders/erin-preview"
+      "feed": [
+        "Erin M."
+      ],
+      "aliases": [
+        "Erin"
+      ],
+      "page": "/trip-leaders/erin"
+    },
+    "holly": {
+      "name": "Holly Lipman",
+      "first": "Holly",
+      "feed": [
+        "Holly L."
+      ],
+      "aliases": [
+        "Holly"
+      ],
+      "page": "/trip-leaders/holly"
+    },
+    "jenny": {
+      "name": "Jenny Eisenberg",
+      "first": "Jenny",
+      "feed": [
+        "Jenny E."
+      ],
+      "aliases": [
+        "Jenny"
+      ],
+      "page": "/trip-leaders/jenny"
+    },
+    "jill": {
+      "name": "Jill Mercer",
+      "first": "Jill",
+      "feed": [
+        "Jillian M."
+      ],
+      "aliases": [
+        "Jill",
+        "Jillian"
+      ],
+      "page": "/trip-leaders/jill"
+    },
+    "juliana": {
+      "name": "Juliana Tordella",
+      "first": "Juliana",
+      "feed": [
+        "Juliana T."
+      ],
+      "aliases": [
+        "Juliana",
+        "Jules"
+      ],
+      "page": "/trip-leaders/juliana"
+    },
+    "lauren": {
+      "name": "Lauren Smith",
+      "first": "Lauren",
+      "feed": [
+        "Lauren S."
+      ],
+      "aliases": [
+        "Lauren"
+      ],
+      "page": "/trip-leaders/lauren"
+    },
+    "lizzie": {
+      "name": "Lizzie Allcock",
+      "first": "Lizzie",
+      "feed": [
+        "Lizzie"
+      ],
+      "aliases": [
+        "Lizzie",
+        "Lizzy"
+      ],
+      "page": "/trip-leaders/lizzie"
+    },
+    "meag": {
+      "name": "Meag Donnelly",
+      "first": "Meag",
+      "feed": [
+        "Meag D."
+      ],
+      "aliases": [
+        "Meag",
+        "Meg",
+        "Meagan",
+        "Meaghan"
+      ],
+      "page": "/trip-leaders/meag"
+    },
+    "nikki": {
+      "name": "Nikki Rosado",
+      "first": "Nikki",
+      "feed": [
+        "Nikki R."
+      ],
+      "aliases": [
+        "Nikki"
+      ],
+      "page": "/trip-leaders/nikki"
+    },
+    "sarah": {
+      "name": "Sarah White",
+      "first": "Sarah",
+      "feed": [
+        "Sarah W."
+      ],
+      "aliases": [
+        "Sarah"
+      ],
+      "page": "/trip-leaders/sarah"
+    },
+    "sarahcat": {
+      "name": "Sarah Catenac",
+      "first": "Sarah Cat",
+      "feed": [
+        "Sarah C."
+      ],
+      "aliases": [
+        "Sarah Cat",
+        "Sarah C",
+        "Sarah"
+      ],
+      "page": "/trip-leaders/sarahcat"
+    },
+    "sav": {
+      "name": "Sav Cyr",
+      "first": "Sav",
+      "feed": [
+        "Sav C."
+      ],
+      "aliases": [
+        "Sav",
+        "Savanna",
+        "Savannah"
+      ],
+      "page": "/trip-leaders/sav"
     }
   }
 }

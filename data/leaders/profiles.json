@@ -1,0 +1,237 @@
+{
+  "_about": "What each leader page says. Key = squad slug (/trip-leaders/<key>). bio = their squad page bio (lightly tidied). title = their squad title. chat: nyc = the SYB New York City WhatsApp chat, dm = 'ask me on Instagram'. qa: [question, answer, source] where source 'real' came from the squad bio, a Travel Hack Tuesday post or SYB HQ, and 'placeholder' was written for the leader to replace with their own words. chips = specialties.",
+  "nyc_chat": "https://chat.whatsapp.com/KpdTPFv7YKk7oapaNwLo6h?mode=gi_t",
+  "leaders": {
+    "adam": {
+      "name": "Adam Frater", "first": "Adam", "h1": ["Adam", "Frater."], "city": "Miami", "ig": "adam_frater", "chat": "dm", "title": "Shred Captain",
+      "bio": "Adam is a big boss in body weight, handstands and making people smile. And umm, he’s got a six pack, dude.",
+      "qa": [
+        ["How did you find SYB?", "I came on an SYB trip, found my people and never really left. A few trips later I was the one leading the workouts.", "placeholder"],
+        ["Favorite SYB moment?", "Handstands on the beach in Bali, with the whole crew trying to hold one longer than me. Nobody did.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I can teach almost anyone a handstand in a week. Almost.", "placeholder"]
+      ],
+      "chips": ["Bodyweight training", "Handstands", "Beach workouts", "Making people smile"]
+    },
+    "alex": {
+      "name": "Alex Marks", "first": "Alex", "h1": ["Alex", "Marks."], "city": "London", "ig": "alexpmarks", "chat": "dm", "title": "Senior Leader",
+      "bio": "Coming from London, this 6’5 gentleman will, with proper manners and sophisticated language, get you to play all sorts of silly games, from fitness to drinking.",
+      "qa": [
+        ["How did you find SYB?", "I came on my first SYB trip from London and ended up leading the next one. Eleven trips later, I’m still here.", "placeholder"],
+        ["Favorite SYB moment?", "Watching a group of total strangers in Morocco turn into a crew by the second night in the desert.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I’m 6’5, and I will still fold myself into the back row of the van.", "placeholder"],
+        ["Your go-to travel hack?", "You don’t need to pack as much as you think, especially when the SYB swag is so fire. Pack lighter. You’ll realize you don’t need half of it.", "real"]
+      ],
+      "chips": ["Silly games", "Fitness", "Ski days", "Proper British manners"]
+    },
+    "bradford": {
+      "name": "Bradford Rahmlow", "first": "Bradford", "h1": ["Bradford", "Rahmlow."], "city": "New York City", "ig": "rahmstagram", "chat": "nyc", "title": "Senior Leader",
+      "bio": "His career as a dancer led him to the fitness profession. He spent many years dancing professionally with NYC’s Urban Ballet Theater and toured with the musicals. Also, he grew up in Hawaii, SYB central!",
+      "qa": [
+        ["How did you find SYB?", "Through fitness in New York. I started leading workouts with SYB, and the trips took over from there.", "placeholder"],
+        ["Favorite SYB moment?", "Ireland with Dan and Matas. Hiking all day, pub all night, and a group that sang the whole way home.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I danced professionally with NYC’s Urban Ballet Theater and toured with the musicals. And I grew up in Hawaii.", "real"],
+        ["Your go-to travel hack?", "Americans on the red eye to Europe: grab a beer when you land. Your body is already in shock from the time change, and it helps set your intentions for the trip to come.", "real"]
+      ],
+      "chips": ["Dance", "Fitness", "Mountain trips", "Setting the tone"]
+    },
+    "bri": {
+      "name": "Brianna Funk", "first": "Bri", "h1": ["Brianna", "Funk."], "city": "Philadelphia", "ig": "brianna_funk", "chat": "dm", "title": "Sexy Suaveee",
+      "bio": "Bri brings the camera, the calm and the good energy. She’s the leader who gets the shot you’ll post for a year, and still makes sure you’re living the moment.",
+      "bio_src": "placeholder",
+      "qa": [
+        ["How did you find SYB?", "I started on SYB trips behind the camera, then started leading them. Now I’m in Nicaragua more than I’m home.", "placeholder"],
+        ["Favorite SYB moment?", "Kenya. Watching the sun come up over the Mara with my crew.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I started on SYB trips as a photographer, so I already know your good side.", "placeholder"]
+      ],
+      "chips": ["Photography", "Surf camp", "Safari days", "Sunset sessions"]
+    },
+    "carri": {
+      "name": "Carri Bresnahan", "first": "Carri", "h1": ["Carri", "Bresnahan."], "city": "Boston", "ig": "carribres", "chat": "dm", "title": "Energizer Bunny",
+      "bio": "Ever wondered what an espresso shot would be like in human form? Meet Carri. Powered by questionable amounts of caffeine and an unshakable belief that sleep is optional, she’s the first one up for sunrise workouts and somehow still leading the dance floor at 2am. When this Boston babe is around, you better be ready to rally.",
+      "qa": [
+        ["How did you find SYB?", "I came on the Croatia trip as a guest, and I went home wanting to be on the other side of it.", "placeholder"],
+        ["Favorite SYB moment?", "Leading the dance floor on the Croatia boat party, one year after I was a guest on that same trip.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "My battery has never actually run out. Science can’t explain it.", "real"],
+        ["Your go-to travel hack?", "Bring a small packable tote or backpack for boat days, hikes and everything in between. The days are long, and it’s good to have sunscreen, water and the other essentials on hand.", "real"]
+      ],
+      "chips": ["Sunrise workouts", "Theme parties", "Aux cord takeovers", "Rallying the crew"]
+    },
+    "cezary": {
+      "name": "Cezary Wojcik", "first": "Cezary", "h1": ["Cezary", "Wojcik."], "city": "San Francisco", "ig": "cezary_wojcik", "chat": "dm", "title": "Do It All Man",
+      "bio": "He’s DJ’d on safari in SYB Kenya, he’s dressed up as a pirate and walked the plank on a pirate ship in SYB Croatia, he’s a semi-professional photographer, and he will do ALL the workouts with you even though he doesn’t sleep.",
+      "qa": [
+        ["How did you find SYB?", "One SYB trip turned into DJing on safari, walking the plank in Croatia and shooting photos everywhere in between.", "placeholder"],
+        ["Favorite SYB moment?", "DJing on safari in Kenya. There is no better dance floor.", "real"],
+        ["Something people wouldn’t guess about you?", "I’m a semi-professional photographer. I also don’t sleep.", "real"]
+      ],
+      "chips": ["DJ sets", "Photography", "Every single workout", "Pirate days"]
+    },
+    "christian": {
+      "name": "Christian Labertew", "first": "Christian", "h1": ["Christian", "Labertew."], "city": "Los Angeles", "ig": "claber2", "chat": "dm", "title": "Camp Counselor",
+      "bio": "Christian’s favorite way to start the day is a hearty “goooooood morning campers!” We don’t give him caffeine in the mornings. He’s already full of energy without the boost. You best believe he will be DJing and dancing on every bus ride, and there WILL be some country songs in the mix (we are sorry in advance).",
+      "qa": [
+        ["How did you find SYB?", "I came to an SYB event in LA, then a trip, and now I’m the one waking up the campers.", "placeholder"],
+        ["Favorite SYB moment?", "Iceland 2026. Hot springs, waterfalls, and a bus that turned into a dance floor every single day.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "There will be country songs on the bus playlist. I’m sorry in advance.", "real"],
+        ["Your go-to travel hack?", "Spend half an hour at the airport or on the flight learning a bit about the culture and language where you’re going. The friendships you make with locals can be just as meaningful as the ones with your crew, and they’ll appreciate you trying.", "real"]
+      ],
+      "chips": ["Good morning, campers", "Bus DJ", "Hiking days", "Group energy"]
+    },
+    "courtney": {
+      "name": "Courtney Cochran", "first": "Courtney", "h1": ["Courtney", "Cochran."], "city": "Denver", "ig": "courtneydcochran", "chat": "dm", "title": "Breath Babe",
+      "bio": "She’s been traveling with us since 2019, and after graduating from the SYB Academy (class of ’24), she’s basically been living in Nicaragua with the crew. You’ll catch her guiding breathwork sessions that unlock emotions you didn’t know you had, and catching waves like it’s her full-time job.",
+      "qa": [
+        ["How did you find SYB?", "I’ve been traveling with SYB since 2019. I graduated from the Academy in 2024 and basically moved into Nicaragua with the crew.", "real"],
+        ["Favorite SYB moment?", "A sunrise breathwork session in Nicaragua that ended with half the group in happy tears.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "Breathwork can unlock emotions you didn’t even know you had. Ask anyone who has done a session with me.", "real"],
+        ["Your go-to travel hack?", "Pack way less than you think you’ll need. If you’re going somewhere like Nicaragua, you’re pretty much only wearing swimsuits anyway.", "real"]
+      ],
+      "chips": ["Breathwork", "Surfing", "Yoga", "Nicaragua know-how"]
+    },
+    "dan": {
+      "name": "Dan Brown", "first": "Dan", "h1": ["Dan", "Brown."], "city": "New York City", "ig": "deebsontv", "chat": "nyc", "title": "O’ DannyBoy",
+      "bio": "Originally a TV producer, he gave SYB a little try and then jumped in head first. From helping host our annual SYB Gala in NYC to leading the more adventurous trips like Ireland, Dan brings the organization and the night time vibes on ALL days.",
+      "qa": [
+        ["How did you find SYB?", "I was a TV producer who gave SYB a little try. Then I jumped in head first.", "real"],
+        ["Favorite SYB moment?", "Helping host the SYB Gala in New York. A room full of alumni in black tie, and every one of them was a stranger once.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I used to produce TV, so yes, I will make the group photo happen.", "placeholder"]
+      ],
+      "chips": ["Adventure trips", "Organization", "Night time vibes", "Gala nights"]
+    },
+    "darryl": {
+      "name": "Darryl Corley", "first": "Darryl", "h1": ["Darryl", "Corley."], "city": "London", "ig": "that_nutritionguydarryl", "chat": "dm", "title": "Mr Hyrox",
+      "bio": "This British lad has all the drinking games, all the deadly workouts, and all the comments to have you thinking twice about what he said. Was it the accent, or did he really say it? If you need a good laugh while sweating, this is your guy.",
+      "qa": [
+        ["How did you find SYB?", "I came on an SYB trip from London and I haven’t stopped since.", "placeholder"],
+        ["Favorite SYB moment?", "The pirate ship day in Croatia. Enough said.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I’m a nutrition guy. Yes, really, the one with all the drinking games.", "placeholder"]
+      ],
+      "chips": ["Hyrox training", "Deadly workouts", "Drinking games", "British banter"]
+    },
+    "erin": {
+      "name": "Erin MacLeod", "first": "Erin", "h1": ["Erin", "MacLeod."], "city": "New York City", "ig": "erinashsd", "chat": "nyc", "title": "High Vibes",
+      "bio": "Her vibe is all about keeping it fun and sexy, making sure everyone feels included, and doing it all with a big heart and an infectious attitude.",
+      "qa": [
+        ["How did you find SYB?", "I came on a couple of SYB trips as a guest and got hooked. Then I did the SYB Academy in Nicaragua, and I’ve been leading ever since.", "placeholder"],
+        ["Favorite SYB moment?", "Our Shellona day in Saint-Tropez. It was a free night on the Côte d’Azur trip, and all 27 of us went anyway. One long table, everyone toasting, nobody wanted to leave.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I’m a lawyer by trade.", "real"],
+        ["Your go-to travel hack?", "Carry-on is king. No baggage claim, no lost luggage, no waiting around. Just grab, go, and start the adventure faster.", "real"]
+      ],
+      "chips": ["Fitness", "Yoga", "Photography", "Beach club days", "Nights out", "Making everyone feel included"]
+    },
+    "holly": {
+      "name": "Holly Lipman", "first": "Holly", "h1": ["Holly", "Lipman."], "city": "Hoboken", "ig": "hollylipsfit", "chat": "nyc", "title": "Sweat and Party Queen",
+      "bio": "High energy, a little chaotic and always down for the bit, Holly is your go-to for workouts that hit, whether it’s on a beach, a jungle gym or a boat. A Jersey girl through and through, she found SYB on our Egypt trip and never left the party. Fair warning: if Holly’s on your trip, someone’s losing their voice, and it’s probably her.",
+      "qa": [
+        ["How did you find SYB?", "I found SYB on the Egypt trip and never left the party.", "real"],
+        ["Favorite SYB moment?", "Leading a workout on a boat in the South of France with 24 people screaming the countdown.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "My Spanish is just broken enough to get by with the locals.", "real"]
+      ],
+      "chips": ["Barry’s-level workouts", "Beach bootcamps", "Party tricks", "Hype"]
+    },
+    "jenny": {
+      "name": "Jenny Eisenberg", "first": "Jenny", "h1": ["Jenny", "Eisenberg."], "city": "Los Angeles", "ig": "jennyfe", "chat": "dm", "title": "Pilates and Chill",
+      "bio": "After a decade-plus of teaching Pilates in LA, she added yoga to her repertoire, graduating from the SYB Academy in 2024. She’s here to make you feel supported, encouraged and definitely challenged. Don’t be fooled: she’s tiny, but her workouts are tough.",
+      "qa": [
+        ["How did you find SYB?", "After more than ten years of teaching Pilates in LA, I added yoga and graduated from the SYB Academy in 2024.", "real"],
+        ["Favorite SYB moment?", "Pilates on the deck in Nicaragua with the ocean right there. Hard to beat.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I’m tiny, but my workouts are not.", "real"]
+      ],
+      "chips": ["Pilates", "Yoga", "Tough workouts", "Feeling supported"]
+    },
+    "jill": {
+      "name": "Jill Mercer", "first": "Jill", "h1": ["Jill", "Mercer."], "city": "San Diego", "ig": "jillianmercer", "chat": "dm", "title": "Senior Leader",
+      "bio": "After learning the ropes from the SYB Academy and getting her yoga teacher training with us back in 2019, Jill has been nonstop leading trips all over the world with us!",
+      "qa": [
+        ["How did you find SYB?", "I learned the ropes at the SYB Academy and did my yoga teacher training with SYB back in 2019. I’ve been leading nonstop ever since.", "real"],
+        ["Favorite SYB moment?", "Turkey 2025. Sailing, swimming, dancing, and a crew that felt like family by day three.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I’ve been leading SYB trips since 2019, so ask me for the old stories.", "placeholder"]
+      ],
+      "chips": ["Yoga", "Nicaragua", "Planning the fun", "Chill time by the water"]
+    },
+    "juliana": {
+      "name": "Juliana Tordella", "first": "Juliana", "h1": ["Juliana", "Tordella."], "city": "Boston", "ig": "julianat.jpg", "chat": "dm", "title": "Senior Leader",
+      "bio": "It all started on SYB Ibiza 2018. Then she crushed the SYB Academy yoga teacher training, and now she’s back to share the life-changing moments with you. BTW, she also teaches a beer shotgunning workshop.",
+      "qa": [
+        ["How did you find SYB?", "It all started on SYB Ibiza in 2018. Then I did the SYB Academy yoga teacher training, and now I help lead the Academy.", "real"],
+        ["Favorite SYB moment?", "Ibiza 2018, my first SYB trip. The one that started all of this.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I teach a beer shotgunning workshop. It’s very official.", "real"],
+        ["Your go-to travel hack?", "Hit up the WhatsApp group before the trip and figure out who you can meet at the airport you’re leaving from or laying over in. We often end up on the same flight, and you get to arrive with new friends.", "real"]
+      ],
+      "chips": ["Yoga", "Teacher training", "Shotgunning workshop", "Making connections"]
+    },
+    "lauren": {
+      "name": "Lauren Smith", "first": "Lauren", "h1": ["Lauren", "Smith."], "city": "San Francisco", "ig": "lauren.24", "chat": "dm", "title": "Wild Heart",
+      "bio": "Straight out of Seattle and a graduate of the SYB Academy, class of 2024, she brings big energy, warmth and that extra push you didn’t know you needed. A true mountain soul, a dedicated yogi and always the first to rally the crew, she’s here to make your week unforgettable.",
+      "qa": [
+        ["How did you find SYB?", "I came on an SYB trip, then graduated from the SYB Academy in 2024. The mountains did the rest.", "placeholder"],
+        ["Favorite SYB moment?", "Hiking the Dolomites with a crew that kept asking for one more hut.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I grew up in Seattle, so give me a mountain over a beach. Then give me both.", "placeholder"],
+        ["Your go-to travel hack?", "Use the Flighty app. It keeps your gate information in one place even when your trip spans different airlines, makes it easy to share your flights with friends or family, and shows you a fun recap of everywhere you went at the end of the year.", "real"]
+      ],
+      "chips": ["Yoga", "Mountain trips", "Ski weeks", "Rallying the crew"]
+    },
+    "lizzie": {
+      "name": "Lizzie Allcock", "first": "Lizzie", "h1": ["Lizzie", "Allcock."], "city": "Portland", "ig": "lizzieallcock", "chat": "dm", "title": "Grounded Fire",
+      "bio": "Portland raised and SYB Academy trained (class of ’24), Lizzie brings a calm that puts a room at ease, right before she cranks up the energy and asks you to go further than you thought you could. Part spiritual leader, part hype woman, she’ll have you moving harder, laughing louder and leaving the trip a little more open than when you arrived.",
+      "qa": [
+        ["How did you find SYB?", "Portland raised and SYB Academy trained, class of ’24.", "real"],
+        ["Favorite SYB moment?", "The Philippines. Island hopping all day, and the whole crew dancing barefoot on the beach at night.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I make one playlist for the sunrise flow and a very different one for midnight.", "placeholder"]
+      ],
+      "chips": ["Sunrise flow", "Yoga", "Hype woman", "Island trips"]
+    },
+    "meag": {
+      "name": "Meag Donnelly", "first": "Meag", "h1": ["Meag", "Donnelly."], "city": "Boston", "ig": "meag_donnelly", "chat": "dm", "title": "Heart of Gold",
+      "bio": "Meag’s heart says it all: go big or go home. After winning our Instagram giveaway in 2021, we just couldn’t get rid of her. Hailing from Boston, when she’s not traveling the world with SYB, she’s planning the Boston Marathon or working at her local fitness studio. Community is everything for Meag, and if you’re on a trip with her, she’ll make it everything for you too.",
+      "qa": [
+        ["How did you find SYB?", "I won an SYB Instagram giveaway in 2021, and they just couldn’t get rid of me.", "real"],
+        ["Favorite SYB moment?", "Iceland 2026. Hot springs, waterfalls and the best group of humans.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "When I’m not traveling with SYB, I’m planning the Boston Marathon.", "real"],
+        ["Your go-to travel hack?", "Search for flights in incognito mode, it can give you cheaper prices. If you have a VPN, set yourself in a different country. That can get you cheaper prices too.", "real"]
+      ],
+      "chips": ["Community", "Running", "Fitness", "Go big or go home"]
+    },
+    "nikki": {
+      "name": "Nikki Rosado", "first": "Nikki", "h1": ["Nikki", "Rosado."], "city": "Boston", "ig": "nikkirosado", "chat": "dm", "title": "Young Spirit",
+      "bio": "From guest to SYB Academy to SYB leader, Nikki has taken the full route. She knows everything from how to lead a perfect yoga class to waking you up early SYB style, and keeping the dance party lit all night.",
+      "qa": [
+        ["How did you find SYB?", "I came as a guest, did the SYB Academy and became a leader. The full route.", "real"],
+        ["Favorite SYB moment?", "Turkey this summer. Boats, beach clubs and a group that never wanted to go to bed.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I’ll wake you up early SYB style, and I’ll still be on the dance floor at 2am.", "real"]
+      ],
+      "chips": ["Yoga", "Early wake-ups", "Dance parties", "Bali and Nicaragua"]
+    },
+    "sarah": {
+      "name": "Sarah White", "first": "Sarah", "h1": ["Sarah", "White."], "city": "Boston", "ig": "thecoastalyogi", "chat": "dm", "title": "Senior Leader",
+      "bio": "She’s been on SYB Ibiza, she’s led the SYB Academy teacher training, and she’s proven that there is a beautiful balance between spirituality and a good party. She’s the ultimate good vibe to have leading your trip!",
+      "qa": [
+        ["How did you find SYB?", "I came on SYB Ibiza, and a few years later I was leading the SYB Academy teacher training.", "real"],
+        ["Favorite SYB moment?", "Japan. Fresh powder in the morning, karaoke in Golden Gai at night.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "Spirituality and a good party go together better than you think.", "real"]
+      ],
+      "chips": ["Yoga", "Teacher training", "Ski trips", "Good vibes"]
+    },
+    "sarahcat": {
+      "name": "Sarah Catenac", "first": "Sarah Cat", "h1": ["Sarah", "Catenac."], "city": "New York City", "ig": "sarahcatenac", "chat": "nyc", "title": "Shot Fairy",
+      "bio": "Day one of her first SYB trip and she was already a lifer. After a few more adventures and local events, she graduated from the SYB Academy (class of ’24) and officially joined the crew. Since then, she’s been our shot fairy, coming in hot to kickstart the party. When she’s around, you’ll be on your feet dancing in no time.",
+      "qa": [
+        ["How did you find SYB?", "Day one of my first SYB trip, I was a lifer. A few more trips and local events later, I graduated from the SYB Academy, class of ’24.", "real"],
+        ["Favorite SYB moment?", "Nicaragua with Matas last November. Strangers on day one, family by day four.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "You will be on your feet dancing within ten minutes of meeting me. Resistance is pointless.", "placeholder"],
+        ["Your go-to travel hack?", "When you’re traveling somewhere hot, pack a change of clothes in your carry-on for the ride after the flight.", "real"]
+      ],
+      "chips": ["Shot fairy", "Dance floors", "Workouts", "Strangers to family"]
+    },
+    "sav": {
+      "name": "Sav Cyr", "first": "Sav", "h1": ["Sav", "Cyr."], "city": "Las Vegas", "ig": "savvy_cyr", "chat": "dm", "title": "Vegas Energy",
+      "bio": "Living in Las Vegas, she’s seen it all and nothing fazes her. She can bring the heat and bring the sweet. Sav is a recent grad of our SYB Academy, class of 2024, and her vibe is all about making memories that will last you a lifetime!",
+      "qa": [
+        ["How did you find SYB?", "I graduated from the SYB Academy in 2024, and I’ve been bringing the Vegas energy to trips ever since.", "real"],
+        ["Favorite SYB moment?", "Belize. Golf carts, reef days and a crew that felt like old friends by the end of the week.", "placeholder"],
+        ["Something people wouldn’t guess about you?", "I live in Las Vegas, so nothing on a trip fazes me.", "real"]
+      ],
+      "chips": ["Fun workouts", "The heat and the sweet", "Memory making", "Island trips"]
+    }
+  }
+}

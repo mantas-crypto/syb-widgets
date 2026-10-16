@@ -3,7 +3,9 @@
 Leader pages data. Writes dist/leaders/<leader>.json for every leader in data/leaders/leaders.json.
 
 Runs in GitHub Actions (.github/workflows/leaders.yml) twice a day, after SYB HQ syncs the Leader Hub Feed.
-Nothing here needs a key: the feed sheet is link-shared and read as CSV.
+Nothing here needs a key. It reads "SYB Public Feed (no guest data)", a link-shared copy of the trip list
+with no guest data in it (the Leader Hub Feed itself is private since Oct 16 2026). If that sheet cannot be
+read, the pages keep their trips from history.json.
 
 Where each part of a leader page comes from
   Upcoming trips   Leader Hub Feed, TRIPS tab (synced from SYB HQ, so adding a leader to a trip tab in HQ
@@ -29,15 +31,15 @@ from zoneinfo import ZoneInfo
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA = os.path.join(ROOT, "data", "leaders")
 OUT = os.path.join(ROOT, "dist", "leaders")
-FEED_ID = "1iLVeCoXvt5wvTJC8Mp29CvHErUnrX9ybSbKnIUn_ZXw"   # SYB Leader Hub Feed
-FEED_GID = "96169590"                                     # TRIPS tab
+FEED_ID = "1eqR2mnjno31ODG_hMM0GR7NL9NrkjpELjiQmlsh4HYE"   # SYB Public Feed (no guest data)
+FEED_GID = "1001"                                         # TRIPS tab: trip, start_on, end_on, hub_tab, booked, leaders, lead, status
 FEED_URLS = [
-    "https://docs.google.com/spreadsheets/d/%s/export?format=csv&gid=%s" % (FEED_ID, FEED_GID),
     "https://docs.google.com/spreadsheets/d/%s/gviz/tq?tqx=out:csv&headers=1&sheet=TRIPS" % FEED_ID,
+    "https://docs.google.com/spreadsheets/d/%s/export?format=csv&gid=%s" % (FEED_ID, FEED_GID),
 ]
 NY = ZoneInfo("America/New_York")
-REVIEW_WINDOW = 150        # days after a trip ends that a review can still be about it
-MAX_REVIEWS = 10
+REVIEW_WINDOW = 45         # days after a trip ends that a review can still be about it (most land within two weeks)
+MAX_REVIEWS = 7          # one big quote plus six cards
 SKIP_STATUS = {"CANCELLED", "IDEA", "NOT LAUNCHED"}
 
 # HQ tab name start -> HQ destination (same words MASTER uses)
@@ -204,6 +206,38 @@ def excerpt(text, aliases, exclude, limit=240):
     return " ".join(parts), bool(named)
 
 
+def is_staff(name, staff):
+    n = re.sub(r"\s+", " ", (name or "").strip().lower())
+    return n in staff or short_name(name).lower() in staff
+
+
+def quote_score(q, aliases, names):
+    """Higher = more about this leader. Every other leader or staff name in the quote costs a point;
+    a quote that is a full thought (60 to 260 characters) gets one."""
+    others = {n for n in names if n not in aliases and has_name(q, [n])}
+    return (2 if has_name(q, aliases) else 0) - len(others) + (1 if 60 <= len(q) <= 260 else 0)
+
+
+def owns_review(text, day, aliases, rivals):
+    """A review naming only a name this leader shares with another leader (two Sarahs) counts only when no
+    other leader with that name led a trip in the review's window. rivals: alias -> [(other key, their trips led)]."""
+    own = [a for a in aliases if has_name(text, [a])]
+    if any(a not in rivals for a in own):
+        return True
+    for a in own:
+        for _, trips in rivals[a]:
+            if any(iso(o["start"]) <= day <= iso(o["end"]) + datetime.timedelta(days=REVIEW_WINDOW) for o in trips):
+                return False
+    return True
+
+
+def trips_led_of(conf, hist, today):
+    names = set(conf.get("feed", []))
+    return [trip_out(tab, t, True) for tab, t in hist.items() if names & set(t.get("leaders", []))
+            and t.get("status", "") not in SKIP_STATUS and iso(t["end"]) and iso(t["end"]) < today
+            and t.get("booked", 0) > 0 and t.get("kind", "trip") == "trip"]
+
+
 def place(dest):
     return PLACES.get(dest, (dest, dest, ""))
 
@@ -217,7 +251,7 @@ def trip_out(tab, t, with_count):
     return o
 
 
-def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude):
+def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude, rivals=None, staff=None, known=None):
     names = set(conf.get("feed", []))
     mine = {tab: t for tab, t in hist.items() if names & set(t.get("leaders", []))
             and t.get("status", "") not in SKIP_STATUS}
@@ -241,12 +275,17 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude):
         return max(cands, key=lambda o: o["start"]) if cands else None
 
     aliases = conf.get("aliases") or [conf.get("first", "")]
+    rivals = rivals or {}
     found = []
     for r in reviews:
         d = iso(r.get("date"))
         if not d or r.get("rating") != 5 or not has_name(r.get("text", ""), aliases):
             continue
         t = about(d)
+        if t and not owns_review(r.get("text", ""), d, aliases, rivals):
+            continue
+        if t and staff and is_staff(r.get("name", ""), staff):
+            continue                      # reviews written by SYB leaders or staff are not guest reviews
         if t:
             found.append(({"id": r.get("gid") or r.get("url"), "who": short_name(r["name"]), "src": "Google",
                            "date": r["date"], "url": r.get("url", "")}, r.get("text", ""), t))
@@ -260,6 +299,8 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude):
     out = []
     for o, text, t in found:
         p = picks.get(o["id"], {})
+        if p.get("leader") and p["leader"] != key:
+            p = {}                        # a hand pick belongs to the leader it was picked for
         if p.get("hide"):
             continue
         if p.get("q"):
@@ -270,13 +311,26 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude):
         if not o["q"]:
             continue
         o["named"] = has_name(" ".join([o["q"]] + o["more"]), aliases)
+        if not o["named"] and not p.get("q"):
+            continue                      # the only lines naming them were left out (they also name someone excluded)
         o["feature"] = bool(p.get("feature"))
         o.update({"trip": t["trip"], "tag": t["tag"], "trip_start": t["start"], "page": t["page"]})
+        o["_score"] = quote_score(" ".join([o["q"]] + o["more"]), aliases, known or set())
         out.append(o)
-    out.sort(key=lambda o: (not o["feature"], not o["named"], o["trip_start"], o["date"]))
     feature = [o for o in out if o["feature"]][:1]
+    if not feature and out:
+        # the big quote: the one most about this leader (fewest other names, a real sentence), newest trip on a tie
+        feature = [max(out, key=lambda o: (o["_score"], o["trip_start"], o["date"]))]
+        f = feature[0]
+        f["feature"] = True
+        if not f["more"]:                 # big type: lead with the first sentence, the rest goes underneath
+            parts = [x for x in sentences(f["q"]) if x != "…"]
+            if len(parts) > 1 and len(parts[0]) >= 25:
+                f["q"], f["more"] = parts[0], [" ".join(parts[1:]).replace(" … ", " ")]
     rest = sorted([o for o in out if o not in feature], key=lambda o: (o["trip_start"], o["date"]), reverse=True)
     out = (feature + rest)[:MAX_REVIEWS]
+    for o in out:
+        o.pop("_score", None)
 
     return {
         "key": key, "name": conf["name"], "first": conf.get("first", conf["name"].split()[0]),
@@ -309,9 +363,22 @@ def main():
     picks = load(os.path.join(DATA, "picks.json"), {})
     exclude = conf.get("exclude_names", [])
 
+    led = {key: trips_led_of(c, hist, today) for key, c in conf["leaders"].items()}
+    staff = {x.lower() for x in conf.get("staff", [])}
+    for c in conf["leaders"].values():
+        staff |= {c["name"].lower(), short_name(c["name"]).lower()}
+    names = set(conf.get("staff_first_names", []))
+    for c in conf["leaders"].values():
+        names |= set(c.get("aliases", [])) | {c.get("first", "")}
+    by_alias = {}
+    for key, c in conf["leaders"].items():
+        for al in c.get("aliases") or [c.get("first", "")]:
+            by_alias.setdefault(al, []).append(key)
+
     written = []
     for key, c in conf["leaders"].items():
-        view = leader_view(key, c, hist, feed, today, reviews, extras, picks, exclude)
+        rivals = {al: [(k, led[k]) for k in ks if k != key] for al, ks in by_alias.items() if key in ks and len(ks) > 1}
+        view = leader_view(key, c, hist, feed, today, reviews, extras, picks, exclude, rivals, staff, names)
         path = os.path.join(OUT, key + ".json")
         old = load(path, {})
         if {k: v for k, v in old.items() if k != "built"} == view:
@@ -333,7 +400,7 @@ def main():
     log["written"] = written
     print(json.dumps(log))
     if feed is None:
-        print("WARNING: could not read the Leader Hub Feed; pages keep their trips from history", file=sys.stderr)
+        print("WARNING: could not read SYB Public Feed (no guest data); pages keep their trips from history", file=sys.stderr)
 
 
 if __name__ == "__main__":

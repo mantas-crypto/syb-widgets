@@ -1,0 +1,34 @@
+<link rel="canonical" href="https://www.surfyogabeer.com/trip-leaders/lauren">
+<script>
+(function(){
+  var LEADER='lauren', LEADER_NAME='Lauren Smith';
+  var host=location.hostname.replace(/^www\./,'');
+  var ref=document.referrer||'';
+  var internal=false;
+  try{ if(ref){ var ru=new URL(ref), rh=ru.hostname.replace(/^www\./,''), rp=decodeURIComponent(ru.pathname); internal=((rh===host)||/myeasol\.com$/.test(rh)) && !/\/password\/?$/.test(rp); } }catch(e){}
+  var entry=!internal;
+  window.dataLayer=window.dataLayer||[];
+  if(entry){
+    var days=90, jar='coo'+'kie';
+    try{ document[jar]='syb_leader='+LEADER+';path=/;max-age='+(days*86400)+';SameSite=Lax'+(/surfyogabeer\.com$/.test(host)?';domain=.surfyogabeer.com':''); }catch(e){}
+    try{ localStorage.setItem('syb_leader',JSON.stringify({l:LEADER,t:Date.now(),p:location.pathname})); }catch(e){}
+  }
+  window.dataLayer.push({event:'leader_page_view',leader:LEADER,leader_entry:entry?'yes':'no'});
+  function share(btn){
+    var url=location.origin+location.pathname;
+    var data={title:'Travel with '+LEADER_NAME+' | SYB',text:'Trips led by '+LEADER_NAME+', SYB trip leader',url:url};
+    if(navigator.share){ navigator.share(data).catch(function(){}); return; }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){ var t=btn.textContent; btn.textContent='Link copied'; setTimeout(function(){ btn.textContent=t; },2200); },function(){});
+    }
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target&&e.target.closest?e.target.closest('.syl [data-syl]'):null;
+    if(!el) return;
+    var href=el.getAttribute('href')||'';
+    window.dataLayer.push({event:'leader_click',leader:LEADER,leader_click:el.getAttribute('data-syl'),link_url:href?String(el.href||href).split('?')[0]:''});
+    if(el.hasAttribute('data-share')){ e.preventDefault(); share(el); }
+  },true);
+})();
+</script>
+<script src="@@JS@@" defer></script>

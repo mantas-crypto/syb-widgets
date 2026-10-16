@@ -42,7 +42,8 @@
       var o = {
         name: i.getAttribute('data-n'), start: d, url: i.getAttribute('data-u') || '',
         left: r === '' || r == null ? null : +r, soldOut: i.getAttribute('data-so') === '1',
-        price: i.getAttribute('data-p') || '', img: i.getAttribute('data-img') || ''
+        price: i.getAttribute('data-p') || '', img: i.getAttribute('data-img') || '',
+        dur: parseInt(i.getAttribute('data-dur'), 10) || 0
       };
       m[norm(o.name) + '|' + d] = o;
       (m[norm(o.name)] = m[norm(o.name)] || []).push(o);
@@ -106,7 +107,7 @@
   }
   function poster(u, lv, t0, first) {
     var s = day(u.start), e = day(u.end), st = status(t0, s, e, lv);
-    var hol = holiday(s, e), where = u.place + (hol ? ', ' + hol : '');
+    var hol = holiday(s, e), where = (u.place || '') + (u.place && hol ? ', ' + hol : (hol || ''));
     var href = lv && lv.url ? lv.url : (u.page || '/calendar');
     var img = lv && lv.img ? '<img src="' + esc(lv.img) + '" alt="' + esc(u.trip + ', SYB’s trip to ' + u.place) + '" loading="lazy">' : '';
     var pills = (st.text ? '<span class="syl-pill ' + st.cls + '">' + st.text + '</span>' : '<span></span>') +
@@ -117,16 +118,42 @@
       '" data-syl="trip-' + slug(u.tag || u.place) + '-' + u.start + '" href="' + esc(href) + '">' + img +
       '<span class="syl-poster-top">' + pills + '</span><span class="syl-poster-body"><span class="syl-date">' +
       MON[s.getMonth()] + ' ' + s.getDate() + '<i>' + s.getFullYear() + '</i></span><span class="syl-trip">' + esc(u.trip) +
-      '</span><span class="syl-place">' + esc(where) + '. ' + range(s, e) + '</span><span class="syl-poster-foot"><span class="syl-price">' +
+      '</span><span class="syl-place">' + (where ? esc(where) + '. ' : '') + range(s, e) + '</span><span class="syl-poster-foot"><span class="syl-price">' +
       price + '</span>' + cta + '</span></span></a>';
+  }
+  // The next SYB departures (any leader), for a leader with nothing on the calendar yet
+  function nextDepartures(live, n) {
+    var t0 = today(), all = [], names = {};
+    Object.keys(live).forEach(function (k) {
+      if (k.indexOf('|') > -1) return;
+      live[k].forEach(function (o) { if (day(o.start) >= t0) all.push(o); });
+    });
+    all.sort(function (a, b) { return a.start < b.start ? -1 : a.start > b.start ? 1 : 0; });
+    return all.filter(function (o) {
+      if (o.soldOut || names[norm(o.name)]) return false;
+      names[norm(o.name)] = 1;
+      return true;
+    }).slice(0, n).map(function (o) {
+      var e = new Date(day(o.start).getTime()); e.setDate(e.getDate() + Math.max(0, (o.dur || 1) - 1));
+      return { trip: o.name, start: o.start, end: iso(e), place: '', tag: o.name, page: o.url, kind: 'trip' };
+    });
+  }
+  function setTripsHead(general, first) {
+    var h = $('.syl [data-trips-h]'), sub = $('.syl [data-trips-sub]');
+    if (h) h.innerHTML = '<span>Travel</span><span class="syl-g">with ' + esc(general ? 'SYB' : first) + '.</span>';
+    if (sub) sub.hidden = !general;
   }
   function renderTrips(data, live) {
     var box = $('.syl [data-trips]');
     if (!box) return;
     var t0 = today();
     var list = data.upcoming.filter(function (u) { return day(u.end) >= t0; });
+    var general = !list.length;
+    if (general) list = nextDepartures(live, 4);
+    setTripsHead(general, data.first);
     if (!list.length) {
-      box.outerHTML = '<p class="syl-empty syl-body" data-trips>No trips on ' + esc(data.first) + '’s calendar right now. New dates drop on the <a class="syl-link" href="/calendar" data-syl="calendar-empty">SYB calendar</a> first.</p>';
+      box.innerHTML = '';
+      box.removeAttribute('data-n');
       return;
     }
     box.innerHTML = list.map(function (u) { return poster(u, findLive(live, u.trip, u.start), t0, data.first); }).join('');
@@ -143,6 +170,11 @@
       if (top) top.innerHTML = (st.text ? '<span class="syl-pill ' + st.cls + '">' + st.text + '</span>' : '<span></span>') +
         (st.soon ? '<span class="syl-pill syl-soon">' + st.soon + '</span>' : '');
       if (lv && lv.url) a.setAttribute('href', lv.url);
+      if (lv && lv.img && !a.querySelector('img')) {
+        var im = document.createElement('img');
+        im.src = lv.img; im.alt = (a.getAttribute('data-name') || 'SYB trip') + ', SYB trip photo'; im.loading = 'lazy';
+        a.insertBefore(im, a.firstChild);
+      }
       var pr = $('.syl-price', a);
       if (pr && lv) pr.textContent = st.out ? 'Sold out' : (lv.price ? 'From ' + money(lv.price) : pr.textContent);
     });
@@ -179,9 +211,13 @@
   }
   function renderLed(data) {
     var box = $('.syl [data-led]');
+    var led = ledList(data), trav = 0, places = {};
+    led.forEach(function (o) { trav += o.travelers || 0; if (o.place) places[o.place] = 1; });
+    var st = { led: led.length, travelers: trav, places: Object.keys(places).length };
+    $$('.syl [data-stat]').forEach(function (el) { var v = st[el.getAttribute('data-stat')]; if (v != null) el.textContent = v; });
+    var wrap = $('.syl [data-led-box]');
+    if (wrap) wrap.hidden = !led.length;
     if (!box) return;
-    var led = ledList(data), trav = 0;
-    led.forEach(function (o) { trav += o.travelers || 0; });
     box.innerHTML = led.map(function (o) {
       var s = day(o.start), inner = '<span class="syl-led-when">' + MON[s.getMonth()] + ' ' + s.getFullYear() +
         '</span><span class="syl-led-what"><strong>' + esc(o.trip) + '</strong><span>' + esc(o.place) + '</span></span><span class="syl-led-n">' +
@@ -204,20 +240,36 @@
     var s = day(r.trip_start);
     return '<b>' + esc(first) + '’s ' + esc(r.tag) + ' trip</b>, ' + MON[s.getMonth()] + ' ' + s.getFullYear();
   }
+  function cite(r) {
+    return esc(r.who) + (r.url ? ' on <a data-syl="review-' + slug(r.who) + '" href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.src) + '</a>' : '');
+  }
   function renderReviews(data) {
     var box = $('.syl [data-reviews]');
     if (!box || !data.reviews || !data.reviews.length) return;
-    var f = $('.syl [data-review-id]'), fid = f && f.getAttribute('data-review-id');
-    var names = [data.first];
-    if (f) {
-      var tg = $('.syl-tag', f), fr = data.reviews.filter(function (r) { return r.id === fid; })[0];
-      if (tg && fr) tg.innerHTML = tagHtml(data.first, fr);
+    var sec = box.closest('.syl');
+    if (sec) sec.hidden = false;
+    var f = $('.syl .syl-feature'), fid = f && f.getAttribute('data-review-id');
+    var names = [data.first].concat(data.first.split(' ').length > 1 ? [data.first.split(' ')[0]] : []);
+    var fr = data.reviews.filter(function (r) { return r.id === fid; })[0];
+    if (f && !fr) {
+      fr = data.reviews[0];
+      fid = fr.id;
+      f.setAttribute('data-review-id', fid);
+      var body = f.querySelector(':scope>div');
+      if (body) body.innerHTML = '<p class="syl-tag"></p><blockquote style="margin:0;padding:0;border:0"><p class="syl-q">“' + mark(fr.q, names) + '”</p>' +
+        (fr.more || []).map(function (q) { return '<p class="syl-q-more">“' + mark(q, names) + '”</p>'; }).join('') +
+        '</blockquote><figcaption class="syl-cite">' + cite(fr) + '</figcaption>';
+    }
+    if (f && fr) {
+      var tg = $('.syl-tag', f);
+      if (tg) tg.innerHTML = tagHtml(data.first, fr);
     }
     var list = data.reviews.filter(function (r) { return r.id !== fid; });
+    box.hidden = !list.length;
     if (!list.length) return;
     box.innerHTML = list.map(function (r) {
       var qs = [r.q].concat(r.more || []).map(function (q) { return '<p>“' + mark(q, names) + '”</p>'; }).join('');
-      var who = esc(r.who) + (r.url ? ' on <a data-syl="review-' + slug(r.who) + '" href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.src) + '</a>' : '');
+      var who = cite(r);
       return '<figure class="syl-card"><p class="syl-tag">' + tagHtml(data.first, r) + '</p><div class="syl-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><blockquote>' + qs +
         '</blockquote><figcaption class="syl-who">' + who + '</figcaption></figure>';
     }).join('');
@@ -329,7 +381,16 @@
     var root = $('.syl[data-leader]');
     var key = root && root.getAttribute('data-leader');
     var liveP = getLive(root);
-    liveP.then(function (live) { if (live) tidyStatic(live); });
+    liveP.then(function (live) {
+      if (!live) return;
+      tidyStatic(live);
+      var gb = $('.syl [data-trips][data-general]');
+      if (gb && !gb.children.length) {
+        var t0 = today(), gl = nextDepartures(live, 4);
+        gb.innerHTML = gl.map(function (u) { return poster(u, findLive(live, u.trip, u.start), t0); }).join('');
+        if (gl.length) gb.setAttribute('data-n', gl.length);
+      }
+    });
     if (!key) return;
     var dataP = getJSON(root.getAttribute('data-feed') || CDN + key + '.json', 6000);
     dataP.then(function (data) {
