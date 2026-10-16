@@ -82,6 +82,8 @@ def blob_url(p):
 
 
 def holiday(s, en):
+    if (en - s).days > 21:          # a months-long program (the Academy) is not a holiday trip
+        return ""
     y = s.year
     nov1 = datetime.date(y, 11, 1)
     thx = nov1 + datetime.timedelta(days=((3 - nov1.weekday()) % 7) + 21)
@@ -357,8 +359,9 @@ def about(key, prof, data, about_img):
         side = '<figure class="syl-about-photo"><img src="%s" alt="%s" loading="lazy" style="--pos:50%% 25%%"></figure>' % (e(about_img[0]), e(about_img[1]))
     else:
         side = ('<aside class="syl-stats"><p class="syl-stats-t">%s</p><p class="syl-stats-where">SYB trip leader, based in %s</p>'
-                '<dl><div><dt>trips led</dt><dd data-stat="led">%d</dd></div><div><dt>travelers</dt><dd data-stat="travelers">%d</dd></div>'
-                '<div><dt>destinations</dt><dd data-stat="places">%d</dd></div></dl></aside>') % (e(prof["title"]), e(prof["city"]), len(led), trav, places)
+                '<dl data-stats-nums%s><div><dt>trips led</dt><dd data-stat="led">%d</dd></div><div><dt>travelers</dt><dd data-stat="travelers">%d</dd></div>'
+                '<div><dt>destinations</dt><dd data-stat="places">%d</dd></div></dl></aside>') % (
+                    e(prof["title"]), e(prof["city"]), "" if led else " hidden", len(led), trav, places)
     bio = prof["bio"]
     qa = "".join("<div><dt>%s</dt><dd>%s</dd></div>" % (e(q), e(a)) for q, a, _src in prof["qa"])
     qa += "<div><dt>What are your specialties?</dt><dd><ul class=\"syl-chips\">%s</ul></dd></div>" % "".join("<li>%s</li>" % e(c) for c in prof["chips"])

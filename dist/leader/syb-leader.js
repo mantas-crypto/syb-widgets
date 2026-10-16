@@ -96,6 +96,7 @@
 
   /* ---------- trips ---------- */
   function holiday(s, e) {
+    if (days(e, s) > 21) return '';   // a months-long program (the Academy) is not a holiday trip
     var y = s.getFullYear();
     var nov1 = new Date(y, 10, 1), thx = new Date(y, 10, 1 + ((11 - nov1.getDay()) % 7) + 21);
     if (thx >= s && thx <= e) return 'Thanksgiving week';
@@ -239,6 +240,7 @@
     led.forEach(function (o) { trav += o.travelers || 0; if (o.place) places[o.place] = 1; });
     var st = { led: led.length, travelers: trav, places: Object.keys(places).length };
     $$('.syl [data-stat]').forEach(function (el) { var v = st[el.getAttribute('data-stat')]; if (v != null) el.textContent = v; });
+    $$('.syl [data-stats-nums]').forEach(function (el) { el.hidden = !led.length; });
     var wrap = $('.syl [data-led-box]');
     if (wrap) wrap.hidden = !led.length;
     if (!box) return;
