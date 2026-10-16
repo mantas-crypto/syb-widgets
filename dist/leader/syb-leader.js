@@ -12,6 +12,10 @@
 */
 (function () {
   'use strict';
+  // The leader data files are read from GitHub directly (fresh within 5 minutes of the twice-daily commit).
+  // jsDelivr @main is only the fallback: the repo is over jsDelivr's 50 MB package limit, so @main answers some
+  // requests with a 403 and others with an older copy (seen Oct 16 2026). The CSS and JS stay on jsDelivr, pinned.
+  var RAW = 'https://raw.githubusercontent.com/mantas-crypto/syb-widgets/main/dist/leaders/';
   var CDN = 'https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@main/dist/leaders/';
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -485,7 +489,10 @@
       if (gb) refreshGeneral(gb, live);
     });
     if (!key) return;
-    var dataP = getJSON(root.getAttribute('data-feed') || CDN + key + '.json', 6000);
+    var own = root.getAttribute('data-feed');
+    var dataP = own ? getJSON(own, 6000) : getJSON(RAW + key + '.json', 5000).then(function (j) {
+      return j && j.upcoming ? j : getJSON(CDN + key + '.json', 5000);
+    });
     dataP.then(function (data) {
       if (!data || !data.upcoming) return;
       [renderLede, renderLed, renderReviews].forEach(function (f) { try { f(data); } catch (e) { if (window.console) console.warn('syb-leader', e); } });
