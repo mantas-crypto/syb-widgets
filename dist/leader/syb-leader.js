@@ -94,12 +94,17 @@
       return liveFrom(new DOMParser().parseFromString(h, 'text/html'));
     }).catch(function () { return null; });
   }
-  function findLive(live, name, start) {
+  // strict: same trip within 3 days only. Otherwise a long program also matches a date inside it: HQ lists the
+  // Academy under a leader's own week (Dec 1 to 6) while Easol sells it as one departure (Nov 4 to Jan 31).
+  function findLive(live, name, start, strict) {
     if (!live) return null;
     var hit = live[norm(name) + '|' + start];
     if (hit) return hit;
-    var near = (live[norm(name)] || []).filter(function (o) { return Math.abs(days(day(o.start), day(start))) <= 3; });
-    return near[0] || null;
+    var all = live[norm(name)] || [];
+    var near = all.filter(function (o) { return Math.abs(days(day(o.start), day(start))) <= 3; });
+    if (near[0] || strict) return near[0] || null;
+    var d = day(start);
+    return all.filter(function (o) { return o.end && day(o.start) <= d && day(o.end) >= d; })[0] || null;
   }
   function money(p) { return String(p || '').replace(/\.00(?=\D*$)/, '').replace(/\s?USD$/, ''); }
   // A photo for a trip card that no other part of the page already shows: the departure's own photo, then
@@ -202,7 +207,7 @@
     $$('.syl-poster', box).forEach(function (a) {
       var nm = a.getAttribute('data-name'), s = a.getAttribute('data-start'), k = norm(nm);
       var im = a.querySelector('img'), src = im && im.getAttribute('src');
-      var lv = s ? findLive(live, nm, s) : null;
+      var lv = s ? findLive(live, nm, s, true) : null;
       if (!a.hidden && lv && !lv.soldOut && days(day(s), t0) >= 0 && !names[k]) {
         names[k] = 1; n++;
         if (src) used[src] = 1;
