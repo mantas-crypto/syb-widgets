@@ -18,5 +18,15 @@ upcoming departure with spots left, sold out, price and photo on each visit; the
 leader's trips from it. Without it the script reads the same list from /leader-live-data.
 
 The cards, the hero line, trips led and review cards rewrite themselves from dist/leaders/<key>.json, so the
-HTML here only matters if that file cannot load. A new leader: copy pages/erin, change the words, photos
-and `data-leader`, add them to data/leaders/leaders.json.
+HTML here only matters if that file cannot load. 
+## Every leader (pages/leaders/<key>/)
+
+`scripts/render-leader-pages.py` writes the same five blocks plus the Inject code for every leader in
+data/leaders/leaders.json, from data/leaders/profiles.json (name, city, Instagram, bio, Q&A, specialties;
+`placeholder` marks words we made up until the leader sends their own), data/leaders/photos.json and
+dist/leaders/<key>.json. Photo addresses are written in; `@@CSS@@` and `@@JS@@` are filled with the pinned
+commit when the blocks are saved. pages/erin is the hand-made original those templates came from.
+
+A new leader: add them to leaders.json, profiles.json and photos.json (squad photo), run
+`python3 scripts/build-leaders.py` and `python3 scripts/render-leader-pages.py <key>`, then save the five
+blocks and the Inject code on their /trip-leaders/<key> page.

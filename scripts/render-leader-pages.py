@@ -387,8 +387,7 @@ def end(key, prof, nyc):
     ])
 
 
-HEAD = """<link rel="canonical" href="%(canon)s">
-<script>
+HEAD = """<script>
 (function(){
   var LEADER='%(key)s', LEADER_NAME='%(name)s';
   var host=location.hostname.replace(/^www\\./,'');
@@ -446,7 +445,7 @@ def main():
             "3-reviews.html": reviews(key, prof, data, feature_img),
             "4-about.html": about(key, prof, data, about_img),
             "5-end.html": end(key, prof, nyc),
-            "head.html": HEAD % {"key": key, "name": prof["name"].replace("'", "\\'"), "canon": SITE + "/trip-leaders/" + key},
+            "head.html": HEAD % {"key": key, "name": prof["name"].replace("'", "\\'")},
         }
         d = os.path.join(OUT, key)
         os.makedirs(d, exist_ok=True)
