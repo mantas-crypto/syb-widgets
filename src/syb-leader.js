@@ -43,6 +43,7 @@
         name: i.getAttribute('data-n'), start: d, url: i.getAttribute('data-u') || '',
         left: r === '' || r == null ? null : +r, soldOut: i.getAttribute('data-so') === '1',
         price: i.getAttribute('data-p') || '', img: i.getAttribute('data-img') || '',
+        imgs: (i.getAttribute('data-imgs') || '').split('|').filter(Boolean),
         dur: parseInt(i.getAttribute('data-dur'), 10) || 0
       };
       m[norm(o.name) + '|' + d] = o;
@@ -75,6 +76,23 @@
     return near[0] || null;
   }
   function money(p) { return String(p || '').replace(/\.00(?=\D*$)/, '').replace(/\s?USD$/, ''); }
+  // A photo for a trip card that no other part of the page already shows: the departure's own photo, then
+  // its gallery, then photos of other departures of the same trip (a trip happening now is no longer listed).
+  function pageImages() {
+    var seen = {};
+    $$('.syl img').forEach(function (im) {
+      if (im.closest('.syl-poster')) return;
+      [im.getAttribute('src'), im.getAttribute('data-src')].forEach(function (u) { if (u) seen[u] = 1; });
+    });
+    return seen;
+  }
+  function pickImg(live, name, lv, used) {
+    var c = [];
+    if (lv) c = c.concat(lv.img || [], lv.imgs || []);
+    ((live && live[norm(name)]) || []).forEach(function (o) { c = c.concat(o.img || [], o.imgs || []); });
+    for (var k = 0; k < c.length; k++) if (c[k] && !used[c[k]]) { used[c[k]] = 1; return c[k]; }
+    return '';
+  }
 
   /* ---------- trips ---------- */
   function holiday(s, e) {
@@ -105,11 +123,11 @@
     }
     return { cls: '', text: '', soon: soon };
   }
-  function poster(u, lv, t0, first) {
+  function poster(u, lv, t0, src) {
     var s = day(u.start), e = day(u.end), st = status(t0, s, e, lv);
     var hol = holiday(s, e), where = (u.place || '') + (u.place && hol ? ', ' + hol : (hol || ''));
     var href = lv && lv.url ? lv.url : (u.page || '/calendar');
-    var img = lv && lv.img ? '<img src="' + esc(lv.img) + '" alt="' + esc(u.trip + ', SYB’s trip to ' + u.place) + '" loading="lazy">' : '';
+    var img = src ? '<img src="' + esc(src) + '" alt="' + esc(u.trip + (u.place ? ', SYB’s trip to ' + u.place : ', an SYB trip')) + '" loading="lazy">' : '';
     var pills = (st.text ? '<span class="syl-pill ' + st.cls + '">' + st.text + '</span>' : '<span></span>') +
       (st.soon ? '<span class="syl-pill syl-soon">' + st.soon + '</span>' : '');
     var price = st.out ? 'Sold out' : (lv && lv.price ? 'From ' + esc(money(lv.price)) : '');
@@ -156,12 +174,17 @@
       box.removeAttribute('data-n');
       return;
     }
-    box.innerHTML = list.map(function (u) { return poster(u, findLive(live, u.trip, u.start), t0, data.first); }).join('');
+    var used = pageImages();
+    box.innerHTML = list.map(function (u) {
+      var lv = findLive(live, u.trip, u.start);
+      return poster(u, lv, t0, pickImg(live, u.trip, lv, used));
+    }).join('');
     box.setAttribute('data-n', list.length);
   }
   // The trip cards saved in the block: same live data, without the JSON
   function tidyStatic(live) {
-    var t0 = today();
+    var t0 = today(), used = pageImages();
+    $$('.syl [data-trips] .syl-poster>img').forEach(function (im) { used[im.getAttribute('src')] = 1; });
     $$('.syl [data-trips] .syl-poster[data-start]').forEach(function (a) {
       var s = day(a.getAttribute('data-start')), e = day(a.getAttribute('data-end') || a.getAttribute('data-start'));
       if (days(e, t0) < 0) { a.hidden = true; return; }
@@ -170,9 +193,10 @@
       if (top) top.innerHTML = (st.text ? '<span class="syl-pill ' + st.cls + '">' + st.text + '</span>' : '<span></span>') +
         (st.soon ? '<span class="syl-pill syl-soon">' + st.soon + '</span>' : '');
       if (lv && lv.url) a.setAttribute('href', lv.url);
-      if (lv && lv.img && !a.querySelector('img')) {
+      var src = a.querySelector('img') ? '' : pickImg(live, a.getAttribute('data-name'), lv, used);
+      if (src) {
         var im = document.createElement('img');
-        im.src = lv.img; im.alt = (a.getAttribute('data-name') || 'SYB trip') + ', SYB trip photo'; im.loading = 'lazy';
+        im.src = src; im.alt = (a.getAttribute('data-name') || 'SYB trip') + ', SYB trip photo'; im.loading = 'lazy';
         a.insertBefore(im, a.firstChild);
       }
       var pr = $('.syl-price', a);
@@ -231,10 +255,9 @@
   /* ---------- reviews ---------- */
   function mark(text, names) {
     var t = esc(text);
-    names.forEach(function (n) {
-      t = t.replace(new RegExp('(^|[^\\w])(' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![\\w])', 'g'), '$1<span class="syl-hl">$2</span>');
-    });
-    return t;
+    if (!names.length) return t;
+    var alt = names.map(function (n) { return esc(n).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|');
+    return t.replace(new RegExp('(^|[^\\w])(' + alt + ')(?![\\w])', 'g'), '$1<span class="syl-hl">$2</span>');
   }
   function tagHtml(first, r) {
     var s = day(r.trip_start);
@@ -249,7 +272,10 @@
     var sec = box.closest('.syl');
     if (sec) sec.hidden = false;
     var f = $('.syl .syl-feature'), fid = f && f.getAttribute('data-review-id');
-    var names = [data.first].concat(data.first.split(' ').length > 1 ? [data.first.split(' ')[0]] : []);
+    var names = [data.first].concat(data.aliases || []);
+    if (data.first.split(' ').length > 1) names.push(data.first.split(' ')[0]);
+    names = names.filter(function (n, k) { return n && names.indexOf(n) === k; })
+      .sort(function (a, b) { return b.length - a.length; });
     var fr = data.reviews.filter(function (r) { return r.id === fid; })[0];
     if (f && !fr) {
       fr = data.reviews[0];
@@ -386,8 +412,11 @@
       tidyStatic(live);
       var gb = $('.syl [data-trips][data-general]');
       if (gb && !gb.children.length) {
-        var t0 = today(), gl = nextDepartures(live, 4);
-        gb.innerHTML = gl.map(function (u) { return poster(u, findLive(live, u.trip, u.start), t0); }).join('');
+        var t0 = today(), gl = nextDepartures(live, 4), used = pageImages();
+        gb.innerHTML = gl.map(function (u) {
+          var lv = findLive(live, u.trip, u.start);
+          return poster(u, lv, t0, pickImg(live, u.trip, lv, used));
+        }).join('');
         if (gl.length) gb.setAttribute('data-n', gl.length);
       }
     });

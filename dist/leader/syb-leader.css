@@ -174,7 +174,7 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl .syl-feature{grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
 .syl .syl-quotes{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;margin:56px 0 0;padding:0;gap:16px}
 .syl .syl-about-grid{grid-template-columns:.8fr 1.2fr;gap:72px;align-items:start}
-.syl .syl-about-photo{position:sticky;top:110px}
+.syl .syl-about-photo,.syl .syl-stats{position:sticky;top:110px}
 .syl.syl-end{padding:128px 0 150px}
 }
 @media (min-width:900px) and (max-width:1100px){.syl .syl-date{font-size:32px}.syl .syl-trip{font-size:18px}}

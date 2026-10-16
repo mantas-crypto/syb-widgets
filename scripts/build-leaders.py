@@ -334,6 +334,7 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude, r
 
     return {
         "key": key, "name": conf["name"], "first": conf.get("first", conf["name"].split()[0]),
+        "aliases": [a for a in conf.get("aliases", []) if a != conf.get("first")],
         "upcoming": upcoming,
         "led": [o for o in led if o["kind"] == "trip"],
         "events": [o for o in led if o["kind"] == "event"],

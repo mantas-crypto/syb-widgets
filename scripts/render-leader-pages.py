@@ -101,9 +101,21 @@ def rng(s, en):
 
 def mark(text, names):
     t = e(text)
+    if not names:
+        return t
+    alt = "|".join(re.escape(e(n)) for n in names)
+    return re.sub(r"(^|[^\w])(%s)(?![\w])" % alt, r'\1<span class="syl-hl">\2</span>', t)
+
+
+def hl_names(first, aliases):
+    names = [first] + list(aliases or [])
+    if " " in first:
+        names.append(first.split()[0])
+    out = []
     for n in names:
-        t = re.sub(r"(^|[^\w])(%s)(?![\w])" % re.escape(e(n)), r'\1<span class="syl-hl">\2</span>', t)
-    return t
+        if n and n not in out:
+            out.append(n)
+    return sorted(out, key=len, reverse=True)
 
 
 # ---------- photos ----------
@@ -300,7 +312,7 @@ def cite(r):
 
 def reviews(key, prof, data, feature_img):
     first = prof["first"]
-    names = [first] + ([first.split()[0]] if " " in first else [])
+    names = hl_names(first, data.get("aliases"))
     revs = data.get("reviews") or []
     out = ['<section class="syl syl-crew" id="syl-reviews"%s><div class="syl-wrap">' % ("" if revs else " hidden"),
            '<h2 class="syl-h"><span>Trip reviews</span><span class="syl-g">with %s.</span></h2>' % e(first)]
@@ -358,7 +370,7 @@ def about(key, prof, data, about_img):
         '<h2 class="syl-h"><span>Meet</span><span class="syl-g">%s.</span></h2>' % e(first),
         '<div class="syl-about-grid">', side, '<div>',
         '<p class="syl-vibe%s">%s</p>' % (" is-long" if len(bio) > 260 else "", e(bio)),
-        '<p class="syl-nick">On the SYB squad: <b>%s</b></p>' % e(prof["title"]),
+        ('<p class="syl-nick">On the SYB squad: <b>%s</b></p>' % e(prof["title"])) if about_img else "",
         '<dl class="syl-qa">%s</dl>' % qa,
         ledbox,
         '</div>', '</div>', '</div></section>',
