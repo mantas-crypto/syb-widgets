@@ -323,12 +323,12 @@ def poster(u, img=None):
     hol = holiday(s, en)
     where = (u.get("place") or "") + ((", " + hol) if hol and u.get("place") else (hol or ""))
     pic = ('<img src="%s" alt="%s" loading="lazy">' % (e(img[0]), e(img[1]))) if img else ""
-    return ('<a class="syl-poster" data-name="%s" data-start="%s" data-end="%s" data-syl="trip-%s-%s" href="%s">' + pic +
+    return ('<a class="syl-poster" data-name="%s" data-start="%s" data-end="%s" data-place="%s" data-syl="trip-%s-%s" href="%s">' + pic +
             '<span class="syl-poster-top"><span></span></span><span class="syl-poster-body"><span class="syl-date">%s %d<i>%d</i></span>'
             '<span class="syl-trip">%s</span><span class="syl-place">%s%s</span><span class="syl-poster-foot"><span class="syl-price"></span>'
             '<span class="syl-cta">See the trip</span></span></span></a>') % (
-        e(u["trip"]), u["start"], u["end"], slug(u.get("tag") or u.get("place") or u["trip"]), u["start"], e(u.get("page") or "/calendar"),
-        MON[s.month - 1], s.day, s.year, e(u["trip"]), (e(where) + ". ") if where else "", rng(s, en))
+        e(u["trip"]), u["start"], u["end"], e(u.get("place") or ""), slug(u.get("tag") or u.get("place") or u["trip"]), u["start"],
+        e(u.get("page") or "/calendar"), MON[s.month - 1], s.day, s.year, e(u["trip"]), (e(where) + ". ") if where else "", rng(s, en))
 
 
 def card_trips(data, general_list):

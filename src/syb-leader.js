@@ -156,7 +156,7 @@
     var price = st.out ? 'Sold out' : (lv && lv.price ? 'From ' + esc(money(lv.price)) : '');
     var cta = st.out ? '<span class="syl-cta syl-cta-ghost">Join Waitlist</span>' : '<span class="syl-cta">See the trip</span>';
     return '<a class="syl-poster" data-name="' + esc(u.trip) + '" data-start="' + u.start + '" data-end="' + u.end +
-      '" data-syl="trip-' + slug(u.tag || u.place) + '-' + u.start + '" href="' + esc(href) + '">' + img +
+      '" data-place="' + esc(u.place || '') + '" data-syl="trip-' + slug(u.tag || u.place || u.trip) + '-' + u.start + '" href="' + esc(href) + '">' + img +
       '<span class="syl-poster-top">' + pills + '</span><span class="syl-poster-body"><span class="syl-date">' +
       MON[s.getMonth()] + ' ' + s.getDate() + '<i>' + s.getFullYear() + '</i></span><span class="syl-trip">' + esc(u.trip) +
       '</span><span class="syl-place">' + (where ? esc(where) + '. ' : '') + range(s, e) + '</span><span class="syl-poster-foot"><span class="syl-price">' +
@@ -190,6 +190,41 @@
     });
     return keep;
   }
+  // "Where SYB goes next" (a leader with nothing coming up). The saved cards stay put while they can still be
+  // booked; a departure that has gone, sold out or left the calendar is swapped for the next one, and a later
+  // departure of the same trip keeps that card's photo and place, so the box barely moves once the live data lands.
+  function refreshGeneral(box, live) {
+    var t0 = today(), used = pageImages(), names = {}, gone = {}, n = 0;
+    $$('.syl-poster', box).forEach(function (a) {
+      var nm = a.getAttribute('data-name'), s = a.getAttribute('data-start'), k = norm(nm);
+      var im = a.querySelector('img'), src = im && im.getAttribute('src');
+      var lv = s ? findLive(live, nm, s) : null;
+      if (!a.hidden && lv && !lv.soldOut && days(day(s), t0) >= 0 && !names[k]) {
+        names[k] = 1; n++;
+        if (src) used[src] = 1;
+        return;
+      }
+      if (!gone[k]) gone[k] = { img: src, place: a.getAttribute('data-place') || '' };
+      a.parentNode.removeChild(a);
+    });
+    if (n < 4) {
+      nextDepartures(live, 40).forEach(function (u) {
+        var k = norm(u.trip);
+        if (n >= 4 || names[k]) return;
+        names[k] = 1; n++;
+        var g = gone[k] || {};
+        if (g.place) u.place = g.place;
+        var src = g.img && !used[g.img] ? g.img : pickImg(live, u.trip, findLive(live, u.trip, u.start), used);
+        if (src) used[src] = 1;
+        box.insertAdjacentHTML('beforeend', poster(u, findLive(live, u.trip, u.start), t0, src));
+      });
+      $$('.syl-poster', box).sort(function (a, b) {
+        var x = a.getAttribute('data-start'), y = b.getAttribute('data-start');
+        return x < y ? -1 : x > y ? 1 : 0;
+      }).forEach(function (a) { box.appendChild(a); });
+    }
+    if (n) box.setAttribute('data-n', n); else box.removeAttribute('data-n');
+  }
   function setTripsHead(general, first) {
     var h = $('.syl [data-trips-h]'), sub = $('.syl [data-trips-sub]');
     if (h) h.innerHTML = '<span>Travel</span><span class="syl-g">with ' + esc(general ? 'SYB' : first) + '.</span>';
@@ -201,13 +236,13 @@
     var t0 = today();
     var list = data.upcoming.filter(function (u) { return day(u.end) >= t0; });
     var general = !list.length;
-    if (general) list = nextDepartures(live, 4);
     setTripsHead(general, data.first);
-    if (!list.length) {
-      box.innerHTML = '';
-      box.removeAttribute('data-n');
+    if (general) {
+      if (!box.hasAttribute('data-general')) { box.setAttribute('data-general', ''); }
+      refreshGeneral(box, live);
       return;
     }
+    box.removeAttribute('data-general');
     var used = pageImages(), keep = savedPhotos(box, used);
     box.innerHTML = list.map(function (u) {
       var lv = findLive(live, u.trip, u.start);
@@ -447,16 +482,7 @@
       if (!live) return;
       tidyStatic(live);
       var gb = $('.syl [data-trips][data-general]');
-      if (gb) {
-        var t0 = today(), gl = nextDepartures(live, 4), used = pageImages(), keep = savedPhotos(gb, used);
-        if (gl.length) {
-          gb.innerHTML = gl.map(function (u) {
-            var lv = findLive(live, u.trip, u.start);
-            return poster(u, lv, t0, keep[norm(u.trip) + '|' + u.start] || pickImg(live, u.trip, lv, used));
-          }).join('');
-          gb.setAttribute('data-n', gl.length);
-        }
-      }
+      if (gb) refreshGeneral(gb, live);
     });
     if (!key) return;
     var dataP = getJSON(root.getAttribute('data-feed') || CDN + key + '.json', 6000);
