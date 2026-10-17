@@ -2136,7 +2136,7 @@
    "start": "2027-05-13",
    "end": "2027-05-22",
    "dest": "Egypt",
-   "booked": 14,
+   "booked": 15,
    "leaders": [
     "Nikki R.",
     "Eli E.",
@@ -2179,14 +2179,14 @@
    "start": "2027-06-14",
    "end": "2027-06-19",
    "dest": "Norway",
-   "booked": 0,
+   "booked": 1,
    "leaders": [
     "Christian L.",
     "Lauren S.",
     "Eli E."
    ],
    "kind": "trip",
-   "status": "NOT LAUNCHED"
+   "status": "LIVE"
   },
   "Kenya #1 '27": {
    "trip": "Safari Stylin'",
