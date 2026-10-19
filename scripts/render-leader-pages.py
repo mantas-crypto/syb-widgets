@@ -75,7 +75,19 @@ def poss(first):
     return first + "’s"
 
 
+def role(prof):
+    """The line above the name. Trip leaders: "SYB trip leader"; the team: their job (profiles.json "role")."""
+    return prof.get("role") or "SYB trip leader"
+
+
+def leads(prof):
+    """False for team members who do not lead trips (no "Travel with <name>", no trips-led line)."""
+    return prof.get("leads", True)
+
+
 def blob_url(p):
+    if p.get("url"):              # an Easol resized copy (representations/proxy) read off the squad page
+        return p["url"]
     sig = base64.b64encode(('{"_rails":{"data":"%s","pur":"blob_id"}}' % p["uuid"]).encode()).decode()
     from urllib.parse import quote
     return "https://static.myeasol.net/rails/active_storage/blobs/proxy/%s--%s/%s" % (sig, p["hex"], quote(p["name"]))
@@ -207,7 +219,7 @@ def plan_photos(key, prof, data, ph, card_trips):
         return reel, about, feature, poster_photos(card_trips, ph, taken)
     sq = ph.doc["squad"][key]
     pos = "50% 30%" if sq.get("h", 1) >= sq.get("w", 1) else "50% 40%"
-    reel = [(blob_url(sq), "Hi, I’m %s." % first, "%s, SYB trip leader" % prof["name"], pos)]
+    reel = [(blob_url(sq), "Hi, I’m %s." % first, "%s, %s" % (prof["name"], role(prof)), pos)]
     if key == "alex":
         a2 = ph.doc["about"]["alex-ski"]
         reel.append((blob_url(a2), "Ski week, French Alps", "Alex Marks in an SYB ski bib and a penguin helmet", "50% 30%"))
@@ -241,12 +253,14 @@ def plan_photos(key, prof, data, ph, card_trips):
 
 
 # ---------- blocks ----------
-def lede(data):
+def lede(data, prof=None):
     first = data["first"]
     led = [o for o in data["led"]]
     trav = sum(o.get("travelers", 0) for o in led)
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
     out = []
+    if prof and not leads(prof):
+        return e(prof["lede"])        # a team member's own line; the page script leaves it alone (no data-lede)
     if led:
         out.append("%s has led <b>%d SYB %s</b>%s." % (e(first), len(led), "trip" if len(led) == 1 else "trips",
                                                       (" and <b>%d travelers</b>" % trav) if trav else ""))
@@ -285,6 +299,9 @@ def hero(key, prof, data, reel, chats):
             slides.append('<figure class="syl-slide" data-cap="%s" aria-hidden="true"><img data-src="%s" alt="%s" style="--pos:%s"></figure>' % (e(cap), e(url), e(alt), pos))
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
     btn = ("See %s trips" % poss(first)) if up else "See upcoming trips"
+    # first line plain, second in the gradient; a one-name leader (h1 ["", "Maxime."]) gets the gradient line only
+    h1 = "".join(('<span class="syl-g">%s</span>' if i else '<span>%s</span>') % e(t) for i, t in enumerate(prof["h1"]) if t)
+    city =('<span class="syl-city">%s%s</span>' % (ICON_PIN, e(prof["city"]))) if prof.get("city") else ""
     return "\n".join([
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="@@CSS@@">',
         '<section class="syl syl-hero" id="syl-hero" data-leader="%s">' % key,
@@ -298,16 +315,16 @@ def hero(key, prof, data, reel, chats):
         '<button class="syl-pause" type="button" aria-label="Pause the photos">%s</button>' % ICON_PAUSE,
         '</div>',
         '<div class="syl-hero-copy">',
-        '<p class="syl-role">SYB trip leader</p>',
-        '<h1 class="syl-name"><span>%s</span><span class="syl-g">%s</span></h1>' % (e(prof["h1"][0]), e(prof["h1"][1])),
+        '<p class="syl-role">%s</p>' % e(role(prof)),
+        '<h1 class="syl-name">%s</h1>' % h1,
         '<div class="syl-home">',
         '<div class="syl-home-top">',
-        '<span class="syl-city">%s%s</span>' % (ICON_PIN, e(prof["city"])),
+        city,
         '<a class="syl-ig" data-syl="instagram-hero" href="https://www.instagram.com/%s" target="_blank" rel="noopener">%s@%s</a>' % (e(prof["ig"]), ICON_IG, e(prof["ig"])),
         '</div>',
         chat_row(prof, chats, "hero"),
         '</div>',
-        '<p class="syl-lede" data-lede>%s</p>' % lede(data),
+        '<p class="syl-lede"%s>%s</p>' % (" data-lede" if leads(prof) else "", lede(data, prof)),
         '<div class="syl-actions">',
         '<a class="syl-btn" data-syl="hero-trips" href="#syl-trips">%s</a>' % e(btn),
         '<button class="syl-btn syl-btn-ghost" type="button" data-syl="share-hero" data-share>Share</button>',
@@ -341,7 +358,8 @@ def trips(key, prof, data, cards, general_list):
     up = [u for u in data["upcoming"] if day(u["end"]) >= TODAY]
     general = not up
     head = '<h2 class="syl-h" data-trips-h><span>Travel</span><span class="syl-g">with %s.</span></h2>' % e("SYB" if general else first)
-    sub = '<p class="syl-trips-sub" data-trips-sub%s>%s isn’t on a trip right now. Here’s where SYB goes next.</p>' % ("" if general else " hidden", e(first))
+    sub = '<p class="syl-trips-sub" data-trips-sub%s>%s</p>' % ("" if general else " hidden", (
+        "%s isn’t on a trip right now. Here’s where SYB goes next." % e(first)) if leads(prof) else "Here’s where SYB goes next.")
     if general:
         box = '<div class="syl-posters" data-trips data-general data-n="%d">%s</div>' % (
             len(general_list), "".join(poster(u, cards.get((u["trip"], u["start"]))) for u in general_list))
@@ -406,10 +424,11 @@ def about(key, prof, data, about_img):
     if about_img:
         side = '<figure class="syl-about-photo"><img src="%s" alt="%s" loading="lazy" style="--pos:50%% 25%%"></figure>' % (e(about_img[0]), e(about_img[1]))
     else:
-        side = ('<aside class="syl-stats"><p class="syl-stats-t">%s</p><p class="syl-stats-where">SYB trip leader, based in %s</p>'
+        where = prof.get("where") or (("%s, based in %s" % (role(prof), prof["city"])) if prof.get("city") else role(prof))
+        side = ('<aside class="syl-stats"><p class="syl-stats-t">%s</p><p class="syl-stats-where">%s</p>'
                 '<dl data-stats-nums%s><div><dt>trips led</dt><dd data-stat="led">%d</dd></div><div><dt>travelers</dt><dd data-stat="travelers">%d</dd></div>'
                 '<div><dt>destinations</dt><dd data-stat="places">%d</dd></div></dl></aside>') % (
-                    e(prof["title"]), e(prof["city"]), "" if led else " hidden", len(led), trav, places)
+                    e(prof["title"]), e(where), "" if led else " hidden", len(led), trav, places)
     bio = prof["bio"]
     qa = "".join("<div><dt>%s</dt><dd>%s</dd></div>" % (e(q), e(a)) for q, a, _src in prof["qa"])
     qa += "<div><dt>What are your specialties?</dt><dd><ul class=\"syl-chips\">%s</ul></dd></div>" % "".join("<li>%s</li>" % e(c) for c in prof["chips"])
@@ -443,7 +462,7 @@ def end(key, prof, chats):
         '<h2 class="syl-h"><span>Come solo.</span><span class="syl-g">Leave with a crew.</span></h2>',
         '<p class="syl-body">%s</p>' % e(body),
         '<div class="syl-actions">',
-        '<a class="syl-btn" data-syl="end-trips" href="#syl-trips">Travel with %s</a>' % e(first),
+        '<a class="syl-btn" data-syl="end-trips" href="#syl-trips">Travel with %s</a>' % e(first if leads(prof) else "SYB"),
         chat,
         '<button class="syl-btn syl-btn-ghost" type="button" data-syl="share-end" data-share>Share %s page</button>' % e(poss(first)),
         '</div>',
@@ -469,7 +488,7 @@ HEAD = """<script>
   window.dataLayer.push({event:'leader_page_view',leader:LEADER,leader_entry:entry?'yes':'no'});
   function share(btn){
     var url=location.origin+location.pathname;
-    var data={title:'Travel with '+LEADER_NAME+' | SYB',text:'Trips led by '+LEADER_NAME+', SYB trip leader',url:url};
+    var data={title:%(share_title)s,text:%(share_text)s,url:url};
     if(navigator.share){ navigator.share(data).catch(function(){}); return; }
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(url).then(function(){ var t=btn.textContent; btn.textContent='Link copied'; setTimeout(function(){ btn.textContent=t; },2200); },function(){});
@@ -492,9 +511,11 @@ def main():
     conf = load(os.path.join(DATA, "leaders.json"))
     profs = load(os.path.join(DATA, "profiles.json"))
     ph = Photos(load(os.path.join(DATA, "photos.json")))
-    keys = sys.argv[1:] or list(conf["leaders"].keys())
-    # erin first: her photos are her own; then the rest share the trip photo pool fairly
-    keys = sorted(keys, key=lambda k: (k != "erin", k))
+    want = set(sys.argv[1:]) or set(conf["leaders"])
+    # erin first: her photos are her own; then the rest share the trip photo pool fairly, the first 22 (Oct 16) before
+    # the pages added later ("added" in leaders.json). Every page's photos are planned in that order even when only
+    # some pages are written, so a page gets the same photos whichever pages are rendered with it.
+    keys = sorted(conf["leaders"], key=lambda k: (conf["leaders"][k].get("added", ""), k != "erin", k))
     chats = profs["city_chats"]
     general_list = next_sbyb_trips(4)
     report = []
@@ -505,13 +526,17 @@ def main():
             print("no data for", key, file=sys.stderr)
             continue
         reel, about_img, feature_img, cards = plan_photos(key, prof, data, ph, card_trips(data, general_list))
+        if key not in want:
+            continue
         blocks = {
             "1-hero.html": hero(key, prof, data, reel, chats),
             "2-trips.html": trips(key, prof, data, cards, general_list),
             "3-reviews.html": reviews(key, prof, data, feature_img),
             "4-about.html": about(key, prof, data, about_img),
             "5-end.html": end(key, prof, chats),
-            "head.html": HEAD % {"key": key, "name": prof["name"].replace("'", "\\'")},
+            "head.html": HEAD % {"key": key, "name": prof["name"].replace("'", "\\'"),
+                                 "share_title": ("'Travel with '+LEADER_NAME+' | SYB'" if leads(prof) else "'Meet '+LEADER_NAME+' | SYB'"),
+                                 "share_text": ("'Trips led by '+LEADER_NAME+', %s'" if leads(prof) else "LEADER_NAME+', %s'") % role(prof).replace("'", "\\'")},
         }
         d = os.path.join(OUT, key)
         os.makedirs(d, exist_ok=True)

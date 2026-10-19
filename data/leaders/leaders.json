@@ -1,5 +1,5 @@
 {
-  "_about": "Leader pages config. One entry per leader with a page (the trip leaders on surfyogabeer.com/our-squad). Key = the squad URL slug (/trip-leaders/<key>). 'feed' = how the leader is written in SYB HQ and the trip list (TRIPS tab, leaders column). 'aliases' = names that count as the leader in a guest review. A name two leaders share (like Sarah) only counts for the one who led a trip in that review's window. 'exclude_names' = names never quoted on any leader page (review sentences that contain them are left out). 'staff' = people whose own Google reviews are never shown as guest reviews (leaders on this list are added automatically). 'staff_first_names' = first names of other SYB leaders and staff, used to pick the review most about one leader for the big quote.",
+  "_about": "Leader pages config. One entry per person with a page: every trip leader, photographer and team member on surfyogabeer.com/our-squad, plus Adam Turner (not on the squad page yet). Key = the squad URL slug; 'page' = their squad page (/trip-leaders/, /management/ or /photographers/), 'also' = another squad page of theirs that carries the same blocks. 'added' = pages added after the first 22 (Oct 16 2026). 'feed' = how the leader is written in SYB HQ and the trip list (TRIPS tab, leaders column). 'aliases' = names that count as the leader in a guest review. A name two leaders share (like Sarah) only counts for the one who led a trip in that review's window. 'exclude_names' = names never quoted on any leader page (review sentences that contain them are left out). 'staff' = people whose own Google reviews are never shown as guest reviews (leaders on this list are added automatically). 'staff_first_names' = first names of other SYB leaders and staff, used to pick the review most about one leader for the big quote.",
   "exclude_names": [
     "Rob"
   ],
@@ -103,7 +103,10 @@
         "Brad",
         "Rahm"
       ],
-      "page": "/trip-leaders/bradford"
+      "page": "/trip-leaders/bradford",
+      "also": [
+        "/management/bradford"
+      ]
     },
     "bri": {
       "name": "Brianna Funk",
@@ -326,6 +329,149 @@
         "Savannah"
       ],
       "page": "/trip-leaders/sav"
+    },
+    "mantas": {
+      "name": "Mantas Zvinas",
+      "first": "Mantas",
+      "feed": [
+        "Mantas Z."
+      ],
+      "aliases": [
+        "Mantas"
+      ],
+      "page": "/management/mantas",
+      "added": "2026-10-19"
+    },
+    "sara": {
+      "name": "Sara Balaban",
+      "first": "Sara",
+      "feed": [
+        "Sara B."
+      ],
+      "aliases": [
+        "Sara",
+        "Sara Balaban"
+      ],
+      "page": "/management/sara",
+      "added": "2026-10-19"
+    },
+    "santiago": {
+      "name": "Santiago Aranguren",
+      "first": "Santiago",
+      "feed": [
+        "Santiago A."
+      ],
+      "aliases": [
+        "Santiago",
+        "Santi"
+      ],
+      "page": "/management/santiago",
+      "also": [
+        "/photographers/santiago"
+      ],
+      "added": "2026-10-19"
+    },
+    "shriner": {
+      "name": "Mike Shriner",
+      "first": "Shriner",
+      "feed": [
+        "Mike S."
+      ],
+      "aliases": [
+        "Shriner",
+        "Mike Shriner",
+        "Mike"
+      ],
+      "page": "/management/shriner",
+      "added": "2026-10-19"
+    },
+    "danielle": {
+      "name": "Danielle Kaplan",
+      "first": "Danielle",
+      "feed": [
+        "Danielle K."
+      ],
+      "aliases": [
+        "Danielle"
+      ],
+      "page": "/management/danielle",
+      "added": "2026-10-19"
+    },
+    "kaia": {
+      "name": "Kaia Hollerback",
+      "first": "Kaia",
+      "feed": [
+        "Kaia H."
+      ],
+      "aliases": [
+        "Kaia"
+      ],
+      "page": "/management/kaia",
+      "added": "2026-10-19"
+    },
+    "sam": {
+      "name": "Sam Knollmeyer",
+      "first": "Sam",
+      "feed": [
+        "Sam K."
+      ],
+      "aliases": [
+        "Sam",
+        "Sam K"
+      ],
+      "page": "/photographers/sam",
+      "added": "2026-10-19"
+    },
+    "eli": {
+      "name": "Eli Elmore",
+      "first": "Eli",
+      "feed": [
+        "Eli E."
+      ],
+      "aliases": [
+        "Eli",
+        "Elijah"
+      ],
+      "page": "/photographers/eli",
+      "added": "2026-10-19"
+    },
+    "matas": {
+      "name": "Matas Gayauskas",
+      "first": "Matas",
+      "feed": [
+        "Matas G."
+      ],
+      "aliases": [
+        "Matas"
+      ],
+      "page": "/photographers/matas",
+      "added": "2026-10-19"
+    },
+    "maxime": {
+      "name": "Maxime",
+      "first": "Maxime",
+      "feed": [
+        "Maxime"
+      ],
+      "aliases": [
+        "Maxime"
+      ],
+      "page": "/photographers/maxime",
+      "added": "2026-10-19"
+    },
+    "adam-turner": {
+      "name": "Adam Turner",
+      "first": "Adam",
+      "feed": [
+        "Adam T."
+      ],
+      "aliases": [
+        "Adam",
+        "Adam Turner",
+        "Adam T"
+      ],
+      "page": "/trip-leaders/adam-turner",
+      "added": "2026-10-19"
     }
   }
 }

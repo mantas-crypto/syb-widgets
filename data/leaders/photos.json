@@ -1,5 +1,5 @@
 {
- "_about": "Photo addresses for the leader pages, as Easol blob ids (the page builds static.myeasol.net/rails/active_storage/blobs/proxy/... from them). squad = the leader's squad page photo. about = their own portrait (cut from their Travel Hack Tuesday post, no text). erin = Erin's own reel. pool = SYB trip photos from each trip page, by trip page, in the order picked.",
+ "_about": "Photo addresses for the leader pages, as Easol blob ids (the page builds static.myeasol.net/rails/active_storage/blobs/proxy/... from them). squad = the leader's squad page photo. about = their own portrait (cut from their Travel Hack Tuesday post, no text). erin = Erin's own reel. pool = SYB trip photos from each trip page, by trip page, in the order picked. squad[key].url (pages added Oct 19 2026): Easol's 1140 px wide copy of the squad photo, used instead of the full-size original.",
  "squad": {
   "juliana": {
    "uuid": "535fb294-0e20-41ac-823e-65c7022457e7",
@@ -154,6 +154,94 @@
    "name": "Christian2026.jpeg",
    "w": 1226,
    "h": 1765
+  },
+  "mantas": {
+   "uuid": "632a1de4-af20-4f50-a0a1-d017397b99de",
+   "hex": "bc273452542df18d55d77bc2e41b41b8f77bf436",
+   "name": "Mantas.jpg",
+   "w": 720,
+   "h": 959,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjYzMmExZGU0LWFmMjAtNGY1MC1hMGExLWQwMTczOTdiOTlkZSIsInB1ciI6ImJsb2JfaWQifX0=--bc273452542df18d55d77bc2e41b41b8f77bf436/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJqcGciLCJyZXNpemVfdG9fbGltaXQiOlsxMTQwLG51bGxdLCJzYXZlciI6eyJzdHJpcCI6dHJ1ZSwicXVhbGl0eSI6ODV9fSwicHVyIjoidmFyaWF0aW9uIn19--365b3f2384a392100e74e3b770bfec8374c83e7a/Mantas.jpg"
+  },
+  "sara": {
+   "uuid": "d8307454-0188-4954-b17a-583ba310a223",
+   "hex": "5413d07995965058490cecd8917d3ffd68369690",
+   "name": "SaraBalaban.webp",
+   "w": 944,
+   "h": 872,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImQ4MzA3NDU0LTAxODgtNDk1NC1iMTdhLTU4M2JhMzEwYTIyMyIsInB1ciI6ImJsb2JfaWQifX0=--5413d07995965058490cecd8917d3ffd68369690/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/SaraBalaban.webp"
+  },
+  "santiago": {
+   "uuid": "b24d66d3-6e6c-47b2-a871-41c68c00f0a2",
+   "hex": "2802b2b184d15b3aa969de8e95d5cda8f89d6238",
+   "name": "Santiago.webp",
+   "w": 562,
+   "h": 900,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImIyNGQ2NmQzLTZlNmMtNDdiMi1hODcxLTQxYzY4YzAwZjBhMiIsInB1ciI6ImJsb2JfaWQifX0=--2802b2b184d15b3aa969de8e95d5cda8f89d6238/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Santiago.webp"
+  },
+  "shriner": {
+   "uuid": "9958dd76-b34d-4fbc-aab1-e452cd01a19b",
+   "hex": "c5760a5732dcf8eae4e6f666a1f0d3dbb1eb3ee1",
+   "name": "13JeBBNfVz3JxHtrZggPREE6.jpeg",
+   "w": 1140,
+   "h": 1710,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Ijk5NThkZDc2LWIzNGQtNGZiYy1hYWIxLWU0NTJjZDAxYTE5YiIsInB1ciI6ImJsb2JfaWQifX0=--c5760a5732dcf8eae4e6f666a1f0d3dbb1eb3ee1/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJqcGVnIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--56d344ee1222d0a22574144917c3ea314faaa283/13JeBBNfVz3JxHtrZggPREE6.jpeg"
+  },
+  "danielle": {
+   "uuid": "8c802841-0ea9-47a8-9109-c200d91439bb",
+   "hex": "ca8534bb103de419b3038ee4e3c703725458f47c",
+   "name": "WhatsAppImage20260507at15.23.00.webp",
+   "w": 1140,
+   "h": 1520,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjhjODAyODQxLTBlYTktNDdhOC05MTA5LWMyMDBkOTE0MzliYiIsInB1ciI6ImJsb2JfaWQifX0=--ca8534bb103de419b3038ee4e3c703725458f47c/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/WhatsAppImage20260507at15.23.00.webp"
+  },
+  "kaia": {
+   "uuid": "3455402a-d4db-4afb-aa40-d5e49765e848",
+   "hex": "59cad714162a9ffb8ff9050fa937145a74c3c63e",
+   "name": "Kaia.webp",
+   "w": 675,
+   "h": 900,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjM0NTU0MDJhLWQ0ZGItNGFmYi1hYTQwLWQ1ZTQ5NzY1ZTg0OCIsInB1ciI6ImJsb2JfaWQifX0=--59cad714162a9ffb8ff9050fa937145a74c3c63e/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Kaia.webp"
+  },
+  "sam": {
+   "uuid": "883739d5-70d0-463d-a83d-6f9726330994",
+   "hex": "6205b88c452bf89000b2827fe0b02050aef98d1b",
+   "name": "Sam.webp",
+   "w": 900,
+   "h": 1137,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Ijg4MzczOWQ1LTcwZDAtNDYzZC1hODNkLTZmOTcyNjMzMDk5NCIsInB1ciI6ImJsb2JfaWQifX0=--6205b88c452bf89000b2827fe0b02050aef98d1b/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Sam.webp"
+  },
+  "eli": {
+   "uuid": "bd180058-7b8b-4193-b891-39989987f203",
+   "hex": "71d1c509cb600f777f774a9a2060e8072c4abb5a",
+   "name": "Eli_photographer.webp",
+   "w": 626,
+   "h": 709,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImJkMTgwMDU4LTdiOGItNDE5My1iODkxLTM5OTg5OTg3ZjIwMyIsInB1ciI6ImJsb2JfaWQifX0=--71d1c509cb600f777f774a9a2060e8072c4abb5a/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Eli_photographer.webp"
+  },
+  "matas": {
+   "uuid": "ccca4b7b-6bf9-46ae-a059-89fe7437beee",
+   "hex": "f3099fb13cb9f45e370e58e8bccf6a25fd4db950",
+   "name": "Matas.webp",
+   "w": 643,
+   "h": 900,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImNjY2E0YjdiLTZiZjktNDZhZS1hMDU5LTg5ZmU3NDM3YmVlZSIsInB1ciI6ImJsb2JfaWQifX0=--f3099fb13cb9f45e370e58e8bccf6a25fd4db950/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Matas.webp"
+  },
+  "maxime": {
+   "uuid": "425d563c-a3bd-4bd2-a381-1d35f73cc90c",
+   "hex": "3edef6753a21888103cbec0d7abbbc1362c0d258",
+   "name": "Maxime.webp",
+   "w": 900,
+   "h": 892,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjQyNWQ1NjNjLWEzYmQtNGJkMi1hMzgxLTFkMzVmNzNjYzkwYyIsInB1ciI6ImJsb2JfaWQifX0=--3edef6753a21888103cbec0d7abbbc1362c0d258/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Maxime.webp"
+  },
+  "adam-turner": {
+   "uuid": "195cb467-e7bb-4928-87e6-2a882cc09f46",
+   "hex": "f7382fbda9f8068768a89d26a2f88040e53d7942",
+   "name": "Adam1.webp",
+   "w": 720,
+   "h": 900,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjE5NWNiNDY3LWU3YmItNDkyOC04N2U2LTJhODgyY2MwOWY0NiIsInB1ciI6ImJsb2JfaWQifX0=--f7382fbda9f8068768a89d26a2f88040e53d7942/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Adam1.webp"
   }
  },
  "about": {

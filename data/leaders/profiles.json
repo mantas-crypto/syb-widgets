@@ -1,5 +1,5 @@
 {
- "_about": "What each leader page says. Key = squad slug (/trip-leaders/<key>). bio = their squad page bio (lightly tidied). title = their squad title. chat: the key of their city's SYB WhatsApp chat in city_chats (the ULTIMATE <city> SYB CHAT groups, invite links read from Mantas's WhatsApp Oct 16 2026; SF and LA, where he is not an admin, from the /crew page), or dm = 'message me on Instagram' when their city has no chat yet. qa: [question, answer, source] where source 'real' came from the squad bio, a Travel Hack Tuesday post or SYB HQ, and 'placeholder' was written for the leader to replace with their own words. chips = specialties.",
+ "_about": "What each leader page says. Key = squad slug (see leaders.json 'page'). role = the line above the name (default \"SYB trip leader\"; team members get their job). leads = false for team members who do not lead trips (their page says Travel with SYB, and lede is their own line under the name). where = the line under their title when it is not \"<role>, based in <city>\". city may be empty (not known). bio_src = placeholder when the bio was written for them. bio = their squad page bio (lightly tidied). title = their squad title. chat: the key of their city's SYB WhatsApp chat in city_chats (the ULTIMATE <city> SYB CHAT groups, invite links read from Mantas's WhatsApp Oct 16 2026; SF and LA, where he is not an admin, from the /crew page), or dm = 'message me on Instagram' when their city has no chat yet. qa: [question, answer, source] where source 'real' came from the squad bio, a Travel Hack Tuesday post or SYB HQ, and 'placeholder' was written for the leader to replace with their own words. chips = specialties.",
  "leaders": {
   "adam": {
    "name": "Adam Frater",
@@ -844,6 +844,420 @@
     "The heat and the sweet",
     "Memory making",
     "Island trips"
+   ]
+  },
+  "mantas": {
+   "name": "Mantas Zvinas",
+   "first": "Mantas",
+   "h1": [
+    "Mantas",
+    "Zvinas."
+   ],
+   "city": "St. Pete, Florida",
+   "ig": "mantaszvinas",
+   "chat": "dm",
+   "title": "Founder & Chief Everything Officer",
+   "role": "SYB founder",
+   "bio": "Mantas is a 10-year open water lifeguard veteran who taught underprivileged kids surfing, kayaking and snorkeling for six of those summers. Then he moved to New York City to teach indoor cycling to overprivileged adults at SoulCycle for the next 10 years, helped open studios as far away as London, and later headed the launch of Commando in Mexico City. He started SurfYogaBeer in 2014 in the middle of his SoulCycle career and has grown the leaders and the crew in New York City, London, Mexico City and now Tampa Bay, Florida.",
+   "qa": [
+    [
+     "How did SYB start?",
+     "People from my SoulCycle class in New York wanted to keep hanging out after class. We went to Costa Rica together, everyone said “you have to do this again,” and it grew from there, people telling people.",
+     "real"
+    ],
+    [
+     "Favorite SYB moment?",
+     "The last night of a trip, when a table of people who were strangers a week ago starts planning the next one together.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "I was an open water lifeguard for 10 years before I ever taught a spin class.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Nicaragua",
+    "Surf",
+    "Open water",
+    "Indoor cycling",
+    "Building crews"
+   ]
+  },
+  "sara": {
+   "name": "Sara Balaban",
+   "first": "Sara",
+   "h1": [
+    "Sara",
+    "Balaban."
+   ],
+   "city": "New York City",
+   "ig": "sbala510",
+   "chat": "nyc",
+   "title": "Digital Content Writer",
+   "role": "SYB content writer",
+   "leads": false,
+   "lede": "Sara writes the SYB blog. The trips, the crews, and the moments you wish you could relive.",
+   "bio": "Sara is the wordsmith behind SurfYogaBeer’s blog, turning SYB adventures into stories you can feel. She captures the magic, the energy and the moments you wish you could relive, then leaves her mark the same way she does on every trip: bringing the crew together for unforgettable moments, great stories, and glitter you’ll be finding long after the trip is over.",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "I came on one trip, and then I couldn’t stop writing about it.",
+     "placeholder"
+    ],
+    [
+     "Favorite SYB moment?",
+     "The night everyone stayed up telling stories, and I knew half of them would end up on the blog.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "I bring glitter on every trip. You’ll be finding it long after you get home.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Trip stories",
+    "The SYB blog",
+    "Bringing the crew together",
+    "Glitter"
+   ]
+  },
+  "santiago": {
+   "name": "Santiago Aranguren",
+   "first": "Santiago",
+   "h1": [
+    "Santiago",
+    "Aranguren."
+   ],
+   "city": "",
+   "ig": "santi.aranguren",
+   "chat": "dm",
+   "title": "Creative Director",
+   "role": "SYB creative director",
+   "bio": "Santiago is a content creator, video editor and proud member of the SurfYogaBeer fam. He turns raw footage into scroll-stopping reels that tell unforgettable stories, from travel adventures to high-energy events. Fast on the edits, creative on the shots: he’ll shoot, edit and post in the blink of an eye. When he’s not editing or filming, you’ll find him living the SYB lifestyle: adventuring, connecting, and capturing the energy of every experience.",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "I filmed one trip, and the edit turned into a whole new job.",
+     "placeholder"
+    ],
+    [
+     "Favorite SYB moment?",
+     "Croatia 2026. Boat days, golden hour every hour, and a crew that kept asking to see the footage.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "I play the editing apps like you played video games in middle school.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Reels",
+    "Video editing",
+    "Premiere Pro",
+    "After Effects",
+    "Capturing the moment"
+   ]
+  },
+  "shriner": {
+   "name": "Mike Shriner",
+   "first": "Shriner",
+   "h1": [
+    "Mike",
+    "Shriner."
+   ],
+   "city": "New York City",
+   "ig": "shriner505",
+   "chat": "nyc",
+   "title": "Public Relations",
+   "role": "SYB partnerships lead",
+   "bio": "Shriner is SYB’s partnership master, based in NYC. A group leader who has guided multiple international adventures and facilitated countless local events, he’s the most trustworthy guy you’ll ever meet and always has a great recommendation for the best dive bar in town.",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "I’ve been around SYB since the early days. First on trips, then leading them, then building the partnerships.",
+     "placeholder"
+    ],
+    [
+     "Favorite SYB moment?",
+     "Belize, December 2025. Island time, boat days, and a crew that never wanted to leave.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "I always know the best dive bar in town. Just ask.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Partnerships",
+    "Local events",
+    "International trips",
+    "Dive bars"
+   ]
+  },
+  "danielle": {
+   "name": "Danielle Kaplan",
+   "first": "Danielle",
+   "h1": [
+    "Danielle",
+    "Kaplan."
+   ],
+   "city": "New York City",
+   "ig": "dkaplan17",
+   "chat": "nyc",
+   "title": "Sales Concierge",
+   "role": "SYB sales concierge",
+   "leads": false,
+   "lede": "Danielle is usually the first friendly voice you’ll talk to at SYB, from your first question to fully booked.",
+   "bio": "Danielle is usually the first friendly voice guests connect with: answering questions, jumping on calls, and helping people get a real feel for what an SYB trip is all about. Known as a bit of an SYB hype master, she’ll take you from your first question to fully booked. Based in NYC, she’s always chasing her next adventure and saying yes to whatever comes next, especially when it means meeting new people.",
+   "qa": [
+    [
+     "Where do we find you on a day off?",
+     "Snowboarding, hiking, traveling, out on the water, or playing with my puppy.",
+     "real"
+    ],
+    [
+     "What should I ask you?",
+     "Which trip is right for me? That’s my favorite question. Ask me anything and I’ll get you pumped.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "Some people call me the SYB hype master. I’ve earned it.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Finding your trip",
+    "Hype master",
+    "Snowboarding",
+    "Hiking",
+    "Puppy breaks"
+   ]
+  },
+  "kaia": {
+   "name": "Kaia Hollerback",
+   "first": "Kaia",
+   "h1": [
+    "Kaia",
+    "Hollerback."
+   ],
+   "city": "Jacksonville",
+   "ig": "kaiahollerback",
+   "chat": "dm",
+   "title": "Marketing Manager",
+   "role": "SYB marketing manager",
+   "bio": "Kaia is the strategist and storyteller behind SYB’s social, shaping the voice, look and rhythm of the brand on every platform. With 8+ years in social media and content, a degree in marketing and a career as a professional photographer, she runs the daily social and writes the emails that actually get opened. Her camera roll is basically a passport stamped with sunsets, surfboards, and strangers turned forever friends.",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "Through a camera. I came to shoot, and I stayed for the people.",
+     "placeholder"
+    ],
+    [
+     "Favorite SYB moment?",
+     "Croatia 2026. Island days, sunset swims, and a crew that turned into family by day three.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "Before SYB, I worked as a professional photographer.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Instagram",
+    "Storytelling",
+    "Photography",
+    "Surf trips",
+    "Strangers to friends"
+   ]
+  },
+  "sam": {
+   "name": "Sam Knollmeyer",
+   "first": "Sam",
+   "h1": [
+    "Sam",
+    "Knollmeyer."
+   ],
+   "city": "Boston",
+   "ig": "sam_knollmeyer",
+   "chat": "boston",
+   "title": "Senior Leader",
+   "bio": "Cute Sam, as he is known by some in the SYB community, comes from Boston. He runs a very relaxed trip, sneaks in photos of you when you least expect it, and makes you smile while doing it. He’s been shooting SYB since 2021. Look for this guy on your trip if you want the greatest photos of yourself naturally smiling.",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "I started shooting SYB trips in 2021 and never put the camera down.",
+     "real"
+    ],
+    [
+     "Favorite SYB moment?",
+     "Amalfi 2026. Boat day, limoncello, and 35 people who all wanted the same photo.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "Some of the SYB crew call me Cute Sam. I didn’t pick it.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Candid photos",
+    "Relaxed trips",
+    "Natural smiles",
+    "Nicaragua"
+   ]
+  },
+  "eli": {
+   "name": "Eli Elmore",
+   "first": "Eli",
+   "h1": [
+    "Eli",
+    "Elmore."
+   ],
+   "city": "Jacksonville",
+   "ig": "yesthisiseli",
+   "chat": "dm",
+   "title": "Senior Leader",
+   "bio": "Eli isn’t your average photographer. He’s a globetrotting, drone-flying, concert-covering storyteller with an eye for the moments most of us miss. Based in Jacksonville, Florida, he’s turned photography into a career that has taken him across 30+ countries. Before going full-time, he studied counseling and theology and spent two years as a counselor and missionary in Portugal. He doesn’t just capture images; he makes you feel like you’re right there in the moment.",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "I came to shoot one trip. Now I lead more of them than almost anyone.",
+     "placeholder"
+    ],
+    [
+     "Best night on a trip?",
+     "Game night. I will get the whole crew playing Mafia.",
+     "real"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "I spent two years as a counselor and missionary in Portugal.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Photography",
+    "Drones",
+    "Adventure trips",
+    "Mafia nights",
+    "30+ countries"
+   ]
+  },
+  "matas": {
+   "name": "Matas Gayauskas",
+   "first": "Matas",
+   "h1": [
+    "Matas",
+    "Gayauskas."
+   ],
+   "city": "Los Angeles",
+   "ig": "matasgphotography",
+   "chat": "la",
+   "title": "Content Creator",
+   "bio": "Our Lithuanian prodigy. He’s young, but he’s got eyes that see the beauty in the ordinary. Hailing from Los Angeles, Matas runs a photo studio in Venice Beach, California, and he’s your typical LA vibe kinda guy!",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "I shot one SYB trip, and the crew became family.",
+     "placeholder"
+    ],
+    [
+     "Favorite SYB moment?",
+     "The Venice Beach 5K. Sixty-plus people running by the ocean, then Pilates on the sand.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "I run a photo studio in Venice Beach.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Photography",
+    "Venice Beach",
+    "LA vibes",
+    "Beach days"
+   ]
+  },
+  "maxime": {
+   "name": "Maxime",
+   "first": "Maxime",
+   "h1": [
+    "",
+    "Maxime."
+   ],
+   "city": "Wherever the wind blows",
+   "ig": "lemaxvisuals",
+   "chat": "dm",
+   "title": "Content Creator",
+   "where": "SYB trip leader, from France, living wherever the wind blows",
+   "bio": "Young and eager, he’s our Frenchman who lives wherever the wind blows. You’ll catch him doing handstands with a camera in hand and editing epic videos while eating breakfast with the crew. And ladies, be careful… you know what they say about French men.",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "A camera, a one-way ticket, and an SYB crew that needed filming.",
+     "placeholder"
+    ],
+    [
+     "Favorite SYB moment?",
+     "Bali 2025. Sunrise on the beach, one handstand, and suddenly the whole crew was upside down.",
+     "placeholder"
+    ],
+    [
+     "Something people wouldn’t guess about you?",
+     "I edit the day’s videos at breakfast, with the crew watching over my shoulder.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Video",
+    "Handstands",
+    "Japan",
+    "Snow trips",
+    "Life on the road"
+   ]
+  },
+  "adam-turner": {
+   "name": "Adam Turner",
+   "first": "Adam",
+   "h1": [
+    "Adam",
+    "Turner."
+   ],
+   "city": "",
+   "ig": "adam.k.turner",
+   "chat": "dm",
+   "title": "New on the Squad",
+   "bio": "The newest leader on the SYB squad. Adam has led SYB crews in Bali and on the Amalfi Coast, and when the snow falls he heads for the Alps. If there’s fresh powder, he’s the first one on the lift.",
+   "bio_src": "placeholder",
+   "qa": [
+    [
+     "How did you find SYB?",
+     "One trip as a traveler. By the last night I was asking how to lead one.",
+     "placeholder"
+    ],
+    [
+     "Favorite SYB moment?",
+     "Amalfi, June 2026. Thirty-five of us on the coast, and every dinner ran late.",
+     "placeholder"
+    ],
+    [
+     "Your go-to travel hack?",
+     "Pack your ski layers in your carry-on. A lost bag should never cost you a day on the mountain.",
+     "placeholder"
+    ]
+   ],
+   "chips": [
+    "Ski trips",
+    "Snowboarding",
+    "Amalfi Coast",
+    "Bali"
    ]
   }
  },
