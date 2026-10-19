@@ -1,5 +1,5 @@
 {
-  "_about": "Leader pages config. One entry per person with a page: every trip leader, photographer and team member on surfyogabeer.com/our-squad, plus Adam Turner (not on the squad page yet). Key = the squad URL slug; 'page' = their squad page (/trip-leaders/, /management/ or /photographers/), 'also' = another squad page of theirs that carries the same blocks. 'added' = pages added after the first 22 (Oct 16 2026). 'feed' = how the leader is written in SYB HQ and the trip list (TRIPS tab, leaders column). 'aliases' = names that count as the leader in a guest review. A name two leaders share (like Sarah) only counts for the one who led a trip in that review's window. 'exclude_names' = names never quoted on any leader page (review sentences that contain them are left out). 'staff' = people whose own Google reviews are never shown as guest reviews (leaders on this list are added automatically). 'staff_first_names' = first names of other SYB leaders and staff, used to pick the review most about one leader for the big quote.",
+  "_about": "Leader pages config. One entry per person with a page: every trip leader, photographer and team member on surfyogabeer.com/our-squad, plus Adam Turner (not on the squad page yet). Key = the squad URL slug; 'page' = their squad page (/trip-leaders/, /management/ or /photographers/), 'also' = another squad page of theirs that carries the same blocks. 'added' = pages added after the first 22 (Oct 16 2026); a later batch on the same day gets .2 so it takes its trip photos after the earlier pages and leaves theirs alone. 'feed' = how the leader is written in SYB HQ and the trip list (TRIPS tab, leaders column). 'aliases' = names that count as the leader in a guest review. A name two leaders share (like Sarah) only counts for the one who led a trip in that review's window. 'exclude_names' = names never quoted on any leader page (review sentences that contain them are left out). 'staff' = people whose own Google reviews are never shown as guest reviews (leaders on this list are added automatically). 'staff_first_names' = first names of other SYB leaders and staff, used to pick the review most about one leader for the big quote.",
   "exclude_names": [
     "Rob"
   ],
@@ -485,6 +485,31 @@
       ],
       "page": "/management/steph",
       "added": "2026-10-19"
+    },
+    "ryan": {
+      "name": "Ryan Green",
+      "first": "Ryan",
+      "feed": [
+        "Ryan G."
+      ],
+      "aliases": [
+        "Ryan"
+      ],
+      "page": "/photographers/ryan",
+      "added": "2026-10-19.2"
+    },
+    "brycen": {
+      "name": "Brycen Metzger",
+      "first": "Brycen",
+      "feed": [
+        "Brycen",
+        "Brycen M."
+      ],
+      "aliases": [
+        "Brycen"
+      ],
+      "page": "/photographers/brycen",
+      "added": "2026-10-19.2"
     }
   }
 }

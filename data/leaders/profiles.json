@@ -1,5 +1,5 @@
 {
- "_about": "What each leader page says. Key = squad slug (see leaders.json 'page'). role = the line above the name (default \"SYB trip leader\"; team members get their job). leads = false for team members who do not lead trips (their page says Travel with SYB). lede = their own line under the name, kept as written (team members who do not lead trips); without it the line is worked out from their trips and updates itself. where = the line under their title when it is not \"<role>, based in <city>\". city may be empty (not known). bio_src = placeholder when the bio was written for them. bio = their squad page bio (lightly tidied). title = their squad title. chat: the key of their city's SYB WhatsApp chat in city_chats (the ULTIMATE <city> SYB CHAT groups, invite links read from Mantas's WhatsApp Oct 16 2026; SF and LA, where he is not an admin, from the /crew page), or dm = 'message me on Instagram' when their city has no chat yet. qa: [question, answer, source] where source 'real' came from the squad bio, a Travel Hack Tuesday post or SYB HQ, and 'placeholder' was written for the leader to replace with their own words. chips = specialties.",
+ "_about": "What each leader page says. Key = squad slug (see leaders.json 'page'). role = the line above the name (default \"SYB trip leader\"; team members get their job). leads = false for team members who do not lead trips (their page says Travel with SYB). lede = their own line under the name, kept as written (team members who do not lead trips); without it the line is worked out from their trips and updates itself. where = the line under their title when it is not \"<role>, based in <city>\". city may be empty (not known). bio_src = placeholder when the bio was written for them. bio = their squad page bio (lightly tidied). title = their squad title. chat: the key of their city's SYB WhatsApp chat in city_chats (the ULTIMATE <city> SYB CHAT groups, invite links read from Mantas's WhatsApp Oct 16 2026; SF and LA, where he is not an admin, from the /crew page), or dm = 'message me on Instagram' when their city has no chat yet. qa: [question, answer, source] where source 'real' came from the squad bio, a Travel Hack Tuesday post or SYB HQ, and 'placeholder' was written for the leader to replace with their own words. chips = specialties. squad_label = the line under their name on the Leaders page (/squad) when their job there is not their role (Bradford is the training director).",
  "leaders": {
   "adam": {
    "name": "Adam Frater",
@@ -117,7 +117,8 @@
     "Fitness",
     "Mountain trips",
     "Setting the tone"
-   ]
+   ],
+   "squad_label": "Training director"
   },
   "bri": {
    "name": "Brianna Funk",
@@ -1298,6 +1299,74 @@
     "Croatia island days",
     "Social media",
     "Strangers to friends"
+   ]
+  },
+  "ryan": {
+   "name": "Ryan Green",
+   "first": "Ryan",
+   "h1": [
+    "Ryan",
+    "Green."
+   ],
+   "city": "San Diego",
+   "ig": "ryangreenfilms",
+   "chat": "san-diego",
+   "title": "Content Creator",
+   "bio": "He really should be in front of the camera, but instead he’s here to capture your sexiest moments!",
+   "qa": [
+    [
+     "What’s your job on the trip?",
+     "Capturing your sexiest moments.",
+     "real"
+    ],
+    [
+     "Where have you led with SYB?",
+     "Palawan twice, Bali, Chamonix and Japan.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Film",
+    "Photography",
+    "Island trips",
+    "Snow trips"
+   ]
+  },
+  "brycen": {
+   "name": "Brycen Metzger",
+   "first": "Brycen",
+   "h1": [
+    "Brycen",
+    "Metzger."
+   ],
+   "city": "",
+   "ig": "metzgbrycen",
+   "chat": "dm",
+   "title": "Content Creator",
+   "where": "SYB trip leader, photographer, filmmaker and drone pilot",
+   "bio": "I’m Brycen Metzger, a world-traveling photographer, filmmaker and drone pilot capturing moments that actually feel like something. Coming from a background as an extreme sports athlete, I was raised on adrenaline, movement and living on the edge. Nothing staged, nothing forced, just real life, captured at its best.",
+   "qa": [
+    [
+     "What do you shoot?",
+     "Photo, video and drone. From concerts on tour to landscapes and real moments around the world.",
+     "real"
+    ],
+    [
+     "What are you always chasing?",
+     "That raw, in-between moment, whether it’s the chaos of a live show or the stillness of the mountains.",
+     "real"
+    ],
+    [
+     "Where have you led with SYB?",
+     "Nicaragua, Val Thorens and the Dolomites.",
+     "real"
+    ]
+   ],
+   "chips": [
+    "Drone",
+    "Filmmaking",
+    "Photography",
+    "Extreme sports"
    ]
   }
  },

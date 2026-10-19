@@ -250,6 +250,22 @@
    "w": 900,
    "h": 1125,
    "note": "the portrait used for her on the trip pages (squad page photo is StephCurrie.png, a closer crop of the same shoot)"
+  },
+  "ryan": {
+   "uuid": "2bdf2aec-6c18-42ab-9f81-1d1f067e35a1",
+   "hex": "174534ef9d80ede0673c4855fad1fd7455c2122f",
+   "name": "yxJ1Lmi979KY2tN4UJXPn8E1.jpeg",
+   "w": 1140,
+   "h": 1710,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjJiZGYyYWVjLTZjMTgtNDJhYi05ZjgxLTFkMWYwNjdlMzVhMSIsInB1ciI6ImJsb2JfaWQifX0=--174534ef9d80ede0673c4855fad1fd7455c2122f/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJqcGVnIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--56d344ee1222d0a22574144917c3ea314faaa283/yxJ1Lmi979KY2tN4UJXPn8E1.jpeg"
+  },
+  "brycen": {
+   "uuid": "e1e1b1eb-7398-4ff8-8f9d-2dc175462216",
+   "hex": "50c448a2aa07b3cd11124353a46b95610d62f0a4",
+   "name": "Brycen1.webp",
+   "w": 1140,
+   "h": 1181,
+   "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImUxZTFiMWViLTczOTgtNGZmOC04ZjlkLTJkYzE3NTQ2MjIxNiIsInB1ciI6ImJsb2JfaWQifX0=--50c448a2aa07b3cd11124353a46b95610d62f0a4/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Brycen1.webp"
   }
  },
  "about": {

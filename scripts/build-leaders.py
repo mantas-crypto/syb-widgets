@@ -405,6 +405,48 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude, r
     }
 
 
+def squad_live(view):
+    """The live part of one person on the Leaders page (/squad): trips led, countries, flags, trips coming up."""
+    tally, order = {}, []
+    for o in view.get("led", []):
+        c = o.get("country")
+        if not c:
+            continue
+        if c not in tally:
+            tally[c] = [o.get("flag", ""), 0]
+            order.append(c)
+        tally[c][1] += 1
+    top = sorted(order, key=lambda c: -tally[c][1])          # stable: ties keep the order first led
+    up = [{"t": u["trip"], "pl": u.get("place", ""), "f": u.get("flag", ""), "c": u.get("country", ""), "s": u["start"],
+           "e": u["end"], "pg": u.get("page", "")} for u in view.get("upcoming", []) if u.get("kind", "trip") == "trip"]
+    st = view.get("stats", {})
+    return {"led": st.get("led", 0), "countries": st.get("countries", 0), "since": st.get("since", ""),
+            "flags": [[tally[c][0], c] for c in top[:5]], "cc": {c: tally[c][1] for c in top}, "up": up[:6]}
+
+
+def write_squad(today, dry=False):
+    """dist/leaders/squad.json for the Leaders page: who is on it (data/leaders/squad-static.json, written by
+    render-squad.py: names, labels, photos, story slides) plus their live trips from dist/leaders/<key>.json."""
+    static = load(os.path.join(DATA, "squad-static.json"))
+    if not static:
+        return False
+    people = []
+    for p in static["people"]:
+        view = load(os.path.join(OUT, p["key"] + ".json"), {})
+        people.append(dict(p, **squad_live(view)))
+    doc = {"people": people, "team": static.get("team", [])}
+    path = os.path.join(OUT, "squad.json")
+    old = load(path, {})
+    if {k: v for k, v in old.items() if k != "built"} == doc:
+        return False
+    doc["built"] = today.isoformat()
+    if not dry:
+        with open(path, "w") as f:
+            json.dump(doc, f, ensure_ascii=False, separators=(",", ":"))
+            f.write("\n")
+    return True
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--feed", help="saved copy of the TRIPS tab (CSV)")
@@ -463,6 +505,7 @@ def main():
             json.dump(hist_doc, f, ensure_ascii=False, indent=1)
             f.write("\n")
     log["written"] = written
+    log["squad"] = write_squad(today, a.dry)
     print(json.dumps(log))
     if feed is None:
         print("WARNING: could not read SYB Public Feed (no guest data); pages keep their trips from history", file=sys.stderr)
