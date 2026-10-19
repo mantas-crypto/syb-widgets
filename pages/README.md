@@ -59,4 +59,37 @@ blocks, adds missing ones, hides the squad page's own two blocks and saves the I
 
 A new leader: add them to leaders.json, profiles.json and photos.json (squad photo), run
 `python3 scripts/build-leaders.py` and `python3 scripts/render-leader-pages.py <key>`, then save the five
-blocks and the Inject code on their squad page (leaders.json `page`).
+blocks and the Inject code on their squad page (leaders.json `page`). Then re-render and save the Leaders page
+(below) so their face and card show up there too.
+
+Headings print a space between their two lines (Oct 19 2026), so the text reads "Ryan Green." rather than
+"RyanGreen." to search engines and screen readers. Pages saved before that pick it up with their next save.
+
+## The Leaders page (/squad, pages/squad/)
+
+"Leaders" in the site menu goes straight to /squad. The page is one Embed Code block, "Leaders page (live)"
+(id 6779a804-7707-43e4-ba37-d9ad41ec5c8b), plus the page's Inject code. The page's own two blocks
+("[Custom] Text - Centered" and "[Custom] Tabbed Image and Text Grid") are hidden, not deleted: show them and hide
+the new block to go back.
+
+`scripts/render-squad.py` writes pages/squad/1-leaders.html (the block), pages/squad/head.html (the Inject code,
+loads dist/leader/syb-squad.min.js), data/leaders/squad-static.json and dist/leaders/squad.json. `@@CSS@@`,
+`@@SQCSS@@` (dist/leader/syb-leader.min.css, syb-squad.min.css) and `@@SQJS@@` are filled with the pinned commit when
+the block is saved.
+
+- The wall of faces: each face plays that leader's story, the slides of their own page's reel (up to 8), so render
+  their leader page first. Seen faces turn grey (kept in the visitor's browser).
+- Filters: everyone, leading soon, photographers, SYB HQ, and one per country they have led or are leading.
+- A card per leader links to their page, with "On a trip now" or the next departure, and trips led.
+- People with `leads: false` (Sara, Danielle) sit in "The crew behind the crew". profiles.json `squad_label`
+  overrides the line under a name (Bradford: Training director).
+- dist/leaders/squad.json is rebuilt by the twice-daily job (build-leaders.py, `write_squad`); the page re-sorts
+  from it: Mantas first, then the next departure soonest, then most trips led.
+
+Saving: with the deploy helper loaded, fetch pages/squad/1-leaders.html from raw.githubusercontent.com at the commit,
+fill the three placeholders, `SYN.saveEmbed('6779a804-7707-43e4-ba37-d9ad41ec5c8b', html)`, and
+`SYN.saveHead('squad', html)` for the Inject code.
+
+The menu (Oct 19 2026): Site > Header has a group LEADERS with one item, "Leaders" (page /squad). The Header
+template prints a group with exactly one link as a plain link with no dropdown. Give the group a second item and
+it becomes a dropdown again. Save Site > Header only the safe way (claude/menu-photo-fix-oct-5-2026.md).
