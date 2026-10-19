@@ -37,6 +37,7 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl .syl-bars i.is-done b{width:100%}
 .syl .syl-bars i.is-on b{animation:sylBar var(--dur,5.5s) linear forwards}
 .syl .syl-reel.is-paused .syl-bars i.is-on b,.syl .syl-reel.is-still .syl-bars i.is-on b{animation-play-state:paused}
+.syl .syl-bars i.is-on.is-clip b{animation:none}
 .syl .syl-reel.is-still .syl-bars i.is-on b{animation:none;width:100%}
 @keyframes sylBar{from{width:0}to{width:100%}}
 .syl .syl-cap{position:absolute;top:26px;left:14px;right:56px;z-index:4;font-family:var(--med);font-size:13.5px;line-height:1.35;color:var(--ink);text-shadow:0 1px 8px rgba(0,0,0,.6)}
@@ -48,6 +49,13 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl .syl-pause svg{width:15px;height:15px;fill:currentColor}
 .syl .syl-pause .is-play,.syl .syl-reel.is-held .syl-pause .is-pause{display:none}
 .syl .syl-reel.is-held .syl-pause .is-play{display:block}
+.syl .syl-sound{position:absolute;top:20px;right:44px;z-index:5;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:var(--ink)}
+.syl .syl-sound[hidden]{display:none}
+.syl .syl-sound svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.syl .syl-sound svg path:first-child{fill:currentColor}
+.syl .syl-sound .is-loud,.syl .syl-sound.is-on .is-mute{display:none}
+.syl .syl-sound.is-on .is-loud{display:block}
+.syl .syl-reel.is-clip .syl-cap{right:88px}
 .syl .syl-hero-copy{position:relative;z-index:5;margin-top:-118px;padding:0 20px}
 .syl .syl-role{display:flex;align-items:center;gap:9px;margin-bottom:12px;font-family:var(--med);font-size:15px;color:var(--ink)}
 .syl .syl-role::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--grad)}
@@ -139,7 +147,7 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 @font-face{font-family:"Twemoji Country Flags";unicode-range:U+1F1E6-1F1FF,U+1F3F4,U+E0062-E0063,U+E0065,U+E0067,U+E006C,U+E006E,U+E0073-E0074,U+E0077,U+E007F;src:url(https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2) format("woff2");font-display:swap}
 /* Windows has no flag emoji: those visitors get Twemoji's flags (CC-BY 4.0, Twitter) through the font above */
 
-/* video in the reel: a YouTube short plays on tap (nothing loads from YouTube before that); a short clip plays muted */
+/* video in the reel: our own clips play muted by themselves, the speaker button (.syl-sound) turns the sound on; the YouTube short (.syl-play) is no longer used */
 .syl .syl-play{position:absolute;left:50%;top:50%;z-index:4;width:76px;height:76px;margin:-38px 0 0 -38px;display:grid;place-items:center;border-radius:50%;background:rgba(0,0,0,.5);border:1.5px solid rgba(244,242,238,.85);color:var(--ink);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .2s}
 .syl .syl-play svg{width:28px;height:28px;margin-left:4px;fill:currentColor}
 .syl .syl-play:active{transform:scale(.94)}

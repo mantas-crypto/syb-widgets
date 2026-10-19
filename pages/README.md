@@ -41,12 +41,17 @@ Per person, profiles.json can also set: `role` (the line above the name, default
 `where` (the line under their title) and an empty `city`. photos.json squad[key].url can point at Easol's resized copy.
 
 photos.json `reel` (Oct 19 2026) gives a leader their own story reel, in order: their squad photo, photos they sent
-(uploaded to Easol), a YouTube short (`yt`, poster = YouTube's vertical thumbnail; the player only loads when the play
-button is pressed, and a Watch video button appears in the hero) or a short clip (`video`, plays muted, `dur` seconds).
-`hold` keeps a slide off the page (a private YouTube video shows "This video is private" to visitors).
+(uploaded to Easol) and videos. A video (`video` + `poster`, an mp4 in the Easol content library) plays by itself, muted,
+with no play button (Mantas, Oct 19: "the video just plays"); its bar follows the video and the reel moves on when it
+ends. `audio: true` adds a speaker button that turns the sound on (it stays on for the next video). A video that cannot
+play (autoplay off, low power mode) becomes a normal timed slide. Encode them like the ones in Mantas's Drive folder
+"Claude Docs/SurfYogaBeer Stuff/Leader page videos": 576x1024 H.264, CRF 27-28, maxrate about 800k, AAC 64k, faststart,
+under 10 MB each. `yt` (a YouTube short behind a play button) still works but is no longer used.
+`feature` puts their own landscape photo above their trip reviews. `hold` keeps a slide off the page.
 
 Trips led never show how many people travelled (Oct 19 2026). Trips before 2023 come from
-data/leaders/older-trips.json (HQ 2020-2022 tabs, GHL trip tags for Mantas, leaders' own lists); fix one there.
+data/leaders/older-trips.json (HQ 2020-2022 tabs, GHL trip tags for Mantas, leaders' own lists, and what Mantas told
+us: the first SYB trip was Costa Rica, Nov 2014); fix one there.
 
 Saving the blocks: paste scripts/easol-deploy-helper.js into a signed-in Easol admin tab, then
 `SYN.setPin('<commit>')` and `await SYN.deploy('trip-leaders/<key>', '<key>')` per page (it reuses the five named

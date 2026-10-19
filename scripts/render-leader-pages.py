@@ -47,6 +47,8 @@ ICON_PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7
 ICON_IG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>'
 ICON_WA = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C8.86 3 3.03 8.8 3.03 15.95c0 2.29.6 4.52 1.75 6.49L3 29l6.73-1.76a13.07 13.07 0 0 0 6.3 1.6h.01c7.17 0 13-5.8 13-12.94C29.04 8.8 23.21 3 16.04 3Zm0 23.67h-.01c-1.94 0-3.85-.52-5.51-1.51l-.4-.23-4 1.04 1.07-3.88-.26-.4a10.7 10.7 0 0 1-1.65-5.74c0-5.94 4.85-10.77 10.8-10.77 2.88 0 5.59 1.12 7.63 3.16a10.68 10.68 0 0 1 3.16 7.62c0 5.94-4.85 10.71-10.83 10.71Zm5.92-8.03c-.33-.16-1.93-.95-2.23-1.06-.3-.11-.52-.16-.73.16-.22.33-.84 1.06-1.03 1.27-.19.22-.38.24-.7.08-.33-.16-1.38-.51-2.62-1.61a9.8 9.8 0 0 1-1.82-2.25c-.19-.33-.02-.5.14-.66.15-.15.33-.38.49-.57.16-.19.22-.33.33-.54.11-.22.05-.41-.03-.57-.08-.16-.73-1.76-1-2.41-.27-.63-.54-.55-.73-.56h-.62c-.22 0-.57.08-.87.41-.3.33-1.14 1.11-1.14 2.71s1.17 3.15 1.33 3.36c.16.22 2.3 3.5 5.57 4.91.78.33 1.39.53 1.86.68.78.25 1.5.21 2.06.13.63-.09 1.93-.79 2.2-1.55.27-.76.27-1.41.19-1.55-.08-.13-.3-.21-.62-.37Z"/></svg>'
 ICON_PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>'
+ICON_SOUND = ('<svg class="is-mute" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5h3.5l4.5-4v13l-4.5-4H3.5z"/><path d="M15.5 9.5l5 5M20.5 9.5l-5 5"/></svg>'
+              '<svg class="is-loud" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5h3.5l4.5-4v13l-4.5-4H3.5z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18.3 6.3a8 8 0 0 1 0 11.4"/></svg>')
 ICON_CLOSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>'
 LED_SHOWN = 6    # trips shown before "See all" (same number as syb-leader.js); a list of up to 8 shows in full
 ICON_PAUSE = '<svg class="is-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="is-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>'
@@ -243,7 +245,7 @@ def plan_photos(key, prof, data, ph, card_trips):
                 reel.append((blob_url(a), x["cap"], x["alt"], x.get("pos", "50% 30%")))
                 taken.add(a.get("uuid", ""))
             elif x.get("video"):
-                reel.append((x["poster"], x["cap"], x["alt"], x.get("pos", "50% 35%"), {"video": x["video"], "dur": x.get("dur")}))
+                reel.append((x["poster"], x["cap"], x["alt"], x.get("pos", "50% 35%"), {"video": x["video"], "dur": x.get("dur"), "audio": x.get("audio")}))
             else:
                 reel.append((blob_url(x), x["cap"], x["alt"], x.get("pos", "50% 35%")))
                 if x.get("uuid"):
@@ -268,6 +270,9 @@ def plan_photos(key, prof, data, ph, card_trips):
         about = (blob_url(ph.doc["about"][key]), "%s on an SYB trip" % prof["name"])
     cards = poster_photos(card_trips, ph, taken)
     feature = None
+    if own and own.get("feature"):           # their own landscape photo above the reviews
+        f = own["feature"]
+        return reel, about, (blob_url(f), f["alt"]), cards
     if data.get("reviews"):
         ftag = data["reviews"][0].get("tag")
         for tag in ([ftag] if ftag in POOL_PAGES else []) + tags:
@@ -383,7 +388,7 @@ def chat_row(prof, chats, where):
 def hero(key, prof, data, reel, chats):
     first = prof["first"]
     n = len(reel)
-    slides, has_yt, has_video = [], False, False
+    slides, has_yt, has_video, has_audio = [], False, False, False
     for i, r in enumerate(reel):
         url, cap, alt, pos = r[:4]
         x = r[4] if len(r) > 4 else {}
@@ -396,10 +401,12 @@ def hero(key, prof, data, reel, chats):
                           '<button class="syl-play" type="button" data-syl="video-play" aria-label="Play %s">%s</button></figure>' % (
                               on, e(cap), e(x["yt"]), hide, src, e(alt), pos, e(alt), ICON_PLAY))
         elif x.get("video"):
+            # plays muted by itself, no play button; the reel's speaker button turns the sound on (syb-leader.js)
             has_video = True
+            has_audio = has_audio or bool(x.get("audio"))
             vsrc = ('src="%s" autoplay' % e(x["video"])) if i == 0 else ('data-src="%s"' % e(x["video"]))
-            slides.append('<figure%s data-cap="%s"%s%s><video %s poster="%s" muted playsinline loop preload="none" aria-label="%s" style="--pos:%s"></video></figure>' % (
-                on, e(cap), (' data-dur="%s"' % x["dur"]) if x.get("dur") else "", hide, vsrc, e(url), e(alt), pos))
+            slides.append('<figure%s data-cap="%s"%s%s><video %s poster="%s" muted playsinline preload="none"%s aria-label="%s" style="--pos:%s"></video></figure>' % (
+                on, e(cap), (' data-dur="%s"' % x["dur"]) if x.get("dur") else "", hide, vsrc, e(url), " data-audio" if x.get("audio") else "", e(alt), pos))
         else:
             slides.append('<figure%s data-cap="%s"%s><img %s alt="%s" style="--pos:%s"></figure>' % (on, e(cap), hide, src, e(alt), pos))
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
@@ -419,7 +426,8 @@ def hero(key, prof, data, reel, chats):
         '<button class="syl-tap syl-tap-prev" type="button" aria-label="Previous photo"></button>',
         '<button class="syl-tap syl-tap-next" type="button" aria-label="Next photo"></button>',
         '<button class="syl-pause" type="button" aria-label="Pause the photos">%s</button>' % ICON_PAUSE,
-        ('<button class="syl-yt-close" type="button" aria-label="Close the video">%s</button>' % ICON_CLOSE) if has_yt else "",
+        (('<button class="syl-sound" type="button" aria-pressed="false" aria-label="Turn the sound on" data-syl="video-sound" hidden>%s</button>' % ICON_SOUND) if has_audio else "") +
+        (('<button class="syl-yt-close" type="button" aria-label="Close the video">%s</button>' % ICON_CLOSE) if has_yt else ""),
         '</div>',
         '<div class="syl-hero-copy">',
         '<p class="syl-role">%s</p>' % e(role(prof)),

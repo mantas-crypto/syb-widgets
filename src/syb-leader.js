@@ -452,15 +452,62 @@
 
   /* ---------- the story reel ---------- */
   function reel(root) {
-    var slides = $$('.syl-slide', root), bars = $$('.syl-bars i', root), cap = $('.syl-cap', root);
+    var slides = $$('.syl-slide', root), bars = $$('.syl-bars i', root), cap = $('.syl-cap', root), snd = $('.syl-sound', root);
     if (!slides.length) return;
-    var i = 0, held = false, user = false, seen = true, skipClick = false;
+    var i = 0, held = false, user = false, seen = true, skipClick = false, sound = false, raf = 0, waitT = null;
     var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (still) root.classList.add('is-still');
     function load(k) {
       var el = $('img,video', slides[k]);
       if (el && el.getAttribute('data-src')) { el.src = el.getAttribute('data-src'); el.removeAttribute('data-src'); }
     }
+    /* a video slide plays muted by itself, its bar follows the video and the reel moves on when it ends.
+       The speaker button turns the sound on (and keeps it on for the next video). A video that cannot
+       play (autoplay off, low power mode, no network) turns into an ordinary timed slide. */
+    function clip(k) { return $('video', slides[k]); }
+    function track() {
+      raf = 0;
+      var v = clip(i), b = bars[i], f = b && $('b', b);
+      if (!v || !f || !b.classList.contains('is-clip')) return;
+      if (v.duration) f.style.width = Math.min(100, v.currentTime / v.duration * 100) + '%';
+      if (!v.paused && !v.ended) raf = requestAnimationFrame(track);
+    }
+    function clipBar(k) {
+      var b = bars[k];
+      if (!b || still || !clip(k) || clip(k).error) return;
+      b.classList.add('is-clip');
+      if (!raf && !clip(k).paused) raf = requestAnimationFrame(track);
+    }
+    function timed(k) {
+      var b = bars[k], f = b && $('b', b);
+      if (k !== i || !b || !b.classList.contains('is-clip')) return;
+      b.classList.remove('is-clip', 'is-on');
+      if (f) f.style.width = '';
+      if (snd && clip(k).error) snd.hidden = true;      // a video that will not load: nothing to listen to
+      b.style.setProperty('--dur', '');
+      void b.offsetWidth; b.classList.add('is-on');
+    }
+    function armWait(k, v) {
+      clearTimeout(waitT);
+      waitT = setTimeout(function () {
+        if (k !== i || v.currentTime > 0) return;
+        if (held || user || !seen || document.hidden) armWait(k, v);
+        else timed(k);
+      }, 8000);
+    }
+    function setSound() {
+      if (!snd) return;
+      snd.classList.toggle('is-on', sound);
+      snd.setAttribute('aria-pressed', sound ? 'true' : 'false');
+      snd.setAttribute('aria-label', sound ? 'Turn the sound off' : 'Turn the sound on');
+    }
+    slides.forEach(function (s, n) {
+      var v = $('video', s);
+      if (!v) return;
+      v.removeAttribute('loop');
+      v.addEventListener('playing', function () { if (n === i && !raf) raf = requestAnimationFrame(track); });
+      v.addEventListener('ended', function () { if (n === i && !still && bars[n] && bars[n].classList.contains('is-clip')) show(i + 1); });
+    });
     function stopYT() {
       var f = $('.syl-yt-frame', root);
       if (f) f.parentNode.removeChild(f);
@@ -487,24 +534,46 @@
       var paused = held || user || !seen || document.hidden;
       root.classList.toggle('is-paused', paused);
       root.classList.toggle('is-held', user && !root.classList.contains('is-video'));
-      var v = $('video', slides[i]);
-      if (v) { if (paused) v.pause(); else if (v.play) v.play().catch(function () {}); }
+      var v = clip(i), k = i;
+      if (!v) return;
+      v.muted = !sound;
+      if (paused || (still && !sound)) { v.pause(); return; }
+      var p = v.play && v.play();
+      if (p && p.catch) p.catch(function (e) {
+        if (k !== i || (e && e.name === 'AbortError')) return;
+        if (sound) {                                   // some phones only allow sound after a tap on the video itself
+          sound = false; setSound(); v.muted = true;
+          v.play().catch(function () { timed(k); });
+        } else timed(k);
+      });
     }
     function show(k) {
       stopYT();
       i = (k + slides.length) % slides.length;
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      clearTimeout(waitT);
       slides.forEach(function (s, n) {
         s.classList.toggle('is-on', n === i);
         s.setAttribute('aria-hidden', n === i ? 'false' : 'true');
         var v = $('video', s);
         if (v && n !== i) { v.pause(); try { v.currentTime = 0; } catch (e) {} }
       });
-      bars.forEach(function (b, n) { b.classList.toggle('is-done', n < i); b.classList.remove('is-on'); });
-      var dur = slides[i].getAttribute('data-dur');
-      if (bars[i]) { bars[i].style.setProperty('--dur', dur ? dur + 's' : ''); void bars[i].offsetWidth; bars[i].classList.add('is-on'); }
+      bars.forEach(function (b, n) {
+        b.classList.toggle('is-done', n < i); b.classList.remove('is-on', 'is-clip');
+        var f = $('b', b); if (f) f.style.width = '';
+      });
+      var v = clip(i), dur = slides[i].getAttribute('data-dur');
+      root.classList.toggle('is-clip', !!v);
+      if (snd) snd.hidden = !(v && v.hasAttribute('data-audio'));
+      if (bars[i]) {
+        bars[i].style.setProperty('--dur', dur ? dur + 's' : '');
+        if (v && !still) bars[i].classList.add('is-clip');
+        void bars[i].offsetWidth; bars[i].classList.add('is-on');
+      }
       if (cap) cap.textContent = slides[i].getAttribute('data-cap') || '';
       load(i);
       load((i + 1) % slides.length);
+      if (v && !still) armWait(i, v);
       sync();
     }
     bars.forEach(function (b) {
@@ -517,6 +586,17 @@
     if (pause) pause.addEventListener('click', function () {
       user = !user;
       pause.setAttribute('aria-label', user ? 'Play the photos' : 'Pause the photos');
+      sync();
+    });
+    if (snd) snd.addEventListener('click', function (e) {
+      e.stopPropagation();
+      sound = !sound;
+      setSound();
+      if (sound) {
+        if (user) { user = false; if (pause) pause.setAttribute('aria-label', 'Pause the photos'); }
+        clipBar(i);                                    // a video that fell back to a timed slide plays to its end
+        clearTimeout(waitT);
+      }
       sync();
     });
     $$('.syl-play', root).forEach(function (b) {
@@ -541,7 +621,7 @@
     });
     var x0 = null, y0 = 0, holdT = null;
     root.addEventListener('pointerdown', function (e) {
-      if (e.target.closest('.syl-pause,.syl-play,.syl-yt-close')) return;
+      if (e.target.closest('.syl-pause,.syl-play,.syl-yt-close,.syl-sound')) return;
       x0 = e.clientX; y0 = e.clientY;
       holdT = setTimeout(function () { held = true; sync(); }, 260);
     });

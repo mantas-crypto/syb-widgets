@@ -1,5 +1,5 @@
 {
- "_about": "Photo addresses for the leader pages, as Easol blob ids (the page builds static.myeasol.net/rails/active_storage/blobs/proxy/... from them). squad = the leader's squad page photo. about = their own portrait (cut from their Travel Hack Tuesday post, no text). erin = Erin's own reel. pool = SYB trip photos from each trip page, by trip page, in the order picked. squad[key].url (pages added Oct 19 2026): Easol's 1140 px wide copy of the squad photo, used instead of the full-size original.",
+ "_about": "Photo addresses for the leader pages, as Easol blob ids (the page builds static.myeasol.net/rails/active_storage/blobs/proxy/... from them). squad = the leader's squad page photo. about = their own portrait (cut from their Travel Hack Tuesday post, no text). erin = Erin's own reel. pool = SYB trip photos from each trip page, by trip page, in the order picked. squad[key].url (pages added Oct 19 2026): Easol's 1140 px wide copy of the squad photo, used instead of the full-size original. reel[key] (Oct 19 2026): a leader's own reel, see pages/README.md. Video slides are mp4s in the Easol content library (video, poster, dur, audio: true for a speaker button); feature = their own photo above the reviews.",
  "squad": {
   "juliana": {
    "uuid": "535fb294-0e20-41ac-823e-65c7022457e7",
@@ -1762,10 +1762,13 @@
      "squad": true
     },
     {
-     "yt": "AjfpXYrdtiE",
-     "cap": "Press play: meet Juliana",
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImU4MDMxOWUzLTQwYWUtNDg5Yy1iY2VlLThmNWZiMmQzOWY3MiIsInB1ciI6ImJsb2JfaWQifX0=--0d6d5172f1847aafc84b5010af3803b34f1a32c4/juliana-leader-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjNiYWNkNjlhLTFhNDgtNDYwYS04MDUxLTQ2YmI0Y2E3OWM4OCIsInB1ciI6ImJsb2JfaWQifX0=--f6c231d73a958533b8a6fc7819b5b657b0771a78/juliana-leader-video-poster.jpg",
+     "dur": 83.3,
+     "audio": true,
+     "cap": "Meet Juliana",
      "alt": "Juliana’s SYB video",
-     "pos": "50% 30%"
+     "pos": "50% 35%"
     }
    ],
    "total": 6
@@ -1776,10 +1779,13 @@
      "squad": true
     },
     {
-     "yt": "I-FCuoS71y8",
-     "cap": "Press play: meet Christian",
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjBmMzQ5ODdiLTY1YmUtNDdhOC05ZDJhLTEzNTcwMDgwMDEzNSIsInB1ciI6ImJsb2JfaWQifX0=--02764a92defbc15add58caf1d800e9007b0ae8b4/christian-leader-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjFhNjI1Mjk3LTZlZDUtNDU2YS05MzMyLWE1Zjg3YTQ5NjA0OSIsInB1ciI6ImJsb2JfaWQifX0=--01b052d2cdad9774283be837d2b00508ab76c293/christian-leader-video-poster.jpg",
+     "dur": 62.9,
+     "audio": true,
+     "cap": "Meet Christian",
      "alt": "Christian’s SYB video",
-     "pos": "50% 30%"
+     "pos": "50% 35%"
     }
    ],
    "total": 6
@@ -1790,10 +1796,13 @@
      "squad": true
     },
     {
-     "yt": "Iqp_2i7A2_8",
-     "cap": "Press play: meet Courtney",
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjI3ZDgzOWJhLWI1ODktNGZlYS04ZTdlLWVjZjUxZTcwNjllYSIsInB1ciI6ImJsb2JfaWQifX0=--1180a36bef2d328ee675a8c36867e7cd3dff3418/courtney-leader-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImIzMGQwMWFkLTk3ZmMtNGRiMC1iODNhLTcwYzExYzY1ZDcyMCIsInB1ciI6ImJsb2JfaWQifX0=--265368a2c196f570af49128c1fc537985ecbbef9/courtney-leader-video-poster.jpg",
+     "dur": 30.1,
+     "audio": true,
+     "cap": "Meet Courtney",
      "alt": "Courtney’s SYB video",
-     "pos": "50% 30%"
+     "pos": "50% 35%"
     }
    ],
    "total": 6
@@ -1810,10 +1819,13 @@
      "pos": "50% 30%"
     },
     {
-     "yt": "_MEsSZz97IE",
-     "cap": "Press play: meet Big Sexy",
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjRkMjhkYTE2LWJmYTYtNGZkMS1iMDZhLWE2ZjE1MzJmMDgxMCIsInB1ciI6ImJsb2JfaWQifX0=--c33ea1ae5ad5986a9c861a4a38057206dbd74e33/alex-leader-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjBlMTM1OGM5LTQxMjItNDQ1OS05YWJkLTczZjhhNzM0MmRjMSIsInB1ciI6ImJsb2JfaWQifX0=--3f68e7d4b0e08e0ed43ced5b856547f6d57e5e1f/alex-leader-video-poster.jpg",
+     "dur": 35.2,
+     "audio": true,
+     "cap": "Meet Big Sexy",
      "alt": "Alex’s SYB video",
-     "pos": "50% 30%"
+     "pos": "50% 35%"
     }
    ],
    "total": 6
@@ -1824,14 +1836,78 @@
      "squad": true
     },
     {
-     "yt": "R7mMFah-ovQ",
-     "cap": "Press play: meet the founder",
-     "alt": "Mantas’s SYB interview",
-     "pos": "50% 30%",
-     "poster": "https://i.ytimg.com/vi/R7mMFah-ovQ/oar2.jpg"
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjkwMTNhNDY0LTA5ODMtNDcyZi05NTMzLTdmZWFhNzY3M2Q1YyIsInB1ciI6ImJsb2JfaWQifX0=--7d2d141ab74772bd31e4d268a3522fbd8fd9f21f/mantas-interview-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjQ2MWE3N2U5LWZjYjctNDc5Yi05ZTIwLWI4YmJmOTFjYTRjMyIsInB1ciI6ImJsb2JfaWQifX0=--4c5a7597a1cb168c94d0f014d40cdbc7a5ea84b0/mantas-interview-video-poster.jpg",
+     "dur": 91.0,
+     "audio": true,
+     "cap": "Meet the founder",
+     "alt": "Mantas, SYB’s founder, on what SYB trips are about",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "5e794862-4aea-4da8-a151-3519d21de346",
+     "hex": "88e756df13987ca5a55b2b9144efbd7dd8b7dbab",
+     "name": "mantas-positano.jpg",
+     "cap": "Positano, Amalfi Coast",
+     "alt": "Mantas in an SYB tank top giving two thumbs up above Positano",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "beb5028c-cb1e-4ecd-9006-22f0209fa6f7",
+     "hex": "858a00bea60f75964f65c707dc0a7716ba14069c",
+     "name": "mantas-japan-snow.jpg",
+     "cap": "Japan",
+     "alt": "Mantas in an SYB ski jersey in the falling snow in Japan",
+     "pos": "50% 35%"
+    },
+    {
+     "uuid": "4ef3203e-651c-4883-a2c7-827a498dbb02",
+     "hex": "4d015431df02daf5a5a5aeee8785f22a5c56e6e4",
+     "name": "mantas-turkey.jpg",
+     "cap": "Turkey",
+     "alt": "Mantas smiling by the sea in Turkey",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "4fec58e2-183c-458d-aed2-a2446aca6170",
+     "hex": "ae26343fcba8e569811aba7a29e301203fc1df25",
+     "name": "mantas-amalfi-tux.jpg",
+     "cap": "Amalfi Coast, Italy",
+     "alt": "Mantas in a tuxedo holding two bottles of bubbly on a beach on the Amalfi Coast",
+     "pos": "50% 35%"
+    },
+    {
+     "uuid": "691ac37a-7936-4187-a3f3-da612f3a0cc7",
+     "hex": "a0c0860912391cf8d930f23241b9121412d877dd",
+     "name": "mantas-japan-onsen.jpg",
+     "cap": "Onsen, Japan",
+     "alt": "Mantas smiling in a steaming outdoor hot spring in the snow in Japan",
+     "pos": "48% 50%"
+    },
+    {
+     "uuid": "745747df-46ca-4904-8b04-b3db5fe0215c",
+     "hex": "c4c9ef5e2e9cfb8303f4fb69185121f66cd6ae3f",
+     "name": "mantas-amalfi-workout.jpg",
+     "cap": "Workout with a view, Amalfi Coast",
+     "alt": "Mantas leading a workout on a terrace above the sea",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "a9932b04-01dd-47a0-8920-a413e23beeed",
+     "hex": "90a340052a4424ec72c4b9a78cdc6e30fdd6cc5b",
+     "name": "mantas-turkey-sunset.jpg",
+     "cap": "Sunset, Turkey",
+     "alt": "Mantas on a boat at sunset in Turkey",
+     "pos": "50% 45%"
     }
    ],
-   "total": 6
+   "feature": {
+    "uuid": "27e2ee6a-90a9-40e1-9d5f-5f89e2aab8fc",
+    "hex": "4dbd8f79f02f233b9685ee577a10e60231b7bdeb",
+    "name": "mantas-morocco-camel.jpg",
+    "alt": "Mantas in a blue robe next to a camel in the Moroccan desert at sunset"
+   },
+   "note": "Oct 19 2026: Mantas's own photos from Dropbox Photos of Mantas (the squad photo stays first, he called it the best one); his interview video replaces the YouTube short"
   },
   "bradford": {
    "slides": [
@@ -1847,10 +1923,13 @@
      "pos": "50% 40%"
     },
     {
-     "yt": "KDY4DtXQHV8",
-     "cap": "Press play: don’t trust this guy",
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImIxNThkMmM0LWUzZjYtNDM2Mi1iMjkzLTM5MjU2YTdjODhmYyIsInB1ciI6ImJsb2JfaWQifX0=--075ce726d067f11a4d71f279aca682a44f9d1da8/bradford-leader-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImM5M2IxMjI1LTRlZWEtNDMxOS04YWU3LTljN2JkZmZlZTQ2YSIsInB1ciI6ImJsb2JfaWQifX0=--1645bc090efdd47cc7e5e336a9387bfd1b183841/bradford-leader-video-poster.jpg",
+     "dur": 55.9,
+     "audio": true,
+     "cap": "Don’t trust this guy",
      "alt": "Bradford’s SYB video",
-     "pos": "50% 30%"
+     "pos": "50% 35%"
     },
     {
      "uuid": "edbf8572-c885-4871-aa0a-12afe1841435",
@@ -2016,6 +2095,23 @@
      "cap": "Hi, I’m Holly.",
      "alt": "Holly Lippman on the beach in Nicaragua with the SYB banner",
      "pos": "50% 62%"
+    }
+   ],
+   "total": 6
+  },
+  "steph": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Ijc3Y2JiNzRhLWUyNTItNDc3ZC1iMzg4LWI0OGZmMWZkZjg4MSIsInB1ciI6ImJsb2JfaWQifX0=--9b20bc16c0cd186a2db9ed185e86146b3ff34560/steph-bali-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Ijg2YmI1NDUxLWQwZWMtNDQ1Ni1iMzg0LTIwMTQ5YjYxY2VkZSIsInB1ciI6ImJsb2JfaWQifX0=--e0e0d4da2f897fc8953a85f83cfa10f596b276e0/steph-bali-video-poster.jpg",
+     "dur": 70.8,
+     "audio": true,
+     "cap": "Meet Steph",
+     "alt": "Steph’s SYB video",
+     "pos": "50% 35%"
     }
    ],
    "total": 6

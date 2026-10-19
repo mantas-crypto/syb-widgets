@@ -1,6 +1,18 @@
 {
- "_about": "Trips led before HQ's own records (history.json starts in 2023), added Oct 19 2026 for current team members only. build-leaders.py merges these into the trip history at build time. Sources: Podio trip records 2015-2017 (Dropbox, only people the record shows on the trip: in a leader list with a flight, room or staff line; 'in charge' alone does not count), the HQ 2020, 2021 and 2022 tabs (ALL STAFF column, trips that ran), GHL trip tags (they tag guests too, so on their own they only count for Mantas, the founder), and lists sent by leaders. No guest data and no traveler numbers. date: month or year when the exact days are not known, none when there is no date at all. To fix a trip, edit it here.",
+ "_about": "Trips led before HQ's own records (history.json starts in 2023), added Oct 19 2026 for current team members only. build-leaders.py merges these into the trip history at build time. Sources: Podio trip records 2015-2017 (Dropbox, only people the record shows on the trip: in a leader list with a flight, room or staff line; 'in charge' alone does not count), the HQ 2020, 2021 and 2022 tabs (ALL STAFF column, trips that ran), GHL trip tags (they tag guests too, so on their own they only count for Mantas, the founder, and where Mantas confirmed the leader: Shriner, Juliana, Bradford, Steph's Croatia Aug '21; Oct 19 2026 he confirmed the other GHL-only tags were guest trips), and lists sent by leaders. No guest data and no traveler numbers. date: month or year when the exact days are not known, none when there is no date at all. To fix a trip, edit it here.",
  "trips": {
+  "Costa Rica Nov '14": {
+   "trip": "",
+   "dest": "Costa Rica",
+   "start": "2014-11-01",
+   "end": "2014-11-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "note": "The first-ever SYB trip",
+   "date": "month",
+   "src": "Mantas, Oct 19 2026: November 2014 in Costa Rica was the first-ever SurfYogaBeer trip"
+  },
   "Hamptons Aug '15": {
    "trip": "",
    "dest": "Hamptons",
@@ -494,9 +506,10 @@
    "leaders": [
     "Mantas Z.",
     "Juliana T.",
-    "Sarah W."
+    "Sarah W.",
+    "Steph C."
    ],
-   "src": "HQ 2021 tab staff: Mantas, Shriner, Juliana, Sarah, Aubrey; GHL croatia (august 2021) for Mantas, Juliana, Sarah (none for Shriner, so he is left out)"
+   "src": "HQ 2021 tab staff: Mantas, Shriner, Juliana, Sarah, Aubrey; GHL croatia (august 2021) for Mantas, Juliana, Sarah (none for Shriner, so he is left out); Steph C. added Oct 19 2026: Mantas confirmed she led it (GHL croatia (august 2021) on her contact)"
   },
   "Mykonos Gulet Aug '21": {
    "trip": "Mykonos Gulet",
