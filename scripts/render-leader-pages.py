@@ -412,7 +412,7 @@ def hero(key, prof, data, reel, chats):
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
     btn = ("See %s trips" % poss(first)) if up else "See upcoming trips"
     # first line plain, second in the gradient; a one-name leader (h1 ["", "Maxime."]) gets the gradient line only
-    h1 = "".join(('<span class="syl-g">%s</span>' if i else '<span>%s</span>') % e(t) for i, t in enumerate(prof["h1"]) if t)
+    h1 = " ".join(('<span class="syl-g">%s</span>' if i else '<span>%s</span>') % e(t) for i, t in enumerate(prof["h1"]) if t)
     city =('<span class="syl-city">%s%s</span>' % (ICON_PIN, e(prof["city"]))) if prof.get("city") else ""
     return "\n".join([
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="@@CSS@@">',
@@ -473,7 +473,7 @@ def trips(key, prof, data, cards, general_list):
     first = prof["first"]
     up = [u for u in data["upcoming"] if day(u["end"]) >= TODAY]
     general = not up
-    head = '<h2 class="syl-h" data-trips-h><span>Travel</span><span class="syl-g">with %s.</span></h2>' % e("SYB" if general else first)
+    head = '<h2 class="syl-h" data-trips-h><span>Travel</span> <span class="syl-g">with %s.</span></h2>' % e("SYB" if general else first)
     sub = '<p class="syl-trips-sub" data-trips-sub%s>%s</p>' % ("" if general else " hidden", (
         "%s isn’t on a trip right now. Here’s where SYB goes next." % e(first)) if leads(prof) else "Here’s where SYB goes next.")
     if general:
@@ -499,7 +499,7 @@ def reviews(key, prof, data, feature_img):
     names = hl_names(first, data.get("aliases"))
     revs = data.get("reviews") or []
     out = ['<section class="syl syl-crew" id="syl-reviews"%s><div class="syl-wrap">' % ("" if revs else " hidden"),
-           '<h2 class="syl-h"><span>Trip reviews</span><span class="syl-g">with %s.</span></h2>' % e(first)]
+           '<h2 class="syl-h"><span>Trip reviews</span> <span class="syl-g">with %s.</span></h2>' % e(first)]
     if revs:
         f = revs[0]
         img = ('<img class="syl-feature-img" src="%s" alt="%s" loading="lazy">' % (e(feature_img[0]), e(feature_img[1]))) if feature_img else ""
@@ -546,7 +546,7 @@ def about(key, prof, data, about_img):
                   "" if len(cs) > 1 else " hidden", flags_html(cs), led_rows(led), nled, nled)
     return "\n".join([
         '<section class="syl syl-about" id="syl-about"><div class="syl-wrap">',
-        '<h2 class="syl-h"><span>Meet</span><span class="syl-g">%s.</span></h2>' % e(first),
+        '<h2 class="syl-h"><span>Meet</span> <span class="syl-g">%s.</span></h2>' % e(first),
         '<div class="syl-about-grid">', side, '<div>',
         '<p class="syl-vibe%s">%s</p>' % (" is-long" if len(bio) > 260 else "", e(bio)),
         ('<p class="syl-nick">On the SYB squad: <b>%s</b></p>' % e(prof["title"])) if about_img else "",
@@ -568,7 +568,7 @@ def end(key, prof, chats):
         chat = '<a class="syl-btn syl-btn-ghost" data-syl="instagram-dm-end" href="https://ig.me/m/%s" target="_blank" rel="noopener">Message %s</a>' % (e(prof["ig"]), e(first))
     return "\n".join([
         '<section class="syl syl-end" id="syl-end"><div class="syl-wrap"><div class="syl-end-box">',
-        '<h2 class="syl-h"><span>Come solo.</span><span class="syl-g">Leave with a crew.</span></h2>',
+        '<h2 class="syl-h"><span>Come solo.</span> <span class="syl-g">Leave with a crew.</span></h2>',
         '<p class="syl-body">%s</p>' % e(body),
         '<div class="syl-actions">',
         '<a class="syl-btn" data-syl="end-trips" href="#syl-trips">Travel with %s</a>' % e(first if leads(prof) else "SYB"),

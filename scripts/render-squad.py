@@ -150,7 +150,7 @@ def name_html(p):
     lines = [x for x in p["h1"] if x]
     if len(lines) == 1:
         return '<span class="syl-g">%s</span>' % e(lines[0])
-    return '<span>%s</span><span class="syl-g">%s</span>' % (e(lines[0]), e(lines[1]))
+    return '<span>%s</span> <span class="syl-g">%s</span>' % (e(lines[0]), e(lines[1]))
 
 
 def card(p):
@@ -218,7 +218,7 @@ def page_html(doc):
         '<div class="sys-top">',
         '<div class="syl-wrap sys-hero">',
         '<p class="syl-role"><span><span data-sys-n>%d</span> leaders, one crew</span></p>' % n,
-        '<h1 class="syl-name sys-h1"><span>Meet the</span><span class="syl-g">leaders.</span></h1>',
+        '<h1 class="syl-name sys-h1"><span>Meet the</span> <span class="syl-g">leaders.</span></h1>',
         '<p class="sys-lede">They run the trips, start the parties and turn a group of strangers into a crew. '
         'Tap a face to see them in action.</p>',
         '</div>',
@@ -237,9 +237,9 @@ def page_html(doc):
         '</div>',
         '</div>',
         '<div class="syl-wrap">',
-        ('<div class="sys-team"><h2 class="syl-h sys-h2"><span>The crew behind</span><span class="syl-g">the crew.</span></h2>'
+        ('<div class="sys-team"><h2 class="syl-h sys-h2"><span>The crew behind</span> <span class="syl-g">the crew.</span></h2>'
          '<ul>%s</ul></div>' % "".join(team_item(t) for t in doc["team"])) if doc["team"] else "",
-        '<div class="sys-end"><h2 class="syl-h"><span>Your crew</span><span class="syl-g">is waiting.</span></h2>'
+        '<div class="sys-end"><h2 class="syl-h"><span>Your crew</span> <span class="syl-g">is waiting.</span></h2>'
         '<p class="syl-body">Pick a trip, pick a leader, or both.</p>'
         '<div class="syl-actions"><a class="syl-btn" href="/calendar" data-syl="squad-end-calendar">Find your trip</a>'
         '<a class="syl-btn syl-btn-ghost" href="/join-our-team" data-syl="squad-end-join">Become a leader</a></div></div>',
