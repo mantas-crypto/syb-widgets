@@ -1,6 +1,8 @@
 # Leader page blocks
 
-Each leader page on Easol (/trip-leaders/<name>) is five Embed Code blocks plus the page's Inject code.
+Each leader page on Easol is five Embed Code blocks plus the page's Inject code, on the person's own squad page:
+/trip-leaders/<name> for the trip leaders (Oct 16 2026), /management/<name> and /photographers/<name> for the team
+and photographers (Oct 19 2026; Santiago's two squad pages and Bradford's /management page carry the same blocks).
 These files are what goes in them. `@@NAME@@` marks a photo address or the pinned CSS/JS address,
 filled in when the block is saved.
 
@@ -34,6 +36,10 @@ data/leaders/leaders.json, from data/leaders/profiles.json (name, city, Instagra
 dist/leaders/<key>.json. Photo addresses are written in; `@@CSS@@` and `@@JS@@` are filled with the pinned
 commit when the blocks are saved. pages/erin is the hand-made original those templates came from.
 
+Per person, profiles.json can also set: `role` (the line above the name, default "SYB trip leader"), `leads: false`
+(team members who do not lead trips: Travel with SYB), `lede` (a fixed line under the name that the script leaves alone),
+`where` (the line under their title) and an empty `city`. photos.json squad[key].url can point at Easol's resized copy.
+
 A new leader: add them to leaders.json, profiles.json and photos.json (squad photo), run
 `python3 scripts/build-leaders.py` and `python3 scripts/render-leader-pages.py <key>`, then save the five
-blocks and the Inject code on their /trip-leaders/<key> page.
+blocks and the Inject code on their squad page (leaders.json `page`).
