@@ -431,11 +431,11 @@
    ]
   },
   "holly": {
-   "name": "Holly Lipman",
+   "name": "Holly Lippman",
    "first": "Holly",
    "h1": [
     "Holly",
-    "Lipman."
+    "Lippman."
    ],
    "city": "Hoboken",
    "ig": "hollylipsfit",
@@ -450,8 +450,8 @@
     ],
     [
      "Favorite SYB moment?",
-     "Leading a workout on a boat in the South of France with 24 people screaming the countdown.",
-     "placeholder"
+     "A slumber party on the accidental all-girls Nicaragua trip, prank calling boys like we were 13 years old again.",
+     "real"
     ],
     [
      "Something people wouldn’t guess about you?",
@@ -1123,7 +1123,7 @@
    "city": "Jacksonville",
    "ig": "yesthisiseli",
    "chat": "dm",
-   "title": "Senior Leader",
+   "title": "Head of Trips and Talent",
    "bio": "Eli isn’t your average photographer. He’s a globetrotting, drone-flying, concert-covering storyteller with an eye for the moments most of us miss. Based in Jacksonville, Florida, he’s turned photography into a career that has taken him across 30+ countries. Before going full-time, he studied counseling and theology and spent two years as a counselor and missionary in Portugal. He doesn’t just capture images; he makes you feel like you’re right there in the moment.",
    "qa": [
     [
@@ -1148,7 +1148,8 @@
     "Adventure trips",
     "Mafia nights",
     "30+ countries"
-   ]
+   ],
+   "role": "SYB head of trips and talent"
   },
   "matas": {
    "name": "Matas Gayauskas",

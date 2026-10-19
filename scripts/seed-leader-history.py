@@ -11,6 +11,7 @@ This script filled history.json with every trip before that, from two HQ tabs ex
 
 MASTER gives tab, status, destination, dates, leaders and booked; EASOL gives the Easol product name
 and the product's own dates. Trips already in history.json keep what the daily job wrote.
+Only whether a trip ran (had bookings) is kept, never the number of travelers (since Oct 19 2026).
 """
 import datetime, json, os, re, sys
 
@@ -79,7 +80,7 @@ def main(master_path, easol_path):
             "trip": p.get("trip") or re.sub(r"\s*'\d\d$", "", a),
             "start": start, "end": end,
             "dest": r[5].strip(),
-            "booked": num(r[12]) or p.get("booked", 0),
+            "ran": (num(r[12]) or p.get("booked", 0)) > 0,
             "leaders": [x.strip() for x in r[9].split("/") if x.strip()],
             "kind": kind,
             "status": r[4].strip(),

@@ -11,9 +11,12 @@ Where each part of a leader page comes from
   Upcoming trips   Leader Hub Feed, TRIPS tab (synced from SYB HQ, so adding a leader to a trip tab in HQ
                    adds the trip to their page). Spots left, sold out and prices are NOT here: the page reads
                    those live from Easol on every visit (product_search in the trips block).
-  Trips led        data/leaders/history.json: every trip ever, seeded from SYB HQ on Oct 14 2026
+  Trips led        data/leaders/history.json: every trip since 2023, seeded from SYB HQ on Oct 14 2026
                    (scripts/seed-leader-history.py) and kept current from the feed by this script. A trip is
                    added the first time the feed shows it and is never deleted, so finished trips stay.
+                   data/leaders/older-trips.json adds the trips before that (HQ 2020-2022 tabs, GHL trip tags,
+                   leaders' own lists); it is merged in here and never written back to history.json.
+                   A trip counts once it has ended and ran (it had bookings). No traveler numbers are published.
   Reviews          data/google-reviews.json (refreshed daily by the widgets job) plus hand-added reviews in
                    data/leaders/extra-reviews.json. A Google review counts for a leader when it names them and
                    was written during or within 150 days after one of their trips. Quotes come from
@@ -49,35 +52,44 @@ TAB_DEST = [
     ("red sea", "Egypt"), ("zermatt", "Switzerland"), ("la ", "LA"), ("nyc", "NYC"), ("black tie", "NYC"),
     ("pre-gala", "NYC"), ("las vegas", "Las Vegas"), ("nicaragua", "Nicaragua"),
 ]
-# HQ destination -> (place line, short name for "Erin's ... trip", trip page)
+# HQ destination -> (place line, short name for "Erin's ... trip", trip page, country code for the flag)
 PLACES = {
-    "Nicaragua": ("Nicaragua", "Nicaragua", "/nicaragua"),
-    "Bali": ("Bali, Indonesia", "Bali", "/bali"),
-    "Finland": ("Finnish Lapland", "Lapland", "/finland"),
-    "France (riviera)": ("South of France", "Côte d’Azur", "/south-of-france"),
-    "France (ski)": ("French Alps", "French Alps", "/chamonix"),
-    "Amalfi": ("Amalfi Coast, Italy", "Amalfi", "/amalfi"),
-    "Dolomites": ("Dolomites, Italy", "Dolomites", "/dolomites"),
-    "Kenya": ("Kenya", "Kenya", "/kenya"),
-    "Croatia": ("Croatia", "Croatia", "/croatia"),
-    "Iceland": ("Iceland", "Iceland", "/iceland"),
-    "Turkey": ("Turkey", "Turkey", "/turkey"),
-    "Morocco": ("Morocco", "Morocco", "/morocco"),
-    "Egypt": ("Egypt", "Egypt", "/egypt"),
-    "Japan": ("Japan", "Japan", "/japan"),
-    "Philippines": ("Palawan, Philippines", "Palawan", "/philippines"),
-    "Belize": ("Belize", "Belize", "/belize"),
-    "Guatemala": ("Guatemala", "Guatemala", "/guatemala"),
-    "Switzerland": ("Zermatt, Switzerland", "Zermatt", "/switzerland"),
-    "Greece": ("Greece", "Greece", "/greece"),
-    "Portugal": ("Portugal", "Portugal", "/portugal"),
-    "Norway": ("Norway", "Norway", "/norway"),
-    "Ireland": ("Ireland", "Ireland", ""),
-    "Mexico": ("Mexico", "Mexico", ""),
-    "NYC": ("New York City", "New York", ""),
-    "LA": ("Los Angeles", "LA", ""),
-    "Las Vegas": ("Las Vegas", "Las Vegas", ""),
+    "Nicaragua": ("Nicaragua", "Nicaragua", "/nicaragua", "NI"),
+    "Bali": ("Bali, Indonesia", "Bali", "/bali", "ID"),
+    "Finland": ("Finnish Lapland", "Lapland", "/finland", "FI"),
+    "France (riviera)": ("South of France", "Côte d’Azur", "/south-of-france", "FR"),
+    "France (ski)": ("French Alps", "French Alps", "/chamonix", "FR"),
+    "Amalfi": ("Amalfi Coast, Italy", "Amalfi", "/amalfi", "IT"),
+    "Dolomites": ("Dolomites, Italy", "Dolomites", "/dolomites", "IT"),
+    "Kenya": ("Kenya", "Kenya", "/kenya", "KE"),
+    "Croatia": ("Croatia", "Croatia", "/croatia", "HR"),
+    "Iceland": ("Iceland", "Iceland", "/iceland", "IS"),
+    "Turkey": ("Turkey", "Turkey", "/turkey", "TR"),
+    "Morocco": ("Morocco", "Morocco", "/morocco", "MA"),
+    "Egypt": ("Egypt", "Egypt", "/egypt", "EG"),
+    "Japan": ("Japan", "Japan", "/japan", "JP"),
+    "Philippines": ("Palawan, Philippines", "Palawan", "/philippines", "PH"),
+    "Belize": ("Belize", "Belize", "/belize", "BZ"),
+    "Guatemala": ("Guatemala", "Guatemala", "/guatemala", "GT"),
+    "Switzerland": ("Zermatt, Switzerland", "Zermatt", "/switzerland", "CH"),
+    "Greece": ("Greece", "Greece", "/greece", "GR"),
+    "Portugal": ("Portugal", "Portugal", "/portugal", "PT"),
+    "Norway": ("Norway", "Norway", "/norway", "NO"),
+    "Ireland": ("Ireland", "Ireland", "", "IE"),
+    "Mexico": ("Mexico", "Mexico", "", "MX"),
+    "NYC": ("New York City", "New York", "", "US"),
+    "LA": ("Los Angeles", "LA", "", "US"),
+    "Las Vegas": ("Las Vegas", "Las Vegas", "", "US"),
+    "Miami": ("Miami", "Miami", "", "US"),
+    "Ibiza": ("Ibiza, Spain", "Ibiza", "", "ES"),
+    "Cuba": ("Cuba", "Cuba", "", "CU"),
+    "Honduras": ("Honduras", "Honduras", "", "HN"),
+    "Costa Rica": ("Costa Rica", "Costa Rica", "", "CR"),
 }
+COUNTRY = {"NI": "Nicaragua", "ID": "Indonesia", "FI": "Finland", "FR": "France", "IT": "Italy", "KE": "Kenya", "HR": "Croatia",
+           "IS": "Iceland", "TR": "Turkey", "MA": "Morocco", "EG": "Egypt", "JP": "Japan", "PH": "Philippines", "BZ": "Belize",
+           "GT": "Guatemala", "CH": "Switzerland", "GR": "Greece", "PT": "Portugal", "NO": "Norway", "IE": "Ireland", "MX": "Mexico",
+           "US": "United States", "ES": "Spain", "CU": "Cuba", "HN": "Honduras", "CR": "Costa Rica"}
 
 
 def load(path, default=None):
@@ -153,7 +165,8 @@ def update_history(hist, rows):
             new["start"], new["end"] = s.isoformat(), (e or s).isoformat()
         new["trip"] = r.get("trip") or new.get("trip") or re.sub(r"\s*'\d\d$", "", tab)
         new["dest"] = dest_of(tab, new.get("dest", ""))
-        new["booked"] = num(r.get("booked")) if r.get("booked") else new.get("booked", 0)
+        new.pop("booked", None)                    # traveler numbers are not kept (they are not for the public)
+        new["ran"] = num(r.get("booked")) > 0 if r.get("booked") else new.get("ran", False)
         new["leaders"] = [x.strip() for x in r.get("leaders", "").split("/") if x.strip()]
         new["kind"] = new.get("kind") or ("event" if span <= 1 else "trip")
         new["status"] = r.get("status") or new.get("status", "")
@@ -226,29 +239,74 @@ def owns_review(text, day, aliases, rivals):
         return True
     for a in own:
         for _, trips in rivals[a]:
-            if any(iso(o["start"]) <= day <= iso(o["end"]) + datetime.timedelta(days=REVIEW_WINDOW) for o in trips):
+            if any(exact(o) and iso(o["start"]) <= day <= iso(o["end"]) + datetime.timedelta(days=REVIEW_WINDOW) for o in trips):
                 return False
     return True
 
 
+def ended(t, today):
+    """A trip with no date on file (date: none) counts as ended; otherwise its last day is before today."""
+    if t.get("date") == "none":
+        return True
+    e = iso(t.get("end"))
+    return bool(e and e < today)
+
+
+def counts(t, today):
+    """Trips that count as led: a finished trip that ran (had bookings), not cancelled, not an event."""
+    return (t.get("status", "") not in SKIP_STATUS and ended(t, today) and t.get("ran")
+            and t.get("kind", "trip") == "trip")
+
+
 def trips_led_of(conf, hist, today):
     names = set(conf.get("feed", []))
-    return [trip_out(tab, t, True) for tab, t in hist.items() if names & set(t.get("leaders", []))
-            and t.get("status", "") not in SKIP_STATUS and iso(t["end"]) and iso(t["end"]) < today
-            and t.get("booked", 0) > 0 and t.get("kind", "trip") == "trip"]
+    return [trip_out(tab, t) for tab, t in hist.items() if names & set(t.get("leaders", [])) and counts(t, today)]
 
 
 def place(dest):
-    return PLACES.get(dest, (dest, dest, ""))
+    return PLACES.get(dest, (dest, dest, "", ""))
 
 
-def trip_out(tab, t, with_count):
-    label, tag, page = place(t.get("dest", ""))
-    o = {"tab": tab, "trip": t["trip"], "start": t["start"], "end": t["end"], "place": label, "tag": tag,
+def flag(cc):
+    return "".join(chr(0x1F1E6 + ord(c) - 65) for c in cc) if len(cc or "") == 2 else ""
+
+
+def trip_out(tab, t):
+    label, tag, page, cc = place(t.get("dest", ""))
+    o = {"tab": tab, "trip": t["trip"], "start": t["start"], "end": t["end"], "place": t.get("place") or label, "tag": tag,
          "page": page, "kind": t.get("kind", "trip")}
-    if with_count:
-        o["travelers"] = t.get("booked", 0)
+    if cc:
+        o["flag"], o["country"] = flag(cc), COUNTRY.get(cc, "")
+    for k in ("note", "date"):              # date: month, year or none when the exact days are not known
+        if t.get(k):
+            o[k] = t[k]
     return o
+
+
+def exact(o):
+    """Only trips with exact dates are matched to reviews."""
+    return not o.get("date") and iso(o.get("start")) and iso(o.get("end"))
+
+
+def merge_older(hist, older):
+    """history.json plus the trips before it (older-trips.json). Returns a new dict; history.json is not changed."""
+    out = dict(hist)
+    for tab, t in (older.get("trips") or {}).items():
+        if tab in out:
+            continue
+        o = {k: v for k, v in t.items() if k != "src"}
+        o.update({"kind": "trip", "status": "DONE", "ran": True})
+        out[tab] = o
+    for tab, x in (older.get("add_leaders") or {}).items():
+        if tab in out:
+            o = dict(out[tab])
+            o["leaders"] = o.get("leaders", []) + [n for n in x.get("leaders", []) if n not in o.get("leaders", [])]
+            out[tab] = o
+    return out
+
+
+def newest_first(o):
+    return (o["start"] or "0000", o["tab"])
 
 
 def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude, rivals=None, staff=None, known=None):
@@ -261,17 +319,16 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude, r
             x.strip() for x in r.get("leaders", "").split("/")}]
     else:
         tabs = list(mine)
-    upcoming = sorted([trip_out(tab, hist[tab], False) for tab in set(tabs)
+    upcoming = sorted([trip_out(tab, hist[tab]) for tab in set(tabs)
                        if tab in hist and iso(hist[tab]["end"]) and iso(hist[tab]["end"]) >= today
                        and hist[tab].get("status", "") not in SKIP_STATUS],
                       key=lambda o: (o["start"], o["trip"]))
-    led = sorted([trip_out(tab, t, True) for tab, t in mine.items()
-                  if iso(t["end"]) and iso(t["end"]) < today and t.get("booked", 0) > 0],
-                 key=lambda o: o["start"], reverse=True)
+    led = sorted([trip_out(tab, t) for tab, t in mine.items() if ended(t, today) and t.get("ran")],
+                 key=newest_first, reverse=True)
     trips_led = [o for o in led if o["kind"] == "trip"]
 
     def about(day):
-        cands = [o for o in trips_led if iso(o["start"]) <= day <= iso(o["end"]) + datetime.timedelta(days=REVIEW_WINDOW)]
+        cands = [o for o in trips_led if exact(o) and iso(o["start"]) <= day <= iso(o["end"]) + datetime.timedelta(days=REVIEW_WINDOW)]
         return max(cands, key=lambda o: o["start"]) if cands else None
 
     aliases = conf.get("aliases") or [conf.get("first", "")]
@@ -338,7 +395,8 @@ def leader_view(key, conf, hist, feed, today, reviews, extras, picks, exclude, r
         "upcoming": upcoming,
         "led": [o for o in led if o["kind"] == "trip"],
         "events": [o for o in led if o["kind"] == "event"],
-        "stats": {"led": len(trips_led), "travelers": sum(o["travelers"] for o in trips_led),
+        "stats": {"led": len(trips_led), "countries": len({o["country"] for o in trips_led if o.get("country")}),
+                  "since": min([o["start"][:4] for o in trips_led if o["start"]] or [""]),
                   "upcoming": len([o for o in upcoming if o["kind"] == "trip"])},
         "reviews": out,
     }
@@ -359,12 +417,15 @@ def main():
     log = {"today": today.isoformat(), "feed_rows": len(feed) if feed is not None else "unreadable"}
     log["history_changed"] = update_history(hist, feed) if feed is not None else 0
 
+    older = load(os.path.join(DATA, "older-trips.json"), {})
+    allhist = merge_older(hist, older)
+
     reviews = load(os.path.join(ROOT, "data", "google-reviews.json"), [])
     extras = load(os.path.join(DATA, "extra-reviews.json"), {}).get("reviews", [])
     picks = load(os.path.join(DATA, "picks.json"), {})
     exclude = conf.get("exclude_names", [])
 
-    led = {key: trips_led_of(c, hist, today) for key, c in conf["leaders"].items()}
+    led = {key: trips_led_of(c, allhist, today) for key, c in conf["leaders"].items()}
     staff = {x.lower() for x in conf.get("staff", [])}
     for c in conf["leaders"].values():
         staff |= {c["name"].lower(), short_name(c["name"]).lower()}
@@ -379,7 +440,7 @@ def main():
     written = []
     for key, c in conf["leaders"].items():
         rivals = {al: [(k, led[k]) for k in ks if k != key] for al, ks in by_alias.items() if key in ks and len(ks) > 1}
-        view = leader_view(key, c, hist, feed, today, reviews, extras, picks, exclude, rivals, staff, names)
+        view = leader_view(key, c, allhist, feed, today, reviews, extras, picks, exclude, rivals, staff, names)
         path = os.path.join(OUT, key + ".json")
         old = load(path, {})
         if {k: v for k, v in old.items() if k != "built"} == view:
