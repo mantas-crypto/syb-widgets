@@ -85,6 +85,9 @@ PLACES = {
     "Cuba": ("Cuba", "Cuba", "", "CU"),
     "Honduras": ("Honduras", "Honduras", "", "HN"),
     "Costa Rica": ("Costa Rica", "Costa Rica", "", "CR"),
+    "Hamptons": ("The Hamptons, New York", "Hamptons", "", "US"),
+    "Hudson Valley": ("Hudson Valley, New York", "Hudson Valley", "", "US"),
+    "Hunter Mountain": ("Hunter Mountain, New York", "Hunter Mountain", "", "US"),
 }
 COUNTRY = {"NI": "Nicaragua", "ID": "Indonesia", "FI": "Finland", "FR": "France", "IT": "Italy", "KE": "Kenya", "HR": "Croatia",
            "IS": "Iceland", "TR": "Turkey", "MA": "Morocco", "EG": "Egypt", "JP": "Japan", "PH": "Philippines", "BZ": "Belize",
