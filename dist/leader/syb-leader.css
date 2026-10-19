@@ -123,13 +123,33 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl .syl-chips li{display:inline-flex;align-items:center;height:36px;padding:0 15px;border-radius:999px;border:1px solid rgba(244,242,238,.24);font-family:var(--med);font-size:14px;color:var(--ink)}
 .syl .syl-led-h{margin-top:44px;font-family:var(--disp);font-weight:900;font-size:22px;line-height:1.1;letter-spacing:-.2px;text-transform:uppercase;color:var(--ink)}
 .syl .syl-led-sum{margin-top:8px;font-size:15px;color:var(--mute)}
-.syl .syl-led{margin-top:18px;border-top:1px solid var(--line)}
-.syl .syl-led a,.syl .syl-led li>span{display:grid;grid-template-columns:76px 1fr auto;align-items:baseline;gap:4px 14px;padding:16px 0;border-bottom:1px solid var(--line)}
-.syl .syl-led-when{font-family:var(--disp);font-weight:800;font-size:14px;line-height:1.3;color:var(--gold);text-transform:uppercase;letter-spacing:.4px}
-.syl .syl-led-what strong{display:block;font-family:var(--med);font-weight:400;font-size:17.5px;line-height:1.3;color:var(--ink)}
-.syl .syl-led-what span{display:block;margin-top:1px;font-size:14px;color:var(--mute)}
-.syl .syl-led-n{text-align:right;font-size:12.5px;line-height:1.2;color:var(--mute)}
-.syl .syl-led-n b{display:block;width:fit-content;margin-left:auto;font-family:var(--disp);font-weight:900;font-size:26px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.06em}
+.syl .syl-flags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.syl .syl-flags li{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--panel);border:1px solid var(--line);font-size:22px;line-height:1}
+.syl .syl-led{margin-top:22px;border-top:1px solid var(--line)}
+.syl .syl-led-y{padding:24px 0 10px;border-bottom:1px solid var(--line);font-family:var(--disp);font-weight:900;font-size:15px;line-height:1;letter-spacing:.5px;color:var(--gold)}
+.syl .syl-led a,.syl .syl-led li>span{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:2px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.syl .syl-led-flag{font-size:24px;line-height:1;text-align:center}
+.syl .syl-led-what strong{display:block;font-family:var(--med);font-weight:400;font-size:17px;line-height:1.3;color:var(--ink)}
+.syl .syl-led-what span{display:block;margin-top:2px;font-size:14px;line-height:1.35;color:var(--mute)}
+.syl .syl-led-when{font-family:var(--disp);font-weight:800;font-size:12.5px;line-height:1;letter-spacing:.8px;text-transform:uppercase;color:var(--mute)}
+.syl [data-led-box].is-folded .is-more{display:none}
+.syl .syl-led-all{margin-top:20px}
+.syl .syl-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.syl-win .syl .syl-led-flag,.syl-win .syl .syl-flags li{font-family:"Twemoji Country Flags",var(--text)}
+@font-face{font-family:"Twemoji Country Flags";unicode-range:U+1F1E6-1F1FF,U+1F3F4,U+E0062-E0063,U+E0065,U+E0067,U+E006C,U+E006E,U+E0073-E0074,U+E0077,U+E007F;src:url(https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2) format("woff2");font-display:swap}
+/* Windows has no flag emoji: those visitors get Twemoji's flags (CC-BY 4.0, Twitter) through the font above */
+
+/* video in the reel: a YouTube short plays on tap (nothing loads from YouTube before that); a short clip plays muted */
+.syl .syl-play{position:absolute;left:50%;top:50%;z-index:4;width:76px;height:76px;margin:-38px 0 0 -38px;display:grid;place-items:center;border-radius:50%;background:rgba(0,0,0,.5);border:1.5px solid rgba(244,242,238,.85);color:var(--ink);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .2s}
+.syl .syl-play svg{width:28px;height:28px;margin-left:4px;fill:currentColor}
+.syl .syl-play:active{transform:scale(.94)}
+.syl .syl-yt-frame{position:absolute;inset:0;z-index:6;width:100%;height:100%;border:0;background:#000}
+.syl .syl-yt-close{display:none;position:absolute;top:20px;right:8px;z-index:7;width:36px;height:36px;place-items:center;border-radius:50%;background:rgba(0,0,0,.55);color:var(--ink)}
+.syl .syl-yt-close svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.4;fill:none}
+.syl .syl-reel.is-video .syl-yt-close{display:grid}
+.syl .syl-reel.is-video .syl-pause,.syl .syl-reel.is-video .syl-tap,.syl .syl-reel.is-video .syl-cap{display:none}
+.syl .syl-reel.is-video::after,.syl .syl-reel.is-video::before{display:none}
+.syl .syl-watch svg{width:15px;height:15px;fill:currentColor}
 
 /* end */
 .syl.syl-end{padding:96px 0 120px}
@@ -154,7 +174,7 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl .syl-trips-sub{margin:-12px 0 26px;max-width:620px;font-size:16.5px;line-height:1.55;color:var(--body)}
 .syl .syl-poster:not(:has(>img))::after{content:"";position:absolute;inset:0;z-index:-3;background:radial-gradient(120% 80% at 80% 0%,rgba(139,123,255,.28),transparent 60%),radial-gradient(90% 70% at 0% 100%,rgba(232,178,58,.18),transparent 60%),#121216}
 @media (min-width:900px){.syl .syl-feature.no-img{grid-template-columns:minmax(0,860px)}}
-@media (hover:hover){.syl .syl-poster:hover>img{transform:scale(1.045)}.syl .syl-btn:hover,.syl .syl-chat:hover .syl-chat-go{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}.syl .syl-btn-ghost:hover{border-color:var(--ink)}.syl .syl-link:hover,.syl .syl-cite a:hover,.syl .syl-who a:hover{border-bottom-color:var(--ink)}.syl .syl-led a:hover strong{text-decoration:underline;text-underline-offset:3px}}
+@media (hover:hover){.syl .syl-poster:hover>img{transform:scale(1.045)}.syl .syl-btn:hover,.syl .syl-chat:hover .syl-chat-go{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}.syl .syl-btn-ghost:hover{border-color:var(--ink)}.syl .syl-link:hover,.syl .syl-cite a:hover,.syl .syl-who a:hover{border-bottom-color:var(--ink)}.syl .syl-led a:hover strong{text-decoration:underline;text-underline-offset:3px}.syl .syl-play:hover{transform:scale(1.06)}}
 @media (min-width:700px){.syl .syl-posters{grid-auto-columns:46%}.syl .syl-quotes{grid-auto-columns:46%}}
 @media (min-width:900px){
 .syl{padding-top:128px;font-size:18px}

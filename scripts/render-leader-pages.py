@@ -46,6 +46,9 @@ GENERAL_PHOTOS = ["Nicaragua", "Croatia", "Bali"]   # for a leader with no trips
 ICON_PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>'
 ICON_IG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>'
 ICON_WA = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C8.86 3 3.03 8.8 3.03 15.95c0 2.29.6 4.52 1.75 6.49L3 29l6.73-1.76a13.07 13.07 0 0 0 6.3 1.6h.01c7.17 0 13-5.8 13-12.94C29.04 8.8 23.21 3 16.04 3Zm0 23.67h-.01c-1.94 0-3.85-.52-5.51-1.51l-.4-.23-4 1.04 1.07-3.88-.26-.4a10.7 10.7 0 0 1-1.65-5.74c0-5.94 4.85-10.77 10.8-10.77 2.88 0 5.59 1.12 7.63 3.16a10.68 10.68 0 0 1 3.16 7.62c0 5.94-4.85 10.71-10.83 10.71Zm5.92-8.03c-.33-.16-1.93-.95-2.23-1.06-.3-.11-.52-.16-.73.16-.22.33-.84 1.06-1.03 1.27-.19.22-.38.24-.7.08-.33-.16-1.38-.51-2.62-1.61a9.8 9.8 0 0 1-1.82-2.25c-.19-.33-.02-.5.14-.66.15-.15.33-.38.49-.57.16-.19.22-.33.33-.54.11-.22.05-.41-.03-.57-.08-.16-.73-1.76-1-2.41-.27-.63-.54-.55-.73-.56h-.62c-.22 0-.57.08-.87.41-.3.33-1.14 1.11-1.14 2.71s1.17 3.15 1.33 3.36c.16.22 2.3 3.5 5.57 4.91.78.33 1.39.53 1.86.68.78.25 1.5.21 2.06.13.63-.09 1.93-.79 2.2-1.55.27-.76.27-1.41.19-1.55-.08-.13-.3-.21-.62-.37Z"/></svg>'
+ICON_PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>'
+ICON_CLOSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+LED_SHOWN = 6    # trips shown before "See all" (same number as syb-leader.js); a list of up to 8 shows in full
 ICON_PAUSE = '<svg class="is-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="is-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>'
 
 
@@ -152,7 +155,7 @@ def next_sbyb_trips(n):
         if (day(t["end"]) - day(t["start"])).days > 21 or t["trip"] in seen:     # no months-long programs, one card per trip
             continue
         seen.add(t["trip"])
-        out.append(b.trip_out(tab, t, False))
+        out.append(b.trip_out(tab, t))
         if len(out) == n:
             break
     return out
@@ -219,17 +222,40 @@ def plan_photos(key, prof, data, ph, card_trips):
         return reel, about, feature, poster_photos(card_trips, ph, taken)
     sq = ph.doc["squad"][key]
     pos = "50% 30%" if sq.get("h", 1) >= sq.get("w", 1) else "50% 40%"
-    reel = [(blob_url(sq), "Hi, I’m %s." % first, "%s, %s" % (prof["name"], role(prof)), pos)]
+    squad_slide = (blob_url(sq), "Hi, I’m %s." % first, "%s, %s" % (prof["name"], role(prof)), pos)
+    reel = [squad_slide]
     if key == "alex":
         a2 = ph.doc["about"]["alex-ski"]
         reel.append((blob_url(a2), "Ski week, French Alps", "Alex Marks in an SYB ski bib and a penguin helmet", "50% 30%"))
+    target = None
+    own = (ph.doc.get("reel") or {}).get(key)
+    if own:                       # their own photos and videos (photos.json "reel"), in their order
+        reel = []
+        for x in own["slides"]:
+            if x.get("hold"):
+                continue
+            if x.get("squad"):
+                reel.append((squad_slide[0], x.get("cap") or squad_slide[1], x.get("alt") or squad_slide[2], x.get("pos") or squad_slide[3]))
+            elif x.get("yt"):
+                reel.append((x.get("poster") or "https://i.ytimg.com/vi/%s/oardefault.jpg" % x["yt"], x["cap"], x["alt"], x.get("pos", "50% 35%"), {"yt": x["yt"]}))
+            elif x.get("about"):
+                a = ph.doc["about"][x["about"]]
+                reel.append((blob_url(a), x["cap"], x["alt"], x.get("pos", "50% 30%")))
+                taken.add(a.get("uuid", ""))
+            elif x.get("video"):
+                reel.append((x["poster"], x["cap"], x["alt"], x.get("pos", "50% 35%"), {"video": x["video"], "dur": x.get("dur")}))
+            else:
+                reel.append((blob_url(x), x["cap"], x["alt"], x.get("pos", "50% 35%")))
+                if x.get("uuid"):
+                    taken.add(x["uuid"])
+        target = own.get("total", len(reel))
     tags = leader_tags(data)
     general = not tags
     if general:
         tags = GENERAL_PHOTOS
     want = 6 - len(reel)
     i = 0
-    while len(reel) < 1 + want and i < 30 and tags:
+    while (len(reel) < target if target is not None else len(reel) < 1 + want) and i < 30 and tags:
         tag = tags[i % len(tags)]
         p = ph.pick(tag, taken, portrait=True)
         i += 1
@@ -252,18 +278,84 @@ def plan_photos(key, prof, data, ph, card_trips):
     return reel, about, feature, cards
 
 
+# ---------- trips led (the same rows syb-leader.js draws) ----------
+def countries(led):
+    seen, out = {}, []
+    for o in led:
+        if not o.get("flag"):
+            continue
+        if o["flag"] not in seen:
+            seen[o["flag"]] = {"flag": o["flag"], "name": o.get("country") or o["place"], "n": 0}
+            out.append(seen[o["flag"]])
+        seen[o["flag"]]["n"] += 1
+    return sorted(out, key=lambda c: -c["n"])          # stable: ties keep the order first led
+
+
+def since(led):
+    ys = [o["start"][:4] for o in led if o.get("start")]
+    return min(ys) if ys else ""
+
+
+def led_row(o, more):
+    bold = o["trip"] or o["place"]
+    small = o["place"] if o["trip"] else (o.get("note") or "")
+    when = "" if o.get("date") in ("year", "none") or not o.get("start") else MON[day(o["start"]).month - 1]
+    if o.get("n", 1) > 1:
+        small = (small + ", " if small else "") + "%d trips" % o["n"]
+    inner = ('<span class="syl-led-flag"%s aria-hidden="true">%s</span><span class="syl-led-what"><strong>%s</strong>%s</span>'
+             '<span class="syl-led-when">%s</span>') % ((' title="%s"' % e(o["country"])) if o.get("country") else "", e(o.get("flag", "")),
+                                                      e(bold), ("<span>%s</span>" % e(small)) if small else "", when)
+    cls = ' class="is-more"' if more else ""
+    if o.get("page"):
+        return '<li%s><a href="%s" data-syl="led-%s-%s">%s</a></li>' % (cls, e(o["page"]), slug(o["tag"]), o["start"][:7] if o.get("start") else "undated", inner)
+    return "<li%s><span>%s</span></li>" % (cls, inner)
+
+
+def led_rows(led):
+    dated = [o for o in led if o.get("start")]
+    undated, order = {}, []
+    for o in led:
+        if o.get("start"):
+            continue
+        k = (o["trip"], o["place"], o.get("note", ""))
+        if k not in undated:
+            undated[k] = dict(o, n=0)
+            order.append(k)
+        undated[k]["n"] += 1
+    cut = LED_SHOWN if len(led) > LED_SHOWN + 2 else len(led)
+    out, year, shown = [], "", 0
+    for o in dated:
+        y, more = o["start"][:4], shown >= cut
+        if y != year:
+            year = y
+            out.append('<li class="syl-led-y%s">%s</li>' % (" is-more" if more else "", y))
+        out.append(led_row(o, more))
+        shown += 1
+    if order:
+        more = shown >= cut
+        out.append('<li class="syl-led-y%s">More trips</li>' % (" is-more" if more else ""))
+        for k in order:
+            out.append(led_row(undated[k], more))
+            shown += undated[k]["n"]
+    return "".join(out)
+
+
+def flags_html(cs):
+    return "".join('<li title="%s"><span aria-hidden="true">%s</span><span class="syl-sr">%s</span></li>' % (e(c["name"]), c["flag"], e(c["name"])) for c in cs)
+
+
 # ---------- blocks ----------
 def lede(data, prof=None):
     first = data["first"]
     led = [o for o in data["led"]]
-    trav = sum(o.get("travelers", 0) for o in led)
+    nc = len(countries(led))
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
     out = []
     if prof and prof.get("lede"):
         return e(prof["lede"])        # their own line (team members, the founder); the page script leaves it alone (no data-lede)
     if led:
         out.append("%s has led <b>%d SYB %s</b>%s." % (e(first), len(led), "trip" if len(led) == 1 else "trips",
-                                                      (" and <b>%d travelers</b>" % trav) if trav else ""))
+                                                      (" in <b>%d countries</b>" % nc) if nc > 1 else ""))
     else:
         out.append("%s leads active and social group trips for SYB." % e(first))
     if up:
@@ -291,12 +383,25 @@ def chat_row(prof, chats, where):
 def hero(key, prof, data, reel, chats):
     first = prof["first"]
     n = len(reel)
-    slides = []
-    for i, (url, cap, alt, pos) in enumerate(reel):
-        if i == 0:
-            slides.append('<figure class="syl-slide is-on" data-cap="%s"><img src="%s" alt="%s" fetchpriority="high" style="--pos:%s"></figure>' % (e(cap), e(url), e(alt), pos))
+    slides, has_yt, has_video = [], False, False
+    for i, r in enumerate(reel):
+        url, cap, alt, pos = r[:4]
+        x = r[4] if len(r) > 4 else {}
+        on = ' class="syl-slide is-on"' if i == 0 else ' class="syl-slide"'
+        hide = "" if i == 0 else ' aria-hidden="true"'
+        src = ('src="%s" fetchpriority="high"' % e(url)) if i == 0 else ('data-src="%s"' % e(url))
+        if x.get("yt"):
+            has_yt = True
+            slides.append('<figure%s data-cap="%s" data-yt="%s" data-dur="8"%s><img %s alt="%s" style="--pos:%s">'
+                          '<button class="syl-play" type="button" data-syl="video-play" aria-label="Play %s">%s</button></figure>' % (
+                              on, e(cap), e(x["yt"]), hide, src, e(alt), pos, e(alt), ICON_PLAY))
+        elif x.get("video"):
+            has_video = True
+            vsrc = ('src="%s" autoplay' % e(x["video"])) if i == 0 else ('data-src="%s"' % e(x["video"]))
+            slides.append('<figure%s data-cap="%s"%s%s><video %s poster="%s" muted playsinline loop preload="none" aria-label="%s" style="--pos:%s"></video></figure>' % (
+                on, e(cap), (' data-dur="%s"' % x["dur"]) if x.get("dur") else "", hide, vsrc, e(url), e(alt), pos))
         else:
-            slides.append('<figure class="syl-slide" data-cap="%s" aria-hidden="true"><img data-src="%s" alt="%s" style="--pos:%s"></figure>' % (e(cap), e(url), e(alt), pos))
+            slides.append('<figure%s data-cap="%s"%s><img %s alt="%s" style="--pos:%s"></figure>' % (on, e(cap), hide, src, e(alt), pos))
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
     btn = ("See %s trips" % poss(first)) if up else "See upcoming trips"
     # first line plain, second in the gradient; a one-name leader (h1 ["", "Maxime."]) gets the gradient line only
@@ -306,13 +411,15 @@ def hero(key, prof, data, reel, chats):
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="@@CSS@@">',
         '<section class="syl syl-hero" id="syl-hero" data-leader="%s">' % key,
         '<div class="syl-hero-grid">',
-        '<div class="syl-reel" data-reel role="region" aria-roledescription="carousel" aria-label="%s in action, %d photos" tabindex="0">' % (e(first), n),
+        '<div class="syl-reel" data-reel role="region" aria-roledescription="carousel" aria-label="%s in action, %d %s" tabindex="0">' % (
+            e(first), n, "photos and videos" if (has_yt or has_video) else "photos"),
         '<div class="syl-bars" aria-hidden="true">%s</div>' % ("<i><b></b></i>" * n),
         '<p class="syl-cap" aria-live="polite">%s</p>' % e(reel[0][1]),
         "\n".join(slides),
         '<button class="syl-tap syl-tap-prev" type="button" aria-label="Previous photo"></button>',
         '<button class="syl-tap syl-tap-next" type="button" aria-label="Next photo"></button>',
         '<button class="syl-pause" type="button" aria-label="Pause the photos">%s</button>' % ICON_PAUSE,
+        ('<button class="syl-yt-close" type="button" aria-label="Close the video">%s</button>' % ICON_CLOSE) if has_yt else "",
         '</div>',
         '<div class="syl-hero-copy">',
         '<p class="syl-role">%s</p>' % e(role(prof)),
@@ -327,6 +434,7 @@ def hero(key, prof, data, reel, chats):
         '<p class="syl-lede"%s>%s</p>' % ("" if prof.get("lede") else " data-lede", lede(data, prof)),
         '<div class="syl-actions">',
         '<a class="syl-btn" data-syl="hero-trips" href="#syl-trips">%s</a>' % e(btn),
+        ('<a class="syl-btn syl-btn-ghost syl-watch" href="#syl-hero" data-watch data-syl="video-hero">%sWatch video</a>' % ICON_PLAY) if has_yt else "",
         '<button class="syl-btn syl-btn-ghost" type="button" data-syl="share-hero" data-share>Share</button>',
         '</div>',
         '</div>',
@@ -406,35 +514,28 @@ def reviews(key, prof, data, feature_img):
     return "\n".join(out)
 
 
-def led_item(o):
-    s = day(o["start"])
-    inner = ('<span class="syl-led-when">%s %d</span><span class="syl-led-what"><strong>%s</strong><span>%s</span></span>'
-             '<span class="syl-led-n">%s</span>') % (MON[s.month - 1], s.year, e(o["trip"]), e(o["place"]),
-                                                     ("<b>%d</b>travelers" % o["travelers"]) if o.get("travelers") else "")
-    if o.get("page"):
-        return '<li><a href="%s" data-syl="led-%s-%s">%s</a></li>' % (e(o["page"]), slug(o["tag"]), o["start"][:7], inner)
-    return "<li><span>%s</span></li>" % inner
-
-
 def about(key, prof, data, about_img):
     first = prof["first"]
     led = data["led"]
-    trav = sum(o.get("travelers", 0) for o in led)
-    places = len({o["place"] for o in led if o.get("place")})
+    cs = countries(led)
     if about_img:
         side = '<figure class="syl-about-photo"><img src="%s" alt="%s" loading="lazy" style="--pos:50%% 25%%"></figure>' % (e(about_img[0]), e(about_img[1]))
     else:
         where = prof.get("where") or (("%s, based in %s" % (role(prof), prof["city"])) if prof.get("city") else role(prof))
         side = ('<aside class="syl-stats"><p class="syl-stats-t">%s</p><p class="syl-stats-where">%s</p>'
-                '<dl data-stats-nums%s><div><dt>trips led</dt><dd data-stat="led">%d</dd></div><div><dt>travelers</dt><dd data-stat="travelers">%d</dd></div>'
-                '<div><dt>destinations</dt><dd data-stat="places">%d</dd></div></dl></aside>') % (
-                    e(prof["title"]), e(where), "" if led else " hidden", len(led), trav, places)
+                '<dl data-stats-nums%s><div><dt>trips led</dt><dd data-stat="led">%d</dd></div><div><dt>countries</dt><dd data-stat="countries">%d</dd></div>'
+                '<div><dt>leading since</dt><dd data-stat="since">%s</dd></div></dl></aside>') % (
+                    e(prof["title"]), e(where), "" if led else " hidden", len(led), len(cs), since(led))
     bio = prof["bio"]
     qa = "".join("<div><dt>%s</dt><dd>%s</dd></div>" % (e(q), e(a)) for q, a, _src in prof["qa"])
     qa += "<div><dt>What are your specialties?</dt><dd><ul class=\"syl-chips\">%s</ul></dd></div>" % "".join("<li>%s</li>" % e(c) for c in prof["chips"])
-    ledbox = ('<div data-led-box%s><h3 class="syl-led-h">Trips %s has led</h3><p class="syl-led-sum" data-led-sum>%d %s, %d travelers so far.</p>'
-              '<ol class="syl-led" data-led>%s</ol></div>') % ("" if led else " hidden", e(first), len(led), "trip" if len(led) == 1 else "trips", trav,
-                                                             "".join(led_item(o) for o in led))
+    nled = len(led)
+    ledbox = ('<div data-led-box%s><h3 class="syl-led-h">Trips %s has led</h3><p class="syl-led-sum" data-led-sum>%d %s%s so far.</p>'
+              '<ul class="syl-flags" data-led-flags aria-label="Countries"%s>%s</ul>'
+              '<ol class="syl-led" data-led>%s</ol>'
+              '<button class="syl-btn syl-btn-ghost syl-led-all" type="button" data-led-all data-total="%d" aria-expanded="false" data-syl="led-all" hidden>See all %d trips</button></div>') % (
+                  "" if led else " hidden", e(first), nled, "trip" if nled == 1 else "trips", (" in %d countries" % len(cs)) if len(cs) > 1 else "",
+                  "" if len(cs) > 1 else " hidden", flags_html(cs), led_rows(led), nled, nled)
     return "\n".join([
         '<section class="syl syl-about" id="syl-about"><div class="syl-wrap">',
         '<h2 class="syl-h"><span>Meet</span><span class="syl-g">%s.</span></h2>' % e(first),

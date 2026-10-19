@@ -1,0 +1,481 @@
+{
+ "_about": "Trips led before HQ's own records (history.json starts in 2023), added Oct 19 2026 for current team members only. build-leaders.py merges these into the trip history at build time. Sources: the HQ 2020, 2021 and 2022 tabs (ALL STAFF column, trips that ran), GHL trip tags (they tag guests too, so on their own they only count for Mantas, the founder), and lists sent by leaders. No guest data and no traveler numbers. date: month or year when the exact days are not known, none when there is no date at all. To fix a trip, edit it here.",
+ "trips": {
+  "Cuba Mar '17": {
+   "trip": "",
+   "dest": "Cuba",
+   "start": "2017-03-01",
+   "end": "2017-03-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): cuba (march 2017)"
+  },
+  "Honduras Apr '17": {
+   "trip": "",
+   "dest": "Honduras",
+   "start": "2017-04-01",
+   "end": "2017-04-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): honduras (april 2017)"
+  },
+  "Nicaragua Dec '17": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2017-12-01",
+   "end": "2017-12-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): nicaragua (december 2017)"
+  },
+  "SYB Academy Mexico '18": {
+   "trip": "",
+   "dest": "Mexico",
+   "start": "2018-01-01",
+   "end": "2018-01-01",
+   "leaders": [
+    "Sarah W."
+   ],
+   "note": "SYB Academy",
+   "date": "year",
+   "src": "Sarah White's list (Oct 2026); GHL tag syb academy 2018"
+  },
+  "Mexico May '18": {
+   "trip": "",
+   "dest": "Mexico",
+   "start": "2018-05-01",
+   "end": "2018-05-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): mexico (may 2018)"
+  },
+  "Morocco Jun '18": {
+   "trip": "",
+   "dest": "Morocco",
+   "start": "2018-06-01",
+   "end": "2018-06-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): morocco (june 2018)"
+  },
+  "Iceland Jul '18": {
+   "trip": "",
+   "dest": "Iceland",
+   "start": "2018-07-01",
+   "end": "2018-07-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): iceland (july 2018)"
+  },
+  "Ibiza Aug '18 week 2": {
+   "trip": "",
+   "dest": "Ibiza",
+   "start": "2018-08-02",
+   "end": "2018-08-02",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "note": "Week 2",
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): ibiza (august 2018) - week 2"
+  },
+  "Miami Nov '18": {
+   "trip": "",
+   "dest": "Miami",
+   "start": "2018-11-01",
+   "end": "2018-11-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): miami (november 2018)"
+  },
+  "Costa Rica Dec '18": {
+   "trip": "",
+   "dest": "Costa Rica",
+   "start": "2018-12-01",
+   "end": "2018-12-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): costa rica (december 2018)"
+  },
+  "SYB Academy Mexico '19": {
+   "trip": "",
+   "dest": "Mexico",
+   "start": "2019-01-01",
+   "end": "2019-01-01",
+   "leaders": [
+    "Sarah W."
+   ],
+   "note": "SYB Academy",
+   "date": "year",
+   "src": "Sarah White's list (Oct 2026); GHL tag syb academy 2019"
+  },
+  "SYB Academy Nicaragua '19": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2019-01-01",
+   "end": "2019-01-01",
+   "leaders": [
+    "Sarah W."
+   ],
+   "note": "SYB Academy",
+   "date": "year",
+   "src": "Sarah White's list (Oct 2026); GHL tag syb academy 2019"
+  },
+  "Philippines Feb '19": {
+   "trip": "",
+   "dest": "Philippines",
+   "start": "2019-02-01",
+   "end": "2019-02-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): philippines (feb 2019)"
+  },
+  "Sayulita May '19": {
+   "trip": "",
+   "dest": "Mexico",
+   "start": "2019-05-01",
+   "end": "2019-05-01",
+   "leaders": [
+    "Sarah W."
+   ],
+   "place": "Sayulita, Mexico",
+   "date": "month",
+   "src": "Sarah White's list (Oct 2026); GHL tag mexico (may 2019)"
+  },
+  "Iceland Jul '19": {
+   "trip": "",
+   "dest": "Iceland",
+   "start": "2019-07-01",
+   "end": "2019-07-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): iceland (july 2019)"
+  },
+  "Croatia Aug '19 week 1": {
+   "trip": "",
+   "dest": "Croatia",
+   "start": "2019-08-01",
+   "end": "2019-08-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "note": "Week 1",
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): croatia (august 2019) - week 1"
+  },
+  "Croatia Aug '19 week 3": {
+   "trip": "",
+   "dest": "Croatia",
+   "start": "2019-08-03",
+   "end": "2019-08-03",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "note": "Week 3",
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): croatia (august 2019) - week 3"
+  },
+  "Nicaragua Dec '19": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2019-12-01",
+   "end": "2019-12-01",
+   "leaders": [
+    "Mantas Z."
+   ],
+   "date": "month",
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): nicaragua (december 2019)"
+  },
+  "Academy Nicaragua Feb '20": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2020-02-12",
+   "end": "2020-02-17",
+   "leaders": [
+    "Sarah W."
+   ],
+   "note": "SYB Academy",
+   "src": "HQ 2020 tab, staff: Katie, Eddie, Sarah, Kim; on Sarah White's list"
+  },
+  "Philippines Feb '20": {
+   "trip": "",
+   "dest": "Philippines",
+   "start": "2020-02-16",
+   "end": "2020-02-23",
+   "leaders": [
+    "Mantas Z.",
+    "Mike S.",
+    "Adam F."
+   ],
+   "src": "HQ 2020 tab: staff and flights (Mantas, Shriner); Adam Frater listed 'not specific' and Philippines is on his own list; GHL philippines (feb 2020) for Mantas and Mike"
+  },
+  "Mexico NYE Dec '20": {
+   "trip": "",
+   "dest": "Mexico",
+   "start": "2020-12-27",
+   "end": "2021-01-02",
+   "leaders": [
+    "Mantas Z.",
+    "Steph C."
+   ],
+   "note": "New Year’s Eve",
+   "src": "HQ 2020 tab: staff, flights booked for Mantas and Steph; GHL mexico (december 2020) for both"
+  },
+  "Croatia Festival Aug '21": {
+   "trip": "Croatia Festival",
+   "dest": "Croatia",
+   "start": "2021-08-16",
+   "end": "2021-08-22",
+   "leaders": [
+    "Mantas Z.",
+    "Juliana T.",
+    "Sarah W."
+   ],
+   "src": "HQ 2021 tab staff: Mantas, Shriner, Juliana, Sarah, Aubrey; GHL croatia (august 2021) for Mantas, Juliana, Sarah (none for Shriner, so he is left out)"
+  },
+  "Mykonos Gulet Aug '21": {
+   "trip": "Mykonos Gulet",
+   "dest": "Greece",
+   "start": "2021-08-28",
+   "end": "2021-09-04",
+   "leaders": [
+    "Mantas Z.",
+    "Steph C."
+   ],
+   "place": "Mykonos, Greece",
+   "src": "HQ 2021 tab staff: Mantas, Steph, Nikki B, Adam Frater; GHL greece (august 2021) for Mantas and Steph; Adam did not list it, so he is left out"
+  },
+  "Nicaragua NYE Dec '21": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2021-12-27",
+   "end": "2022-01-02",
+   "leaders": [
+    "Mantas Z.",
+    "Steph C.",
+    "Juliana T.",
+    "Sarah W.",
+    "Jillian M."
+   ],
+   "note": "New Year’s Eve",
+   "src": "HQ 2021 tab staff (Alex Marks marked cancelled); GHL nicaragua (december 2021) for all five"
+  },
+  "Nicaragua (Remote) Jan '22": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2022-01-02",
+   "end": "2022-01-28",
+   "leaders": [
+    "Mantas Z.",
+    "Steph C.",
+    "Jillian M."
+   ],
+   "note": "Remote month",
+   "src": "HQ 2022 tab staff (Alex Marks marked cancelled); GHL nicaragua (january 2022) for all three"
+  },
+  "Nicaragua Mar '22 week 1": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2022-03-01",
+   "end": "2022-03-01",
+   "leaders": [
+    "Steph C.",
+    "Alex M."
+   ],
+   "note": "Week 1",
+   "date": "month",
+   "src": "HQ 2022 tab staff: Steph, Nikki, Alex Marks; GHL nicaragua (march 2022) for Steph and Alex (the Nikki there is not Nikki Rosado: no tag); HQ gives the month only"
+  },
+  "Nicaragua Mar '22 week 2": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2022-03-02",
+   "end": "2022-03-02",
+   "leaders": [
+    "Steph C.",
+    "Alex M.",
+    "Jillian M.",
+    "Sam K."
+   ],
+   "note": "Week 2",
+   "date": "month",
+   "src": "HQ 2022 tab staff: Steph, Alex Marks, Jill, Sam, Erinn; GHL nicaragua (march 2022) for all four (the Erinn there is not Erin MacLeod: no tag); HQ gives the month only"
+  },
+  "Morocco Jun '22": {
+   "trip": "",
+   "dest": "Morocco",
+   "start": "2022-06-04",
+   "end": "2022-06-11",
+   "leaders": [
+    "Steph C.",
+    "Juliana T."
+   ],
+   "src": "HQ 2022 tab staff; GHL morocco (june 2022) for both"
+  },
+  "Italy Jun '22": {
+   "trip": "",
+   "dest": "Amalfi",
+   "start": "2022-06-25",
+   "end": "2022-07-02",
+   "leaders": [
+    "Steph C."
+   ],
+   "src": "HQ 2022 tab staff: Jenn, Ken, Jared, Steph; GHL italy - amalfi (june 2022) for Steph"
+  },
+  "Kenya Jul '22": {
+   "trip": "",
+   "dest": "Kenya",
+   "start": "2022-07-03",
+   "end": "2022-07-09",
+   "leaders": [
+    "Mantas Z.",
+    "Steph C."
+   ],
+   "src": "HQ 2022 tab staff; GHL kenya (july 2022) for both"
+  },
+  "Ibiza Aug '22": {
+   "trip": "",
+   "dest": "Ibiza",
+   "start": "2022-08-16",
+   "end": "2022-08-22",
+   "leaders": [
+    "Juliana T."
+   ],
+   "src": "HQ 2022 tab staff (the Jenny there is not Jenny Eisenberg: no tag); GHL ibiza (august 2022) for Juliana"
+  },
+  "Croatia Aug '22": {
+   "trip": "",
+   "dest": "Croatia",
+   "start": "2022-08-30",
+   "end": "2022-09-05",
+   "leaders": [
+    "Mantas Z.",
+    "Steph C.",
+    "Alex M.",
+    "Adam F."
+   ],
+   "src": "HQ 2022 tab staff; GHL croatia (august 2022) for Mantas, Steph, Alex; Croatia is on Adam Frater's own list"
+  },
+  "Nicaragua Nov '22": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2022-11-22",
+   "end": "2022-11-27",
+   "leaders": [
+    "Mantas Z.",
+    "Sam K."
+   ],
+   "src": "HQ 2022 tab staff; GHL nicaragua (november 2022) for both"
+  },
+  "Nicaragua NYE Dec '22": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2022-12-27",
+   "end": "2023-01-02",
+   "leaders": [
+    "Mantas Z.",
+    "Mike S.",
+    "Steph C.",
+    "Juliana T."
+   ],
+   "note": "New Year’s Eve",
+   "src": "HQ 2022 tab staff (the Erinn there is not Erin MacLeod: no tag); GHL nicaragua (december 2022) for all four"
+  },
+  "Adam F. Ibiza 1": {
+   "trip": "",
+   "dest": "Ibiza",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026): Ibiza twice; not in HQ records"
+  },
+  "Adam F. Ibiza 2": {
+   "trip": "",
+   "dest": "Ibiza",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026): Ibiza twice; not in HQ records"
+  },
+  "Adam F. Miami": {
+   "trip": "",
+   "dest": "Miami",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026); not in HQ records"
+  },
+  "Adam F. Sayulita": {
+   "trip": "",
+   "dest": "Mexico",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "place": "Sayulita, Mexico",
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026); not in HQ records"
+  },
+  "Adam F. Amalfi 2": {
+   "trip": "",
+   "dest": "Amalfi",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026): Amalfi twice; HQ has Jun 2025 only"
+  },
+  "Adam F. Bali 2": {
+   "trip": "",
+   "dest": "Bali",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026): Bali twice; HQ has Apr 2025 only"
+  }
+ },
+ "add_leaders": {
+  "NICARAGUA (New Years Eve) '23": {
+   "leaders": [
+    "Steph C.",
+    "Mike S."
+   ],
+   "src": "HQ 2023 tab staff lists Steph Currie and Shriner; GHL nicaragua (december 2023) for both"
+  }
+ }
+}

@@ -1745,5 +1745,86 @@
    "name": "syb-finland-husky-sledding.webp",
    "portrait": false
   }
- ]
+ ],
+ "reel": {
+  "_about": "A leader's own reel, in order (Oct 19 2026). squad = their squad photo, about = a photo from 'about', yt = a YouTube short (the poster is YouTube's own vertical thumbnail; nothing loads from YouTube until the play button is pressed), video = a short clip that plays muted (poster = its first frame), otherwise an Easol upload. hold = keep it off the page for now. total = fill up to this many slides with SYB trip photos.",
+  "juliana": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "yt": "AjfpXYrdtiE",
+     "cap": "Press play: meet Juliana",
+     "alt": "Juliana’s SYB video",
+     "pos": "50% 30%"
+    }
+   ],
+   "total": 6
+  },
+  "christian": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "yt": "I-FCuoS71y8",
+     "cap": "Press play: meet Christian",
+     "alt": "Christian’s SYB video",
+     "pos": "50% 30%"
+    }
+   ],
+   "total": 6
+  },
+  "courtney": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "yt": "Iqp_2i7A2_8",
+     "cap": "Press play: meet Courtney",
+     "alt": "Courtney’s SYB video",
+     "pos": "50% 30%"
+    }
+   ],
+   "total": 6
+  },
+  "alex": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "about": "alex-ski",
+     "cap": "Ski week, French Alps",
+     "alt": "Alex Marks in an SYB ski bib and a penguin helmet",
+     "pos": "50% 30%"
+    },
+    {
+     "yt": "_MEsSZz97IE",
+     "cap": "Press play: meet Big Sexy",
+     "alt": "Alex’s SYB video",
+     "pos": "50% 30%"
+    }
+   ],
+   "total": 6
+  },
+  "mantas": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "yt": "UAwpuXNUKVQ",
+     "cap": "Press play: the founder, in 90 seconds",
+     "alt": "Mantas’s SYB interview",
+     "pos": "50% 30%",
+     "hold": true,
+     "note": "private on YouTube Oct 19 2026: visitors would see 'This video is private'; drop hold once it is Unlisted or Public"
+    }
+   ],
+   "total": 6
+  }
+ }
 }
