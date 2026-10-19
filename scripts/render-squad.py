@@ -224,6 +224,7 @@ def page_html(doc):
         '</div>',
         '<ul class="sys-rail" data-sys-rail aria-label="Leader stories">%s</ul>' % "".join(ring(p) for p in people),
         '</div>',
+        '<div class="sys-lineup">',
         '<div class="sys-bar"><div class="sys-chips" data-sys-chips role="group" aria-label="Show leaders">'
         '<button class="sys-chip is-on" type="button" data-f="all" data-syl="squad-filter-all" aria-pressed="true">Everyone</button>'
         '<button class="sys-chip" type="button" data-f="soon" data-syl="squad-filter-soon" aria-pressed="false">Leading soon</button>'
@@ -233,6 +234,9 @@ def page_html(doc):
         '<div class="syl-wrap">',
         '<p class="sys-status" data-sys-status aria-live="polite">All %d leaders</p>' % n,
         '<ul class="sys-grid" data-sys-grid>%s</ul>' % "".join(card(p) for p in people),
+        '</div>',
+        '</div>',
+        '<div class="syl-wrap">',
         ('<div class="sys-team"><h2 class="syl-h sys-h2"><span>The crew behind</span><span class="syl-g">the crew.</span></h2>'
          '<ul>%s</ul></div>' % "".join(team_item(t) for t in doc["team"])) if doc["team"] else "",
         '<div class="sys-end"><h2 class="syl-h"><span>Your crew</span><span class="syl-g">is waiting.</span></h2>'
