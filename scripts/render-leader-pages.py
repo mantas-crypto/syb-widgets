@@ -259,8 +259,8 @@ def lede(data, prof=None):
     trav = sum(o.get("travelers", 0) for o in led)
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
     out = []
-    if prof and not leads(prof):
-        return e(prof["lede"])        # a team member's own line; the page script leaves it alone (no data-lede)
+    if prof and prof.get("lede"):
+        return e(prof["lede"])        # their own line (team members, the founder); the page script leaves it alone (no data-lede)
     if led:
         out.append("%s has led <b>%d SYB %s</b>%s." % (e(first), len(led), "trip" if len(led) == 1 else "trips",
                                                       (" and <b>%d travelers</b>" % trav) if trav else ""))
@@ -324,7 +324,7 @@ def hero(key, prof, data, reel, chats):
         '</div>',
         chat_row(prof, chats, "hero"),
         '</div>',
-        '<p class="syl-lede"%s>%s</p>' % (" data-lede" if leads(prof) else "", lede(data, prof)),
+        '<p class="syl-lede"%s>%s</p>' % ("" if prof.get("lede") else " data-lede", lede(data, prof)),
         '<div class="syl-actions">',
         '<a class="syl-btn" data-syl="hero-trips" href="#syl-trips">%s</a>' % e(btn),
         '<button class="syl-btn syl-btn-ghost" type="button" data-syl="share-hero" data-share>Share</button>',
