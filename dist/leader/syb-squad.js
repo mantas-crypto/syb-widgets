@@ -191,8 +191,15 @@
     return b ? b.getAttribute('data-f') : null;
   }
 
-  /* ---------- names always fit their card ---------- */
+  /* ---------- names always fit their card (and the headline its column) ---------- */
   function fitNames() {
+    var h1 = $('.sys-h1', root);
+    if (h1) {
+      h1.style.removeProperty('font-size');
+      var room = h1.getBoundingClientRect().width, widest = 0;
+      $$('span', h1).forEach(function (s) { var r = document.createRange(); r.selectNodeContents(s); widest = Math.max(widest, r.getBoundingClientRect().width); });
+      if (widest > room && room > 0) h1.style.setProperty('font-size', Math.floor(parseFloat(getComputedStyle(h1).fontSize) * room / widest * 0.97) + 'px', 'important');
+    }
     $$('.sys-name', grid).forEach(function (h) {
       h.style.removeProperty('font-size');
       var avail = h.getBoundingClientRect().width, need = 0;
@@ -214,6 +221,7 @@
     d.setAttribute('role', 'dialog');
     d.setAttribute('aria-modal', 'true');
     d.setAttribute('aria-labelledby', 'sys-st-name');
+    d.tabIndex = -1;
     d.innerHTML = '<button class="sys-st-side sys-st-side-prev" type="button" aria-label="Previous leader">' + ICON.prev + '</button>' +
       '<div class="sys-st-panel"><div class="sys-st-media"></div><div class="sys-st-bars" aria-hidden="true"></div>' +
       '<div class="sys-st-top"><img class="sys-st-av" alt=""><div class="sys-st-who"><p class="sys-st-name" id="sys-st-name"></p><p class="sys-st-label"></p></div>' +
@@ -434,7 +442,7 @@
     document.documentElement.classList.add('sys-lock');
     try { if (!S.pushed) { history.pushState({ sysStory: 1 }, ''); S.pushed = true; } } catch (e) {}
     openLeader(i, 0);
-    $('.sys-st-close', d).focus({ preventScroll: true });
+    d.focus({ preventScroll: true });
   }
   function closeStory(fromHistory) {
     var d = S.el;
