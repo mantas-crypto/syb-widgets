@@ -472,6 +472,19 @@
       ],
       "page": "/trip-leaders/adam-turner",
       "added": "2026-10-19"
+    },
+    "steph": {
+      "name": "Steph Currie",
+      "first": "Steph",
+      "feed": [
+        "Steph C."
+      ],
+      "aliases": [
+        "Steph",
+        "Steph Currie"
+      ],
+      "page": "/management/steph",
+      "added": "2026-10-19"
     }
   }
 }

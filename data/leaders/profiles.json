@@ -1260,6 +1260,45 @@
     "Amalfi Coast",
     "Bali"
    ]
+  },
+  "steph": {
+   "name": "Steph Currie",
+   "first": "Steph",
+   "h1": [
+    "Steph",
+    "Currie."
+   ],
+   "city": "",
+   "ig": "stephcurrrie",
+   "chat": "dm",
+   "title": "Chief Vibe Officer",
+   "role": "SYB chief vibe officer",
+   "where": "SYB chief vibe officer, logistics queen and trip leader",
+   "bio": "You’ve definitely spoken to her on the phone. She’s our logistics queen. Along with coordinating and leading trips, she also takes on SYB’s social media. Steph has an eye for amazing moments and helps push that to you!",
+   "qa": [
+    [
+     "What do you do at SYB?",
+     "Logistics, mostly, plus leading trips. If you’ve booked an SYB trip, you’ve probably talked to me on the phone.",
+     "real"
+    ],
+    [
+     "When did you start leading SYB trips?",
+     "New Year’s Eve in Mexico, 2020. Since then: Kenya, Croatia, Morocco, Italy, Turkey, Japan, Bali and a lot of Nicaragua.",
+     "real"
+    ],
+    [
+     "Favorite SYB moment?",
+     "Safari mornings in Kenya with a crew that met as strangers a few days before.",
+     "placeholder"
+    ]
+   ],
+   "chips": [
+    "Trip logistics",
+    "Kenya safaris",
+    "Croatia island days",
+    "Social media",
+    "Strangers to friends"
+   ]
   }
  },
  "city_chats": {

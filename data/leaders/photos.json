@@ -242,6 +242,14 @@
    "w": 720,
    "h": 900,
    "url": "https://static.myeasol.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjE5NWNiNDY3LWU3YmItNDkyOC04N2U2LTJhODgyY2MwOWY0NiIsInB1ciI6ImJsb2JfaWQifX0=--f7382fbda9f8068768a89d26a2f88040e53d7942/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2xpbWl0IjpbMTE0MCxudWxsXSwic2F2ZXIiOnsic3RyaXAiOnRydWUsInF1YWxpdHkiOjg1fX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c/Adam1.webp"
+  },
+  "steph": {
+   "uuid": "dcc273ba-2e36-4d6f-8f9c-27a0339192e7",
+   "hex": "384484dccb4722e80d6740ba6d6a2c2d7a18ed95",
+   "name": "Steph.webp",
+   "w": 900,
+   "h": 1125,
+   "note": "the portrait used for her on the trip pages (squad page photo is StephCurrie.png, a closer crop of the same shoot)"
   }
  },
  "about": {
@@ -1821,6 +1829,193 @@
      "alt": "Mantas’s SYB interview",
      "pos": "50% 30%",
      "poster": "https://i.ytimg.com/vi/R7mMFah-ovQ/oar2.jpg"
+    }
+   ],
+   "total": 6
+  },
+  "bradford": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjY0Yjg5ZGZhLWFhNjYtNGQ5Zi04YmE3LTU2MzM0Yzk0YTk4NiIsInB1ciI6ImJsb2JfaWQifX0=--2fdf37c6339945c8e8a1aeeb4cc74149c3989b41/bradford-chamonix-snowboard.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjNmMGRkMTg2LTAyNTgtNDVkZi1iMTAxLTAzODYyYzNkZmIzOCIsInB1ciI6ImJsb2JfaWQifX0=--144b8da146c07014295d878f0762c341f148ca19/bradford-chamonix-snowboard-poster.jpg",
+     "dur": 8.7,
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford snowboarding in pink pants",
+     "pos": "50% 40%"
+    },
+    {
+     "yt": "KDY4DtXQHV8",
+     "cap": "Press play: don’t trust this guy",
+     "alt": "Bradford’s SYB video",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "edbf8572-c885-4871-aa0a-12afe1841435",
+     "hex": "4aa9384b8ecbd592020777e257fab2f6f4692e14",
+     "name": "bradford-iceland-crew.jpg",
+     "cap": "Iceland",
+     "alt": "Bradford with his Iceland crew and the SYB flag",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "d0e00eab-dfdb-431f-9154-a8874876f007",
+     "hex": "ff950a2c08aa58422cde5695962c0aa636faaff0",
+     "name": "bradford-chamonix-deckchair.jpg",
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford with a sandwich and a spritz on a deck chair above Chamonix",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "71117a80-c560-4efc-8e37-2abde77c93b8",
+     "hex": "68acf978d16f96f509eb92025bdf1f656a7cc96e",
+     "name": "bradford-iceland-hike.jpg",
+     "cap": "Iceland",
+     "alt": "Bradford on a hike in Iceland, a line of hikers behind him",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "cae61ca5-b897-4137-8e70-e142054b96da",
+     "hex": "465e5569af87a238e8d877027a14409154e8d4ed",
+     "name": "bradford-iceland-midgard.jpg",
+     "cap": "Iceland",
+     "alt": "Bradford and his crew at a base camp in Iceland",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "716daace-f9e2-42fd-be0d-91539abc448f",
+     "hex": "f04fc9dadb9dfc94072603b6f63d986760678682",
+     "name": "bradford-ireland-pub.jpg",
+     "cap": "Ireland",
+     "alt": "Bradford behind the bar at an Irish pub",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "c843dcec-24df-4c88-9a52-4285e4e4d516",
+     "hex": "c879b99f563aa00ba70fecc4cf0f0acd2c2c7c04",
+     "name": "bradford-chamonix-snowboard.jpg",
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford on his snowboard in pink pants",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "584c0cde-0063-4c11-8d4d-d95244aec96b",
+     "hex": "13fbe9569ffbaa5727832cc25bd03fa4ed25b148",
+     "name": "bradford-iceland-vik.jpg",
+     "cap": "Iceland",
+     "alt": "Bradford with lupines and a church behind him in Iceland",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "34816930-70b8-469e-a1ce-a77c142bb683",
+     "hex": "2a2759694622c405786c6d4076701a7ca1987f3b",
+     "name": "bradford-chamonix-pose.jpg",
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford in the snow with a friend in a retro ski suit",
+     "pos": "45% 50%"
+    },
+    {
+     "uuid": "31fe2f8c-d6c4-457f-8671-a700b7e2de48",
+     "hex": "79087811831cf46dcbaa2323b08709169bb81cd7",
+     "name": "bradford-chamonix-crew.jpg",
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford’s ski crew by the gondola",
+     "pos": "50% 50%"
+    },
+    {
+     "uuid": "9bd287b6-91f1-4482-8bb9-650bf5fb5e25",
+     "hex": "bac39a491050474e881b3177059a83c56752d698",
+     "name": "bradford-cold-plunge.jpg",
+     "cap": "Cold plunge",
+     "alt": "Bradford and two friends in the sea",
+     "pos": "50% 50%"
+    },
+    {
+     "uuid": "de72a86c-ce33-4c76-914c-7a28b0b59e4d",
+     "hex": "9775931ff2341ad55ad97b13be1ebde2bc831ca1",
+     "name": "bradford-hike-day.jpg",
+     "cap": "Hike day",
+     "alt": "Bradford on a steep, misty trail",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "d1ff907d-5908-4509-a2f3-2c07cf19f01a",
+     "hex": "a45c3047ba06d71811a6b21655d1728de3e2bff7",
+     "name": "bradford-chamonix-slopes.jpg",
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford and his crew taking a selfie on the slopes",
+     "pos": "50% 50%"
+    },
+    {
+     "uuid": "572cd701-2988-401a-98c4-46cbe2f1ac0b",
+     "hex": "a6570262882a0f790e43cf2c3df0072616a74674",
+     "name": "bradford-chamonix-apres.jpg",
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford in an SYB hoodie, raising a beer",
+     "pos": "50% 35%"
+    },
+    {
+     "uuid": "0fc990da-696e-41c6-8a7d-2225705ce97f",
+     "hex": "1eb31dbefc50c13c81782396a56635b87cfc899b",
+     "name": "bradford-chamonix-cheers.jpg",
+     "cap": "Chamonix, French Alps",
+     "alt": "Bradford on a deck chair, drinking from a bottle",
+     "pos": "55% 40%"
+    },
+    {
+     "uuid": "3274b73f-e6da-4233-9114-899d7fe67cf7",
+     "hex": "2c08763b68c86c9b97fb3d2da13734839b5d5be1",
+     "name": "bradford-syb-friends.jpg",
+     "cap": "SYB friends",
+     "alt": "Bradford with a friend in an SYB tee",
+     "pos": "35% 40%"
+    },
+    {
+     "uuid": "aefafcfe-cee9-452d-b0f8-70b1c4c81469",
+     "hex": "26ee38542cb7886b1509ccc893473c7d0d241381",
+     "name": "bradford-wheels-up.jpg",
+     "cap": "Wheels up",
+     "alt": "Bradford on the plane with a hot dog",
+     "pos": "50% 45%"
+    }
+   ]
+  },
+  "adam": {
+   "slides": [
+    {
+     "uuid": "90934307-f8cf-40e1-8e82-f1c9d37a521c",
+     "hex": "239bbd72a958897536341513532e9ca7b217615c",
+     "name": "adam-frater-boat.jpg",
+     "cap": "Hi, I’m Adam.",
+     "alt": "Adam Frater on a boat in red swim shorts",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "18742f77-edfc-45a7-aa4f-874cd20b3bbf",
+     "hex": "11a07c8d73482d25e9a52cd2b651791164607ed4",
+     "name": "adam-frater-skogafoss.jpg",
+     "cap": "Skógafoss, Iceland",
+     "alt": "Adam at the foot of Skógafoss waterfall",
+     "pos": "50% 50%"
+    },
+    {
+     "squad": true,
+     "cap": "Boat day"
+    }
+   ],
+   "total": 6
+  },
+  "holly": {
+   "slides": [
+    {
+     "uuid": "c40cd8d2-ad95-4dd8-9e03-d5fb745f0c4a",
+     "hex": "dc4c8ea1184e4622f7919c0bb1bd21b20d146362",
+     "name": "holly-lippman-nicaragua.jpg",
+     "cap": "Hi, I’m Holly.",
+     "alt": "Holly Lippman on the beach in Nicaragua with the SYB banner",
+     "pos": "50% 62%"
     }
    ],
    "total": 6
