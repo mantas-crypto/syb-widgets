@@ -11,7 +11,7 @@ filled in when the block is saved.
 | 1-hero.html | Leader page - Hero | loads the fonts and dist/leader/syb-leader.min.css; the story reel |
 | 2-trips.html | Leader page - Upcoming trips | saved trip cards with photos; live spots and prices fill in after the page opens |
 | 3-reviews.html | Leader page - Trip reviews | the big quote is fixed; the cards come from the data file |
-| 4-about.html | Leader page - Meet the leader | Q&A, what they bring, trips led |
+| 4-about.html | Leader page - Meet the leader | Q&A, what they bring, trips led (by year, a flag per country, See all after 6) |
 | 5-end.html | Leader page - End | |
 | head.html | page Inject code | tracking, share button, loads dist/leader/syb-leader.min.js |
 
@@ -39,6 +39,14 @@ commit when the blocks are saved. pages/erin is the hand-made original those tem
 Per person, profiles.json can also set: `role` (the line above the name, default "SYB trip leader"), `leads: false`
 (team members who do not lead trips: Travel with SYB), `lede` (a fixed line under the name that the script leaves alone),
 `where` (the line under their title) and an empty `city`. photos.json squad[key].url can point at Easol's resized copy.
+
+photos.json `reel` (Oct 19 2026) gives a leader their own story reel, in order: their squad photo, photos they sent
+(uploaded to Easol), a YouTube short (`yt`, poster = YouTube's vertical thumbnail; the player only loads when the play
+button is pressed, and a Watch video button appears in the hero) or a short clip (`video`, plays muted, `dur` seconds).
+`hold` keeps a slide off the page (a private YouTube video shows "This video is private" to visitors).
+
+Trips led never show how many people travelled (Oct 19 2026). Trips before 2023 come from
+data/leaders/older-trips.json (HQ 2020-2022 tabs, GHL trip tags for Mantas, leaders' own lists); fix one there.
 
 A new leader: add them to leaders.json, profiles.json and photos.json (squad photo), run
 `python3 scripts/build-leaders.py` and `python3 scripts/render-leader-pages.py <key>`, then save the five

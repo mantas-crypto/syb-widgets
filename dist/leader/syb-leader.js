@@ -520,7 +520,12 @@
       sync();
     });
     $$('.syl-play', root).forEach(function (b) {
-      b.addEventListener('click', function (e) { e.stopPropagation(); playYT(slides.indexOf(b.closest('.syl-slide'))); });
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var k = slides.indexOf(b.closest('.syl-slide'));
+        if (k !== i) show(k);
+        playYT(k);
+      });
     });
     var close = $('.syl-yt-close', root);
     if (close) close.addEventListener('click', function (e) { e.stopPropagation(); stopYT(); sync(); });

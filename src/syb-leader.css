@@ -143,6 +143,7 @@ body:has(.syl-hero) #overview-line,body:has(.syl-hero) #syb-whatsapp{display:non
 .syl .syl-play{position:absolute;left:50%;top:50%;z-index:4;width:76px;height:76px;margin:-38px 0 0 -38px;display:grid;place-items:center;border-radius:50%;background:rgba(0,0,0,.5);border:1.5px solid rgba(244,242,238,.85);color:var(--ink);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .2s}
 .syl .syl-play svg{width:28px;height:28px;margin-left:4px;fill:currentColor}
 .syl .syl-play:active{transform:scale(.94)}
+.syl .syl-slide:not(.is-on) .syl-play{pointer-events:none}
 .syl .syl-yt-frame{position:absolute;inset:0;z-index:6;width:100%;height:100%;border:0;background:#000}
 .syl .syl-yt-close{display:none;position:absolute;top:20px;right:8px;z-index:7;width:36px;height:36px;place-items:center;border-radius:50%;background:rgba(0,0,0,.55);color:var(--ink)}
 .syl .syl-yt-close svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.4;fill:none}
