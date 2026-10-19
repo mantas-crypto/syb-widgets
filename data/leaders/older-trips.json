@@ -23,6 +23,39 @@
    "date": "month",
    "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): honduras (april 2017)"
   },
+  "Belize Jul '17": {
+   "trip": "",
+   "dest": "Belize",
+   "start": "2017-07-01",
+   "end": "2017-07-01",
+   "leaders": [
+    "Mike S."
+   ],
+   "date": "month",
+   "src": "GHL trip tag belize (july 2017); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Cuba Oct '17": {
+   "trip": "",
+   "dest": "Cuba",
+   "start": "2017-10-01",
+   "end": "2017-10-01",
+   "leaders": [
+    "Mike S."
+   ],
+   "date": "month",
+   "src": "GHL trip tag cuba (october 2017); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Nicaragua Nov '17": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2017-11-01",
+   "end": "2017-11-01",
+   "leaders": [
+    "Bradford"
+   ],
+   "date": "month",
+   "src": "GHL trip tag nicaragua (november 2017); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
   "Nicaragua Dec '17": {
    "trip": "",
    "dest": "Nicaragua",
@@ -40,11 +73,12 @@
    "start": "2018-01-01",
    "end": "2018-01-01",
    "leaders": [
-    "Sarah W."
+    "Sarah W.",
+    "Juliana T."
    ],
    "note": "SYB Academy",
    "date": "year",
-   "src": "Sarah White's list (Oct 2026); GHL tag syb academy 2018"
+   "src": "Sarah White's list (Oct 2026); GHL tag syb academy 2018; Juliana T.: GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
   },
   "Mexico May '18": {
    "trip": "",
@@ -56,6 +90,17 @@
    ],
    "date": "month",
    "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): mexico (may 2018)"
+  },
+  "Italy Jun '18": {
+   "trip": "",
+   "dest": "Amalfi",
+   "start": "2018-06-01",
+   "end": "2018-06-01",
+   "leaders": [
+    "Mike S."
+   ],
+   "date": "month",
+   "src": "GHL trip tag italy - amalfi (june 2018); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
   },
   "Morocco Jun '18": {
    "trip": "",
@@ -85,11 +130,23 @@
    "start": "2018-08-02",
    "end": "2018-08-02",
    "leaders": [
-    "Mantas Z."
+    "Mantas Z.",
+    "Juliana T."
    ],
    "note": "Week 2",
    "date": "month",
-   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): ibiza (august 2018) - week 2"
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): ibiza (august 2018) - week 2; Juliana T.: GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Belize Nov '18": {
+   "trip": "",
+   "dest": "Belize",
+   "start": "2018-11-01",
+   "end": "2018-11-01",
+   "leaders": [
+    "Mike S."
+   ],
+   "date": "month",
+   "src": "GHL trip tag belize (november 2018); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
   },
   "Miami Nov '18": {
    "trip": "",
@@ -97,10 +154,11 @@
    "start": "2018-11-01",
    "end": "2018-11-01",
    "leaders": [
-    "Mantas Z."
+    "Mantas Z.",
+    "Mike S."
    ],
    "date": "month",
-   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): miami (november 2018)"
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): miami (november 2018); Mike S.: GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
   },
   "Costa Rica Dec '18": {
    "trip": "",
@@ -148,6 +206,28 @@
    "date": "month",
    "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): philippines (feb 2019)"
   },
+  "Costa Rica Mar '19": {
+   "trip": "",
+   "dest": "Costa Rica",
+   "start": "2019-03-01",
+   "end": "2019-03-01",
+   "leaders": [
+    "Juliana T."
+   ],
+   "date": "month",
+   "src": "GHL trip tag costa rica (march 2019); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Nicaragua Apr '19": {
+   "trip": "",
+   "dest": "Nicaragua",
+   "start": "2019-04-01",
+   "end": "2019-04-01",
+   "leaders": [
+    "Mike S."
+   ],
+   "date": "month",
+   "src": "GHL trip tag nicaragua (april 2019); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
   "Sayulita May '19": {
    "trip": "",
    "dest": "Mexico",
@@ -159,6 +239,18 @@
    "place": "Sayulita, Mexico",
    "date": "month",
    "src": "Sarah White's list (Oct 2026); GHL tag mexico (may 2019)"
+  },
+  "Italy Jun '19": {
+   "trip": "",
+   "dest": "Amalfi",
+   "start": "2019-06-01",
+   "end": "2019-06-01",
+   "leaders": [
+    "Mike S.",
+    "Bradford"
+   ],
+   "date": "month",
+   "src": "GHL trip tag italy - amalfi (june 2019); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
   },
   "Iceland Jul '19": {
    "trip": "",
@@ -183,6 +275,42 @@
    "date": "month",
    "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): croatia (august 2019) - week 1"
   },
+  "Ibiza Aug '19 week 1": {
+   "trip": "",
+   "dest": "Ibiza",
+   "start": "2019-08-01",
+   "end": "2019-08-01",
+   "leaders": [
+    "Mike S."
+   ],
+   "note": "Week 1",
+   "date": "month",
+   "src": "GHL trip tag ibiza (august 2019) - week 1; GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Croatia Aug '19 week 2": {
+   "trip": "",
+   "dest": "Croatia",
+   "start": "2019-08-02",
+   "end": "2019-08-02",
+   "leaders": [
+    "Juliana T."
+   ],
+   "note": "Week 2",
+   "date": "month",
+   "src": "GHL trip tag croatia (august 2019) - week 2; GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Ibiza Aug '19 week 2": {
+   "trip": "",
+   "dest": "Ibiza",
+   "start": "2019-08-02",
+   "end": "2019-08-02",
+   "leaders": [
+    "Juliana T."
+   ],
+   "note": "Week 2",
+   "date": "month",
+   "src": "GHL trip tag ibiza (august 2019) - week 2; GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
   "Croatia Aug '19 week 3": {
    "trip": "",
    "dest": "Croatia",
@@ -195,16 +323,40 @@
    "date": "month",
    "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): croatia (august 2019) - week 3"
   },
+  "Portugal Aug '19": {
+   "trip": "",
+   "dest": "Portugal",
+   "start": "2019-08-05",
+   "end": "2019-08-05",
+   "leaders": [
+    "Mike S."
+   ],
+   "date": "month",
+   "src": "GHL trip tag portugal (august 2019); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Miami Nov '19": {
+   "trip": "",
+   "dest": "Miami",
+   "start": "2019-11-01",
+   "end": "2019-11-01",
+   "leaders": [
+    "Mike S.",
+    "Juliana T."
+   ],
+   "date": "month",
+   "src": "GHL trip tag miami (november 2019); GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
   "Nicaragua Dec '19": {
    "trip": "",
    "dest": "Nicaragua",
    "start": "2019-12-01",
    "end": "2019-12-01",
    "leaders": [
-    "Mantas Z."
+    "Mantas Z.",
+    "Juliana T."
    ],
    "date": "month",
-   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): nicaragua (december 2019)"
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): nicaragua (december 2019); Juliana T.: GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
   },
   "Academy Nicaragua Feb '20": {
    "trip": "",
@@ -396,10 +548,33 @@
     "Mantas Z.",
     "Mike S.",
     "Steph C.",
-    "Juliana T."
+    "Juliana T.",
+    "Bradford"
    ],
    "note": "New Year’s Eve",
-   "src": "HQ 2022 tab staff (the Erinn there is not Erin MacLeod: no tag); GHL nicaragua (december 2022) for all four"
+   "src": "HQ 2022 tab staff (the Erinn there is not Erin MacLeod: no tag); GHL nicaragua (december 2022) for all four; Bradford: GHL trip tag; Mantas confirmed Oct 19 2026 that Shriner, Juliana and Bradford led the trips GHL shows for them"
+  },
+  "Adam F. Amalfi 2": {
+   "trip": "",
+   "dest": "Amalfi",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026): Amalfi twice; HQ has Jun 2025 only"
+  },
+  "Adam F. Bali 2": {
+   "trip": "",
+   "dest": "Bali",
+   "start": "",
+   "end": "",
+   "leaders": [
+    "Adam F."
+   ],
+   "date": "none",
+   "src": "Adam Frater's list (Oct 2026): Bali twice; HQ has Apr 2025 only"
   },
   "Adam F. Ibiza 1": {
    "trip": "",
@@ -445,28 +620,6 @@
    "place": "Sayulita, Mexico",
    "date": "none",
    "src": "Adam Frater's list (Oct 2026); not in HQ records"
-  },
-  "Adam F. Amalfi 2": {
-   "trip": "",
-   "dest": "Amalfi",
-   "start": "",
-   "end": "",
-   "leaders": [
-    "Adam F."
-   ],
-   "date": "none",
-   "src": "Adam Frater's list (Oct 2026): Amalfi twice; HQ has Jun 2025 only"
-  },
-  "Adam F. Bali 2": {
-   "trip": "",
-   "dest": "Bali",
-   "start": "",
-   "end": "",
-   "leaders": [
-    "Adam F."
-   ],
-   "date": "none",
-   "src": "Adam Frater's list (Oct 2026): Bali twice; HQ has Apr 2025 only"
   }
  },
  "add_leaders": {
