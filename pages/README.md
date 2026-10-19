@@ -48,6 +48,10 @@ button is pressed, and a Watch video button appears in the hero) or a short clip
 Trips led never show how many people travelled (Oct 19 2026). Trips before 2023 come from
 data/leaders/older-trips.json (HQ 2020-2022 tabs, GHL trip tags for Mantas, leaders' own lists); fix one there.
 
+Saving the blocks: paste scripts/easol-deploy-helper.js into a signed-in Easol admin tab, then
+`SYN.setPin('<commit>')` and `await SYN.deploy('trip-leaders/<key>', '<key>')` per page (it reuses the five named
+blocks, adds missing ones, hides the squad page's own two blocks and saves the Inject code).
+
 A new leader: add them to leaders.json, profiles.json and photos.json (squad photo), run
 `python3 scripts/build-leaders.py` and `python3 scripts/render-leader-pages.py <key>`, then save the five
 blocks and the Inject code on their squad page (leaders.json `page`).
