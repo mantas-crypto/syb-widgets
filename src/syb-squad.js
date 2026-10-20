@@ -189,7 +189,7 @@
     statusEl.innerHTML = s;
     if (!quiet) {
       try { history.replaceState(history.state, '', f === 'all' ? location.pathname + location.search : '#' + f.replace(/^c:/, '').toLowerCase().replace(/[^a-z]+/g, '-')); } catch (e) {}
-      var top = statusEl.getBoundingClientRect().top;
+      var top = grid.getBoundingClientRect().top;       // the status line is for screen readers only
       var bar = $('.sys-bar', root), bh = bar ? bar.getBoundingClientRect().bottom : 0;
       if (top < bh || top > window.innerHeight * 0.6) window.scrollTo({ top: window.pageYOffset + top - bh - 12, behavior: 'smooth' });
     }

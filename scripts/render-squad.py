@@ -182,10 +182,14 @@ def ring(p):
         u = p["up"][0]
         if datetime.date.fromisoformat(u["s"]) <= TODAY <= datetime.date.fromisoformat(u["e"]):
             now = '<span class="sys-ring-now">On a trip</span>'
+    img = '<img src="%s" alt="" loading="lazy" decoding="async">' % e(p["av"])
+    if p.get("avzoom"):           # photos.json "ring": a face photo, zoomed in (the circles are small)
+        img = '<span class="sys-ring-crop"><img src="%s" alt="" loading="lazy" decoding="async" style="--o:%s;--z:%s"></span>' % (
+            e(p["av"]), p["avpos"], p["avzoom"])
     return ('<li><button class="sys-ring" type="button" data-story="%s" data-syl="squad-story-%s" aria-label="Watch %s’s story">'
-            '<span class="sys-ring-pic"><img src="%s" alt="" loading="lazy" decoding="async">%s</span>'
+            '<span class="sys-ring-pic">%s%s</span>'
             '<span class="sys-ring-name">%s</span></button></li>') % (
-        p["key"], p["key"], e(p["first"]), e(p["av"]), now, e(p["short"]))
+        p["key"], p["key"], e(p["first"]), img, now, e(p["short"]))
 
 
 def chips(people):
@@ -224,7 +228,6 @@ def page_html(doc):
         '<section class="syl sys" id="sys" data-squad>',
         '<div class="sys-top">',
         '<div class="syl-wrap sys-hero">',
-        '<p class="syl-role"><span><span data-sys-n>%d</span> leaders, one crew</span></p>' % n,
         '<h1 class="syl-name sys-h1"><span>Meet the</span> <span class="syl-g">leaders.</span></h1>',
         '<p class="sys-lede">They run the trips, start the parties and turn a group of strangers into a crew. '
         'Tap a face to see them in action.</p>',
@@ -239,7 +242,7 @@ def page_html(doc):
         '<button class="sys-chip" type="button" data-f="hq" data-syl="squad-filter-hq" aria-pressed="false">SYB HQ</button>'
         '<span class="sys-chip-sep" aria-hidden="true"></span><span data-sys-places>%s</span></div></div>' % chips(people),
         '<div class="syl-wrap">',
-        '<p class="sys-status" data-sys-status aria-live="polite">%s</p>' % status_all(n, doc["team"]),
+        '<p class="sys-status syl-sr" data-sys-status aria-live="polite">%s</p>' % status_all(n, doc["team"]),
         '<ul class="sys-grid" data-sys-grid>%s</ul>' % "".join(card(p) for p in people + doc["team"]),
         '</div>',
         '</div>',
@@ -256,7 +259,8 @@ def page_html(doc):
 def main():
     conf = load(os.path.join(DATA, "leaders.json"))["leaders"]
     profs = load(os.path.join(DATA, "profiles.json"))["leaders"]
-    photos = load(os.path.join(DATA, "photos.json"))["squad"]
+    phdoc = load(os.path.join(DATA, "photos.json"))
+    photos, about, rings = phdoc["squad"], phdoc.get("about", {}), phdoc.get("ring", {})
     people, team = [], []
     for key, c in conf.items():
         prof, sq = profs[key], photos[key]
@@ -264,6 +268,9 @@ def main():
         item = {"key": key, "name": prof["name"], "first": prof["first"], "h1": [x for x in prof["h1"]],
                 "page": c["page"], "label": label_of(prof, tags), "tags": tags, "city": prof.get("city", ""),
                 "av": sized(sq, 405)}
+        r = rings.get(key)
+        if r:                             # a face photo for the small circle (and the story header)
+            item.update({"av": sized(about[r["about"]], 405), "avpos": r.get("pos", "50% 30%"), "avzoom": r.get("zoom", 1)})
         item.update({"img": sized(sq, 540), "pos": "50% 30%" if sq.get("h", 1) >= sq.get("w", 1) else "50% 40%"})
         if "lead" not in tags:          # SYB HQ, not a trip leader: a card, no story
             team.append(item)
