@@ -230,7 +230,20 @@ def plan_photos(key, prof, data, ph, card_trips):
         a2 = ph.doc["about"]["alex-ski"]
         reel.append((blob_url(a2), "Ski week, French Alps", "Alex Marks in an SYB ski bib and a penguin helmet", "50% 30%"))
     target = None
+    tags = leader_tags(data)
+    general = not tags
+    if general:
+        tags = GENERAL_PHOTOS
     own = (ph.doc.get("reel") or {}).get(key)
+    if own and own.get("hold_pool"):
+        # Keep the trip photos this page's reel had before it got its own photos, so no other page's photos move
+        # (photos.json reel[key].hold_pool, Sara and Danielle, Oct 19 2026). Same picks as the default reel below.
+        n, i = len(reel), 0
+        while n < 6 and i < 30 and tags:
+            p = ph.pick(tags[i % len(tags)], taken, portrait=True)
+            i += 1
+            if p:
+                n += 1
     if own:                       # their own photos and videos (photos.json "reel"), in their order
         reel = []
         for x in own["slides"]:
@@ -251,10 +264,6 @@ def plan_photos(key, prof, data, ph, card_trips):
                 if x.get("uuid"):
                     taken.add(x["uuid"])
         target = own.get("total", len(reel))
-    tags = leader_tags(data)
-    general = not tags
-    if general:
-        tags = GENERAL_PHOTOS
     want = 6 - len(reel)
     i = 0
     while (len(reel) < target if target is not None else len(reel) < 1 + want) and i < 30 and tags:

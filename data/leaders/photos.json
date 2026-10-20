@@ -1,5 +1,5 @@
 {
- "_about": "Photo addresses for the leader pages, as Easol blob ids (the page builds static.myeasol.net/rails/active_storage/blobs/proxy/... from them). squad = the leader's squad page photo. about = their own portrait (cut from their Travel Hack Tuesday post, no text). erin = Erin's own reel. pool = SYB trip photos from each trip page, by trip page, in the order picked. squad[key].url (pages added Oct 19 2026): Easol's 1140 px wide copy of the squad photo, used instead of the full-size original. reel[key] (Oct 19 2026): a leader's own reel, see pages/README.md. Video slides are mp4s in the Easol content library (video, poster, dur, audio: true for a speaker button); feature = their own photo above the reviews.",
+ "_about": "Photo addresses for the leader pages, as Easol blob ids (the page builds static.myeasol.net/rails/active_storage/blobs/proxy/... from them). squad = the leader's squad page photo. about = their own portrait (cut from their Travel Hack Tuesday post, no text). erin = Erin's own reel. pool = SYB trip photos from each trip page, by trip page, in the order picked. squad[key].url (pages added Oct 19 2026): Easol's 1140 px wide copy of the squad photo, used instead of the full-size original. reel[key] (Oct 19 2026): a leader's own reel, see pages/README.md. Video slides are mp4s in the Easol content library (video, poster, dur, audio: true for a speaker button); feature = their own photo above the reviews. hold_pool: true keeps the trip photos the page had before its own reel, so other pages keep theirs.",
  "squad": {
   "juliana": {
    "uuid": "535fb294-0e20-41ac-823e-65c7022457e7",
@@ -2258,7 +2258,80 @@
      "alt": "Sara in a red dress in front of the SYB backdrop",
      "pos": "55% 30%"
     }
-   ]
+   ],
+   "hold_pool": true
+  },
+  "danielle": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "uuid": "797371eb-3c9b-4183-ada0-08ac36cb530a",
+     "hex": "f392853756aa404605f6224e886fd0f5d1b96ed0",
+     "name": "syb-danielle-hot-air-balloon.jpg",
+     "cap": "Hot air balloon, Morocco",
+     "alt": "Danielle smiling in a hot air balloon basket high above the desert",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "0a182ea9-a9c0-498b-aedc-413d299b8325",
+     "hex": "ae5957d8a8c3e44a71c0c4b694922d3d4947f12c",
+     "name": "syb-danielle-surf-lesson.jpg",
+     "cap": "Surf lesson, Nicaragua",
+     "alt": "Danielle lying on a surfboard in the water, throwing a shaka",
+     "pos": "55% 50%"
+    },
+    {
+     "uuid": "8d4eb67e-8f02-4ccd-a79a-9ac11259832b",
+     "hex": "37b2a6dca62d945631f87bed5b321da79c19c46e",
+     "name": "syb-danielle-grands-montets.jpg",
+     "cap": "Grands Montets, Chamonix",
+     "alt": "Danielle and two friends in deck chairs in the snow under the Grands Montets gondola",
+     "pos": "50% 55%"
+    },
+    {
+     "uuid": "351a6e33-0a2a-45c6-8820-1cf6039e628d",
+     "hex": "8682b43a5f19c5a0b88bac90d074786e4a418ad4",
+     "name": "syb-danielle-quad-bike.jpg",
+     "cap": "Quad biking, Morocco",
+     "alt": "Danielle on a red quad bike in the desert with her arms up",
+     "pos": "40% 45%"
+    },
+    {
+     "uuid": "07cfc900-9aa9-4609-8605-8800fe6078a9",
+     "hex": "66dd014175cf99ae06c1223e60d66c785c6b547c",
+     "name": "syb-danielle-sunset.jpg",
+     "cap": "Sunset, Nicaragua",
+     "alt": "Danielle in a silver fringe skirt on the rocks at sunset",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "3a33e7c4-8ca1-446e-92ee-56c75b82f133",
+     "hex": "9b58d633926ed5dc2873a0b422aeb2d33ed23b6e",
+     "name": "syb-danielle-chamonix-crew.jpg",
+     "cap": "Chamonix crew",
+     "alt": "Danielle and her crew with their arms up on a snowy peak above Chamonix",
+     "pos": "45% 45%"
+    },
+    {
+     "uuid": "86e8c084-57a8-4202-996e-5f4374c1748c",
+     "hex": "51af60876d5c9cd0280e09184aaf787046589583",
+     "name": "syb-danielle-camel.jpg",
+     "cap": "Camel friend, Morocco",
+     "alt": "Danielle with her hand on a camel in the desert",
+     "pos": "55% 50%"
+    },
+    {
+     "uuid": "536f7b25-37e3-4293-8538-57ee5a228a49",
+     "hex": "4d9c5131d84684bc081672c004b9f99bf2f53a1e",
+     "name": "syb-danielle-snowboard.jpg",
+     "cap": "Snowboarding",
+     "alt": "Danielle carving down the slope on her snowboard",
+     "pos": "50% 45%"
+    }
+   ],
+   "hold_pool": true
   }
  },
  "ring": {
