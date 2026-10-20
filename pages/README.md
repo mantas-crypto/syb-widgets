@@ -81,8 +81,11 @@ the block is saved.
   their leader page first. Seen faces turn grey (kept in the visitor's browser).
 - Filters: everyone, leading soon, photographers, SYB HQ, and one per country they have led or are leading.
 - A card per leader links to their page, with "On a trip now" or the next departure, and trips led.
-- People with `leads: false` (Sara, Danielle) sit in "The crew behind the crew". profiles.json `squad_label`
-  overrides the line under a name (Bradford: Training director).
+- People with `leads: false` (Sara, Danielle) get a card at the end of the grid with "SYB HQ" under their job, and
+  show under the SYB HQ filter (Mantas, Oct 19 2026: no separate "crew behind the crew" section). They have no face
+  in the wall and are not in the leader count. Cards carry `data-tags`, so SYB HQ and Photographers filter even
+  before the live data loads. profiles.json `squad_label` overrides the line under a name (Bradford: Training director).
+- `npm run squad` copies and minifies src/syb-squad.js and src/syb-squad.css into dist/leader/.
 - dist/leaders/squad.json is rebuilt by the twice-daily job (build-leaders.py, `write_squad`); the page re-sorts
   from it: Mantas first, then the next departure soonest, then most trips led.
 
