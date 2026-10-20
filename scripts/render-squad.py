@@ -9,7 +9,8 @@ The Leaders page (surfyogabeer.com/squad, "Leaders" in the site menu). Writes:
     python3 scripts/render-squad.py
 
 Everyone in data/leaders/leaders.json with a leader page is on it. Team members who do not lead trips
-(profiles.json leads: false) get the small "crew behind the crew" row at the end. Story slides are the same photos
+(profiles.json leads: false) get a card at the end of the grid and show under SYB HQ, but no face in the wall of
+stories and no place in the leader count (Mantas, Oct 19 2026). Story slides are the same photos
 and videos as the reel on their own page (read from pages/leaders/<key>/1-hero.html), so render the leader pages
 first. syb-squad.js reads dist/leaders/squad.json on every visit: next trips, trips led and the order stay current
 without saving the block again. @@CSS@@, @@SQCSS@@ and @@SQJS@@ are filled in with the pinned jsDelivr files when
@@ -137,6 +138,8 @@ def pill(p):
 
 
 def stat(p):
+    if "lead" not in p["tags"]:
+        return '<span class="sys-stat"><span><b>SYB HQ</b></span></span>'
     if p.get("led"):
         n = p["led"]
         return ('<span class="sys-stat"><span><b>%d</b> trip%s</span><span class="sys-flags" aria-hidden="true">%s</span></span>' % (
@@ -155,11 +158,11 @@ def name_html(p):
 
 def card(p):
     alt = "%s, %s" % (p["name"], p["label"][:1].lower() + p["label"][1:])
-    return ('<li class="sys-card" data-key="%s"><a href="%s" data-syl="squad-card-%s">'
+    return ('<li class="sys-card" data-key="%s" data-tags="%s" data-first="%s"><a href="%s" data-syl="squad-card-%s">'
             '<img class="sys-pic" src="%s" alt="%s" loading="lazy" decoding="async" style="--pos:%s">%s'
             '<span class="sys-body"><span class="sys-name">%s</span><span class="sys-label">%s</span>'
             '<span class="sys-where" hidden></span>%s</span></a></li>') % (
-        p["key"], e(p["page"]), p["key"], e(p["img"]), e(alt), p["pos"], pill(p),
+        p["key"], " ".join(p["tags"]), e(p["first"]), e(p["page"]), p["key"], e(p["img"]), e(alt), p["pos"], pill(p),
         name_html(p), e(p["label"]), stat(p))
 
 
@@ -202,9 +205,13 @@ def chips(people):
     return "".join(out)
 
 
-def team_item(t):
-    return ('<li><a href="%s" data-syl="squad-team-%s"><img src="%s" alt="" loading="lazy" decoding="async">'
-            '<span><b>%s</b><span>%s</span></span></a></li>') % (e(t["page"]), t["key"], e(t["av"]), e(t["name"]), e(t["label"]))
+def names(crew):
+    return " and ".join(t["first"] for t in crew) if len(crew) <= 2 else "%d more" % len(crew)
+
+
+def status_all(n, crew):
+    """Same words as syb-squad.js setFilter('all')."""
+    return "All <b>%d</b> leaders%s" % (n, ", plus %s from SYB HQ" % e(names(crew)) if crew else "")
 
 
 def page_html(doc):
@@ -232,13 +239,11 @@ def page_html(doc):
         '<button class="sys-chip" type="button" data-f="hq" data-syl="squad-filter-hq" aria-pressed="false">SYB HQ</button>'
         '<span class="sys-chip-sep" aria-hidden="true"></span><span data-sys-places>%s</span></div></div>' % chips(people),
         '<div class="syl-wrap">',
-        '<p class="sys-status" data-sys-status aria-live="polite">All %d leaders</p>' % n,
-        '<ul class="sys-grid" data-sys-grid>%s</ul>' % "".join(card(p) for p in people),
+        '<p class="sys-status" data-sys-status aria-live="polite">%s</p>' % status_all(n, doc["team"]),
+        '<ul class="sys-grid" data-sys-grid>%s</ul>' % "".join(card(p) for p in people + doc["team"]),
         '</div>',
         '</div>',
         '<div class="syl-wrap">',
-        ('<div class="sys-team"><h2 class="syl-h sys-h2"><span>The crew behind</span> <span class="syl-g">the crew.</span></h2>'
-         '<ul>%s</ul></div>' % "".join(team_item(t) for t in doc["team"])) if doc["team"] else "",
         '<div class="sys-end"><h2 class="syl-h"><span>Your crew</span> <span class="syl-g">is waiting.</span></h2>'
         '<p class="syl-body">Pick a trip, pick a leader, or both.</p>'
         '<div class="syl-actions"><a class="syl-btn" href="/calendar" data-syl="squad-end-calendar">Find your trip</a>'
@@ -259,11 +264,11 @@ def main():
         item = {"key": key, "name": prof["name"], "first": prof["first"], "h1": [x for x in prof["h1"]],
                 "page": c["page"], "label": label_of(prof, tags), "tags": tags, "city": prof.get("city", ""),
                 "av": sized(sq, 405)}
-        if "lead" not in tags:
+        item.update({"img": sized(sq, 540), "pos": "50% 30%" if sq.get("h", 1) >= sq.get("w", 1) else "50% 40%"})
+        if "lead" not in tags:          # SYB HQ, not a trip leader: a card, no story
             team.append(item)
             continue
-        item.update({"img": sized(sq, 540), "pos": "50% 30%" if sq.get("h", 1) >= sq.get("w", 1) else "50% 40%",
-                     "story": story_of(key)[:STORY_MAX]})
+        item["story"] = story_of(key)[:STORY_MAX]
         people.append(item)
     short_names(people)
     static = {"_about": "Written by scripts/render-squad.py from leaders.json, profiles.json, photos.json and each "

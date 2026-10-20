@@ -32,10 +32,14 @@
     });
   }
 
-  var root, grid, rail, chipsBox, statusEl, people = [], byKey = {}, filter = 'all', T = today();
+  var root, grid, rail, chipsBox, statusEl, people = [], crew = [], byKey = {}, filter = 'all', T = today();
+  // people: the trip leaders (faces, stories, the count). crew: SYB HQ team members who do not lead trips (Sara,
+  // Danielle): a card at the end of the grid and under SYB HQ only (Mantas, Oct 19 2026).
 
   /* ---------- order, pills, stats ---------- */
   function nextTrip(p) { return p.up && p.up[0]; }
+  function cardTags(c) { return (c.getAttribute('data-tags') || '').split(' '); }
+  function leads(c) { var p = byKey[c.getAttribute('data-key')]; return (p ? p.tags || [] : cardTags(c)).indexOf('lead') >= 0; }
   function away(p) { var u = nextTrip(p); return !!u && day(u.s) <= T && T <= day(u.e); }
   function rank(a, b) {
     function k(p) { var u = nextTrip(p); return p.key === 'mantas' ? [0, '', 0, ''] : u ? [1, u.s, 0, p.name] : [2, '', -(p.led || 0), p.name]; }
@@ -51,6 +55,7 @@
     return '<span class="sys-pill' + (soon ? ' is-soon' : '') + '"><span class="sys-f" aria-hidden="true">' + esc(u.f) + '</span>' + esc(mday(u.s)) + '</span>';
   }
   function statHTML(p) {
+    if ((p.tags || []).indexOf('lead') < 0) return '<span class="sys-stat"><span><b>SYB HQ</b></span></span>';
     if (p.led) {
       return '<span class="sys-stat"><span><b>' + p.led + '</b> trip' + (p.led === 1 ? '' : 's') + '</span><span class="sys-flags" aria-hidden="true">' +
         esc((p.flags || []).slice(0, 4).map(function (f) { return f[0]; }).join('')) + '</span></span>';
@@ -64,12 +69,13 @@
     var list = (doc && doc.people) || [];
     if (!list.length) return;
     people = list.slice().sort(rank);
+    crew = ((doc && doc.team) || []).slice();
     byKey = {};
-    people.forEach(function (p) { byKey[p.key] = p; });
+    people.concat(crew).forEach(function (p) { byKey[p.key] = p; });
     var cards = {}, rings = {};
     $$('.sys-card', grid).forEach(function (c) { cards[c.getAttribute('data-key')] = c; });
     $$('.sys-ring', rail).forEach(function (b) { rings[b.getAttribute('data-story')] = b.parentNode; });
-    people.forEach(function (p) {
+    people.concat(crew).forEach(function (p) {
       var c = cards[p.key];
       if (c) {
         var a = $('a', c), old = $('.sys-pill', a), st = $('.sys-stat', a), body = $('.sys-body', a);
@@ -147,7 +153,7 @@
     var shown = [];
     $$('.sys-card', grid).forEach(function (c) {
       var p = byKey[c.getAttribute('data-key')];
-      var ok = p ? matches(p, f) : f === 'all';
+      var ok = p ? matches(p, f) : f === 'all' || ((f === 'photo' || f === 'hq') && cardTags(c).indexOf(f) >= 0);
       c.hidden = !ok;
       var w = $('.sys-where', c);
       if (w) {
@@ -167,13 +173,18 @@
       });
       shown.forEach(function (c) { grid.appendChild(c); });
     } else if (people.length) {
-      people.forEach(function (p) { var c = $('.sys-card[data-key="' + p.key + '"]', grid); if (c) grid.appendChild(c); });
+      people.concat(crew).forEach(function (p) { var c = $('.sys-card[data-key="' + p.key + '"]', grid); if (c) grid.appendChild(c); });
     }
     var n = shown.length, s;
-    if (f === 'all') s = 'All <b>' + n + '</b> leaders';
+    var led = shown.filter(leads).length, team = shown.filter(function (c) { return !leads(c); });
+    if (f === 'all') {
+      s = 'All <b>' + led + '</b> leaders';
+      if (team.length) s += ', plus ' + esc(team.length <= 2 ? team.map(function (c) { return c.getAttribute('data-first'); }).join(' and ') : team.length + ' more') + ' from SYB HQ';
+    }
     else if (f === 'soon') s = '<b>' + n + '</b> leaders with a trip coming up';
     else if (f === 'photo') s = '<b>' + n + '</b> photographers, and every one of them leads trips too';
-    else if (f === 'hq') s = '<b>' + n + '</b> leaders who also run SYB';
+    else if (f === 'hq') s = '<b>' + n + '</b> ' + (n === 1 ? 'person' : 'people') + ' at SYB HQ' +
+      (!led ? '' : led === n ? ', and every one of them leads trips too' : ', and ' + led + ' of them lead trips too');
     else s = '<b>' + n + '</b> ' + (n === 1 ? 'leader has' : 'leaders have') + ' led ' + esc(country) + ' or ' + (n === 1 ? 'is' : 'are') + ' leading it next';
     statusEl.innerHTML = s;
     if (!quiet) {
