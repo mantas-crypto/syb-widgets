@@ -48,6 +48,8 @@ play (autoplay off, low power mode) becomes a normal timed slide. Encode them li
 "Claude Docs/SurfYogaBeer Stuff/Leader page videos": 576x1024 H.264, CRF 27-28, maxrate about 800k, AAC 64k, faststart,
 under 10 MB each. `yt` (a YouTube short behind a play button) still works but is no longer used.
 `feature` puts their own landscape photo above their trip reviews. `hold` keeps a slide off the page.
+`hold_pool: true` (Sara, Danielle) keeps the trip photos the page had before its own reel, so no other page's photos
+move when a page gets its own reel. Use it for any later page that gets its own reel after going live.
 
 Trips led never show how many people travelled (Oct 19 2026). Trips before 2023 come from
 data/leaders/older-trips.json (HQ 2020-2022 tabs, GHL trip tags for Mantas, leaders' own lists, and what Mantas told
@@ -78,7 +80,11 @@ loads dist/leader/syb-squad.min.js), data/leaders/squad-static.json and dist/lea
 the block is saved.
 
 - The wall of faces: each face plays that leader's story, the slides of their own page's reel (up to 8), so render
-  their leader page first. Seen faces turn grey (kept in the visitor's browser).
+  their leader page first. Seen faces turn grey (kept in the visitor's browser). photos.json `ring` gives a face a
+  better photo for the small circle, from the about photos, centered and zoomed (Meag, Oct 19 2026: her squad photo
+  is a mountain view).
+- No count line above the headline and no visible status line under the filters (Mantas, Oct 19 2026: fewer words,
+  nothing to update by hand). The status line is still there for screen readers.
 - Filters: everyone, leading soon, photographers, SYB HQ, and one per country they have led or are leading.
 - A card per leader links to their page, with "On a trip now" or the next departure, and trips led.
 - People with `leads: false` (Sara, Danielle) get a card at the end of the grid with "SYB HQ" under their job, and
