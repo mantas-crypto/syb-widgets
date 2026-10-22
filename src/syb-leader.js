@@ -672,6 +672,19 @@
         .catch(function () { if (!done) { clearTimeout(t); res(null); } });
     });
   }
+  /* The site menu is fixed and grows with the window (on a very wide or zoomed-out window it is over 200px
+     tall), so it could sit over the top of the reel and swallow taps on the sound and pause buttons.
+     Push the hero down so the reel always starts below the menu. */
+  function clearNav() {
+    var hero = $('.syl-hero'), nav = document.querySelector('.js-navigation') || document.querySelector('nav.navigation');
+    if (!hero || !nav) return;
+    hero.style.paddingTop = '';
+    if (getComputedStyle(nav).position !== 'fixed') return;
+    var first = $('.syl-reel', hero) || hero;
+    var pad = parseFloat(getComputedStyle(hero).paddingTop) || 0;
+    var short = nav.getBoundingClientRect().bottom + 12 - (first.getBoundingClientRect().top + window.pageYOffset);
+    if (short > 0) hero.style.paddingTop = Math.ceil(pad + short) + 'px';
+  }
   function init() {
     if (/Windows NT/.test(navigator.userAgent || '')) document.documentElement.classList.add('syl-win');
     $$('.syl [data-reel]').forEach(reel);
@@ -679,7 +692,8 @@
     fitName();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitName);
     var rt = null;
-    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(fitName, 150); });
+    clearNav();
+    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { fitName(); clearNav(); }, 150); });
     var root = $('.syl[data-leader]');
     var key = root && root.getAttribute('data-leader');
     var liveP = getLive(root);
