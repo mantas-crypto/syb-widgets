@@ -422,11 +422,12 @@
    "start": "2019-08-03",
    "end": "2019-08-03",
    "leaders": [
-    "Mantas Z."
+    "Mantas Z.",
+    "Alex M."
    ],
    "note": "Week 3",
    "date": "month",
-   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): croatia (august 2019) - week 3"
+   "src": "GHL trip tag on Mantas's contact (he founded SYB, so a trip he was on is a trip he led): croatia (august 2019) - week 3; Alex Marks added Oct 22 2026: on his own list (Croatia 2019), matches the GHL tag croatia (august 2019) - week 3 on his contact"
   },
   "Portugal Aug '19": {
    "trip": "",
@@ -493,10 +494,11 @@
    "end": "2021-01-02",
    "leaders": [
     "Mantas Z.",
-    "Steph C."
+    "Steph C.",
+    "Alex M."
    ],
    "note": "New Year’s Eve",
-   "src": "HQ 2020 tab: staff, flights booked for Mantas and Steph; GHL mexico (december 2020) for both"
+   "src": "HQ 2020 tab: staff, flights booked for Mantas and Steph; GHL mexico (december 2020) for both; Alex Marks added Oct 22 2026: on his own list (Mexico 2021), matches the GHL tag mexico (december 2020) on his contact"
   },
   "Croatia Festival Aug '21": {
    "trip": "Croatia Festival",
@@ -735,6 +737,14 @@
     "Mike S."
    ],
    "src": "HQ 2023 tab staff lists Steph Currie and Shriner; GHL nicaragua (december 2023) for both"
+  }
+ },
+ "remove_leaders": {
+  "Greece (Sail) '24": {
+   "leaders": [
+    "Alex M."
+   ],
+   "src": "Alex Marks, Oct 22 2026: he never led Greece, HQ listing him is a mistake"
   }
  }
 }

@@ -1829,12 +1829,6 @@
      "squad": true
     },
     {
-     "about": "alex-ski",
-     "cap": "Ski week, French Alps",
-     "alt": "Alex Marks in an SYB ski bib and a penguin helmet",
-     "pos": "50% 30%"
-    },
-    {
      "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjRkMjhkYTE2LWJmYTYtNGZkMS1iMDZhLWE2ZjE1MzJmMDgxMCIsInB1ciI6ImJsb2JfaWQifX0=--c33ea1ae5ad5986a9c861a4a38057206dbd74e33/alex-leader-video.mp4",
      "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjBlMTM1OGM5LTQxMjItNDQ1OS05YWJkLTczZjhhNzM0MmRjMSIsInB1ciI6ImJsb2JfaWQifX0=--3f68e7d4b0e08e0ed43ced5b856547f6d57e5e1f/alex-leader-video-poster.jpg",
      "dur": 35.2,
@@ -1842,9 +1836,61 @@
      "cap": "Meet Big Sexy",
      "alt": "Alex’s SYB video",
      "pos": "50% 35%"
+    },
+    {
+     "uuid": "d316a6ec-88e7-4558-9a37-1ea220662e5d",
+     "hex": "c0d65b8db56943482cd183c8b2c35290239698ee",
+     "name": "image.jpg",
+     "cap": "Val Thorens, French Alps",
+     "alt": "Alex and a guest in matching neon ski suits holding their skis in the snow",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "9092a5b8-59cf-4831-8c6b-1952549ecdd3",
+     "hex": "b6a5853ab1cb252288a55e3f688a8d01b9460eea",
+     "name": "image.jpg",
+     "cap": "Après ski",
+     "alt": "Alex pulling a face in a selfie while a guest holds up an SYB shot ski",
+     "pos": "35% 40%"
+    },
+    {
+     "uuid": "4d0da705-5729-430b-ae72-7c39a16d2ae1",
+     "hex": "6da38e21361f2c6f85c735fccf229ee1a0f1566a",
+     "name": "image.jpg",
+     "cap": "Chamonix nights",
+     "alt": "Alex in a pink wig and a Chamonix headband with his arm in the air on a night out",
+     "pos": "45% 40%"
+    },
+    {
+     "about": "alex-ski",
+     "cap": "Ski week, French Alps",
+     "alt": "Alex Marks in an SYB ski bib and a penguin helmet",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "c44196f7-8939-468d-b137-fc0c355681cf",
+     "hex": "86a328b64ba09bd4c0c5e6cbdb60e82de3baf75a",
+     "name": "image.jpg",
+     "cap": "On the boat",
+     "alt": "Alex and a guest sitting on the deck of a sailing boat in the sun",
+     "pos": "36% 40%"
+    },
+    {
+     "uuid": "0658f00d-57bf-443a-ab3f-9a252fa275c6",
+     "hex": "9d23a60492f0b93f5b582b4bf23b49c2173bbf2f",
+     "name": "image.jpg",
+     "cap": "Game night",
+     "alt": "Alex in a headband and jersey running a game for a group of guests",
+     "pos": "45% 40%"
     }
    ],
-   "total": 6
+   "total": 8,
+   "feature": {
+    "uuid": "a23bb1b1-2441-4bf1-b4db-25cacf52627a",
+    "hex": "ebdb400450adc0ee3a833b57786e9cb118d7c9c4",
+    "name": "image.jpg",
+    "alt": "Alex with his Val Thorens crew in bright ski suits, kneeling in the snow"
+   }
   },
   "mantas": {
    "slides": [

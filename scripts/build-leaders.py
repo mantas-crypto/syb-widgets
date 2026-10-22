@@ -305,6 +305,11 @@ def merge_older(hist, older):
             o = dict(out[tab])
             o["leaders"] = o.get("leaders", []) + [n for n in x.get("leaders", []) if n not in o.get("leaders", [])]
             out[tab] = o
+    for tab, x in (older.get("remove_leaders") or {}).items():   # a leader who says HQ has them on a trip by mistake
+        if tab in out:
+            o = dict(out[tab])
+            o["leaders"] = [n for n in o.get("leaders", []) if n not in x.get("leaders", [])]
+            out[tab] = o
     return out
 
 
