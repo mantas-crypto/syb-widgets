@@ -1048,7 +1048,7 @@
    ],
    "city": "Jacksonville",
    "ig": "kaiahollerback",
-   "chat": "dm",
+   "chat": "jacksonville",
    "title": "Marketing Manager",
    "role": "SYB marketing manager",
    "bio": "Kaia is the strategist and storyteller behind SYB’s social, shaping the voice, look and rhythm of the brand on every platform. With 8+ years in social media and content, a degree in marketing and a career as a professional photographer, she runs the daily social and writes the emails that actually get opened. Her camera roll is basically a passport stamped with sunsets, surfboards, and strangers turned forever friends.",
@@ -1122,7 +1122,7 @@
    ],
    "city": "Jacksonville",
    "ig": "yesthisiseli",
-   "chat": "dm",
+   "chat": "jacksonville",
    "title": "Head of Trips and Talent",
    "bio": "Eli isn’t your average photographer. He’s a globetrotting, drone-flying, concert-covering storyteller with an eye for the moments most of us miss. Based in Jacksonville, Florida, he’s turned photography into a career that has taken him across 30+ countries. Before going full-time, he studied counseling and theology and spent two years as a counselor and missionary in Portugal. He doesn’t just capture images; he makes you feel like you’re right there in the moment.",
    "qa": [
@@ -1420,6 +1420,11 @@
    "label": "LA",
    "short": "LA",
    "url": "https://chat.whatsapp.com/G7OAnGTI74vIEqCg0EkBCo"
+  },
+  "jacksonville": {
+   "label": "Jacksonville",
+   "short": "Jacksonville",
+   "url": "https://chat.whatsapp.com/CQX6gkOeagaLKjmpeyVWhb"
   }
  }
 }
