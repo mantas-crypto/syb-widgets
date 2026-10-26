@@ -88,8 +88,9 @@
    "city": "New York City",
    "ig": "rahmstagram",
    "chat": "nyc",
-   "title": "Senior Leader",
-   "bio": "His career as a dancer led him to the fitness profession. He spent many years dancing professionally with NYC’s Urban Ballet Theater and toured with the musicals. Also, he grew up in Hawaii, SYB central!",
+   "role": "SYB head of leaders",
+   "title": "Head of Leaders",
+   "bio": "Bradford is in charge of all SYB leaders and runs leadership training. His career as a dancer led him to the fitness profession. He spent many years dancing professionally with NYC’s Urban Ballet Theater and toured with the musicals. Also, he grew up in Hawaii, SYB central!",
    "qa": [
     [
      "How did you find SYB?",
@@ -117,8 +118,7 @@
     "Fitness",
     "Mountain trips",
     "Setting the tone"
-   ],
-   "squad_label": "Training director"
+   ]
   },
   "bri": {
    "name": "Brianna Funk",

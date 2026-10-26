@@ -103,10 +103,7 @@
         "Brad",
         "Rahm"
       ],
-      "page": "/trip-leaders/bradford",
-      "also": [
-        "/management/bradford"
-      ]
+      "page": "/trip-leaders/bradford"
     },
     "bri": {
       "name": "Brianna Funk",
@@ -365,10 +362,7 @@
         "Santiago",
         "Santi"
       ],
-      "page": "/management/santiago",
-      "also": [
-        "/photographers/santiago"
-      ],
+      "page": "/photographers/santiago",
       "added": "2026-10-19"
     },
     "shriner": {

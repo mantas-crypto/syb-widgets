@@ -83,12 +83,6 @@
      "alt": "Alex Marks, SYB trip leader"
     },
     {
-     "c": "Ski week, French Alps",
-     "pos": "50% 30%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjQzZDEzNmQxLTM0MjItNDhjYS04MjUzLWMxYzdiN2ViYjI0YSIsInB1ciI6ImJsb2JfaWQifX0=--a8463a3936f125ad9967bedb62b2f84633f616ee/syb-leader-alex-ski-about.jpg",
-     "alt": "Alex Marks in an SYB ski bib and a penguin helmet"
-    },
-    {
      "c": "Meet Big Sexy",
      "pos": "50% 35%",
      "v": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjRkMjhkYTE2LWJmYTYtNGZkMS1iMDZhLWE2ZjE1MzJmMDgxMCIsInB1ciI6ImJsb2JfaWQifX0=--c33ea1ae5ad5986a9c861a4a38057206dbd74e33/alex-leader-video.mp4",
@@ -96,22 +90,40 @@
      "a": 1
     },
     {
-     "c": "Bali, Indonesia",
-     "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjM3MmIyMGU0LTM0ZGItNDUxNS05OTg0LWYzNDU1ZGY3NzU3MCIsInB1ciI6ImJsb2JfaWQifX0=--2e11d6dae059d5c975a31dc30b49d55be46ca4ed/bali-08.jpg",
-     "alt": "SYB trip photo, Bali, Indonesia"
+     "c": "Val Thorens, French Alps",
+     "pos": "50% 30%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImQzMTZhNmVjLTg4ZTctNDU1OC05YTM3LTFlYTIyMDY2MmU1ZCIsInB1ciI6ImJsb2JfaWQifX0=--c0d65b8db56943482cd183c8b2c35290239698ee/image.jpg",
+     "alt": "Alex and a guest in matching neon ski suits holding their skis in the snow"
     },
     {
-     "c": "Chamonix, French Alps",
-     "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImQ4ZGZlNjMzLWI5NmMtNDc4My1hYTFkLWU1ZjRlYWU4ZWI4OCIsInB1ciI6ImJsb2JfaWQifX0=--55fa4d97801c6014fc76874decebe40ff318f8e3/cx-02.jpg",
-     "alt": "SYB trip photo, Chamonix, French Alps"
+     "c": "Après ski",
+     "pos": "35% 40%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjkwOTJhNWI4LTU5Y2YtNDgzMS04YzZiLTE5NTI1NDllY2RkMyIsInB1ciI6ImJsb2JfaWQifX0=--b6a5853ab1cb252288a55e3f688a8d01b9460eea/image.jpg",
+     "alt": "Alex pulling a face in a selfie while a guest holds up an SYB shot ski"
     },
     {
-     "c": "Dolomites, Italy",
-     "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImE5M2Q3MWE4LWNhODAtNGJhNy1hYjM2LWQ0MWNmZTZjYzc2ZiIsInB1ciI6ImJsb2JfaWQifX0=--46c2ab3714b496db78c39ac5483b23d4529a5328/dolomites-05.jpg",
-     "alt": "SYB trip photo, Dolomites, Italy"
+     "c": "Chamonix nights",
+     "pos": "45% 40%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjRkMGRhNzA1LTU3MjktNDMwYi1hZTcyLTdjMzlhMTZkMmFlMSIsInB1ciI6ImJsb2JfaWQifX0=--6da38e21361f2c6f85c735fccf229ee1a0f1566a/image.jpg",
+     "alt": "Alex in a pink wig and a Chamonix headband with his arm in the air on a night out"
+    },
+    {
+     "c": "Ski week, French Alps",
+     "pos": "50% 30%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjQzZDEzNmQxLTM0MjItNDhjYS04MjUzLWMxYzdiN2ViYjI0YSIsInB1ciI6ImJsb2JfaWQifX0=--a8463a3936f125ad9967bedb62b2f84633f616ee/syb-leader-alex-ski-about.jpg",
+     "alt": "Alex Marks in an SYB ski bib and a penguin helmet"
+    },
+    {
+     "c": "On the boat",
+     "pos": "36% 40%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImM0NDE5NmY3LTg5MzktNDY4ZC1iMTM3LWZjMGMzNTU2ODFjZiIsInB1ciI6ImJsb2JfaWQifX0=--86a328b64ba09bd4c0c5e6cbdb60e82de3baf75a/image.jpg",
+     "alt": "Alex and a guest sitting on the deck of a sailing boat in the sun"
+    },
+    {
+     "c": "Game night",
+     "pos": "45% 40%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjA2NThmMDBkLTU3YmYtNDQzYS1hYjNmLTlhMjUyZmEyNzVjNiIsInB1ciI6ImJsb2JfaWQifX0=--9d23a60492f0b93f5b582b4bf23b49c2173bbf2f/image.jpg",
+     "alt": "Alex in a headband and jersey running a game for a group of guests"
     }
    ],
    "short": "Alex"
@@ -125,7 +137,7 @@
     "Rahmlow."
    ],
    "page": "/trip-leaders/bradford",
-   "label": "Training director",
+   "label": "Head of leaders",
    "tags": [
     "lead",
     "hq"
@@ -139,7 +151,7 @@
      "c": "Hi, I’m Bradford.",
      "pos": "50% 40%",
      "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImM3MTU2NmIxLThhZGMtNDRmYy04Nzc1LTM4NGMwZjkwM2I1OCIsInB1ciI6ImJsb2JfaWQifX0=--e53503f208631de0958f65382b1d711ca6dda236/bradford.jpg",
-     "alt": "Bradford Rahmlow, SYB trip leader"
+     "alt": "Bradford Rahmlow, SYB head of leaders"
     },
     {
      "c": "Chamonix, French Alps",
@@ -1354,7 +1366,7 @@
     "Santiago",
     "Aranguren."
    ],
-   "page": "/management/santiago",
+   "page": "/photographers/santiago",
    "label": "Creative director",
    "tags": [
     "lead",

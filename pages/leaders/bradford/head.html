@@ -15,7 +15,7 @@
   window.dataLayer.push({event:'leader_page_view',leader:LEADER,leader_entry:entry?'yes':'no'});
   function share(btn){
     var url=location.origin+location.pathname;
-    var data={title:'Travel with '+LEADER_NAME+' | SYB',text:'Trips led by '+LEADER_NAME+', SYB trip leader',url:url};
+    var data={title:'Travel with '+LEADER_NAME+' | SYB',text:'Trips led by '+LEADER_NAME+', SYB head of leaders',url:url};
     if(navigator.share){ navigator.share(data).catch(function(){}); return; }
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(url).then(function(){ var t=btn.textContent; btn.textContent='Link copied'; setTimeout(function(){ btn.textContent=t; },2200); },function(){});
