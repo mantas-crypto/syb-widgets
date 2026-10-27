@@ -1766,7 +1766,7 @@
     "Erin M."
    ],
    "kind": "trip",
-   "status": "RUNNING",
+   "status": "DONE",
    "ran": true
   },
   "Bali #3 '26": {
@@ -1830,7 +1830,6 @@
    "dest": "Nicaragua",
    "leaders": [
     "Eli E.",
-    "Juliana T.",
     "Sam K.",
     "Mantas Z."
    ],
@@ -1845,7 +1844,6 @@
    "dest": "Nicaragua",
    "leaders": [
     "Eli E.",
-    "Juliana T.",
     "Sam K."
    ],
    "kind": "trip",
@@ -2153,8 +2151,7 @@
    "dest": "Morocco",
    "leaders": [
     "Matas G.",
-    "Meag D.",
-    "Holly L."
+    "Meag D."
    ],
    "kind": "trip",
    "status": "LIVE",
