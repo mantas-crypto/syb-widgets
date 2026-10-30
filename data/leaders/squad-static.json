@@ -1908,34 +1908,47 @@
      "alt": "Ryan Green, SYB trip leader"
     },
     {
-     "c": "Palawan, Philippines",
+     "c": "Shot by Ryan",
      "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImI3ZjVkMjQ2LTc5MDAtNGIxZi05OTQ4LTcyNzMwMDU2ZTM3MyIsInB1ciI6ImJsb2JfaWQifX0=--3a5542df90bb5445878e934c5c4ca08776d5c72a/ph-10.jpg",
-     "alt": "SYB trip photo, Palawan, Philippines"
+     "v": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjQ5MTM4MTIwLWJjYzctNGI5OC04OTY5LWRhZGRiY2JkNGJjNyIsInB1ciI6ImJsb2JfaWQifX0=--b13d026e1bf252da31f457ba89f229674748f9a0/ryan-leader-video.mp4",
+     "p": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Ijk0MDc2MDU4LTk4ODgtNDFjNy05ODFmLTM4YmQwNDg4YzBiOSIsInB1ciI6ImJsb2JfaWQifX0=--02bcd0c0ab1063899c051f63425983843da39ec0/ryan-leader-video-poster.jpg",
+     "a": 1
     },
     {
-     "c": "Japan",
-     "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjM1YjZjNTQ0LTMxZWUtNDhhMi1iYzdiLWVlNTJlMWU4ZDA0ZCIsInB1ciI6ImJsb2JfaWQifX0=--6b8e770061c273db5e60fb3feaa326cdadbcf662/japan-13.jpg",
-     "alt": "SYB trip photo, Japan"
+     "c": "All white on the beach",
+     "pos": "50% 30%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjgyNTZmNWNhLWYxMGYtNDAyZS1iMzZiLWE5NWRjOGI4YWU4YSIsInB1ciI6ImJsb2JfaWQifX0=--906c638b6bf887227afd9dfa274f3ac90f61186c/syb-ryan-01.jpg",
+     "alt": "Ryan in white, hugging a friend on the beach at night"
     },
     {
-     "c": "Chamonix, French Alps",
-     "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjgxZTNlMDRmLWM5NjctNGQzNS05ZjNiLTVmYjRlZWNjNjc5MyIsInB1ciI6ImJsb2JfaWQifX0=--77dab21e15bb689f58fc9486259ef4b7ca0aa79e/cx-07.jpg",
-     "alt": "SYB trip photo, Chamonix, French Alps"
+     "c": "Crew hugs",
+     "pos": "40% 35%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjgwMTMwNDMzLTQyNWUtNDhkZS05YzQ2LThlYzdjYzY4OTE5YyIsInB1ciI6ImJsb2JfaWQifX0=--30f917b6a358ec27027fa14dc001c99c4f93ca90/syb-ryan-02.jpg",
+     "alt": "Ryan laughing in a group hug with the crew, all in white"
     },
     {
-     "c": "Bali, Indonesia",
-     "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Ijg3MDZiMzFiLWY4YzktNGUwZi05ZTk1LWIzYWJmNTQzYzQ3OCIsInB1ciI6ImJsb2JfaWQifX0=--ea8493c24a6b01bb61cb5274ff1ee2c2a2a217a3/bali-04.jpg",
-     "alt": "SYB trip photo, Bali, Indonesia"
+     "c": "Night with the crew",
+     "pos": "55% 25%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjI5ZmRmMGY5LTU3MjgtNGEwNS04NWQxLWMyMjQzYzE4NmRiNiIsInB1ciI6ImJsb2JfaWQifX0=--f63c83a179c114b67480fd7a7b657b025db81adf/syb-ryan-03.jpg",
+     "alt": "Ryan smiling with a friend’s arm around his shoulders"
     },
     {
-     "c": "Palawan, Philippines",
+     "c": "Shooting on the run",
+     "pos": "50% 30%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjVmOTRlMmEyLTk0YjItNDI5OS1hMWI5LWExNTk0MjlhN2U0YyIsInB1ciI6ImJsb2JfaWQifX0=--0542da0680a5baeb6c1fc3d98ec74be17dfee802/syb-ryan-04.jpg",
+     "alt": "Ryan running a trail with his camera on his chest and the crew behind him"
+    },
+    {
+     "c": "Boat day",
+     "pos": "50% 60%",
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ImQ5ZWIzOThmLTA2MzUtNGI3MS1hZjZjLTRlMTYzMmY1ZjMwOSIsInB1ciI6ImJsb2JfaWQifX0=--8b6153e52f10a8c7eb41b47fc5386f19bead9c96/syb-ryan-05.jpg",
+     "alt": "Ryan sitting with the crew on the steps of a boat"
+    },
+    {
+     "c": "Behind the lens",
      "pos": "50% 40%",
-     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjcyMDBlNWMzLTI3OGItNDE5NC05YzM0LTY2ZGNlODY1YTJmYyIsInB1ciI6ImJsb2JfaWQifX0=--5b41d73ee3fae2af57d2d39bb0bea4b95b83e357/ph-14.jpg",
-     "alt": "SYB trip photo, Palawan, Philippines"
+     "i": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjZmYWVhODRjLWZiYWEtNGEwZi04ODk2LTkwMjlmNmM4Y2M5ZCIsInB1ciI6ImJsb2JfaWQifX0=--1758bd36507d8b3067acbedaa262191471971c8b/syb-ryan-06.jpg",
+     "alt": "Ryan shooting with his Canon by the sea"
     }
    ],
    "short": "Ryan"
