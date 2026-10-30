@@ -2378,6 +2378,102 @@
     }
    ],
    "hold_pool": true
+  },
+  "ryan": {
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "video": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6IjQ5MTM4MTIwLWJjYzctNGI5OC04OTY5LWRhZGRiY2JkNGJjNyIsInB1ciI6ImJsb2JfaWQifX0=--b13d026e1bf252da31f457ba89f229674748f9a0/ryan-leader-video.mp4",
+     "poster": "https://static.myeasol.net/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Ijk0MDc2MDU4LTk4ODgtNDFjNy05ODFmLTM4YmQwNDg4YzBiOSIsInB1ciI6ImJsb2JfaWQifX0=--02bcd0c0ab1063899c051f63425983843da39ec0/ryan-leader-video-poster.jpg",
+     "dur": 33.9,
+     "audio": true,
+     "cap": "Shot by Ryan",
+     "alt": "Ryan’s SYB video: clips he filmed on SYB trips, from the snow in Japan to Palawan",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "8256f5ca-f10f-402e-b36b-a95dc8b8ae8a",
+     "hex": "906c638b6bf887227afd9dfa274f3ac90f61186c",
+     "name": "syb-ryan-01.jpg",
+     "cap": "All white on the beach",
+     "alt": "Ryan in white, hugging a friend on the beach at night",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "80130433-425e-48de-9c46-8ec7cc68919c",
+     "hex": "30f917b6a358ec27027fa14dc001c99c4f93ca90",
+     "name": "syb-ryan-02.jpg",
+     "cap": "Crew hugs",
+     "alt": "Ryan laughing in a group hug with the crew, all in white",
+     "pos": "40% 35%"
+    },
+    {
+     "uuid": "29fdf0f9-5728-4a05-85d1-c2243c186db6",
+     "hex": "f63c83a179c114b67480fd7a7b657b025db81adf",
+     "name": "syb-ryan-03.jpg",
+     "cap": "Night with the crew",
+     "alt": "Ryan smiling with a friend’s arm around his shoulders",
+     "pos": "55% 25%"
+    },
+    {
+     "uuid": "5f94e2a2-94b2-4299-a1b9-a159429a7e4c",
+     "hex": "0542da0680a5baeb6c1fc3d98ec74be17dfee802",
+     "name": "syb-ryan-04.jpg",
+     "cap": "Shooting on the run",
+     "alt": "Ryan running a trail with his camera on his chest and the crew behind him",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "d9eb398f-0635-4b71-af6c-4e1632f5f309",
+     "hex": "8b6153e52f10a8c7eb41b47fc5386f19bead9c96",
+     "name": "syb-ryan-05.jpg",
+     "cap": "Boat day",
+     "alt": "Ryan sitting with the crew on the steps of a boat",
+     "pos": "50% 60%"
+    },
+    {
+     "uuid": "6faea84c-fbaa-4a0f-8896-9029f6c8cc9d",
+     "hex": "1758bd36507d8b3067acbedaa262191471971c8b",
+     "name": "syb-ryan-06.jpg",
+     "cap": "Behind the lens",
+     "alt": "Ryan shooting with his Canon by the sea",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "ace08578-23e2-426c-9efa-fc48b9481bd4",
+     "hex": "feb4ec0eabe156a81046b097929396539520adef",
+     "name": "syb-ryan-07.jpg",
+     "cap": "Editing on the road",
+     "alt": "Ryan editing on his laptop in a bamboo hall",
+     "pos": "45% 50%"
+    },
+    {
+     "uuid": "47b5ab41-2897-4462-9dc7-b0c97eb900f8",
+     "hex": "02e16659e92184e57c43c93966daeac2068adc22",
+     "name": "syb-ryan-09.jpg",
+     "cap": "Snow days",
+     "alt": "Ryan on his snowboard in front of a mountain lodge",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "0fd0e955-bec9-40fa-ba39-712b315286f6",
+     "hex": "61c8c3a96084971d78e0ee20c52cd80f02302eec",
+     "name": "syb-ryan-10.jpg",
+     "cap": "Lights, camera",
+     "alt": "Ryan with his camera in a room full of hanging lights",
+     "pos": "50% 35%"
+    }
+   ],
+   "total": 11,
+   "hold_pool": true,
+   "feature": {
+    "uuid": "e230cf41-eb91-46bf-8687-8beb5758835e",
+    "hex": "8a997960286cf73e1713974a336a845e83554edd",
+    "name": "syb-ryan-08.jpg",
+    "alt": "Ryan showing the crew his trip film on his laptop at night"
+   }
   }
  },
  "ring": {
