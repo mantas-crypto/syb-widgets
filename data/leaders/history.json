@@ -2264,14 +2264,18 @@
    "ran": true
   },
   "Portugal '27": {
-   "trip": "Portu-Gnarly",
-   "start": "2027-07-13",
-   "end": "2027-07-19",
+   "trip": "Bom Dia",
+   "start": "2027-07-05",
+   "end": "2027-07-11",
    "dest": "Portugal",
-   "leaders": [],
+   "leaders": [
+    "Sarah C.",
+    "Eli E.",
+    "Santiago A."
+   ],
    "kind": "trip",
-   "status": "IDEA",
-   "ran": false
+   "status": "LIVE",
+   "ran": true
   },
   "Greece '27": {
    "trip": "Boats & Beaches",
@@ -2305,8 +2309,8 @@
     "Sav C."
    ],
    "kind": "trip",
-   "status": "NOT LAUNCHED",
-   "ran": false
+   "status": "LIVE",
+   "ran": true
   },
   "Dolomites, Italy #2 '27": {
    "trip": "YOLO - MITES",
