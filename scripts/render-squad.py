@@ -32,9 +32,9 @@ SIZE_SIG = {405: "5022e26755fcd481c46bb5e675cd43a94857271f", 540: "2ef123a85fd1d
             720: "59d0de8cdb039124d45c96ce2206d281785da420", 960: "b743abef227918992fbefa917012fddd265a9bce",
             1140: "f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c"}
 # SYB HQ whose own page is not under /hq/ or /management/: Bradford and Santiago since Oct 26 2026 (their /management/
-# pages forward to their leader pages), Mantas, Kaia and Shriner since Oct 31 2026 (moved to /trip-leaders/).
-HQ_TOO = {"eli", "bradford", "santiago", "mantas", "kaia", "shriner"}
-HQ_PAGES = ("/hq/", "/management/")   # Sara and Danielle moved to /hq/ on Oct 31 2026; Steph is still on /management/
+# pages forward to their leader pages), Mantas, Kaia, Shriner and Steph since Oct 31 2026 (moved to /trip-leaders/).
+HQ_TOO = {"eli", "bradford", "santiago", "mantas", "kaia", "shriner", "steph"}
+HQ_PAGES = ("/hq/", "/management/")   # Sara and Danielle moved to /hq/ on Oct 31 2026; nobody is left on /management/
 STORY_MAX = 8               # slides per story (Bradford's reel has 19)
 
 

@@ -3,10 +3,10 @@
 Each leader page on Easol is five Embed Code blocks plus the page's Inject code, on the person's own squad page:
 /trip-leaders/<name> for the trip leaders (Oct 16 2026), /management/<name> and /photographers/<name> for the team
 and photographers (Oct 19 2026). One page per person: since Oct 26 2026 /management/bradford and /management/santiago
-are unpublished and forward to /trip-leaders/bradford and /photographers/santiago. Since Oct 31 2026 Mantas, Kaia and
-Shriner are on /trip-leaders/ and Sara and Danielle on /hq/ (/hq/sara, /hq/danielle); their /management/ addresses
-forward there. Steph is still on /management/steph. SYB HQ on /squad is everyone with a /hq/ or /management/ page plus
-HQ_TOO in scripts/render-squad.py (Eli, Bradford, Santiago, Mantas, Kaia, Shriner).
+are unpublished and forward to /trip-leaders/bradford and /photographers/santiago. Since Oct 31 2026 Mantas, Kaia,
+Shriner and Steph are on /trip-leaders/ and Sara and Danielle on /hq/ (/hq/sara, /hq/danielle); their /management/ addresses
+forward there. SYB HQ on /squad is everyone with a /hq/ or /management/ page plus
+HQ_TOO in scripts/render-squad.py (Eli, Bradford, Santiago, Mantas, Kaia, Shriner, Steph).
 These files are what goes in them. `@@NAME@@` marks a photo address or the pinned CSS/JS address,
 filled in when the block is saved.
 
