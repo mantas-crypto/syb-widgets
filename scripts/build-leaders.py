@@ -58,7 +58,7 @@ PLACES = {
     "Bali": ("Bali, Indonesia", "Bali", "/bali", "ID"),
     "Finland": ("Finnish Lapland", "Lapland", "/finland", "FI"),
     "France (riviera)": ("South of France", "Côte d’Azur", "/south-of-france", "FR"),
-    "France (ski)": ("French Alps", "French Alps", "/chamonix", "FR"),
+    "France (ski)": ("French Alps", "French Alps", "/france/chamonix", "FR"),   # /chamonix forwards here (Oct 31 2026)
     "Amalfi": ("Amalfi Coast, Italy", "Amalfi", "/amalfi", "IT"),
     "Dolomites": ("Dolomites, Italy", "Dolomites", "/dolomites", "IT"),
     "Kenya": ("Kenya", "Kenya", "/kenya", "KE"),

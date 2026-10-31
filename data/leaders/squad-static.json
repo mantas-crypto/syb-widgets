@@ -1295,7 +1295,7 @@
     "Mantas",
     "Zvinas."
    ],
-   "page": "/management/mantas",
+   "page": "/trip-leaders/mantas",
    "label": "Founder",
    "tags": [
     "lead",
@@ -1425,7 +1425,7 @@
     "Mike",
     "Shriner."
    ],
-   "page": "/management/shriner",
+   "page": "/trip-leaders/shriner",
    "label": "Partnerships lead",
    "tags": [
     "lead",
@@ -1483,7 +1483,7 @@
     "Kaia",
     "Hollerback."
    ],
-   "page": "/management/kaia",
+   "page": "/trip-leaders/kaia",
    "label": "Marketing manager",
    "tags": [
     "lead",
@@ -1831,7 +1831,7 @@
     "Steph",
     "Currie."
    ],
-   "page": "/management/steph",
+   "page": "/trip-leaders/steph",
    "label": "Chief vibe officer",
    "tags": [
     "lead",
@@ -2021,7 +2021,7 @@
     "Sara",
     "Balaban."
    ],
-   "page": "/management/sara",
+   "page": "/hq/sara",
    "label": "Content writer",
    "tags": [
     "hq"
@@ -2039,7 +2039,7 @@
     "Danielle",
     "Kaplan."
    ],
-   "page": "/management/danielle",
+   "page": "/hq/danielle",
    "label": "Sales concierge",
    "tags": [
     "hq"

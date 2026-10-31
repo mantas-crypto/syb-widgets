@@ -31,7 +31,10 @@ MON = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
 SIZE_SIG = {405: "5022e26755fcd481c46bb5e675cd43a94857271f", 540: "2ef123a85fd1d3d1cf4485308252785619b3574f",
             720: "59d0de8cdb039124d45c96ce2206d281785da420", 960: "b743abef227918992fbefa917012fddd265a9bce",
             1140: "f94b0c5e7d9ccc4d00da4fb53ee6cd31cb74f94c"}
-HQ_TOO = {"eli", "bradford", "santiago"}   # SYB HQ without a /management/ page of their own (Bradford and Santiago's /management/ pages forward to their leader pages, Oct 26 2026)
+# SYB HQ whose own page is not under /hq/ or /management/: Bradford and Santiago since Oct 26 2026 (their /management/
+# pages forward to their leader pages), Mantas, Kaia, Shriner and Steph since Oct 31 2026 (moved to /trip-leaders/).
+HQ_TOO = {"eli", "bradford", "santiago", "mantas", "kaia", "shriner", "steph"}
+HQ_PAGES = ("/hq/", "/management/")   # Sara and Danielle moved to /hq/ on Oct 31 2026; nobody is left on /management/
 STORY_MAX = 8               # slides per story (Bradford's reel has 19)
 
 
@@ -63,7 +66,7 @@ def tags_of(key, conf, prof):
         t.append("lead")
     if any(p.startswith("/photographers/") for p in pages):
         t.append("photo")
-    if any(p.startswith("/management/") for p in pages) or key in HQ_TOO:
+    if any(p.startswith(HQ_PAGES) for p in pages) or key in HQ_TOO:
         t.append("hq")
     return t
 
