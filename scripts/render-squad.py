@@ -64,8 +64,8 @@ def tags_of(key, conf, prof):
     t = []
     if prof.get("leads", True):
         t.append("lead")
-    if any(p.startswith("/photographers/") for p in pages):
-        t.append("photo")
+    if prof.get("photographer") or any(p.startswith("/photographers/") for p in pages):
+        t.append("photo")       # profiles.json "photographer": true for a photographer whose page is not under /photographers/
     if any(p.startswith(HQ_PAGES) for p in pages) or key in HQ_TOO:
         t.append("hq")
     return t
