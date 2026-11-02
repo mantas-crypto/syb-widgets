@@ -1780,7 +1780,7 @@
     "Nikki R."
    ],
    "kind": "trip",
-   "status": "LIVE",
+   "status": "RUNNING",
    "ran": true
   },
   "Nicaragua Surf Yoga Beer Nov 16 '26": {
@@ -1801,7 +1801,6 @@
    "end": "2026-11-27",
    "dest": "Nicaragua",
    "leaders": [
-    "Jillian M.",
     "Bri F.",
     "Carri B."
    ],
@@ -1980,7 +1979,7 @@
    "end": "2027-02-19",
    "dest": "Switzerland",
    "leaders": [
-    "Bradford",
+    "Christian L.",
     "Carri B."
    ],
    "kind": "trip",
