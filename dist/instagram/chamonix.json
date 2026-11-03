@@ -1,8 +1,14 @@
 {
  "tag": "chamonix",
  "alt": "SurfYogaBeer Chamonix",
- "updated": "2026-10-07",
+ "updated": "2026-11-03",
  "posts": [
+  {
+   "code": "DfSNzkMBJ7n",
+   "user": "surfyogabeer",
+   "date": "2026-11-03",
+   "img": "p/DfSNzkMBJ7n.jpg"
+  },
   {
    "code": "DZBVTBJqq0G",
    "user": "surfyogabeer",
@@ -140,12 +146,6 @@
    "user": "surfyogabeer",
    "date": "2024-02-24",
    "img": "p/C3u_lknurCi.jpg"
-  },
-  {
-   "code": "CzMXuX8AmzR",
-   "user": "surfyogabeer",
-   "date": "2023-11-03",
-   "img": "p/CzMXuX8AmzR.jpg"
   }
  ]
 }
