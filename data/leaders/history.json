@@ -2164,7 +2164,8 @@
    "leaders": [
     "Nikki R.",
     "Sarah C.",
-    "Sam K."
+    "Sam K.",
+    "Matas G."
    ],
    "kind": "trip",
    "status": "LIVE",
@@ -2294,7 +2295,9 @@
    "start": "2027-08-02",
    "end": "2027-08-08",
    "dest": "Dolomites",
-   "leaders": [],
+   "leaders": [
+    "Matas G."
+   ],
    "kind": "trip",
    "status": "LIVE",
    "ran": true
