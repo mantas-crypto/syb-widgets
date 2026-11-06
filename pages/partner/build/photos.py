@@ -6,6 +6,14 @@ U = "/mnt/user-data/uploads/SurfYogaBeer Stuff/"
 H = "/tmp/claude-0/-home-claude/9e139bdb-22f3-55e9-9bab-f41b73ed9372/scratchpad/heic/"
 IMG = "/home/claude/syb-partners/img/"
 SPEC = {
+  # round 5: corporate retreat (hero, Ontario card, retreat elements)
+  "hero-team-arch.jpg":  (U+"Trip Photos/_web/iceland/i011.jpg", 16/9, 1200, .5, .45),
+  "dest-ontario.jpg":    (U+"Trip Photos/_web/dolomites/d081.jpg", 2/1, 900, .5, 0),
+  "el-wellness.jpg":     (U+"Trip Photos/_web/ski/s009.jpg", 4/3, 900, .5, .5),
+  "el-workshop.jpg":     (U+"Trip Photos/_web/dolomites/d071.jpg", 4/3, 675, .5, .42),
+  "el-dinners.jpg":      (U+"Claude outputs/Summit Deck 2026/img/p14.jpg", 4/3, 900, .5, .5),
+  "el-activity.jpg":     (U+"Trip Photos/_web/dolomites/d068.jpg", 4/3, 563, .5, .55),
+  "el-quiet.jpg":        (U+"Trip Photos/_web/iceland/i013.jpg", 4/3, 900, .5, .5),
   # step 1: the Custom card (Dolomites crew on a peak)
   "dest-custom.jpg":     (U+"Trip Photos/_web/dolomites/d049.jpg", 3/2, 900, .5, .5),
   # step 3

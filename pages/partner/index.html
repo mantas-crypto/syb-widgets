@@ -110,6 +110,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 #sybp .dest[aria-pressed="true"] .sel{display:inline-flex}
 #sybp .dest[aria-pressed="false"] img{opacity:.72}
 #sybp .dest[aria-pressed="false"]:hover img{opacity:1}
+#sybp .dest.feature{grid-column:1/-1}
+#sybp .dest.feature img{aspect-ratio:2/1}
+#sybp .dest.feature .d-name{font-size:20px}
+@media (min-width:600px){#sybp .dest.feature img{aspect-ratio:5/2}
+#sybp .dest.feature .d-name{font-size:24px}}
+#sybp .why{margin-top:12px;padding:16px 16px 18px;background:var(--panel);border:1px solid var(--line)}
+#sybp .why .label{display:block;margin:0 0 12px;color:var(--gold)}
+#sybp .why-grid{display:grid;gap:14px 22px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:600px){#sybp .why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#sybp .why-grid > div{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:10px;align-items:start}
+#sybp .w-icon{grid-row:1 / span 2;font-size:21px;line-height:1.2}
+#sybp .why-grid b{display:block;color:var(--ink);font-weight:800;font-size:15.5px;line-height:1.3}
+#sybp .why-grid b + span{display:block;font-size:14px;color:var(--dim);line-height:1.45}
+#sybp .stepper.fixed{border-color:transparent;background:transparent}
+#sybp .stepper.fixed button{display:none}
+#sybp .stepper.fixed output{min-width:0;text-align:left;line-height:56px}
+#sybp .pkgs.els{margin-top:18px}
 #sybp .grid2{display:grid;gap:12px;grid-template-columns:minmax(0,1fr);margin-top:18px}
 @media (min-width:700px){#sybp .grid2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 #sybp .box{background:var(--panel);border:1px solid var(--line);padding:16px 18px}
@@ -142,6 +159,22 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 #sybp .want[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#121214}
 #sybp .want svg{width:14px;height:14px;display:none}
 #sybp .want[aria-pressed="true"] svg{display:block}
+#sybp .goals{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
+#sybp .goal{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;width:100%;min-width:0;text-align:left;padding:12px 12px 13px;background:var(--panel);border:1px solid var(--line);color:inherit;cursor:pointer;transition:border-color .15s,box-shadow .15s,background-color .15s}
+#sybp .goal:hover{border-color:var(--dim)}
+#sybp .goal[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);background-color:#1d1912}
+#sybp .g-icon{font-size:22px;line-height:1;margin-bottom:2px}
+#sybp .g-name{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.2px;color:var(--ink);line-height:1.2}
+#sybp .g-text{font-size:13.5px;line-height:1.45;color:var(--dim)}
+#sybp .goal[aria-pressed="true"] .g-text{color:var(--body)}
+#sybp .g-check{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:#121214}
+#sybp .g-check svg{width:13px;height:13px;opacity:0}
+#sybp .goal[aria-pressed="true"] .g-check{background:var(--gold);border-color:var(--gold)}
+#sybp .goal[aria-pressed="true"] .g-check svg{opacity:1}
+@media (min-width:700px){#sybp .goals{gap:10px}
+#sybp .goal{padding:14px 16px 15px}
+#sybp .g-name{font-size:15px}
+#sybp .g-text{font-size:14px}}
 #sybp .tiles{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
 @media (min-width:600px){#sybp .tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
 #sybp .tile{position:relative;margin:0;aspect-ratio:1/1;overflow:hidden;background:var(--panel);isolation:isolate}
@@ -310,16 +343,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <main>
   <section class="hero">
-    <div class="hero-media"><img src="img/hero-catamaran-crew.jpg" alt="A big SYB group on the catamaran day in Nicaragua" width="1400" height="788" fetchpriority="high"></div>
+    <div class="hero-media"><img src="img/hero-team-arch.jpg" alt="A team making an arch of arms and cheering a teammate through" width="1200" height="675" fetchpriority="high"></div>
     <div class="wrap hero-body">
       <p class="kicker" id="b-for">Prepared for Example Company</p>
-      <h1 class="h1"><span>Your team trip,</span><span class="g">built your way.</span></h1>
-      <p class="lede">Six days at a private villa compound on a jungle cliff above Playa Maderas, Nicaragua. Everything from a regular SYB trip is already in. Add what your team wants and the price updates as you go.</p>
+      <h1 class="h1"><span>No trust falls.</span><span class="g">Just a better team.</span></h1>
+      <p class="lede">Curated corporate retreats for executive teams, designed for real impact. Wellness, workshops, dinners, activities and quiet time, built around the outcomes your team needs most.</p>
       <div class="facts">
-        <div><b>$1,950</b><span>per person to start</span></div>
-        <div><b>8 to 25</b><span>people</span></div>
-        <div><b>6 days, 5 nights</b><span>Playa Maderas</span></div>
-        <div><b>Airport pickups</b><span>Managua and Liberia</span></div>
+        <div><b>Ontario</b><span>2 night retreats</span></div>
+        <div><b>Nicaragua</b><span>6 day team trips</span></div>
+        <div><b>8 and up</b><span>people per team</span></div>
+        <div><b>One contact</b><span>Sarah plans it all</span></div>
       </div>
     </div>
   </section>
@@ -335,16 +368,32 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div class="main-col">
 
         
-        <section class="step" aria-labelledby="h-dest">
+        <section class="step" id="step-goals" aria-labelledby="h-goals">
           <p class="chn g">STEP 01</p>
+          <h2 class="h2" id="h-goals"><span>What your team</span><span class="g">brings home.</span></h2>
+          <p class="lede">Here's what a retreat pays back. Tap what matters most to your team and Sarah builds around it.</p>
+          <div class="goals" id="goals" role="group" aria-labelledby="h-goals"></div>
+        </section>
+
+        
+        <section class="step" aria-labelledby="h-dest">
+          <p class="chn g">STEP 02</p>
           <h2 class="h2" id="h-dest"><span>Pick your</span><span class="g">destination.</span></h2>
           <div class="dests">
-            <button type="button" class="dest" aria-pressed="true" data-act="dest" data-dest="nica">
+            <button type="button" class="dest feature" aria-pressed="true" data-act="dest" data-dest="ontario">
+              <img src="img/dest-ontario.jpg" alt="Friends laughing on a forest trail" width="900" height="450" loading="lazy">
+              <span class="pill sel">Selected</span>
+              <span class="d-body">
+                <span class="d-name">Ontario</span>
+                <span class="d-text">Two night corporate retreats, built around your goals. Sarah sends the quote.</span>
+              </span>
+            </button>
+            <button type="button" class="dest" aria-pressed="false" data-act="dest" data-dest="nica">
               <img src="img/dest-maderas-rock.jpg" alt="Sunset behind Maderas Rock in the bay at Playa Maderas" width="900" height="600" loading="lazy">
               <span class="pill sel">Selected</span>
               <span class="d-body">
                 <span class="d-name">Nicaragua</span>
-                <span class="d-text">Playa Maderas, SYB's home base since 2016. Priced as you build.</span>
+                <span class="d-text">Six days at SYB's villas in Playa Maderas. Priced as you build.</span>
               </span>
             </button>
             <button type="button" class="dest" aria-pressed="false" data-act="dest" data-dest="custom">
@@ -356,11 +405,20 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
               </span>
             </button>
           </div>
+          <div class="why" id="why-ontario">
+            <p class="label">Why Ontario</p>
+            <div class="why-grid">
+              <div><span class="w-icon" aria-hidden="true">✈️</span><b>Easy to reach</b><span>Nonstop flights into Toronto from dozens of US cities, same time zone as New York.</span></div>
+              <div><span class="w-icon" aria-hidden="true">🌲</span><b>Lakes and forest</b><span>More than 250,000 lakes, so there's always a quiet shore to think on.</span></div>
+              <div><span class="w-icon" aria-hidden="true">🍁</span><b>Every season works</b><span>Summer paddles, fall colors, snowy winter cabins.</span></div>
+              <div><span class="w-icon" aria-hidden="true">🏡</span><b>Made for groups</b><span>From lakeside lodges to country inns, Sarah finds the venue that fits your team.</span></div>
+            </div>
+          </div>
         </section>
 
         
         <section class="step" aria-labelledby="h-group">
-          <p class="chn g">STEP 02</p>
+          <p class="chn g">STEP 03</p>
           <h2 class="h2" id="h-group"><span>Who's coming,</span><span class="g">and when.</span></h2>
           <div class="grid2">
             <div class="box">
@@ -374,7 +432,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             </div>
             <div class="box">
               <span class="label" id="lbl-nights">Nights at the villas</span>
-              <div class="stepper big" role="group" aria-labelledby="lbl-nights">
+              <div class="stepper big" id="nights-stepper" role="group" aria-labelledby="lbl-nights">
                 <button type="button" data-act="nights" data-d="-1" aria-label="One fewer night"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7.2" width="12" height="1.6" fill="currentColor"/></svg></button>
                 <output id="nights-out">5</output>
                 <button type="button" data-act="nights" data-d="1" aria-label="One more night"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7.2" width="12" height="1.6" fill="currentColor"/><rect x="7.2" y="2" width="1.6" height="12" fill="currentColor"/></svg></button>
@@ -390,14 +448,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             <p class="range-out" id="range-out"></p>
             <label class="check" for="flexible"><input type="checkbox" id="flexible" name="flexible"> Our dates are flexible</label>
           </div>
-          <p class="note" id="fly-note"><span aria-hidden="true">✈️</span><span>Fly into Managua (MGA) or Liberia, Costa Rica (LIR). Land by 2pm on day one, fly home after 12pm on the last day. Pickups and drop-offs at both airports are included.</span></p>
+          <p class="note" id="fly-note" hidden><span aria-hidden="true">✈️</span><span>Fly into Managua (MGA) or Liberia, Costa Rica (LIR). Land by 2pm on day one, fly home after 12pm on the last day. Pickups and drop-offs at both airports are included.</span></p>
         </section>
 
         
         <section class="step" id="step-custom" aria-labelledby="h-custom" hidden>
-          <p class="chn g">STEP 03</p>
+          <p class="chn g">STEP 04</p>
           <h2 class="h2" id="h-custom"><span>Tell us what</span><span class="g">you want.</span></h2>
-          <p class="lede">Sarah builds the trip around it and sends you a quote.</p>
+          <p class="lede">Sarah builds the trip around it and your goals, then sends you a quote.</p>
           <div class="field" style="margin-top:18px"><label for="c-where">Where to?</label><input class="input" id="c-where" name="c-where" type="text" maxlength="80" placeholder="A country, a city, or surprise us"></div>
           <p class="label" style="margin:22px 0 0">What should be in it?</p>
           <div class="wants" id="c-wants"></div>
@@ -405,8 +463,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         </section>
 
         
-        <section class="step" id="step-stay" aria-labelledby="h-stay">
-          <p class="chn g">STEP 03</p>
+        <section class="step" id="step-ont" aria-labelledby="h-ont">
+          <p class="chn g">STEP 04</p>
+          <h2 class="h2" id="h-ont"><span>Build your</span><span class="g">retreat.</span></h2>
+          <p class="lede">Pick some or all of it. Sarah shapes the two days around your goals and sends you a quote.</p>
+          <div class="pkgs els" id="el-grid" role="group" aria-labelledby="h-ont"></div>
+          <div class="field" style="margin-top:18px"><label for="o-note">Anything else?</label><textarea class="input" id="o-note" name="o-note" maxlength="600" placeholder="Budget per person, must-haves, what the retreat is for"></textarea></div>
+        </section>
+
+        
+        <section class="step" id="step-stay" aria-labelledby="h-stay" hidden>
+          <p class="chn g">STEP 04</p>
           <h2 class="h2" id="h-stay"><span>A private compound.</span><span class="g">Just your team.</span></h2>
           <p class="lede">Villas on a jungle cliff about 100 feet above Playa Maderas, with Maderas Rock in the middle of the view. The whole place is yours. No other guests.</p>
           <div class="tiles stay-grid" id="stay-grid"></div>
@@ -426,10 +493,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         </section>
 
         
-        <section class="step" id="step-inc" aria-labelledby="h-inc">
-          <p class="chn g">STEP 04</p>
+        <section class="step" id="step-inc" aria-labelledby="h-inc" hidden>
+          <p class="chn g">STEP 05</p>
           <h2 class="h2" id="h-inc"><span>Already in.</span><span class="g">No extra cost.</span></h2>
-          <p class="lede">Everything a regular SYB Nicaragua trip includes. This is the starting point, so nothing here comes off.</p>
+          <p class="lede">Everything a regular SYB Nicaragua trip includes, and none of it comes off. Active days, long dinners and big nights, all done together. That mix is what bonds a team.</p>
           <div class="tiles inc-grid" id="inc-grid"></div>
           <p class="label" style="margin:22px 0 0">Also included</p>
           <div class="alsos"><span>30 minute massage for everyone</span><span>Catch of the day dinner</span><span>Photographer and videographer all week</span><span>6am coffee</span><span>Daily room cleaning</span><span>SYB welcome package</span></div>
@@ -437,10 +504,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         </section>
 
         
-        <section class="step" id="step-add" aria-labelledby="h-add">
-          <p class="chn g">STEP 05</p>
+        <section class="step" id="step-add" aria-labelledby="h-add" hidden>
+          <p class="chn g">STEP 06</p>
           <h2 class="h2" id="h-add"><span>Make it</span><span class="g">yours.</span></h2>
-          <p class="lede">Tap anything your team wants and it goes on your quote. Tap again to take it off.</p>
+          <p class="lede">Add what fits your team and your goals. Tap to put it on your quote, tap again to take it off.</p>
           <h3 class="h3 sub" id="h-food">Food</h3>
           <div class="pkgs" id="pk-food" role="radiogroup" aria-labelledby="h-food"></div>
           <h3 class="h3 sub" id="h-drinks">Drinks</h3>
@@ -491,7 +558,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div>
         <p class="chn g">LAST STEP</p>
         <h2 class="h2" id="h-send"><span>Happy with it?</span><span class="g">Send it to Sarah.</span></h2>
-        <p class="lede">Sarah checks everything for your dates and comes back with your final quote. Nothing is booked and nobody pays until you say go.</p>
+        <p class="lede">Sarah checks your dates, plans it around your goals and comes back with your final quote. Nothing is booked and nobody pays until you say go.</p>
         <div class="terms">
           <div><b>20% deposit</b>holds your dates</div>
           <div><b>The balance</b>is due 6 weeks before the trip</div>
@@ -530,13 +597,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <p class="chn g">GOOD TO KNOW</p>
       <h2 class="h2"><span>Questions teams</span><span class="g">always ask.</span></h2>
       <div class="faq">
-        <details><summary>Is it safe?</summary><p>Yes. The villas are in a gated community with security on site 24 hours a day, and every transfer and activity is organized for you. SYB has run trips at Playa Maderas since 2016 with the same local team, drivers and surf coaches.</p></details>
-        <details><summary>Does everyone have to surf?</summary><p>No. Surf lessons are there for anyone who wants them, and beginners start in the whitewater on big, stable boards. The pool, a hammock and a massage are fine answers too.</p></details>
-        <details><summary>Can people work during the trip?</summary><p>Yes. The villas have fast fiber wifi, usually 100 Mbps or more, with a backup generator. Add the work sessions setup in step 5 for breakouts and whiteboarding.</p></details>
-        <details><summary>Which airport should we fly into?</summary><p>Managua, Nicaragua (MGA) is about 2.5 hours by road. Liberia, Costa Rica (LIR) is about 3 hours plus a land border crossing. Pickups and drop-offs at both are included. Land by 2pm on day one and fly home after 12pm on the last day.</p></details>
-        <details><summary>What if someone's flight doesn't line up?</summary><p>We set up a private driver for them. It usually runs $125 to $200 per car, fits up to three people with luggage, and is paid by the traveler.</p></details>
-        <details><summary>Do we need visas?</summary><p>US citizens do not need a visa for a short stay. They pay a small tourist card fee in cash when they arrive. Other passports should check their own rules. Everyone needs a booked flight out of the country to show at the airport.</p></details>
-        <details><summary>Can we go somewhere other than Nicaragua?</summary><p>Yes. Pick Custom in step 1, tell us where, how many and what you want, and Sarah builds it with you.</p></details>
+        <details><summary>Is this team building or a vacation?</summary><p>Both, on purpose. Every retreat mixes wellness, working sessions, long dinners, activities and quiet time, all done together. That's where the team building actually happens.</p></details>
+        <details><summary>How is an Ontario retreat priced?</summary><p>Sarah quotes each one. Pick your goals, group size, dates and what to include, send it to her, and she comes back with a price. Nothing is booked until you say go.</p></details>
+        <details><summary>Is Nicaragua safe?</summary><p>Yes. The villas are in a gated community with security on site 24 hours a day, and every transfer and activity is organized for you. SYB has run trips at Playa Maderas since 2016 with the same local team, drivers and surf coaches.</p></details>
+        <details><summary>Does everyone have to surf in Nicaragua?</summary><p>No. Surf lessons are there for anyone who wants them, and beginners start in the whitewater on big, stable boards. The pool, a hammock and a massage are fine answers too.</p></details>
+        <details><summary>Can people work during the trip?</summary><p>Yes. Add a workshop to an Ontario retreat. In Nicaragua the villas have fast fiber wifi, usually 100 Mbps or more, with a backup generator, and the work sessions setup in step 6 covers breakouts and whiteboarding.</p></details>
+        <details><summary>Which airport for Nicaragua?</summary><p>Managua, Nicaragua (MGA) is about 2.5 hours by road. Liberia, Costa Rica (LIR) is about 3 hours plus a land border crossing. Pickups and drop-offs at both are included. Land by 2pm on day one and fly home after 12pm on the last day.</p></details>
+        <details><summary>What if someone's flight doesn't line up?</summary><p>In Nicaragua, we set up a private driver for them. It usually runs $125 to $200 per car, fits up to three people with luggage, and is paid by the traveler.</p></details>
+        <details><summary>Do we need visas for Nicaragua?</summary><p>US citizens do not need a visa for a short stay. They pay a small tourist card fee in cash when they arrive. Other passports should check their own rules. Everyone needs a booked flight out of the country to show at the airport.</p></details>
+        <details><summary>Can we go somewhere else?</summary><p>Yes. Pick Custom in step 2, tell us where, how many and what you want, and Sarah builds it with you.</p></details>
       </div>
 
       <h3 class="h3" style="margin-top:44px">What guests say about the villas</h3>
@@ -554,7 +623,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div>
         <p class="chn g">QUESTIONS</p>
         <h2 class="h2" id="h-contact"><span>Talk to</span><span class="g">Sarah.</span></h2>
-        <p class="lede"><b style="color:var(--ink)" id="c-name">Sarah Gagne</b> plans every SYB team trip. Call, text or email and you get a real answer from a real person.</p>
+        <p class="lede"><b style="color:var(--ink)" id="c-name">Sarah Gagne</b> plans every SYB team trip and retreat. Call, text or email and you get a real answer from a real person.</p>
       </div>
       <div class="c-rows">
         <div class="c-row"><span class="label">Email</span><span class="c-v" id="c-email"></span><button type="button" class="linkbtn" data-act="copy-contact" data-which="email">Copy</button></div>
@@ -598,13 +667,38 @@ var CONTACT = {
 var DEFAULT_COMPANY = "Example Company"; // on the live page, ?for=F45%20Toronto shows that name instead
 var BASE = 1950, MIN_PEOPLE = 8, BASE_NIGHTS = 5, MAX_EXTRA_NIGHTS = 3, EXTRA_NIGHT = 250, DEPOSIT = 0.2;
 var CUSTOM_MAX_PEOPLE = 100, CUSTOM_MIN_NIGHTS = 2, CUSTOM_MAX_NIGHTS = 14;
+var ONT_NIGHTS = 2; // Ontario retreats are always 2 nights; Sarah quotes them (no price on the page)
+var DESTS = ["ontario", "nica", "custom"];
 
 var ROOMS = {
   shared:   { label:"Shared rooms",  add:0,   max:25 },
   twin:     { label:"Twin rooms",    add:300, max:20 },
   "private":{ label:"Private rooms", add:700, max:12 }
 };
-/* step 3: the compound. big = the large first tile. pos = where to center the crop. */
+/* step 1: what the trip pays back. The team taps the ones that matter; they go on the quote and to Sarah. */
+var GOALS = [
+  { name:"Alignment",     icon:"🎯", text:"Step away together and agree on what matters. A workshop turns it into a plan." },
+  { name:"Collaboration", icon:"🤝", text:"Activities and team challenges away from the office turn coworkers into teammates." },
+  { name:"Engagement",    icon:"⚡", text:"Something to do together every day, so nobody is half there or on mute." },
+  { name:"Leadership",    icon:"🧭", text:"Someone leads the hike, someone leads the dinner toast. See who steps up." },
+  { name:"Culture",       icon:"🎉", text:"Inside jokes and stories your team still tells years later. That's culture." },
+  { name:"Innovation",    icon:"💡", text:"New place, new routine, new ideas. The best ones show up at sunset." },
+  { name:"Communication", icon:"💬", text:"Long dinners at one table and bonfires with no agenda. People actually talk." },
+  { name:"Productivity",  icon:"🚀", text:"Quiet time and real rest send everyone home sharp and fired up." },
+  { name:"Retention",     icon:"❤️", text:"People stay where their friends are. A retreat is how coworkers become friends." },
+  { name:"Performance",   icon:"📈", text:"Teams that trust each other move faster. You'll see it back at the office." }
+];
+var GOAL_NAMES = GOALS.map(function(g){ return g.name; });
+/* step 4, Ontario: what the retreat is made of. Some or all; Sarah quotes it. */
+var ELEMENTS = [
+  { id:"wellness", name:"Wellness",   img:"el-wellness.jpg", alt:"A group stretching through a morning class in a lodge lounge", desc:"Morning yoga, breathwork or massages, so everyone resets." },
+  { id:"workshop", name:"Workshop",   img:"el-workshop.jpg", alt:"A team watching a presentation on a big screen", desc:"A session on what your team needs most, from strategy to leadership." },
+  { id:"dinners",  name:"Dinners",    img:"el-dinners.jpg",  alt:"A big group at long dinner tables at night", desc:"Long dinners at one table, where the real conversations happen." },
+  { id:"activity", name:"Activity",   img:"el-activity.jpg", alt:"A group hiking a forest trail", desc:"A hike, a paddle or a team challenge, done together." },
+  { id:"quiet",    name:"Quiet time", img:"el-quiet.jpg",    alt:"Someone lying in the moss by a lake", desc:"Unplugged time to think, read or just breathe. Big ideas need space." }
+];
+var EL_IDS = ELEMENTS.map(function(e){ return e.id; });
+/* step 4: the compound. big = the large first tile. pos = where to center the crop. */
 var STAY = [
   { img:"villa-infinity-pool.jpg", name:"Infinity pool", note:"On the cliff edge, facing the sunset", alt:"The infinity pool at sunset with the bay behind it", big:true },
   { img:"villa-cliff.jpg", name:"Gated and private", note:"Security on site 24 hours a day", alt:"The villas on the jungle cliff above the bay" },
@@ -616,7 +710,7 @@ var STAY = [
   { img:"villa-dining.jpg", name:"Dining room", note:"One long table for the whole team", alt:"A long dining table under arched windows", pos:"50% 62%" },
   { img:"villa-terrace.jpg", name:"Terrace", note:"Rocking chairs over the bay", alt:"Rocking chairs on a covered terrace over the jungle and the bay" }
 ];
-/* step 4: included in the base */
+/* step 5: included in the base */
 var INCLUDED = [
   { img:"inc-airport.jpg",   name:"Airport pickups",   note:"Not in the back of a pickup, promise", alt:"An SYB guest riding in the back of a pickup truck on the dirt road to Maderas" },
   { img:"inc-breakfast.jpg", name:"5 breakfasts",      alt:"Breakfast plates: eggs, bacon, gallo pinto, plantains and tortillas" },
@@ -631,7 +725,7 @@ var INCLUDED = [
   { img:"inc-theme.jpg",     name:"Theme parties",     note:"Could include a DJ, live music, entertainment or salsa instructors", alt:"A theme party dance floor under neon lights" },
   { img:"inc-leaders.jpg",   name:"SYB leaders",       note:"Trained through the SYB academy. With the group 24 hours a day.", alt:"An SYB crew with surfboards and the SYB banner" }
 ];
-/* step 5: pick one food package; the drinks upgrade is optional (the villa open bar is already in) */
+/* step 6: pick one food package; the drinks upgrade is optional (the villa open bar is already in) */
 var FOOD = {
   none:    { label:"Lunches on your own", add:0, img:"pk-own.jpg", alt:"A beach restaurant on the sand near the villas", desc:"Grab lunch at the beach spots nearby. Breakfast and dinner are already in." },
   regular: { label:"Regular food package", add:75, img:"pk-regular.jpg", alt:"The group at a long lunch table", desc:"Lunch every day for 5 days, made by our chef." },
@@ -641,7 +735,7 @@ var DRINKS = {
   beer:    { label:"Unlimited beer package", add:85, img:"pk-beer.jpg", alt:"Three beers raised at sunset on the beach", desc:"Ice-cold Nicaraguan beer all week, at the villa and on the beach." },
   fullbar: { label:"Full bar package", add:145, img:"pk-fullbar.jpg", alt:"The crew at a beach bar with drinks", desc:"All the beer, plus Nicaraguan 7-year aged rum, dark and white, tequila, mixers, fresh-squeezed lemon juice and juices. All week." }
 };
-/* step 5 extras, in the order they show. img = photo tile; no img = the emoji tile.
+/* step 6 extras, in the order they show. img = photo tile; no img = the emoji tile.
    type: pp = per person | ppq = per person, per unit | unit = per unit | flat = once for the group
    qauto: the starting amount when added, worked out from the group size */
 var ADDONS = [
@@ -674,9 +768,10 @@ var BYID = {}; ADDONS.forEach(function(a){ BYID[a.id] = a; });
 var WANTS = ["Surf", "Yoga", "Workouts", "Hiking", "Skiing", "Boat day", "Beach time", "Culture and food", "Nightlife", "Massages and recovery", "Work sessions", "Private rooms", "Chef dinners", "Open bar"];
 
 // Sarah's starting package. people: null = the extra covers the whole group.
-var PROPOSAL = { v:2, dest:"nica", people:14, start:"2027-04-12", flexible:false, extra:0, cn:5, room:"twin", food:"deluxe", drinks:"fullbar",
+// Opens on Ontario with every retreat element in; the Nicaragua part is the package she prices.
+var PROPOSAL = { v:2, dest:"ontario", people:14, start:"2027-04-12", flexible:false, extra:0, cn:5, room:"twin", food:"deluxe", drinks:"fullbar",
   addons:{ juice:{on:true,people:null}, massage:{on:true,qty:1,people:null}, work:{on:true,qty:2}, film:{on:true} },
-  cwhere:"", cwants:[], cnote:"" };
+  cwhere:"", cwants:[], cnote:"", goals:[], els:EL_IDS.slice() };
 
 /* ===== helpers ===== */
 var ROOT = document.getElementById("sybp");
@@ -703,16 +798,26 @@ var COMPANY = DEFAULT_COMPANY;
 try { var q = new URLSearchParams(window.location.search).get("for"); if (q && q.trim()) COMPANY = q.trim().slice(0, 60); } catch(e){}
 var KEY = "syb-team-trip:v2:" + COMPANY.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 var S = load();
+// ?trip=nicaragua (or ontario, custom) picks where a first visit opens; a saved build wins.
+try {
+  var tp = (new URLSearchParams(window.location.search).get("trip") || "").toLowerCase(), tmap = { ontario:"ontario", nicaragua:"nica", custom:"custom" };
+  if (tmap[tp] && !sget(KEY)) { S.dest = tmap[tp]; S.people = clamp(S.people, MIN_PEOPLE, maxPeople()); }
+} catch(e){}
 
 function isCustom(){ return S.dest === "custom"; }
-function maxPeople(){ return isCustom() ? CUSTOM_MAX_PEOPLE : ROOMS[S.room].max; }
+function isOnt(){ return S.dest === "ontario"; }
+function isNica(){ return S.dest === "nica"; }
+function goalList(){ return GOAL_NAMES.filter(function(n){ return S.goals.indexOf(n) !== -1; }); }
+function elList(){ return ELEMENTS.filter(function(e){ return S.els.indexOf(e.id) !== -1; }).map(function(e){ return e.name; }); }
+function maxPeople(){ return isNica() ? ROOMS[S.room].max : CUSTOM_MAX_PEOPLE; }
 function qtyStart(d){ return d.qauto === "per6" ? clamp(Math.ceil(S.people / 6), 1, d.qmax) : (d.qdef || 1); }
 function sanitize(s){
   var o = clone(PROPOSAL);
   if (!s || typeof s !== "object" || s.v !== 2) return o;
-  o.dest = s.dest === "custom" ? "custom" : "nica";
+  o.dest = DESTS.indexOf(s.dest) !== -1 ? s.dest : "nica"; // builds saved before Ontario were Nicaragua
   if (ROOMS[s.room]) o.room = s.room;
-  var pmax = o.dest === "custom" ? CUSTOM_MAX_PEOPLE : ROOMS[o.room].max;
+  var pmax = o.dest === "nica" ? ROOMS[o.room].max : CUSTOM_MAX_PEOPLE;
+  if (Array.isArray(s.els)) o.els = EL_IDS.filter(function(id){ return s.els.indexOf(id) !== -1; });
   o.people = clamp(parseInt(s.people, 10) || o.people, MIN_PEOPLE, pmax);
   o.start = parseISO(s.start) ? s.start : "";
   o.flexible = !!s.flexible;
@@ -723,6 +828,7 @@ function sanitize(s){
   o.cwhere = typeof s.cwhere === "string" ? s.cwhere.slice(0, 80) : "";
   o.cnote = typeof s.cnote === "string" ? s.cnote.slice(0, 600) : "";
   o.cwants = Array.isArray(s.cwants) ? s.cwants.filter(function(w){ return WANTS.indexOf(w) !== -1; }) : [];
+  o.goals = Array.isArray(s.goals) ? s.goals.filter(function(g, i, a){ return GOAL_NAMES.indexOf(g) !== -1 && a.indexOf(g) === i; }) : [];
   o.addons = {};
   var a = s.addons || {};
   Object.keys(a).forEach(function(id){
@@ -738,7 +844,7 @@ function load(){ var raw = sget(KEY); if (raw) { try { return sanitize(JSON.pars
 function save(){ $("save-msg").textContent = sset(KEY, JSON.stringify(S)) ? "Your changes save on this device." : "Changes won't be saved on this device, so send your package to Sarah before you close the page."; }
 
 /* ===== pricing ===== */
-function nights(){ return isCustom() ? S.cn : BASE_NIGHTS + S.extra; }
+function nights(){ return isOnt() ? ONT_NIGHTS : isCustom() ? S.cn : BASE_NIGHTS + S.extra; }
 function pplFor(e){ return e.people == null ? S.people : Math.min(e.people, S.people); }
 function people(n){ return n + " " + (n === 1 ? "person" : "people"); }
 function addonLine(d, e){
@@ -779,42 +885,60 @@ function renderTiles(){
   $("stay-grid").innerHTML = STAY.map(function(t){ return tile(t, false); }).join("");
   $("inc-grid").innerHTML = INCLUDED.map(function(t){ return tile(t, true); }).join("");
 }
+function renderGoals(){
+  $("goals").innerHTML = GOALS.map(function(g){
+    var on = S.goals.indexOf(g.name) !== -1;
+    return '<button type="button" class="goal" data-act="goal" data-g="' + esc(g.name) + '" aria-pressed="' + on + '">' +
+      '<span class="g-icon" aria-hidden="true">' + g.icon + '</span><span class="g-name">' + esc(g.name) + '</span>' +
+      '<span class="g-text">' + esc(g.text) + '</span><span class="g-check" aria-hidden="true">' + CHECK + '</span></button>';
+  }).join("");
+}
 function renderMode(){
-  var c = isCustom();
+  var n = isNica(), o = isOnt();
   ROOT.querySelectorAll('[data-act="dest"]').forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.dest === S.dest)); });
-  $("step-custom").hidden = !c;
-  $("step-stay").hidden = c; $("step-inc").hidden = c; $("step-add").hidden = c;
-  $("fly-note").hidden = c;
-  $("rs-base").hidden = c;
-  $("lbl-nights").textContent = c ? "Nights" : "Nights at the villas";
-  $("q-title").textContent = c ? "Your request" : "Your quote";
-  $("q-lines").hidden = c; $("q-totbox").hidden = c; $("q-paybox").hidden = c; $("q-foot").hidden = c;
-  $("q-custom").hidden = !c;
+  $("step-custom").hidden = !isCustom();
+  $("step-ont").hidden = !o; $("why-ontario").hidden = !o;
+  $("step-stay").hidden = !n; $("step-inc").hidden = !n; $("step-add").hidden = !n;
+  $("fly-note").hidden = !n;
+  $("rs-base").hidden = !n;
+  $("lbl-nights").textContent = n ? "Nights at the villas" : "Nights";
+  $("nights-stepper").classList.toggle("fixed", o);
+  $("q-title").textContent = n ? "Your quote" : o ? "Your retreat" : "Your request";
+  $("q-lines").hidden = !n; $("q-totbox").hidden = !n; $("q-paybox").hidden = !n; $("q-foot").hidden = !n;
+  $("q-custom").hidden = n;
+}
+function renderEls(){
+  $("el-grid").innerHTML = ELEMENTS.map(function(e){
+    var on = S.els.indexOf(e.id) !== -1;
+    return '<label class="pkg"><input type="checkbox" name="el" value="' + e.id + '"' + (on ? " checked" : "") + '>' +
+      '<span class="p-media"><img src="' + IMG + e.img + '" alt="' + esc(e.alt) + '" width="900" height="675" loading="lazy"><span class="p-check">' + CHECK + '</span></span>' +
+      '<span class="p-body"><span class="p-name">' + esc(e.name) + '</span><span class="p-desc">' + esc(e.desc) + '</span></span></label>';
+  }).join("");
 }
 function renderGroup(){
-  var max = maxPeople(), c = isCustom();
+  var max = maxPeople(), c = !isNica();
   var pin = $("people-in"); if (document.activeElement !== pin) pin.value = S.people;
   pin.max = max; pin.min = MIN_PEOPLE;
   ROOT.querySelector('[data-act="people"][data-d="-1"]').disabled = S.people <= MIN_PEOPLE;
   ROOT.querySelector('[data-act="people"][data-d="1"]').disabled = S.people >= max;
   var h = $("people-hint"); h.classList.remove("warn");
-  if (c) { h.textContent = S.people >= max ? "Bigger group? Put the number in the notes." : "Team trips start at " + MIN_PEOPLE + " people. Type the number or use the buttons."; }
+  if (c) { h.textContent = S.people >= max ? "Bigger group? Put the number in the notes." : (isOnt() ? "Retreats" : "Team trips") + " start at " + MIN_PEOPLE + " people. Type the number or use the buttons."; }
   else if (S.people >= max) { h.textContent = ROOMS[S.room].label + " fit up to " + max + " people." + (S.room !== "shared" ? " Shared rooms fit up to 25." : ""); h.classList.add("warn"); }
   else if (S.people <= MIN_PEOPLE) { h.textContent = "Team trips start at " + MIN_PEOPLE + " people."; }
   else { h.textContent = MIN_PEOPLE + " to " + max + " people with " + ROOMS[S.room].label.toLowerCase() + "."; }
   $("nights-out").textContent = nights();
-  ROOT.querySelector('[data-act="nights"][data-d="-1"]').disabled = c ? S.cn <= CUSTOM_MIN_NIGHTS : S.extra <= 0;
-  ROOT.querySelector('[data-act="nights"][data-d="1"]').disabled = c ? S.cn >= CUSTOM_MAX_NIGHTS : S.extra >= MAX_EXTRA_NIGHTS;
-  $("nights-hint").textContent = c ? "Most team trips run 4 to 7 nights." : (S.extra ? "Each extra night is " + money(EXTRA_NIGHT) + " per person, with breakfast and dinner." : "5 nights is the standard trip. Extra nights are " + money(EXTRA_NIGHT) + " per person.");
+  ROOT.querySelector('[data-act="nights"][data-d="-1"]').disabled = isOnt() || (isCustom() ? S.cn <= CUSTOM_MIN_NIGHTS : S.extra <= 0);
+  ROOT.querySelector('[data-act="nights"][data-d="1"]').disabled = isOnt() || (isCustom() ? S.cn >= CUSTOM_MAX_NIGHTS : S.extra >= MAX_EXTRA_NIGHTS);
+  $("nights-hint").textContent = isOnt() ? "Ontario retreats are 2 nights, 3 days." : isCustom() ? "Most team trips run 4 to 7 nights." : (S.extra ? "Each extra night is " + money(EXTRA_NIGHT) + " per person, with breakfast and dinner." : "5 nights is the standard trip. Extra nights are " + money(EXTRA_NIGHT) + " per person.");
   var di = $("start-date"); if (di.value !== S.start) di.value = S.start || "";
   $("flexible").checked = S.flexible;
   $("range-out").textContent = S.start ? datesText() + " (" + (nights() + 1) + " days)" : "Pick a first day, or tick flexible and Sarah will suggest weeks.";
   ROOT.querySelectorAll('input[name="room"]').forEach(function(r){ r.checked = (r.value === S.room); });
 }
 function renderCustom(){
-  var w = $("c-where"), n = $("c-note");
+  var w = $("c-where");
   if (document.activeElement !== w) w.value = S.cwhere;
-  if (document.activeElement !== n) n.value = S.cnote;
+  ["c-note", "o-note"].forEach(function(id){ var n = $(id); if (document.activeElement !== n) n.value = S.cnote; });
   $("c-wants").innerHTML = WANTS.map(function(x){
     var on = S.cwants.indexOf(x) !== -1;
     return '<button type="button" class="want" data-act="want" data-w="' + esc(x) + '" aria-pressed="' + on + '">' + CHECK + esc(x) + '</button>';
@@ -867,9 +991,15 @@ function renderCount(){
   var c = $("x-count"); c.hidden = !n; c.textContent = n + " added";
 }
 function renderQuote(){
-  var c = isCustom(), dt = datesText();
+  var c = isCustom(), o = isOnt(), dt = datesText();
   var when = dt ? dt + (S.flexible ? ", flexible" : "") : (S.flexible ? "Flexible" : "To be set");
-  var trip = c ? [
+  var trip = o ? [
+    ["Where", "Ontario, Canada"],
+    ["Dates", when],
+    ["Group", people(S.people)],
+    ["Length", (nights() + 1) + " days, " + nights() + " nights"],
+    ["Includes", elList().join(", ") || "Sarah suggests"]
+  ] : c ? [
     ["Where", "Custom: " + (S.cwhere.trim() || "open to ideas")],
     ["Dates", when],
     ["Group", people(S.people)],
@@ -881,10 +1011,11 @@ function renderQuote(){
     ["Length", (nights() + 1) + " days, " + nights() + " nights"]
   ];
   if (c && S.cwants.length) trip.push(["Wants", S.cwants.join(", ")]);
+  if (goalList().length) trip.push(["Goals", goalList().join(", ")]);
   $("q-trip").innerHTML = trip.map(function(r){ return '<div><span>' + r[0] + '</span><span>' + esc(r[1]) + '</span></div>'; }).join("");
   var tb = $("tb-btn");
-  if (c) {
-    $("tb-total").textContent = "Custom trip";
+  if (!isNica()) {
+    $("tb-total").textContent = o ? "Ontario retreat" : "Custom trip";
     $("tb-sub").textContent = people(S.people) + ", " + nights() + " nights";
     tb.textContent = "Send to Sarah"; tb.setAttribute("href", "#send"); tb.dataset.scroll = "send";
     return;
@@ -900,7 +1031,7 @@ function renderQuote(){
   $("tb-sub").textContent = people(S.people) + ", " + money(T.pp) + " each";
   tb.textContent = "See quote"; tb.setAttribute("href", "#quote-col"); tb.dataset.scroll = "quote-col";
 }
-function refresh(keepCards){ renderMode(); renderGroup(); if (!keepCards) { renderPkgs(); renderExtras(); renderCustom(); } renderQuote(); save(); }
+function refresh(keepCards){ renderMode(); renderGroup(); if (!keepCards) { renderGoals(); renderEls(); renderPkgs(); renderExtras(); renderCustom(); } renderQuote(); save(); }
 
 /* ===== interactions ===== */
 function setPeople(n){ S.people = clamp(n, MIN_PEOPLE, maxPeople()); }
@@ -922,7 +1053,7 @@ ROOT.addEventListener("click", function(ev){
   if (b.dataset.scroll) { ev.preventDefault(); scrollToId(b.dataset.scroll); return; }
   var act = b.dataset.act, id = b.dataset.id, d = parseInt(b.dataset.d || "0", 10);
   if (act === "dest") {
-    var to = b.dataset.dest === "custom" ? "custom" : "nica"; if (to === S.dest) return;
+    var to = DESTS.indexOf(b.dataset.dest) !== -1 ? b.dataset.dest : "nica"; if (to === S.dest) return;
     var before = S.people; S.dest = to; setPeople(S.people); $("room-hint").textContent = "";
     refresh();
     if (before !== S.people) { var h = $("people-hint"); h.textContent = "Nicaragua fits up to " + maxPeople() + " people with " + ROOMS[S.room].label.toLowerCase() + ", so your group is now " + S.people + "."; h.classList.add("warn"); }
@@ -930,9 +1061,16 @@ ROOT.addEventListener("click", function(ev){
   }
   if (act === "people") { setPeople(S.people + d); $("room-hint").textContent = ""; refresh(); return; }
   if (act === "nights") {
+    if (isOnt()) return;
     if (isCustom()) S.cn = clamp(S.cn + d, CUSTOM_MIN_NIGHTS, CUSTOM_MAX_NIGHTS);
     else S.extra = clamp(S.extra + d, 0, MAX_EXTRA_NIGHTS);
     refresh(true); return;
+  }
+  if (act === "goal") {
+    var gname = b.dataset.g, gi = S.goals.indexOf(gname);
+    if (GOAL_NAMES.indexOf(gname) === -1) return;
+    if (gi === -1) S.goals.push(gname); else S.goals.splice(gi, 1);
+    b.setAttribute("aria-pressed", String(gi === -1)); renderQuote(); save(); return;
   }
   if (act === "want") {
     var w = b.dataset.w, i = S.cwants.indexOf(w);
@@ -948,7 +1086,7 @@ ROOT.addEventListener("click", function(ev){
   if (act === "qty" && S.addons[id]) { var e1 = S.addons[id]; e1.qty = clamp((e1.qty || 1) + d, 1, BYID[id].qmax); rerenderCard(id, "qty", b.dataset.d); renderQuote(); save(); return; }
   if (act === "ppl" && S.addons[id]) { var e2 = S.addons[id]; var n = clamp(pplFor(e2) + d, 1, S.people); e2.people = (n >= S.people) ? null : n; rerenderCard(id, "ppl", b.dataset.d); renderQuote(); save(); return; }
   if (act === "reset-proposal") { S = clone(PROPOSAL); $("room-hint").textContent = ""; refresh(); return; }
-  if (act === "reset-base") { S = { v:2, dest:"nica", people:S.people, start:S.start, flexible:S.flexible, extra:0, cn:S.cn, room:"shared", food:"none", drinks:"none", addons:{}, cwhere:S.cwhere, cwants:S.cwants, cnote:S.cnote }; setPeople(S.people); $("room-hint").textContent = ""; refresh(); return; }
+  if (act === "reset-base") { S = { v:2, dest:"nica", people:S.people, start:S.start, flexible:S.flexible, extra:0, cn:S.cn, room:"shared", food:"none", drinks:"none", addons:{}, cwhere:S.cwhere, cwants:S.cwants, cnote:S.cnote, goals:S.goals, els:S.els }; setPeople(S.people); $("room-hint").textContent = ""; refresh(); return; }
   if (act === "copy-package") { copyPackage(); return; }
   if (act === "copy-contact") { copyContact(b.dataset.which); return; }
 });
@@ -962,6 +1100,12 @@ ROOT.addEventListener("change", function(ev){
     refresh(); return;
   }
   if (t.name === "food") { S.food = FOOD[t.value] ? t.value : "none"; renderQuote(); save(); return; }
+  if (t.name === "el") {
+    var ei = S.els.indexOf(t.value);
+    if (t.checked && ei === -1 && EL_IDS.indexOf(t.value) !== -1) S.els.push(t.value);
+    if (!t.checked && ei !== -1) S.els.splice(ei, 1);
+    renderQuote(); save(); return;
+  }
   if (t.name === "drinks") {
     if (t.checked) S.drinks = t.value; else if (S.drinks === t.value) S.drinks = "none";
     ROOT.querySelectorAll('input[name="drinks"]').forEach(function(i){ i.checked = (i.value === S.drinks); });
@@ -973,20 +1117,27 @@ ROOT.addEventListener("change", function(ev){
 ROOT.addEventListener("input", function(ev){
   var t = ev.target;
   if (t.id === "c-where") { S.cwhere = t.value.slice(0, 80); renderQuote(); save(); return; }
-  if (t.id === "c-note") { S.cnote = t.value.slice(0, 600); save(); return; }
+  if (t.id === "c-note" || t.id === "o-note") { S.cnote = t.value.slice(0, 600); save(); return; }
 });
 ROOT.addEventListener("keydown", function(ev){ if (ev.target.id === "people-in" && ev.key === "Enter") { ev.preventDefault(); ev.target.blur(); } });
 
 /* ===== send to Sarah: build the package, copy it, offer the email app ===== */
 function packageText(){
-  var c = isCustom(), out = [];
+  var c = isCustom(), o = isOnt(), out = [];
   var name = $("f-name").value.trim(), company = $("f-company").value.trim() || COMPANY, email = $("f-email").value.trim(), notes = $("f-notes").value.trim();
   var dt = datesText(), dates = (dt || "not set yet") + (S.flexible ? " (flexible)" : "");
-  out.push(c ? "Hi Sarah, here is our custom team trip request." : "Hi Sarah, here is our team trip package.");
+  out.push(o ? "Hi Sarah, here is our Ontario retreat request." : c ? "Hi Sarah, here is our custom team trip request." : "Hi Sarah, here is our team trip package.");
   out.push("");
   out.push("Company: " + company);
   if (name || email) out.push("From: " + [name, email].filter(Boolean).join(", "));
-  if (c) {
+  if (goalList().length) out.push("Our goals: " + goalList().join(", "));
+  if (o) {
+    out.push("Where: Ontario, Canada");
+    out.push("Dates: " + dates);
+    out.push("Group: " + people(S.people) + ", " + nights() + " nights");
+    out.push("Include: " + (elList().join(", ") || "Sarah suggests"));
+    if (S.cnote.trim()) out.push("Anything else: " + S.cnote.trim());
+  } else if (c) {
     out.push("Where: " + (S.cwhere.trim() || "Open to ideas"));
     out.push("Dates: " + dates);
     out.push("Group: " + people(S.people) + ", " + nights() + " nights");
@@ -1045,7 +1196,7 @@ $("send-form").addEventListener("submit", function(ev){
   var text = packageText();
   $("send-text").value = text;
   $("send-email").textContent = CONTACT.email;
-  $("send-mailto").href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent((isCustom() ? "Custom team trip: " : "Team trip: ") + ($("f-company").value.trim() || COMPANY)) + "&body=" + encodeURIComponent(text);
+  $("send-mailto").href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent((isOnt() ? "Ontario retreat: " : isCustom() ? "Custom team trip: " : "Team trip: ") + ($("f-company").value.trim() || COMPANY)) + "&body=" + encodeURIComponent(text);
   var out = $("send-out"); out.hidden = false;
   $("copy-state").textContent = "";
   copyText(text, setCopyState);
