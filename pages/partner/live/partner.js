@@ -401,7 +401,7 @@ function fitSiteHeader(){
 })();
 
 /* ===== boot ===== */
-if (MODE === "live") { ROOT.classList.remove("is-artifact"); ROOT.classList.add("is-live"); fitSiteHeader(); window.addEventListener("resize", fitSiteHeader); window.addEventListener("load", fitSiteHeader); setTimeout(fitSiteHeader, 1200); }
+if (MODE === "live") { var host = ROOT.closest(".embed-block"); if (host) { host.style.paddingLeft = "0"; host.style.paddingRight = "0"; } ROOT.classList.remove("is-artifact"); ROOT.classList.add("is-live"); fitSiteHeader(); window.addEventListener("resize", fitSiteHeader); window.addEventListener("load", fitSiteHeader); setTimeout(fitSiteHeader, 1200); }
 $("b-for").textContent = "Prepared for " + COMPANY;
 $("q-sub").innerHTML = "SYB Travel<br>For " + esc(COMPANY);
 $("f-company").value = COMPANY === DEFAULT_COMPANY ? "" : COMPANY;
