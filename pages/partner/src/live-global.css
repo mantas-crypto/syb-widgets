@@ -1,0 +1,4 @@
+/* Site-wide rules for /partner only (they ship inside partner.css, which only this page loads). */
+#overview-line{display:none!important}
+/* On phones the page's total bar sits where the WhatsApp pill lives, so the pill steps aside while the bar is up. */
+@media (max-width:1059px){html.sybp-bar #syb-whatsapp{display:none!important}}

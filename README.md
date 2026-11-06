@@ -117,3 +117,8 @@ WhatsApp, once in Easol head HTML (sitewide):
 ## Rebuild the review files
 
     python3 scripts/build-reviews.py
+
+## Team trip builder
+
+surfyogabeer.com/partner, the B2B page for company team trips, lives in pages/partner (source, photos, build script,
+live CSS and JS). See pages/partner/README.md.
