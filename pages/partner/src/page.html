@@ -48,18 +48,19 @@ svg{flex:0 0 auto}
 /* type */
 .h1{font-weight:900;text-transform:uppercase;letter-spacing:-.5px;line-height:1.03;font-size:clamp(36px,7.4vw,76px)}
 .h2{font-weight:900;text-transform:uppercase;letter-spacing:-.3px;line-height:1.06;font-size:clamp(28px,4.4vw,42px)}
-.h3{font-weight:800;text-transform:uppercase;letter-spacing:.2px;line-height:1.2;font-size:clamp(18px,2.1vw,21px)}
+.h3{font-weight:800;text-transform:uppercase;letter-spacing:.2px;line-height:1.2;font-size:clamp(17px,2vw,20px)}
 .h1 span,.h2 span{display:block;width:fit-content;max-width:100%}
 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .08em;margin:0 -.08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .kicker{font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin:0 0 12px}
-.chn{font-size:14px;font-weight:900;letter-spacing:2.2px;margin:0 0 10px;display:inline-block}
-.lede{font-size:clamp(17px,1.7vw,19px);line-height:1.6;color:var(--body);max-width:60ch;margin:14px 0 0}
+.chn{font-size:13px;font-weight:900;letter-spacing:2.2px;margin:0 0 10px;display:inline-block}
+.lede{font-size:clamp(16.5px,1.6vw,18px);line-height:1.6;color:var(--body);max-width:58ch;margin:12px 0 0}
 .muted{color:var(--dim)}
 .small{font-size:15px;line-height:1.55}
-.label{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--dim)}
+.label{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--dim)}
 .pill{display:inline-flex;align-items:center;gap:6px;border-radius:100px;background:var(--panel);border:1px solid var(--line);font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--dim);padding:6px 11px;white-space:nowrap;line-height:1.2}
-.sub{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:30px 0 12px}
+.sub{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:28px 0 12px}
 .sub .pill{background:var(--gold);border-color:var(--gold);color:#121214}
+.subhint{margin:-6px 0 12px;font-size:14.5px;color:var(--dim)}
 
 /* top bar (preview only; the live site has its own header) */
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(8,8,10,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -68,25 +69,23 @@ svg{flex:0 0 auto}
 .brand img{width:34px;height:34px;flex:0 0 auto}
 .brand b{display:block;font-weight:900;letter-spacing:1.6px;font-size:15px;white-space:nowrap;line-height:1.3}
 .brand small{display:block;font-size:11px;font-weight:700;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;white-space:nowrap;line-height:1.3}
-.toplink{font-size:14px;font-weight:800;text-decoration:none;color:var(--ink);padding:9px 14px;border:1px solid var(--line);border-radius:100px;white-space:nowrap}
-.toplink:hover{border-color:var(--dim)}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border:0;border-radius:100px;background:var(--grad);color:#121214;font-weight:800;font-size:16px;letter-spacing:.2px;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border:0;border-radius:100px;background:var(--grad);color:#121214;font-weight:800;font-size:16px;letter-spacing:.2px;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap}
 .btn:hover{filter:brightness(1.06)}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
 .btn.small{min-height:42px;padding:0 16px;font-size:14px}
-.linkbtn{background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;text-decoration-color:var(--violet);text-underline-offset:4px;text-decoration-thickness:2px;font-weight:700;font-size:14px;cursor:pointer}
+.linkbtn{background:none;border:0;padding:0;color:var(--body);text-decoration:underline;text-decoration-color:var(--violet);text-underline-offset:4px;text-decoration-thickness:1.5px;font-weight:700;font-size:13.5px;cursor:pointer}
+.linkbtn:hover{color:var(--ink)}
 
 /* hero: phones get the photo on top and words below; wider screens put words over the photo */
 .hero{position:relative;background:var(--bg);isolation:isolate;overflow:hidden;padding-top:var(--herotop)}
 .hero-media{position:relative}
 .hero-media img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,10,0) 50%,var(--bg) 100%)}
-.hero-body{position:relative;margin-top:-40px;padding-block:0 30px}
+.hero-body{position:relative;margin-top:-40px;padding-block:0 28px}
 .hero .lede{color:#f0ebe3}
 .hero .kicker{color:var(--gold)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 @media (min-width:760px){
   .hero-media{position:absolute;inset:0;z-index:-1}
   .hero-media img{height:100%;aspect-ratio:auto}
@@ -96,40 +95,48 @@ svg{flex:0 0 auto}
 }
 .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px;max-width:820px}
 .facts div{background:rgba(18,18,25,.94);padding:12px 14px;min-width:0}
-.facts b{display:block;color:var(--ink);font-weight:800;font-size:17px;line-height:1.25}
+.facts b{display:block;color:var(--ink);font-weight:800;font-size:16.5px;line-height:1.25}
 .facts span{display:block;font-size:13px;font-weight:600;color:var(--dim);margin-top:2px;line-height:1.35}
 @media (min-width:760px){.facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* layout */
 .builder{display:grid;gap:0 36px;grid-template-columns:minmax(0,1fr)}
-@media (min-width:1060px){.builder{grid-template-columns:minmax(0,1fr) 390px;align-items:start}}
+@media (min-width:1060px){.builder{grid-template-columns:minmax(0,1fr) 380px;align-items:start}}
 .main-col{min-width:0}
 .quote-col{min-width:0;padding-block:24px 8px}
 @media (min-width:1060px){.quote-col{position:sticky;top:calc(var(--navh) + 16px);padding-block:28px;max-height:calc(100vh - var(--navh) - 24px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}}
-.step{padding-block:clamp(40px,5vw,60px);border-top:1px solid var(--line)}
+.step{padding-block:clamp(36px,4.5vw,54px);border-top:1px solid var(--line)}
 .step:first-child{border-top:0}
-.savebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--dim)}
-.savebar .dot{width:9px;height:9px;border-radius:50%;background:var(--good);display:inline-block;margin-right:7px}
-.band{padding-block:clamp(48px,7vw,84px)}
+.savebar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--dim)}
+.savebar .sv{margin-right:auto;display:inline-flex;align-items:center}
+.savebar .dot{width:8px;height:8px;border-radius:50%;background:var(--good);display:inline-block;margin-right:8px}
+.band{padding-block:clamp(44px,6vw,76px)}
 .band.alt{background:var(--panel)}
 
 /* destination */
-.dests{display:grid;gap:12px;grid-template-columns:minmax(0,1fr);margin-top:20px}
-@media (min-width:640px){.dests{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}}
-.dest{position:relative;display:block;width:100%;background:var(--panel);border:1px solid var(--line);color:inherit;text-align:left;padding:0;cursor:pointer;overflow:hidden}
-.dest img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.dest .d-body{display:block;padding:14px 16px 16px}
-.dest .d-name{display:block;font-size:22px;font-weight:900;text-transform:uppercase;color:var(--ink);line-height:1.2}
-.dest .d-text{display:block;margin:4px 0 0;font-size:15px;color:var(--body);line-height:1.5}
-.dest[aria-pressed="true"]{box-shadow:0 0 0 2px var(--gold) inset;border-color:transparent}
-.dest .sel{position:absolute;top:10px;right:10px;background:var(--gold);color:#121214;border-color:var(--gold)}
-.dest.soon{cursor:default;display:flex;flex-direction:column;justify-content:center;padding:22px;min-height:170px;border-style:dashed;background:transparent}
-.dest.soon .d-name{color:var(--dim)}
+.dests{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
+.dest{position:relative;display:block;width:100%;background:var(--panel);border:1px solid var(--line);color:inherit;text-align:left;padding:0;cursor:pointer;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.dest img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:opacity .15s}
+.dest .d-body{display:block;padding:10px 12px 13px}
+.dest .d-name{display:block;font-size:17px;font-weight:900;text-transform:uppercase;color:var(--ink);line-height:1.2}
+.dest .d-text{display:block;margin:3px 0 0;font-size:13.5px;color:var(--body);line-height:1.45}
+.dest .sel{position:absolute;top:8px;right:8px;display:none;background:var(--gold);color:#121214;border-color:var(--gold)}
+@media (min-width:600px){
+  .dest img{aspect-ratio:3/2}
+  .dest .d-body{padding:12px 15px 15px}
+  .dest .d-name{font-size:20px}
+  .dest .d-text{font-size:14.5px;line-height:1.5}
+  .dest .sel{top:10px;right:10px}
+}
+.dest[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.dest[aria-pressed="true"] .sel{display:inline-flex}
+.dest[aria-pressed="false"] img{opacity:.72}
+.dest[aria-pressed="false"]:hover img{opacity:1}
 
 /* group */
-.grid2{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);margin-top:20px}
+.grid2{display:grid;gap:12px;grid-template-columns:minmax(0,1fr);margin-top:18px}
 @media (min-width:700px){.grid2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-.box{background:var(--panel);border:1px solid var(--line);padding:18px}
+.box{background:var(--panel);border:1px solid var(--line);padding:16px 18px}
 .box .label{display:block;margin:0 0 10px}
 .stepper{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--bg)}
 .stepper button{width:46px;height:46px;display:grid;place-items:center;background:transparent;border:0;padding:0;cursor:pointer;color:var(--ink)}
@@ -137,75 +144,88 @@ svg{flex:0 0 auto}
 .stepper button:disabled{opacity:.3;cursor:not-allowed}
 .stepper svg{width:16px;height:16px}
 .stepper output{min-width:46px;text-align:center;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
-.stepper.big button{width:58px;height:58px}
-.stepper.big output{min-width:76px;font-size:32px;font-weight:900}
-.hint{font-size:15px;color:var(--dim);margin:10px 0 0;min-height:1.5em}
+.stepper.big button{width:56px;height:56px}
+.stepper.big output{min-width:76px;font-size:30px;font-weight:900}
+.stepper .num{width:80px;height:56px;padding:0;border:0;border-radius:0;background:transparent;color:var(--ink);text-align:center;font-size:30px;font-weight:900;font-variant-numeric:tabular-nums;-moz-appearance:textfield;appearance:textfield;box-shadow:none}
+.stepper .num:focus{outline:2px solid var(--violet);outline-offset:-2px}
+.stepper .num::-webkit-outer-spin-button,.stepper .num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.hint{font-size:14.5px;color:var(--dim);margin:10px 0 0;min-height:1.5em}
 .hint.warn{color:var(--gold)}
 .field{display:grid;gap:7px}
-.field label{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--dim)}
-.input{display:block;width:100%;min-height:52px;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:0;padding:10px 14px;color:var(--ink);font-size:17px;box-shadow:none}
+.field label{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--dim)}
+.input{display:block;width:100%;min-height:50px;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:0;padding:10px 14px;color:var(--ink);font-size:16.5px;box-shadow:none}
 .input:focus{border-color:var(--violet);outline:none;box-shadow:0 0 0 1px var(--violet)}
-textarea.input{min-height:100px;resize:vertical}
-.check{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:16px;cursor:pointer}
+textarea.input{min-height:96px;resize:vertical}
+.check{display:flex;gap:10px;align-items:center;margin-top:12px;font-size:15.5px;cursor:pointer}
 .check input{width:22px;height:22px;accent-color:var(--gold)}
-.range-out{margin:12px 0 0;font-weight:800;color:var(--ink);font-size:17px}
-.note{display:flex;gap:10px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);padding:14px 16px;margin-top:14px;font-size:15.5px}
+.range-out{margin:12px 0 0;font-weight:800;color:var(--ink);font-size:16.5px}
+.note{display:flex;gap:10px;align-items:flex-start;padding:12px 2px 0;margin-top:4px;font-size:14.5px;color:var(--dim)}
+
+/* custom trip */
+.wants{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.want{display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:0 15px;border-radius:100px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:700;font-size:14.5px;line-height:1.2;cursor:pointer;transition:background .15s,border-color .15s}
+.want:hover{border-color:var(--dim)}
+.want[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#121214}
+.want svg{width:14px;height:14px;display:none}
+.want[aria-pressed="true"] svg{display:block}
 
 /* photo tiles: step 3 (the compound) and step 4 (included) */
-.tiles{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:20px}
+.tiles{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
 @media (min-width:600px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .tile{position:relative;margin:0;aspect-ratio:1/1;overflow:hidden;background:var(--panel);isolation:isolate}
 .tile.big{grid-column:span 2;grid-row:span 2}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,8,10,0) 34%,rgba(8,8,10,.55) 62%,rgba(8,8,10,.93) 100%)}
 .tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 11px 11px;display:grid;gap:4px}
-.tile .t-name{font-size:16px;font-weight:900;line-height:1.15;color:#fff;text-transform:uppercase;letter-spacing:.1px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.tile .t-name{font-size:15.5px;font-weight:900;line-height:1.15;color:#fff;text-transform:uppercase;letter-spacing:.1px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 .tile.big .t-name{font-size:clamp(18px,2.6vw,24px)}
 .tile .t-note{font-size:13px;font-weight:600;line-height:1.35;color:#f1ece4;text-shadow:0 1px 6px rgba(0,0,0,.6)}
 .tile.big .t-note{font-size:15px}
-.tile .t-badge{position:absolute;top:9px;left:9px;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:900;letter-spacing:1px;text-transform:uppercase;line-height:1.2;background:var(--gold);color:#121214;border-radius:100px;padding:4px 9px 4px 6px}
+.tile .t-badge{position:absolute;top:9px;left:9px;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;line-height:1.2;background:var(--gold);color:#121214;border-radius:100px;padding:4px 9px 4px 6px}
 .tile .t-badge svg{width:13px;height:13px}
 @media (max-width:599px){.inc-grid .tile{aspect-ratio:4/5}.tile .t-note{font-size:12.5px}}
-.also{margin:18px 0 0;font-size:16px}
-.also b{color:var(--ink)}
-.nots{margin:10px 0 0;font-size:15px;color:var(--dim)}
+.alsos{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.alsos span{font-size:13px;font-weight:700;line-height:1.3;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:100px;padding:6px 11px}
+.nots{margin:14px 0 0;font-size:14px;line-height:1.55;color:var(--dim)}
 .nots b{color:var(--body)}
 
 /* rooms */
-.rooms{display:grid;gap:12px;grid-template-columns:minmax(0,1fr);margin-top:14px}
+.rooms{display:grid;gap:10px;grid-template-columns:minmax(0,1fr);margin-top:12px}
 @media (min-width:700px){.rooms{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.room{position:relative;display:block;background:var(--panel);border:1px solid var(--line);cursor:pointer}
+.room{position:relative;display:block;background:var(--panel);border:1px solid var(--line);cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .room input{position:absolute;opacity:0;pointer-events:none}
 .room img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.room .r-body{display:grid;gap:3px;padding:14px 16px 16px}
-.room .r-name{font-size:17px;font-weight:900;text-transform:uppercase;color:var(--ink);line-height:1.25}
-.room .r-price{font-weight:800;color:var(--gold);font-size:16px}
-.room .r-meta{font-size:15px;color:var(--body);line-height:1.5}
+.room .r-body{display:grid;gap:2px;padding:12px 15px 15px}
+.room .r-name{font-size:16px;font-weight:900;text-transform:uppercase;color:var(--ink);line-height:1.25}
+.room .r-price{font-weight:800;color:var(--gold);font-size:15px}
+.room .r-meta{font-size:14.5px;color:var(--body);line-height:1.5}
 .room .r-sel{position:absolute;top:10px;right:10px;display:none;background:var(--gold);color:#121214;border-color:var(--gold)}
-.room:has(input:checked){box-shadow:0 0 0 2px var(--gold) inset;border-color:transparent}
+.room:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
 .room:has(input:checked) .r-sel{display:inline-flex}
 .room:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:3px}
 
-/* packages: pick one (photo on the left on phones, on top on wider screens) */
+/* packages (photo on the left on phones, on top on wider screens) */
 .pkgs{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
-.pkg{position:relative;display:grid;grid-template-columns:112px minmax(0,1fr);background:var(--panel);border:1px solid var(--line);cursor:pointer;overflow:hidden}
+.pkg{position:relative;display:grid;grid-template-columns:108px minmax(0,1fr);background:var(--panel);border:1px solid var(--line);cursor:pointer;overflow:hidden;transition:border-color .15s,box-shadow .15s}
 .pkg input{position:absolute;opacity:0;pointer-events:none}
-.p-media{position:relative;display:block;min-height:112px;background:var(--panel-2)}
+.p-media{position:relative;display:block;min-height:108px;background:var(--panel-2)}
 .p-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .p-check{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:rgba(8,8,10,.35);display:grid;place-items:center;color:#121214}
 .p-check svg{width:15px;height:15px;opacity:0}
-.p-body{display:grid;gap:4px;align-content:start;padding:12px 14px 14px}
-.p-name{color:var(--ink);font-size:16px;font-weight:800;line-height:1.3}
-.p-price{font-weight:800;color:var(--gold);font-size:15px;line-height:1.3}
-.p-desc{font-size:14.5px;color:var(--body);line-height:1.5}
+.p-body{display:grid;gap:3px;align-content:start;padding:11px 14px 13px}
+.p-name{color:var(--ink);font-size:15.5px;font-weight:800;line-height:1.3}
+.p-price{font-weight:800;color:var(--gold);font-size:14.5px;line-height:1.3}
+.p-desc{font-size:14px;color:var(--body);line-height:1.5}
 .pkg:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
 .pkg:has(input:checked) .p-check{background:var(--gold);border-color:var(--gold)}
 .pkg:has(input:checked) .p-check svg{opacity:1}
 .pkg:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:3px}
 @media (min-width:700px){
   .pkgs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pkgs.two{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pkg{grid-template-columns:minmax(0,1fr);align-content:start}
   .p-media{min-height:0;aspect-ratio:4/3}
+  .pkgs.two .p-media{aspect-ratio:16/9}
 }
 
 /* extras: one grid, tap a photo to add it */
@@ -218,50 +238,53 @@ textarea.input{min-height:100px;resize:vertical}
 .a-hit:focus-visible{outline-offset:-3px}
 .a-media{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;isolation:isolate;background:radial-gradient(120% 90% at 20% 0%,rgba(232,178,58,.20),transparent 60%),radial-gradient(120% 90% at 100% 100%,rgba(139,123,255,.22),transparent 60%),var(--panel-2)}
 .a-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .3s}
-.a-media::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,8,10,0) 42%,rgba(8,8,10,.86) 100%)}
-.a-emoji{position:absolute;inset:0;display:grid;place-items:center;padding-bottom:18%;font-size:clamp(40px,9vw,56px);line-height:1;z-index:-1}
-.a-name{position:absolute;left:10px;right:10px;bottom:9px;font-size:15px;font-weight:900;line-height:1.15;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.55)}
-.a-check{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;border:2px solid #fff;background:rgba(8,8,10,.35);display:grid;place-items:center;color:#121214}
-.a-check svg{width:16px;height:16px;opacity:0}
+.a-media::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,8,10,0) 30%,rgba(8,8,10,.55) 58%,rgba(8,8,10,.92) 100%)}
+.a-emoji{position:absolute;inset:0;display:grid;place-items:center;padding-bottom:22%;font-size:clamp(40px,9vw,54px);line-height:1;z-index:-1}
+.a-cap{position:absolute;left:10px;right:10px;bottom:9px;display:grid;gap:2px}
+.a-name{font-size:14.5px;font-weight:900;line-height:1.15;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.a-price{font-size:13.5px;font-weight:800;line-height:1.3;color:var(--gold);font-variant-numeric:tabular-nums;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.a-price small{font-size:12px;font-weight:600;color:#e9e2d6}
+.a-check{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:rgba(8,8,10,.35);display:grid;place-items:center;color:#121214}
+.a-check svg{width:15px;height:15px;opacity:0}
 .addon.on .a-check{background:var(--gold);border-color:var(--gold)}
 .addon.on .a-check svg{opacity:1}
-.a-body{display:grid;gap:4px;padding:10px 12px 12px}
-.a-price{font-size:15.5px;font-weight:800;color:var(--gold);line-height:1.3;font-variant-numeric:tabular-nums}
-.a-price small{font-size:13px;font-weight:600;color:var(--dim)}
-.a-desc{font-size:14px;line-height:1.45;color:var(--body)}
-.a-ctrl{display:grid;gap:10px;padding:10px 12px 12px;border-top:1px solid var(--line)}
+.a-desc{display:block;padding:9px 11px 11px;font-size:13.5px;line-height:1.45;color:var(--dim)}
+.a-ctrl{display:grid;gap:9px;padding:10px 11px 12px;border-top:1px solid var(--line)}
 .mini{display:grid;gap:5px}
-.mini .label{font-size:11.5px}
+.mini .label{font-size:11px}
 .mini .stepper button{width:40px;height:40px}
-.mini .stepper output{min-width:42px}
-.a-line{font-weight:900;color:var(--ink);font-size:17px;line-height:1.25;font-variant-numeric:tabular-nums}
-.a-line small{display:block;font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--dim)}
+.mini .stepper output{min-width:40px}
+.a-line{font-weight:900;color:var(--ink);font-size:16.5px;line-height:1.25;font-variant-numeric:tabular-nums}
+.a-line small{display:block;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--dim)}
 
 /* quote (paper) */
 .quote{background:var(--paper);color:var(--paper-ink);padding:22px 20px 20px;font-variant-numeric:tabular-nums}
 .q-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:2px solid var(--paper-ink);padding-bottom:12px}
-.q-head .q-t{font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:-.3px;line-height:1}
+.q-head .q-t{font-weight:900;text-transform:uppercase;font-size:23px;letter-spacing:-.3px;line-height:1}
 .q-head .q-sub{font-family:var(--mono);font-size:12.5px;color:var(--paper-dim);margin-top:7px;line-height:1.5}
 .q-stamp{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;border:1.5px solid var(--paper-ink);padding:4px 7px;white-space:nowrap}
 .q-trip{font-family:var(--mono);font-size:13px;line-height:1.65;padding:12px 0;border-bottom:1px solid var(--paper-line)}
 .q-trip div{display:flex;justify-content:space-between;gap:12px}
-.q-trip span:first-child{color:var(--paper-dim)}
+.q-trip span:first-child{color:var(--paper-dim);flex:0 0 auto}
 .q-trip span:last-child{text-align:right}
 .q-lines{list-style:none;margin:0;padding:6px 0;border-bottom:1px solid var(--paper-line)}
-.q-lines li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:9px 0;border-bottom:1px dashed var(--paper-line)}
+.q-lines li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:8px 0;border-bottom:1px dashed var(--paper-line)}
 .q-lines li:last-child{border-bottom:0}
-.q-lines .ql-t{font-weight:800;font-size:15.5px;line-height:1.3}
+.q-lines .ql-t{font-weight:800;font-size:15px;line-height:1.3}
 .q-lines .ql-m{grid-column:1;font-family:var(--mono);font-size:12.5px;color:var(--paper-dim);line-height:1.5}
-.q-lines .ql-a{grid-row:1;grid-column:2;font-weight:800;font-size:15.5px;text-align:right}
+.q-lines .ql-a{grid-row:1;grid-column:2;font-weight:800;font-size:15px;text-align:right}
 .q-tot{padding:12px 0 4px;display:grid;gap:4px}
 .q-tot div{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
 .q-tot .big{font-size:30px;font-weight:900;letter-spacing:-.5px}
 .q-tot .lbl{font-weight:900;text-transform:uppercase;font-size:14px;letter-spacing:1px}
 .q-tot .pp{font-family:var(--mono);font-size:13px;color:var(--paper-dim)}
-.q-pay{margin-top:12px;border-top:1px solid var(--paper-line);padding-top:12px;display:grid;gap:7px;font-size:15px}
+.q-pay{margin-top:12px;border-top:1px solid var(--paper-line);padding-top:12px;display:grid;gap:7px;font-size:14.5px}
 .q-pay div{display:flex;justify-content:space-between;gap:12px}
 .q-pay b{font-weight:900}
-.q-foot{margin:12px 0 0;font-size:13.5px;line-height:1.5;color:var(--paper-dim)}
+.q-custom{padding:14px 0 2px}
+.q-custom .big{font-size:26px;font-weight:900;letter-spacing:-.4px;line-height:1.1;margin:0;color:var(--paper-ink)}
+.q-custom p{margin:6px 0 0;font-size:14px;line-height:1.5;color:var(--paper-dim)}
+.q-foot{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--paper-dim)}
 .q-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 .q-actions .btn{flex:1 1 auto}
 
@@ -279,22 +302,22 @@ textarea.input{min-height:100px;resize:vertical}
 .copy-state.warn{color:var(--gold)}
 .terms{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);grid-template-columns:minmax(0,1fr);margin-top:20px}
 @media (min-width:600px){.terms{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.terms div{background:var(--bg);padding:14px 16px;font-size:15px;min-width:0;line-height:1.5}
-.terms b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+.terms div{background:var(--bg);padding:13px 15px;font-size:14.5px;min-width:0;line-height:1.5}
+.terms b{display:block;color:var(--ink);font-size:15.5px;margin-bottom:2px}
 
 /* faq, reviews, contact */
 .faq{margin-top:20px;border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:17px 0;font-weight:800;color:var(--ink);font-size:17px;line-height:1.4}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:16px 0;font-weight:800;color:var(--ink);font-size:16.5px;line-height:1.4}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font-weight:900;color:var(--gold);font-size:22px;line-height:1}
 .faq details[open] summary::after{content:"-"}
-.faq p{margin:0 0 18px;max-width:68ch}
+.faq p{margin:0 0 18px;max-width:68ch;font-size:16px}
 .reviews{display:grid;gap:12px;grid-template-columns:minmax(0,1fr);margin-top:20px}
 @media (min-width:860px){.reviews{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .reviews figure{margin:0;background:var(--panel);border:1px solid var(--line);padding:18px}
 .reviews .stars{color:var(--gold);letter-spacing:2px;font-size:15px}
-.reviews blockquote{margin:8px 0 10px;padding:0;border:0;color:var(--ink);font-size:16.5px;line-height:1.55;font-style:normal}
+.reviews blockquote{margin:8px 0 10px;padding:0;border:0;color:var(--ink);font-size:16px;line-height:1.55;font-style:normal}
 .reviews figcaption{font-size:14px;color:var(--dim)}
 .contact{display:grid;gap:22px;grid-template-columns:minmax(0,1fr)}
 @media (min-width:860px){.contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end}}
@@ -310,8 +333,8 @@ textarea.input{min-height:100px;resize:vertical}
 .totalbar.off{transform:translateY(110%);visibility:hidden}
 .totalbar .in{display:flex;align-items:center;gap:12px;max-width:1180px;margin:0 auto}
 .totalbar .tb-t{margin-right:auto;min-width:0}
-.totalbar .tb-t b{display:block;color:var(--ink);font-size:22px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.1}
-.totalbar .tb-t span{font-size:13.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.totalbar .tb-t b{display:block;color:var(--ink);font-size:21px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.1}
+.totalbar .tb-t span{font-size:13px;color:var(--dim);font-variant-numeric:tabular-nums}
 @media (min-width:1060px){.totalbar{display:none}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
@@ -324,7 +347,6 @@ textarea.input{min-height:100px;resize:vertical}
       <img src="img/syb-logo-white.png" alt="" width="34" height="34">
       <span><b>SYB TRAVEL</b><small>Team trips</small></span>
     </span>
-    <a class="toplink" href="#contact" data-scroll="contact">Ask Sarah</a>
   </div>
 </header>
 <!--/A-->
@@ -342,18 +364,14 @@ textarea.input{min-height:100px;resize:vertical}
         <div><b>6 days, 5 nights</b><span>Playa Maderas</span></div>
         <div><b>Airport pickups</b><span>Managua and Liberia</span></div>
       </div>
-      <div class="hero-cta">
-        <a class="btn" href="#build" data-scroll="build">Start building</a>
-        <a class="btn ghost" href="#contact" data-scroll="contact">Ask Sarah</a>
-      </div>
     </div>
   </section>
 
   <div class="wrap" id="build">
     <div class="savebar">
-      <span><span class="dot" aria-hidden="true"></span><span id="save-msg">Your changes save on this device.</span></span>
-      <button type="button" class="linkbtn" data-act="reset-proposal">Back to Sarah's proposal</button>
-      <button type="button" class="linkbtn" data-act="reset-base">Start from the base package</button>
+      <span class="sv"><span class="dot" aria-hidden="true"></span><span id="save-msg">Your changes save on this device.</span></span>
+      <button type="button" class="linkbtn" data-act="reset-proposal" id="rs-proposal">Back to Sarah's proposal</button>
+      <button type="button" class="linkbtn" data-act="reset-base" id="rs-base">Start from the base package</button>
     </div>
 
     <div class="builder">
@@ -364,19 +382,22 @@ textarea.input{min-height:100px;resize:vertical}
           <p class="chn g">STEP 01</p>
           <h2 class="h2" id="h-dest"><span>Pick your</span><span class="g">destination.</span></h2>
           <div class="dests">
-            <button type="button" class="dest" aria-pressed="true" data-act="dest">
+            <button type="button" class="dest" aria-pressed="true" data-act="dest" data-dest="nica">
               <img src="img/dest-maderas-rock.jpg" alt="Sunset behind Maderas Rock in the bay at Playa Maderas" width="900" height="600" loading="lazy">
               <span class="pill sel">Selected</span>
               <span class="d-body">
                 <span class="d-name">Nicaragua</span>
-                <span class="d-text">Playa Maderas, about 11 km north of San Juan del Sur. SYB's home base since 2016.</span>
+                <span class="d-text">Playa Maderas, SYB's home base since 2016. Priced as you build.</span>
               </span>
             </button>
-            <div class="dest soon" aria-disabled="true">
-              <span class="pill" style="align-self:flex-start;margin-bottom:12px">Coming soon</span>
-              <span class="d-name">More destinations</span>
-              <span class="d-text">More SYB destinations are coming to team trips. Ask Sarah if you have one in mind.</span>
-            </div>
+            <button type="button" class="dest" aria-pressed="false" data-act="dest" data-dest="custom">
+              <img src="img/dest-custom.jpg" alt="An SYB crew on a mountain peak with the SYB flag" width="900" height="600" loading="lazy">
+              <span class="pill sel">Selected</span>
+              <span class="d-body">
+                <span class="d-name">Custom</span>
+                <span class="d-text">Anywhere, any length. Tell us what you want and Sarah builds it.</span>
+              </span>
+            </button>
           </div>
         </section>
 
@@ -386,10 +407,10 @@ textarea.input{min-height:100px;resize:vertical}
           <h2 class="h2" id="h-group"><span>Who's coming,</span><span class="g">and when.</span></h2>
           <div class="grid2">
             <div class="box">
-              <span class="label" id="lbl-people">Group size</span>
+              <label class="label" id="lbl-people" for="people-in">Group size</label>
               <div class="stepper big" role="group" aria-labelledby="lbl-people">
                 <button type="button" data-act="people" data-d="-1" aria-label="One fewer person"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7.2" width="12" height="1.6" fill="currentColor"/></svg></button>
-                <output id="people-out" aria-live="polite">14</output>
+                <input class="num" id="people-in" name="people" type="number" inputmode="numeric" min="8" max="25" value="14">
                 <button type="button" data-act="people" data-d="1" aria-label="One more person"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7.2" width="12" height="1.6" fill="currentColor"/><rect x="7.2" y="2" width="1.6" height="12" fill="currentColor"/></svg></button>
               </div>
               <p class="hint" id="people-hint" aria-live="polite"></p>
@@ -404,7 +425,7 @@ textarea.input{min-height:100px;resize:vertical}
               <p class="hint" id="nights-hint"></p>
             </div>
           </div>
-          <div class="box" style="margin-top:14px">
+          <div class="box" style="margin-top:12px">
             <div class="field">
               <label for="start-date">Preferred dates: first day</label>
               <input class="input" id="start-date" name="start-date" type="date">
@@ -412,18 +433,29 @@ textarea.input{min-height:100px;resize:vertical}
             <p class="range-out" id="range-out"></p>
             <label class="check" for="flexible"><input type="checkbox" id="flexible" name="flexible"> Our dates are flexible</label>
           </div>
-          <div class="note"><span aria-hidden="true">✈️</span><span>Fly into Managua (MGA) or Liberia, Costa Rica (LIR). Land by 2pm on day one and fly home after 12pm on the last day. Pickups and drop-offs at both airports are included.</span></div>
+          <p class="note" id="fly-note"><span aria-hidden="true">✈️</span><span>Fly into Managua (MGA) or Liberia, Costa Rica (LIR). Land by 2pm on day one, fly home after 12pm on the last day. Pickups and drop-offs at both airports are included.</span></p>
+        </section>
+
+        <!-- 03 custom: only when Custom is picked -->
+        <section class="step" id="step-custom" aria-labelledby="h-custom" hidden>
+          <p class="chn g">STEP 03</p>
+          <h2 class="h2" id="h-custom"><span>Tell us what</span><span class="g">you want.</span></h2>
+          <p class="lede">Sarah builds the trip around it and sends you a quote.</p>
+          <div class="field" style="margin-top:18px"><label for="c-where">Where to?</label><input class="input" id="c-where" name="c-where" type="text" maxlength="80" placeholder="A country, a city, or surprise us"></div>
+          <p class="label" style="margin:22px 0 0">What should be in it?</p>
+          <div class="wants" id="c-wants"></div>
+          <div class="field" style="margin-top:18px"><label for="c-note">Anything else?</label><textarea class="input" id="c-note" name="c-note" maxlength="600" placeholder="Budget per person, must-haves, what the trip is for"></textarea></div>
         </section>
 
         <!-- 03 the compound -->
-        <section class="step" aria-labelledby="h-stay">
+        <section class="step" id="step-stay" aria-labelledby="h-stay">
           <p class="chn g">STEP 03</p>
           <h2 class="h2" id="h-stay"><span>A private compound.</span><span class="g">Just your team.</span></h2>
           <p class="lede">Villas on a jungle cliff about 100 feet above Playa Maderas, with Maderas Rock in the middle of the view. The whole place is yours. No other guests.</p>
           <div class="tiles stay-grid" id="stay-grid"></div>
 
-          <h3 class="h3" style="margin-top:36px">Pick your rooms</h3>
-          <p class="small" style="margin:6px 0 0">Every bedroom has A/C, hot water and its own bathroom.</p>
+          <h3 class="h3" style="margin-top:34px">Pick your rooms</h3>
+          <p class="small muted" style="margin:4px 0 0">Every bedroom has A/C, hot water and its own bathroom.</p>
           <div class="rooms" role="radiogroup" aria-label="Room style">
             <label class="room"><input type="radio" name="room" value="shared"><img src="img/room-shared.jpg" alt="A shared bedroom with separate beds" width="900" height="675" loading="lazy"><span class="pill r-sel">Selected</span>
               <span class="r-body"><span class="r-name">Shared rooms</span><span class="r-price">Included</span><span class="r-meta">3 to 5 beds per room. Up to 25 people.</span></span></label>
@@ -433,28 +465,30 @@ textarea.input{min-height:100px;resize:vertical}
               <span class="r-body"><span class="r-name">Private rooms</span><span class="r-price">+$700 per person</span><span class="r-meta">A bedroom each. Up to 12 people.</span></span></label>
           </div>
           <p class="hint" id="room-hint" aria-live="polite"></p>
-          <p class="small muted" style="margin:4px 0 0">Want a mix, like private rooms for the leadership team? Ask Sarah and she will price it.</p>
+          <p class="small muted" style="margin:2px 0 0">Want a mix, like private rooms for the leadership team? Ask Sarah and she will price it.</p>
         </section>
 
         <!-- 04 included -->
-        <section class="step" aria-labelledby="h-inc">
+        <section class="step" id="step-inc" aria-labelledby="h-inc">
           <p class="chn g">STEP 04</p>
           <h2 class="h2" id="h-inc"><span>Already in.</span><span class="g">No extra cost.</span></h2>
           <p class="lede">Everything a regular SYB Nicaragua trip includes. This is the starting point, so nothing here comes off.</p>
           <div class="tiles inc-grid" id="inc-grid"></div>
-          <p class="also"><b>Also included:</b> a 30 minute massage for everyone, a catch of the day dinner, photographer and videographer all week, 6am coffee, daily room cleaning, the SYB welcome package, fast wifi and 24 hour security.</p>
+          <p class="label" style="margin:22px 0 0">Also included</p>
+          <div class="alsos"><span>30 minute massage for everyone</span><span>Catch of the day dinner</span><span>Photographer and videographer all week</span><span>6am coffee</span><span>Daily room cleaning</span><span>SYB welcome package</span></div>
           <p class="nots"><b>Not included:</b> international flights, lunches (unless you add a food package), one dinner in town (unless you add the San Juan del Sur night), drinks at outside bars, and travel and medical insurance, which is required.</p>
         </section>
 
         <!-- 05 make it yours -->
-        <section class="step" aria-labelledby="h-add">
+        <section class="step" id="step-add" aria-labelledby="h-add">
           <p class="chn g">STEP 05</p>
           <h2 class="h2" id="h-add"><span>Make it</span><span class="g">yours.</span></h2>
           <p class="lede">Tap anything your team wants and it goes on your quote. Tap again to take it off.</p>
           <h3 class="h3 sub" id="h-food">Food</h3>
           <div class="pkgs" id="pk-food" role="radiogroup" aria-labelledby="h-food"></div>
           <h3 class="h3 sub" id="h-drinks">Drinks</h3>
-          <div class="pkgs" id="pk-drinks" role="radiogroup" aria-labelledby="h-drinks"></div>
+          <p class="subhint">The villa open bar is already in. Upgrade it, or skip this.</p>
+          <div class="pkgs two" id="pk-drinks" role="group" aria-labelledby="h-drinks"></div>
           <h3 class="h3 sub" id="h-extras">Extras <span class="pill" id="x-count" hidden></span></h3>
           <div class="xgrid" id="extras"></div>
         </section>
@@ -466,22 +500,26 @@ textarea.input{min-height:100px;resize:vertical}
         <div class="quote">
           <div class="q-head">
             <div>
-              <div class="q-t">Your quote</div>
+              <div class="q-t" id="q-title">Your quote</div>
               <div class="q-sub" id="q-sub">SYB Travel<br>For Example Company</div>
             </div>
             <span class="q-stamp">Live</span>
           </div>
           <div class="q-trip" id="q-trip"></div>
           <ul class="q-lines" id="q-lines"></ul>
-          <div class="q-tot">
+          <div class="q-tot" id="q-totbox">
             <div><span class="lbl">Total</span><span class="big" id="q-total">$0</span></div>
             <div><span class="pp">Average per person</span><span class="pp" id="q-pp">$0</span></div>
           </div>
-          <div class="q-pay">
+          <div class="q-pay" id="q-paybox">
             <div><span>Deposit to hold your dates (20%)</span><b id="q-dep">$0</b></div>
             <div><span id="q-bal-l">Balance, due 6 weeks before</span><b id="q-bal">$0</b></div>
           </div>
-          <p class="q-foot">Prices in US dollars. Sarah confirms the villas are free for your dates and sends the final numbers before you pay anything.</p>
+          <div class="q-custom" id="q-custom" hidden>
+            <p class="big">Custom quote</p>
+            <p>Sarah plans it with you and sends the price. Nothing is booked until you say go.</p>
+          </div>
+          <p class="q-foot" id="q-foot">Prices in US dollars. Sarah confirms the villas are free for your dates and sends the final numbers before you pay anything.</p>
           <div class="q-actions">
             <a class="btn" href="#send" data-scroll="send">Send to Sarah</a>
           </div>
@@ -496,7 +534,7 @@ textarea.input{min-height:100px;resize:vertical}
       <div>
         <p class="chn g">LAST STEP</p>
         <h2 class="h2" id="h-send"><span>Happy with it?</span><span class="g">Send it to Sarah.</span></h2>
-        <p class="lede">Sarah checks the villas for your dates and comes back with your final quote. Nothing is booked and nobody pays until you say go.</p>
+        <p class="lede">Sarah checks everything for your dates and comes back with your final quote. Nothing is booked and nobody pays until you say go.</p>
         <div class="terms">
           <div><b>20% deposit</b>holds your dates</div>
           <div><b>The balance</b>is due 6 weeks before the trip</div>
@@ -541,6 +579,7 @@ textarea.input{min-height:100px;resize:vertical}
         <details><summary>Which airport should we fly into?</summary><p>Managua, Nicaragua (MGA) is about 2.5 hours by road. Liberia, Costa Rica (LIR) is about 3 hours plus a land border crossing. Pickups and drop-offs at both are included. Land by 2pm on day one and fly home after 12pm on the last day.</p></details>
         <details><summary>What if someone's flight doesn't line up?</summary><p>We set up a private driver for them. It usually runs $125 to $200 per car, fits up to three people with luggage, and is paid by the traveler.</p></details>
         <details><summary>Do we need visas?</summary><p>US citizens do not need a visa for a short stay. They pay a small tourist card fee in cash when they arrive. Other passports should check their own rules. Everyone needs a booked flight out of the country to show at the airport.</p></details>
+        <details><summary>Can we go somewhere other than Nicaragua?</summary><p>Yes. Pick Custom in step 1, tell us where, how many and what you want, and Sarah builds it with you.</p></details>
       </div>
 
       <h3 class="h3" style="margin-top:44px">What guests say about the villas</h3>
@@ -581,7 +620,7 @@ textarea.input{min-height:100px;resize:vertical}
 <div class="totalbar off" id="totalbar">
   <div class="in">
     <div class="tb-t"><b id="tb-total">$0</b><span id="tb-sub">0 people</span></div>
-    <a class="btn small" href="#quote-col" data-scroll="quote-col">See quote</a>
+    <a class="btn small" id="tb-btn" href="#quote-col" data-scroll="quote-col">See quote</a>
   </div>
 </div>
 </div>
@@ -601,6 +640,7 @@ var CONTACT = {
 };
 var DEFAULT_COMPANY = "Example Company"; // on the live page, ?for=F45%20Toronto shows that name instead
 var BASE = 1950, MIN_PEOPLE = 8, BASE_NIGHTS = 5, MAX_EXTRA_NIGHTS = 3, EXTRA_NIGHT = 250, DEPOSIT = 0.2;
+var CUSTOM_MAX_PEOPLE = 100, CUSTOM_MIN_NIGHTS = 2, CUSTOM_MAX_NIGHTS = 14;
 
 var ROOMS = {
   shared:   { label:"Shared rooms",  add:0,   max:25 },
@@ -634,50 +674,52 @@ var INCLUDED = [
   { img:"inc-theme.jpg",     name:"Theme parties",     note:"Could include a DJ, live music, entertainment or salsa instructors", alt:"A theme party dance floor under neon lights" },
   { img:"inc-leaders.jpg",   name:"SYB leaders",       note:"Trained through the SYB academy. With the group 24 hours a day.", alt:"An SYB crew with surfboards and the SYB banner" }
 ];
-/* step 5: pick one food package and one drinks package */
+/* step 5: pick one food package; the drinks upgrade is optional (the villa open bar is already in) */
 var FOOD = {
   none:    { label:"Lunches on your own", add:0, img:"pk-own.jpg", alt:"A beach restaurant on the sand near the villas", desc:"Grab lunch at the beach spots nearby. Breakfast and dinner are already in." },
   regular: { label:"Regular food package", add:75, img:"pk-regular.jpg", alt:"The group at a long lunch table", desc:"Lunch every day for 5 days, made by our chef." },
   deluxe:  { label:"Deluxe BBQ food package", add:165, img:"pk-deluxe.jpg", alt:"The crew around a big spread of food by the ocean", desc:"Everything in the regular package, plus a tomahawk steak night, a local catch fish BBQ, huevos de toro ceviche to try, and any other food requests." }
 };
 var DRINKS = {
-  none:    { label:"Villa open bar only", add:0, img:"pk-bar.jpg", alt:"The villa bar with wooden stools and a jungle view", desc:"Already included, same as our public trips." },
   beer:    { label:"Unlimited beer package", add:85, img:"pk-beer.jpg", alt:"Three beers raised at sunset on the beach", desc:"Ice-cold Nicaraguan beer all week, at the villa and on the beach." },
-  fullbar: { label:"Full bar package", add:145, img:"pk-fullbar.jpg", alt:"The crew at a beach bar with drinks", desc:"All the beer, plus Nicaraguan 7-year aged rum, dark and white, and tequila. All week." }
+  fullbar: { label:"Full bar package", add:145, img:"pk-fullbar.jpg", alt:"The crew at a beach bar with drinks", desc:"All the beer, plus Nicaraguan 7-year aged rum, dark and white, tequila, mixers, fresh-squeezed lemon juice and juices. All week." }
 };
 /* step 5 extras, in the order they show. img = photo tile; no img = the emoji tile.
-   type: pp = per person | ppq = per person, per unit | unit = per unit | flat = once for the group */
+   type: pp = per person | ppq = per person, per unit | unit = per unit | flat = once for the group
+   qauto: the starting amount when added, worked out from the group size */
 var ADDONS = [
   { id:"dj", img:"add-dj.jpg", icon:"🎧", name:"DJ for the night", desc:"Your own DJ at the villa for the big night.", price:450, type:"unit", u:["night","nights"], qmax:3, qdef:1 },
   { id:"sjds", img:"add-sjds.jpg", icon:"🦞", name:"San Juan del Sur night", desc:"Lobster dinner on the bay, time to shop in town, then karaoke.", price:90, type:"pp" },
   { id:"espejo", img:"add-espejo.jpg", icon:"🌅", name:"Sunset dinner at Espejo", desc:"Happy hour, then dinner at Espejo over the surf. Transport included.", price:70, type:"pp" },
-  { id:"sxs", img:"add-sxs.jpg", icon:"🛻", name:"Side-by-side rental", desc:"Off-road side-by-sides for the dirt roads and hidden beaches.", price:225, type:"unit", u:["vehicle day","vehicle days"], unitLabel:"per vehicle, per day", qmax:12, qdef:2 },
-  { id:"jesus", img:"add-jesus.jpg", icon:"⛰️", name:"Jesus statue hike", desc:"Hike up to the giant statue over San Juan del Sur bay. Transport included.", price:40, type:"pp" },
-  { id:"horses", img:"add-horses.jpg", icon:"🐎", name:"Sunset horseback ride", desc:"Horses on the beach at golden hour. No experience needed.", price:60, type:"pp" },
-  { id:"surf1on1", img:"add-surf.jpg", icon:"🏄", name:"One-on-one surf lessons", desc:"An hour with a Beach Break Surf School coach all to yourself.", price:70, type:"ppq", u:["lesson","lessons"], qmax:5, qdef:1 },
+  { id:"sxs", img:"add-sxs.jpg", icon:"🛻", name:"Side-by-side rental", desc:"Off-road side-by-sides for the dirt roads and hidden beaches.", price:300, type:"unit", u:["side-by-side","side-by-sides"], unitLabel:"per day, seats 6", qmax:6, qauto:"per6" },
+  { id:"jesus", img:"add-jesus.jpg", icon:"⛰️", name:"Jesus statue hike", desc:"Hike to the giant statue over San Juan del Sur bay. Transport included.", price:30, type:"pp" },
+  { id:"horses", img:"add-horses.jpg", icon:"🐎", name:"Sunset horseback ride", desc:"Horses on the beach at golden hour. No experience needed.", price:50, type:"pp" },
+  { id:"surf1on1", img:"add-surf.jpg", icon:"🏄", name:"One-on-one surf lessons", desc:"An hour with a Beach Break Surf School coach all to yourself.", price:50, type:"ppq", u:["lesson","lessons"], qmax:5, qdef:1 },
   { id:"theme", img:"add-theme.jpg", icon:"🎉", name:"Custom theme party", desc:"Your theme, decor and props. Company colors welcome.", price:600, type:"unit", u:["party","parties"], qmax:2, qdef:1 },
   { id:"salsa", img:"add-salsa.jpg", icon:"💃", name:"Salsa lesson", desc:"A local instructor teaches the whole team at the villa.", price:250, type:"unit", u:["lesson","lessons"], qmax:3, qdef:1 },
   { id:"olympics", img:"add-olympics.jpg", icon:"🏆", name:"Beach olympics", desc:"Team games on the beach with brackets, a scoreboard and trophies.", price:300, type:"flat" },
   { id:"yogalive", img:"add-yoga.jpg", icon:"🎸", name:"Sunset yoga with live music", desc:"Yoga on the deck at sunset with live musicians playing.", price:400, type:"unit", u:["session","sessions"], qmax:4, qdef:1 },
   { id:"shirts", img:"add-shirts.jpg", icon:"👕", name:"Team shirts", desc:"Shirts with your logo, one for everyone.", price:40, type:"pp" },
-  { id:"headshots", img:"add-headshots.jpg", icon:"📸", name:"Team headshots", desc:"Our photographer shoots profile-ready headshots for everyone.", price:45, type:"pp" },
+  { id:"headshots", img:"add-headshots.jpg", icon:"📸", name:"On-site photographer", desc:"A pro just for your team: headshots for everyone and team photos.", price:45, type:"pp" },
   { id:"massage", icon:"💆", name:"1-hour massage", desc:"At the villa, on top of the 30 minute massage everyone gets.", price:70, type:"ppq", u:["massage","massages"], qmax:5, qdef:1 },
-  { id:"juice", icon:"🧃", name:"Fresh juice package", desc:"Three fresh local juices every morning and afternoon.", price:55, type:"pp" },
-  { id:"ceviche", icon:"🥑", name:"Sunset ceviche and guac", desc:"Fresh ceviche, guac and chips on the deck at sunset.", price:12, type:"ppq", u:["evening","evenings"], qmax:5, qdef:2 },
-  { id:"rum", icon:"🥃", name:"Rum tasting", desc:"A guided tasting of Nicaraguan aged rums before dinner.", price:35, type:"pp" },
-  { id:"pizza", icon:"🍕", name:"Pizza night with live music", desc:"Pizza at a local pizzeria with a live band.", price:40, type:"pp" },
-  { id:"fishing", icon:"🎣", name:"Sport fishing trip", desc:"Half a day offshore with a local captain. The chef cooks your catch. Up to 6 per boat.", price:650, type:"unit", u:["boat","boats"], qmax:4, qdef:1 },
+  { id:"juice", icon:"🧃", name:"Fresh juice package", desc:"Fresh local juices every morning and afternoon. Mixers at night too.", price:10, type:"pp" },
+  { id:"rum", icon:"🥃", name:"Rum and cigar tasting", desc:"Nicaraguan aged rums and hand-rolled Nicaraguan cigars, with a guide.", price:35, type:"pp" },
+  { id:"icebath", icon:"🧊", name:"Ice bath session", desc:"Ice baths at the villa with a guided breathing warm-up, for everyone.", price:100, type:"unit", u:["session","sessions"], unitLabel:"per session, for everyone", qmax:5, qdef:1 },
+  { id:"pizza", icon:"🍕", name:"Pizza night with live music", desc:"A local pizzeria with a live band. Transport included.", price:40, type:"pp" },
+  { id:"fishing", icon:"🎣", name:"Sport fishing trip", desc:"Half a day offshore. Up to 6 per boat, and the chef cooks your catch.", price:650, type:"unit", u:["boat","boats"], qmax:4, qdef:1 },
   { id:"zipline", icon:"🌳", name:"Zipline canopy tour", desc:"A morning in the treetops near San Juan del Sur. Transport included.", price:65, type:"pp" },
-  { id:"icebath", icon:"🧊", name:"Ice bath session", desc:"Ice baths at the villa with a guided breathing warm-up.", price:30, type:"ppq", u:["session","sessions"], qmax:5, qdef:1 },
-  { id:"work", icon:"🧠", name:"Work sessions setup", desc:"For breakouts and whiteboarding: projector, whiteboards, sticky notes, coffee and snacks.", price:250, type:"unit", u:["day","days"], qmax:5, qdef:2 },
-  { id:"speaker", icon:"🎤", name:"Speaker night", desc:"Mic, screen and seats for a talk or fireside chat, with drinks and bites.", price:400, type:"unit", u:["night","nights"], qmax:3, qdef:1 },
+  { id:"work", icon:"🧠", name:"Work sessions setup", desc:"Projector, whiteboards, sticky notes, coffee and snacks for breakouts.", price:250, type:"unit", u:["day","days"], qmax:5, qdef:2 },
+  { id:"speaker", icon:"🎤", name:"Speaker night", desc:"Mic, screen and seats for a talk or fireside chat, with drinks.", price:400, type:"unit", u:["night","nights"], qmax:3, qdef:1 },
   { id:"film", icon:"🎬", name:"Team recap film", desc:"A 60 second film of your week to share with the whole company.", price:750, type:"flat" }
 ];
 var BYID = {}; ADDONS.forEach(function(a){ BYID[a.id] = a; });
+/* Custom trips: what they can ask for */
+var WANTS = ["Surf", "Yoga", "Workouts", "Hiking", "Skiing", "Boat day", "Beach time", "Culture and food", "Nightlife", "Massages and recovery", "Work sessions", "Private rooms", "Chef dinners", "Open bar"];
 
 // Sarah's starting package. people: null = the extra covers the whole group.
-var PROPOSAL = { v:2, people:14, start:"2027-04-12", flexible:false, extra:0, room:"twin", food:"deluxe", drinks:"fullbar",
-  addons:{ juice:{on:true,people:null}, massage:{on:true,qty:1,people:null}, work:{on:true,qty:2}, film:{on:true} } };
+var PROPOSAL = { v:2, dest:"nica", people:14, start:"2027-04-12", flexible:false, extra:0, cn:5, room:"twin", food:"deluxe", drinks:"fullbar",
+  addons:{ juice:{on:true,people:null}, massage:{on:true,qty:1,people:null}, work:{on:true,qty:2}, film:{on:true} },
+  cwhere:"", cwants:[], cnote:"" };
 
 /* ===== helpers ===== */
 var ROOT = document.getElementById("sybp");
@@ -687,6 +729,7 @@ function clone(o){ return JSON.parse(JSON.stringify(o)); }
 function plural(n, u){ return n === 1 ? u[0] : u[1]; }
 function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
 function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
 var MINUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7.2" width="12" height="1.6" fill="currentColor"/></svg>';
 var PLUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="7.2" width="12" height="1.6" fill="currentColor"/><rect x="7.2" y="2" width="1.6" height="12" fill="currentColor"/></svg>';
 var CHECK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -704,22 +747,31 @@ try { var q = new URLSearchParams(window.location.search).get("for"); if (q && q
 var KEY = "syb-team-trip:v2:" + COMPANY.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 var S = load();
 
+function isCustom(){ return S.dest === "custom"; }
+function maxPeople(){ return isCustom() ? CUSTOM_MAX_PEOPLE : ROOMS[S.room].max; }
+function qtyStart(d){ return d.qauto === "per6" ? clamp(Math.ceil(S.people / 6), 1, d.qmax) : (d.qdef || 1); }
 function sanitize(s){
   var o = clone(PROPOSAL);
   if (!s || typeof s !== "object" || s.v !== 2) return o;
+  o.dest = s.dest === "custom" ? "custom" : "nica";
   if (ROOMS[s.room]) o.room = s.room;
-  o.people = Math.max(MIN_PEOPLE, Math.min(ROOMS[o.room].max, parseInt(s.people, 10) || o.people));
+  var pmax = o.dest === "custom" ? CUSTOM_MAX_PEOPLE : ROOMS[o.room].max;
+  o.people = clamp(parseInt(s.people, 10) || o.people, MIN_PEOPLE, pmax);
   o.start = parseISO(s.start) ? s.start : "";
   o.flexible = !!s.flexible;
-  o.extra = Math.max(0, Math.min(MAX_EXTRA_NIGHTS, parseInt(s.extra, 10) || 0));
+  o.extra = clamp(parseInt(s.extra, 10) || 0, 0, MAX_EXTRA_NIGHTS);
+  o.cn = clamp(parseInt(s.cn, 10) || 5, CUSTOM_MIN_NIGHTS, CUSTOM_MAX_NIGHTS);
   o.food = FOOD[s.food] ? s.food : "none";
   o.drinks = DRINKS[s.drinks] ? s.drinks : "none";
+  o.cwhere = typeof s.cwhere === "string" ? s.cwhere.slice(0, 80) : "";
+  o.cnote = typeof s.cnote === "string" ? s.cnote.slice(0, 600) : "";
+  o.cwants = Array.isArray(s.cwants) ? s.cwants.filter(function(w){ return WANTS.indexOf(w) !== -1; }) : [];
   o.addons = {};
   var a = s.addons || {};
   Object.keys(a).forEach(function(id){
     var d = BYID[id], v = a[id]; if (!d || !v || !v.on) return;
     var e = { on:true };
-    if (d.type === "ppq" || d.type === "unit") e.qty = Math.max(1, Math.min(d.qmax, parseInt(v.qty, 10) || d.qdef || 1));
+    if (d.type === "ppq" || d.type === "unit") e.qty = clamp(parseInt(v.qty, 10) || d.qdef || 1, 1, d.qmax);
     if (d.type === "pp" || d.type === "ppq") e.people = (v.people == null) ? null : Math.max(1, parseInt(v.people, 10) || 1);
     o.addons[id] = e;
   });
@@ -729,7 +781,7 @@ function load(){ var raw = sget(KEY); if (raw) { try { return sanitize(JSON.pars
 function save(){ $("save-msg").textContent = sset(KEY, JSON.stringify(S)) ? "Your changes save on this device." : "Changes won't be saved on this device, so send your package to Sarah before you close the page."; }
 
 /* ===== pricing ===== */
-function nights(){ return BASE_NIGHTS + S.extra; }
+function nights(){ return isCustom() ? S.cn : BASE_NIGHTS + S.extra; }
 function pplFor(e){ return e.people == null ? S.people : Math.min(e.people, S.people); }
 function people(n){ return n + " " + (n === 1 ? "person" : "people"); }
 function addonLine(d, e){
@@ -745,7 +797,7 @@ function lines(){
   if (S.extra) L.push({ t:"Extra " + plural(S.extra, ["night","nights"]), m: people(N) + ", " + S.extra + " " + plural(S.extra, ["night","nights"]) + " each, " + money(EXTRA_NIGHT) + " per night", a: N * S.extra * EXTRA_NIGHT });
   var r = ROOMS[S.room]; if (r.add) L.push({ t: r.label, m: people(N) + " x " + money(r.add), a: N * r.add });
   var f = FOOD[S.food]; if (f.add) L.push({ t: f.label, m: people(N) + " x " + money(f.add), a: N * f.add });
-  var dr = DRINKS[S.drinks]; if (dr.add) L.push({ t: dr.label, m: people(N) + " x " + money(dr.add), a: N * dr.add });
+  var dr = DRINKS[S.drinks]; if (dr) L.push({ t: dr.label, m: people(N) + " x " + money(dr.add), a: N * dr.add });
   ADDONS.forEach(function(d){ var e = S.addons[d.id]; if (e && e.on) { var x = addonLine(d, e); L.push({ t: d.name, m: x.m, a: x.a }); } });
   return L;
 }
@@ -754,6 +806,10 @@ function balanceLabel(){
   var d = parseISO(S.start); if (!d) return "Balance, due 6 weeks before the trip";
   var due = addDays(d, -42);
   return due <= todayUTC() ? "Balance, due at booking (trip is under 6 weeks away)" : "Balance, due " + fmtDate(due);
+}
+function datesText(){
+  var d = parseISO(S.start);
+  return d ? fmtDay(d) + " to " + fmtDay(addDays(d, nights()), true) : "";
 }
 
 /* ===== render ===== */
@@ -766,34 +822,56 @@ function renderTiles(){
   $("stay-grid").innerHTML = STAY.map(function(t){ return tile(t, false); }).join("");
   $("inc-grid").innerHTML = INCLUDED.map(function(t){ return tile(t, true); }).join("");
 }
+function renderMode(){
+  var c = isCustom();
+  ROOT.querySelectorAll('[data-act="dest"]').forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.dest === S.dest)); });
+  $("step-custom").hidden = !c;
+  $("step-stay").hidden = c; $("step-inc").hidden = c; $("step-add").hidden = c;
+  $("fly-note").hidden = c;
+  $("rs-base").hidden = c;
+  $("lbl-nights").textContent = c ? "Nights" : "Nights at the villas";
+  $("q-title").textContent = c ? "Your request" : "Your quote";
+  $("q-lines").hidden = c; $("q-totbox").hidden = c; $("q-paybox").hidden = c; $("q-foot").hidden = c;
+  $("q-custom").hidden = !c;
+}
 function renderGroup(){
-  var max = ROOMS[S.room].max;
-  $("people-out").textContent = S.people;
+  var max = maxPeople(), c = isCustom();
+  var pin = $("people-in"); if (document.activeElement !== pin) pin.value = S.people;
+  pin.max = max; pin.min = MIN_PEOPLE;
   ROOT.querySelector('[data-act="people"][data-d="-1"]').disabled = S.people <= MIN_PEOPLE;
   ROOT.querySelector('[data-act="people"][data-d="1"]').disabled = S.people >= max;
   var h = $("people-hint"); h.classList.remove("warn");
-  if (S.people >= max) { h.textContent = ROOMS[S.room].label + " fit up to " + max + " people." + (S.room !== "shared" ? " Shared rooms fit up to 25." : ""); h.classList.add("warn"); }
+  if (c) { h.textContent = S.people >= max ? "Bigger group? Put the number in the notes." : "Team trips start at " + MIN_PEOPLE + " people. Type the number or use the buttons."; }
+  else if (S.people >= max) { h.textContent = ROOMS[S.room].label + " fit up to " + max + " people." + (S.room !== "shared" ? " Shared rooms fit up to 25." : ""); h.classList.add("warn"); }
   else if (S.people <= MIN_PEOPLE) { h.textContent = "Team trips start at " + MIN_PEOPLE + " people."; }
   else { h.textContent = MIN_PEOPLE + " to " + max + " people with " + ROOMS[S.room].label.toLowerCase() + "."; }
   $("nights-out").textContent = nights();
-  ROOT.querySelector('[data-act="nights"][data-d="-1"]').disabled = S.extra <= 0;
-  ROOT.querySelector('[data-act="nights"][data-d="1"]').disabled = S.extra >= MAX_EXTRA_NIGHTS;
-  $("nights-hint").textContent = S.extra ? "Each extra night is " + money(EXTRA_NIGHT) + " per person, with breakfast and dinner." : "5 nights is the standard trip. Extra nights are " + money(EXTRA_NIGHT) + " per person.";
+  ROOT.querySelector('[data-act="nights"][data-d="-1"]').disabled = c ? S.cn <= CUSTOM_MIN_NIGHTS : S.extra <= 0;
+  ROOT.querySelector('[data-act="nights"][data-d="1"]').disabled = c ? S.cn >= CUSTOM_MAX_NIGHTS : S.extra >= MAX_EXTRA_NIGHTS;
+  $("nights-hint").textContent = c ? "Most team trips run 4 to 7 nights." : (S.extra ? "Each extra night is " + money(EXTRA_NIGHT) + " per person, with breakfast and dinner." : "5 nights is the standard trip. Extra nights are " + money(EXTRA_NIGHT) + " per person.");
   var di = $("start-date"); if (di.value !== S.start) di.value = S.start || "";
   $("flexible").checked = S.flexible;
-  var d = parseISO(S.start);
-  $("range-out").textContent = d ? fmtDay(d) + " to " + fmtDay(addDays(d, nights()), true) + " (" + (nights() + 1) + " days)" : "Pick a first day, or tick flexible and Sarah will suggest weeks.";
+  $("range-out").textContent = S.start ? datesText() + " (" + (nights() + 1) + " days)" : "Pick a first day, or tick flexible and Sarah will suggest weeks.";
   ROOT.querySelectorAll('input[name="room"]').forEach(function(r){ r.checked = (r.value === S.room); });
 }
-function pkgCards(name, opts, cur){
-  return Object.keys(opts).map(function(k){
-    var o = opts[k];
-    return '<label class="pkg"><input type="radio" name="' + name + '" value="' + k + '"' + (k === cur ? " checked" : "") + '>' +
-      '<span class="p-media"><img src="' + IMG + o.img + '" alt="' + esc(o.alt) + '" width="900" height="675" loading="lazy"><span class="p-check">' + CHECK + '</span></span>' +
-      '<span class="p-body"><span class="p-name">' + esc(o.label) + '</span><span class="p-price">' + (o.add ? "+" + money(o.add) + " per person" : "Included") + '</span><span class="p-desc">' + esc(o.desc) + '</span></span></label>';
+function renderCustom(){
+  var w = $("c-where"), n = $("c-note");
+  if (document.activeElement !== w) w.value = S.cwhere;
+  if (document.activeElement !== n) n.value = S.cnote;
+  $("c-wants").innerHTML = WANTS.map(function(x){
+    var on = S.cwants.indexOf(x) !== -1;
+    return '<button type="button" class="want" data-act="want" data-w="' + esc(x) + '" aria-pressed="' + on + '">' + CHECK + esc(x) + '</button>';
   }).join("");
 }
-function renderPkgs(){ $("pk-food").innerHTML = pkgCards("food", FOOD, S.food); $("pk-drinks").innerHTML = pkgCards("drinks", DRINKS, S.drinks); }
+function pkgCard(name, k, o, checked, type){
+  return '<label class="pkg"><input type="' + type + '" name="' + name + '" value="' + k + '"' + (checked ? " checked" : "") + '>' +
+    '<span class="p-media"><img src="' + IMG + o.img + '" alt="' + esc(o.alt) + '" width="900" height="675" loading="lazy"><span class="p-check">' + CHECK + '</span></span>' +
+    '<span class="p-body"><span class="p-name">' + esc(o.label) + '</span><span class="p-price">' + (o.add ? "+" + money(o.add) + " per person" : "Included") + '</span><span class="p-desc">' + esc(o.desc) + '</span></span></label>';
+}
+function renderPkgs(){
+  $("pk-food").innerHTML = Object.keys(FOOD).map(function(k){ return pkgCard("food", k, FOOD[k], k === S.food, "radio"); }).join("");
+  $("pk-drinks").innerHTML = Object.keys(DRINKS).map(function(k){ return pkgCard("drinks", k, DRINKS[k], k === S.drinks, "checkbox"); }).join("");
+}
 function stepper(act, id, val, min, max, label){
   return '<div class="stepper" role="group" aria-label="' + esc(label) + '">' +
     '<button type="button" data-act="' + act + '" data-id="' + id + '" data-d="-1" aria-label="Fewer ' + esc(label) + '"' + (val <= min ? " disabled" : "") + '>' + MINUS + '</button>' +
@@ -801,9 +879,10 @@ function stepper(act, id, val, min, max, label){
     '<button type="button" data-act="' + act + '" data-id="' + id + '" data-d="1" aria-label="More ' + esc(label) + '"' + (val >= max ? " disabled" : "") + '>' + PLUS + '</button></div>';
 }
 function priceLabel(d){
+  if (d.unitLabel) return d.unitLabel;
   if (d.type === "pp") return "per person";
   if (d.type === "ppq") return "per " + d.u[0] + ", per person";
-  if (d.type === "unit") return d.unitLabel || ("per " + d.u[0]);
+  if (d.type === "unit") return "per " + d.u[0];
   return "for the group";
 }
 function addonCard(d){
@@ -819,8 +898,9 @@ function addonCard(d){
   var media = d.img ? '<img src="' + IMG + d.img + '" alt="" width="900" height="675" loading="lazy">' : '<span class="a-emoji" aria-hidden="true">' + d.icon + '</span>';
   return '<article class="addon' + (on ? " on" : "") + '" data-id="' + d.id + '">' +
     '<button type="button" class="a-hit" data-act="toggle" data-id="' + d.id + '" aria-pressed="' + on + '">' +
-      '<span class="a-media">' + media + '<span class="a-name">' + esc(d.name) + '</span><span class="a-check">' + CHECK + '</span></span>' +
-      '<span class="a-body"><span class="a-price">' + money(d.price) + ' <small>' + priceLabel(d) + '</small></span><span class="a-desc">' + esc(d.desc) + '</span></span>' +
+      '<span class="a-media">' + media + '<span class="a-check">' + CHECK + '</span>' +
+        '<span class="a-cap"><span class="a-name">' + esc(d.name) + '</span><span class="a-price">' + money(d.price) + ' <small>' + priceLabel(d) + '</small></span></span></span>' +
+      '<span class="a-desc">' + esc(d.desc) + '</span>' +
       '<span class="sr">' + (on ? "Added. Tap to remove." : "Tap to add.") + '</span>' +
     '</button>' + ctrl + '</article>';
 }
@@ -830,14 +910,29 @@ function renderCount(){
   var c = $("x-count"); c.hidden = !n; c.textContent = n + " added";
 }
 function renderQuote(){
-  var T = totals(), d = parseISO(S.start);
-  var trip = [
+  var c = isCustom(), dt = datesText();
+  var when = dt ? dt + (S.flexible ? ", flexible" : "") : (S.flexible ? "Flexible" : "To be set");
+  var trip = c ? [
+    ["Where", "Custom: " + (S.cwhere.trim() || "open to ideas")],
+    ["Dates", when],
+    ["Group", people(S.people)],
+    ["Length", (nights() + 1) + " days, " + nights() + " nights"]
+  ] : [
     ["Where", "Playa Maderas, Nicaragua"],
-    ["Dates", d ? fmtDay(d) + " to " + fmtDay(addDays(d, nights()), true) + (S.flexible ? ", flexible" : "") : (S.flexible ? "Flexible" : "To be set")],
+    ["Dates", when],
     ["Group", people(S.people) + ", " + ROOMS[S.room].label.toLowerCase()],
     ["Length", (nights() + 1) + " days, " + nights() + " nights"]
   ];
+  if (c && S.cwants.length) trip.push(["Wants", S.cwants.join(", ")]);
   $("q-trip").innerHTML = trip.map(function(r){ return '<div><span>' + r[0] + '</span><span>' + esc(r[1]) + '</span></div>'; }).join("");
+  var tb = $("tb-btn");
+  if (c) {
+    $("tb-total").textContent = "Custom trip";
+    $("tb-sub").textContent = people(S.people) + ", " + nights() + " nights";
+    tb.textContent = "Send to Sarah"; tb.setAttribute("href", "#send"); tb.dataset.scroll = "send";
+    return;
+  }
+  var T = totals();
   $("q-lines").innerHTML = T.L.map(function(l){ return '<li><span class="ql-t">' + esc(l.t) + '</span><span class="ql-a">' + money(l.a) + '</span><span class="ql-m">' + esc(l.m) + '</span></li>'; }).join("");
   $("q-total").textContent = money(T.total);
   $("q-pp").textContent = money(T.pp);
@@ -846,11 +941,12 @@ function renderQuote(){
   $("q-bal").textContent = money(T.bal);
   $("tb-total").textContent = money(T.total);
   $("tb-sub").textContent = people(S.people) + ", " + money(T.pp) + " each";
+  tb.textContent = "See quote"; tb.setAttribute("href", "#quote-col"); tb.dataset.scroll = "quote-col";
 }
-function refresh(keepCards){ renderGroup(); if (!keepCards) { renderPkgs(); renderExtras(); } renderQuote(); save(); }
+function refresh(keepCards){ renderMode(); renderGroup(); if (!keepCards) { renderPkgs(); renderExtras(); renderCustom(); } renderQuote(); save(); }
 
 /* ===== interactions ===== */
-function setPeople(n){ S.people = Math.max(MIN_PEOPLE, Math.min(ROOMS[S.room].max, n)); }
+function setPeople(n){ S.people = clamp(n, MIN_PEOPLE, maxPeople()); }
 function rerenderCard(id, focusAct, focusD){
   var el = ROOT.querySelector('.addon[data-id="' + id + '"]'); if (!el) { renderExtras(); return; }
   var tmp = document.createElement("div"); tmp.innerHTML = addonCard(BYID[id]); var nu = tmp.firstChild;
@@ -868,24 +964,40 @@ ROOT.addEventListener("click", function(ev){
   var b = ev.target.closest("[data-act],[data-scroll]"); if (!b || !ROOT.contains(b)) return;
   if (b.dataset.scroll) { ev.preventDefault(); scrollToId(b.dataset.scroll); return; }
   var act = b.dataset.act, id = b.dataset.id, d = parseInt(b.dataset.d || "0", 10);
-  if (act === "dest") return;
+  if (act === "dest") {
+    var to = b.dataset.dest === "custom" ? "custom" : "nica"; if (to === S.dest) return;
+    var before = S.people; S.dest = to; setPeople(S.people); $("room-hint").textContent = "";
+    refresh();
+    if (before !== S.people) { var h = $("people-hint"); h.textContent = "Nicaragua fits up to " + maxPeople() + " people with " + ROOMS[S.room].label.toLowerCase() + ", so your group is now " + S.people + "."; h.classList.add("warn"); }
+    return;
+  }
   if (act === "people") { setPeople(S.people + d); $("room-hint").textContent = ""; refresh(); return; }
-  if (act === "nights") { S.extra = Math.max(0, Math.min(MAX_EXTRA_NIGHTS, S.extra + d)); refresh(true); return; }
+  if (act === "nights") {
+    if (isCustom()) S.cn = clamp(S.cn + d, CUSTOM_MIN_NIGHTS, CUSTOM_MAX_NIGHTS);
+    else S.extra = clamp(S.extra + d, 0, MAX_EXTRA_NIGHTS);
+    refresh(true); return;
+  }
+  if (act === "want") {
+    var w = b.dataset.w, i = S.cwants.indexOf(w);
+    if (i === -1) S.cwants.push(w); else S.cwants.splice(i, 1);
+    b.setAttribute("aria-pressed", String(i === -1)); renderQuote(); save(); return;
+  }
   if (act === "toggle") {
     var def = BYID[id];
     if (S.addons[id] && S.addons[id].on) delete S.addons[id];
-    else { var e = { on:true }; if (def.type === "ppq" || def.type === "unit") e.qty = def.qdef || 1; if (def.type === "pp" || def.type === "ppq") e.people = null; S.addons[id] = e; }
+    else { var e = { on:true }; if (def.type === "ppq" || def.type === "unit") e.qty = qtyStart(def); if (def.type === "pp" || def.type === "ppq") e.people = null; S.addons[id] = e; }
     rerenderCard(id, "toggle"); renderQuote(); save(); return;
   }
-  if (act === "qty" && S.addons[id]) { var e1 = S.addons[id]; e1.qty = Math.max(1, Math.min(BYID[id].qmax, (e1.qty || 1) + d)); rerenderCard(id, "qty", b.dataset.d); renderQuote(); save(); return; }
-  if (act === "ppl" && S.addons[id]) { var e2 = S.addons[id]; var n = Math.max(1, Math.min(S.people, pplFor(e2) + d)); e2.people = (n >= S.people) ? null : n; rerenderCard(id, "ppl", b.dataset.d); renderQuote(); save(); return; }
+  if (act === "qty" && S.addons[id]) { var e1 = S.addons[id]; e1.qty = clamp((e1.qty || 1) + d, 1, BYID[id].qmax); rerenderCard(id, "qty", b.dataset.d); renderQuote(); save(); return; }
+  if (act === "ppl" && S.addons[id]) { var e2 = S.addons[id]; var n = clamp(pplFor(e2) + d, 1, S.people); e2.people = (n >= S.people) ? null : n; rerenderCard(id, "ppl", b.dataset.d); renderQuote(); save(); return; }
   if (act === "reset-proposal") { S = clone(PROPOSAL); $("room-hint").textContent = ""; refresh(); return; }
-  if (act === "reset-base") { S = { v:2, people:S.people, start:S.start, flexible:S.flexible, extra:0, room:"shared", food:"none", drinks:"none", addons:{} }; setPeople(S.people); $("room-hint").textContent = ""; refresh(); return; }
+  if (act === "reset-base") { S = { v:2, dest:"nica", people:S.people, start:S.start, flexible:S.flexible, extra:0, cn:S.cn, room:"shared", food:"none", drinks:"none", addons:{}, cwhere:S.cwhere, cwants:S.cwants, cnote:S.cnote }; setPeople(S.people); $("room-hint").textContent = ""; refresh(); return; }
   if (act === "copy-package") { copyPackage(); return; }
   if (act === "copy-contact") { copyContact(b.dataset.which); return; }
 });
 ROOT.addEventListener("change", function(ev){
   var t = ev.target;
+  if (t.id === "people-in") { var v = parseInt(t.value, 10); setPeople(isNaN(v) ? S.people : v); t.value = S.people; $("room-hint").textContent = ""; refresh(); return; }
   if (t.name === "room") {
     var before = S.people; S.room = ROOMS[t.value] ? t.value : S.room; setPeople(S.people);
     var h = $("room-hint"); h.classList.toggle("warn", before !== S.people);
@@ -893,28 +1005,48 @@ ROOT.addEventListener("change", function(ev){
     refresh(); return;
   }
   if (t.name === "food") { S.food = FOOD[t.value] ? t.value : "none"; renderQuote(); save(); return; }
-  if (t.name === "drinks") { S.drinks = DRINKS[t.value] ? t.value : "none"; renderQuote(); save(); return; }
+  if (t.name === "drinks") {
+    if (t.checked) S.drinks = t.value; else if (S.drinks === t.value) S.drinks = "none";
+    ROOT.querySelectorAll('input[name="drinks"]').forEach(function(i){ i.checked = (i.value === S.drinks); });
+    renderQuote(); save(); return;
+  }
   if (t.id === "start-date") { S.start = parseISO(t.value) ? t.value : ""; refresh(true); return; }
-  if (t.id === "flexible") { S.flexible = t.checked; renderQuote(); save(); return; }
+  if (t.id === "flexible") { S.flexible = t.checked; renderGroup(); renderQuote(); save(); return; }
 });
+ROOT.addEventListener("input", function(ev){
+  var t = ev.target;
+  if (t.id === "c-where") { S.cwhere = t.value.slice(0, 80); renderQuote(); save(); return; }
+  if (t.id === "c-note") { S.cnote = t.value.slice(0, 600); save(); return; }
+});
+ROOT.addEventListener("keydown", function(ev){ if (ev.target.id === "people-in" && ev.key === "Enter") { ev.preventDefault(); ev.target.blur(); } });
 
 /* ===== send to Sarah: build the package, copy it, offer the email app ===== */
 function packageText(){
-  var T = totals(), d = parseISO(S.start), out = [];
+  var c = isCustom(), out = [];
   var name = $("f-name").value.trim(), company = $("f-company").value.trim() || COMPANY, email = $("f-email").value.trim(), notes = $("f-notes").value.trim();
-  out.push("Hi Sarah, here is our team trip package.");
+  var dt = datesText(), dates = (dt || "not set yet") + (S.flexible ? " (flexible)" : "");
+  out.push(c ? "Hi Sarah, here is our custom team trip request." : "Hi Sarah, here is our team trip package.");
   out.push("");
   out.push("Company: " + company);
   if (name || email) out.push("From: " + [name, email].filter(Boolean).join(", "));
-  out.push("Destination: Playa Maderas, Nicaragua");
-  out.push("Dates: " + (d ? fmtDay(d) + " to " + fmtDay(addDays(d, nights()), true) : "not set yet") + (S.flexible ? " (flexible)" : ""));
-  out.push("Group: " + people(S.people) + ", " + ROOMS[S.room].label.toLowerCase() + ", " + nights() + " nights");
-  out.push("");
-  T.L.forEach(function(l){ out.push("- " + l.t + ": " + money(l.a) + " (" + l.m + ")"); });
-  out.push("");
-  out.push("Total: " + money(T.total) + " (about " + money(T.pp) + " per person)");
-  out.push("Deposit (20%): " + money(T.dep));
-  out.push(balanceLabel() + ": " + money(T.bal));
+  if (c) {
+    out.push("Where: " + (S.cwhere.trim() || "Open to ideas"));
+    out.push("Dates: " + dates);
+    out.push("Group: " + people(S.people) + ", " + nights() + " nights");
+    if (S.cwants.length) out.push("We want: " + S.cwants.join(", "));
+    if (S.cnote.trim()) out.push("Anything else: " + S.cnote.trim());
+  } else {
+    var T = totals();
+    out.push("Destination: Playa Maderas, Nicaragua");
+    out.push("Dates: " + dates);
+    out.push("Group: " + people(S.people) + ", " + ROOMS[S.room].label.toLowerCase() + ", " + nights() + " nights");
+    out.push("");
+    T.L.forEach(function(l){ out.push("- " + l.t + ": " + money(l.a) + " (" + l.m + ")"); });
+    out.push("");
+    out.push("Total: " + money(T.total) + " (about " + money(T.pp) + " per person)");
+    out.push("Deposit (20%): " + money(T.dep));
+    out.push(balanceLabel() + ": " + money(T.bal));
+  }
   if (notes) { out.push(""); out.push("Notes: " + notes); }
   if (MODE === "live") { out.push(""); out.push("Built at " + window.location.href.split("#")[0]); }
   return out.join("\n");
@@ -956,7 +1088,7 @@ $("send-form").addEventListener("submit", function(ev){
   var text = packageText();
   $("send-text").value = text;
   $("send-email").textContent = CONTACT.email;
-  $("send-mailto").href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent("Team trip: " + ($("f-company").value.trim() || COMPANY)) + "&body=" + encodeURIComponent(text);
+  $("send-mailto").href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent((isCustom() ? "Custom team trip: " : "Team trip: ") + ($("f-company").value.trim() || COMPANY)) + "&body=" + encodeURIComponent(text);
   var out = $("send-out"); out.hidden = false;
   $("copy-state").textContent = "";
   copyText(text, setCopyState);
@@ -997,6 +1129,6 @@ $("f-company").placeholder = COMPANY;
 $("c-name").textContent = CONTACT.name; $("c-email").textContent = CONTACT.email; $("c-phone").textContent = CONTACT.phone;
 $("start-date").min = addDays(todayUTC(), 21).toISOString().slice(0, 10);
 renderTiles();
-renderGroup(); renderPkgs(); renderExtras(); renderQuote();
+refresh();
 })();
 </script>

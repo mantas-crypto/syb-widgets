@@ -6,6 +6,8 @@ U = "/mnt/user-data/uploads/SurfYogaBeer Stuff/"
 H = "/tmp/claude-0/-home-claude/9e139bdb-22f3-55e9-9bab-f41b73ed9372/scratchpad/heic/"
 IMG = "/home/claude/syb-partners/img/"
 SPEC = {
+  # step 1: the Custom card (Dolomites crew on a peak)
+  "dest-custom.jpg":     (U+"Trip Photos/_web/dolomites/d049.jpg", 3/2, 900, .5, .5),
   # step 3
   "stay-yoga-deck.jpg":  (U+"Villas Playa Maderas photos/vpm-yoga-deck.jpg", 1, 700, .5, .5),
   "stay-beach-path.jpg": (U+"Villas Playa Maderas photos/vpm-beach-path.jpg", 1, 700, .5, .5),
@@ -17,7 +19,6 @@ SPEC = {
   "pk-own.jpg":          (U+"Nicaragua Assets/DSC05059 copy.webp", 4/3, 800, .5, .5),
   "pk-regular.jpg":      (U+"Reset-Recharge-Assets/activities/sAzAS_XQ.jpeg", 4/3, 900, .5, .45),
   "pk-deluxe.jpg":       (U+"Reset-Recharge-Assets/activities/SYB-NIC-DAY-1-10.jpg", 4/3, 900, .5, .5),
-  "pk-bar.jpg":          (U+"Villas Playa Maderas photos/vpm-bar.webp", 4/3, 900, .45, .5),
   "pk-beer.jpg":         (H+"../heic/IMG_7775.jpg" if False else U+"_tmp-contact-sheet/b2b-r3/heic/IMG_7775.jpg", 4/3, 900, .5, .42),
   "pk-fullbar.jpg":      (U+"Trip Photos/_web/nica/n015.jpg", 4/3, 900, .5, .5),
   # step 5 extras

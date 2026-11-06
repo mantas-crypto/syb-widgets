@@ -1,8 +1,9 @@
 # Team trip builder (surfyogabeer.com/partner)
 
-The B2B page Sarah sends to companies. A company picks group size, dates, rooms, a food package, a drinks package
-and extras, and the paper quote on the right updates as they go. "Send to Sarah" builds a text package, copies it
-and offers an email to Sarah.
+The B2B page Sarah sends to companies. A company picks Nicaragua, then group size, dates, rooms, a food package,
+an optional drinks upgrade and extras, and the paper quote on the right updates as they go. Or they pick Custom and
+tell Sarah where, how many, how long and what they want (no price on the page; Sarah quotes it). "Send to Sarah"
+builds a text package, copies it and offers an email to Sarah.
 
 Live on Easol at /partner as one Embed Code block. sybtravel.com/partner forwards there.
 Personalised link: `surfyogabeer.com/partner?for=F45+Toronto` shows "Prepared for F45 Toronto".
@@ -23,8 +24,11 @@ Personalised link: `surfyogabeer.com/partner?for=F45+Toronto` shows "Prepared fo
 
 - `CONTACT`: Sarah's email and phone. Still stand-ins (support@surfyogabeer.com and the SYB WhatsApp) until she has her own.
 - `BASE` 1950, `MIN_PEOPLE` 8, `EXTRA_NIGHT` 250, `DEPOSIT` 0.2, `ROOMS` (shared max 25, twin +300 max 20, private +700 max 12).
-- `FOOD`, `DRINKS`: the pick-one packages. `ADDONS`: the extras, in the order they show; an extra with `img` gets a photo tile, one without gets its emoji.
-- `PROPOSAL`: Sarah's starting package (14 people, Apr 12 2027, twin, deluxe BBQ, full bar, juice, massage, 2 work days, recap film = $38,840).
+- `FOOD`: pick one. `DRINKS`: optional upgrades, pick one or none (the villa open bar is already included).
+- `ADDONS`: the extras, in the order they show; an extra with `img` gets a photo tile, one without gets its emoji.
+  `qauto:"per6"` starts the amount at one per 6 people (side-by-sides).
+- Custom: `CUSTOM_MAX_PEOPLE` 100, nights 2 to 14, `WANTS` = the chips on the Custom form.
+- `PROPOSAL`: Sarah's starting package (14 people, Apr 12 2027, twin, deluxe BBQ, full bar, juice, massage, 2 work days, recap film = $38,210).
 
 ## Ship a change
 
