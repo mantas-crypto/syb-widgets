@@ -28,15 +28,26 @@ Personalised link: `surfyogabeer.com/partner?for=F45+Toronto` shows "Prepared fo
 
 ## Ship a change
 
+jsDelivr will not serve files from this repo's main branch (the whole repo is over its 50 MB limit, so it answers
+403 for some files). The live page therefore loads from a small branch, `partner-cdn`, that holds only
+live/partner.css, live/partner.js and img/. Do not delete that branch.
+
     cd pages/partner
     python3 build/build.py            # index.html preview
     python3 build/build.py assets     # live/partner.css and live/partner.js
-    git add . && git commit && git push
-    python3 build/build.py embed <SHA of that commit>   # live/embed.html, one line
+    # 1. commit and push to main (source of truth)
+    # 2. copy live/partner.css, live/partner.js and img/ into a checkout of partner-cdn
+    #    (same paths: pages/partner/...), commit, push, note that commit's SHA
+    python3 build/build.py embed <partner-cdn SHA>   # live/embed.html, one line
+    # 3. commit live/embed.html to main
 
 Paste live/embed.html into the Embed Code block on the Easol /partner page and save. Every URL in it is pinned to
-that commit, so the live page never changes until the block points at a new SHA, and rolling back is pasting the
-previous embed.
+that partner-cdn commit, so the live page never changes until the block points at a new SHA, and rolling back is
+pasting the previous embed.
 
 Easol rules the embed already follows: one line, ASCII only, no HTML comments. All CSS is scoped to `#sybp` so the
 theme and the page don't touch each other.
+
+## Easol
+
+Page "B2B - Team Trip Builder", slug `partner`, one Embed Code block (padding 0). Hidden from search engines.
