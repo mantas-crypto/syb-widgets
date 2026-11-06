@@ -236,8 +236,8 @@ function renderGoals(){
   $("goals").innerHTML = GOALS.map(function(g){
     var on = S.goals.indexOf(g.name) !== -1;
     return '<button type="button" class="goal" data-act="goal" data-g="' + esc(g.name) + '" aria-pressed="' + on + '">' +
-      '<span class="g-icon" aria-hidden="true">' + g.icon + '</span><span class="g-name">' + esc(g.name) + '</span>' +
-      '<span class="g-text">' + esc(g.text) + '</span><span class="g-check" aria-hidden="true">' + CHECK + '</span></button>';
+      '<span class="g-head"><span class="g-icon" aria-hidden="true">' + g.icon + '<span class="g-check">' + CHECK + '</span></span><span class="g-name">' + esc(g.name) + '</span></span>' +
+      '<span class="g-text">' + esc(g.text) + '</span></button>';
   }).join("");
 }
 function renderMode(){

@@ -188,18 +188,19 @@ textarea.input{min-height:96px;resize:vertical}
 
 /* team goals: tap the outcomes that matter */
 .goals{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
-.goal{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;width:100%;min-width:0;text-align:left;padding:12px 12px 13px;background:var(--panel);border:1px solid var(--line);color:inherit;cursor:pointer;transition:border-color .15s,box-shadow .15s,background-color .15s}
+/* emoji and name share the first line; the name shrinks with the card so the longest (Collaboration) never wraps */
+.goal{container-type:inline-size;display:flex;flex-direction:column;align-items:stretch;gap:4px;width:100%;min-width:0;text-align:left;padding:10px 10px 11px;background:var(--panel);border:1px solid var(--line);color:inherit;cursor:pointer;transition:border-color .15s,box-shadow .15s,background-color .15s}
 .goal:hover{border-color:var(--dim)}
 .goal[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);background-color:#1d1912}
-.g-icon{font-size:22px;line-height:1;margin-bottom:2px}
-.g-name{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.2px;color:var(--ink);line-height:1.2}
+.g-head{display:flex;align-items:center;gap:7px;min-width:0}
+.g-icon{position:relative;flex:0 0 auto;font-size:17px;line-height:1.1}
+.g-check{position:absolute;top:-6px;right:-5px;width:14px;height:14px;border-radius:50%;background:var(--gold);color:#121214;display:none;place-items:center;box-shadow:0 0 0 2px #1d1912}
+.g-check svg{width:9px;height:9px}
+.goal[aria-pressed="true"] .g-check{display:grid}
+.g-name{min-width:0;font-size:12.5px;font-size:min(14px,calc((100cqi - 26px) / 9.9));font-weight:900;text-transform:uppercase;letter-spacing:0;color:var(--ink);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .g-text{font-size:13.5px;line-height:1.45;color:var(--dim)}
 .goal[aria-pressed="true"] .g-text{color:var(--body)}
-.g-check{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:#121214}
-.g-check svg{width:13px;height:13px;opacity:0}
-.goal[aria-pressed="true"] .g-check{background:var(--gold);border-color:var(--gold)}
-.goal[aria-pressed="true"] .g-check svg{opacity:1}
-@media (min-width:700px){.goals{gap:10px}.goal{padding:14px 16px 15px}.g-name{font-size:15px}.g-text{font-size:14px}}
+@media (min-width:700px){.goals{gap:10px}.goal{padding:13px 15px 14px}.g-icon{font-size:19px}.g-name{font-size:15px}.g-text{font-size:14px}}
 
 /* photo tiles: step 4 (the compound) and step 5 (included) */
 .tiles{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
@@ -931,8 +932,8 @@ function renderGoals(){
   $("goals").innerHTML = GOALS.map(function(g){
     var on = S.goals.indexOf(g.name) !== -1;
     return '<button type="button" class="goal" data-act="goal" data-g="' + esc(g.name) + '" aria-pressed="' + on + '">' +
-      '<span class="g-icon" aria-hidden="true">' + g.icon + '</span><span class="g-name">' + esc(g.name) + '</span>' +
-      '<span class="g-text">' + esc(g.text) + '</span><span class="g-check" aria-hidden="true">' + CHECK + '</span></button>';
+      '<span class="g-head"><span class="g-icon" aria-hidden="true">' + g.icon + '<span class="g-check">' + CHECK + '</span></span><span class="g-name">' + esc(g.name) + '</span></span>' +
+      '<span class="g-text">' + esc(g.text) + '</span></button>';
   }).join("");
 }
 function renderMode(){
