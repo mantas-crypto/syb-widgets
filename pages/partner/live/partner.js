@@ -14,13 +14,38 @@ var CONTACT = {
 var DEFAULT_COMPANY = "Example Company"; // on the live page, ?for=F45%20Toronto shows that name instead
 var BASE = 1950, MIN_PEOPLE = 8, BASE_NIGHTS = 5, MAX_EXTRA_NIGHTS = 3, EXTRA_NIGHT = 250, DEPOSIT = 0.2;
 var CUSTOM_MAX_PEOPLE = 100, CUSTOM_MIN_NIGHTS = 2, CUSTOM_MAX_NIGHTS = 14;
+var ONT_NIGHTS = 2; // Ontario retreats are always 2 nights; Sarah quotes them (no price on the page)
+var DESTS = ["ontario", "nica", "custom"];
 
 var ROOMS = {
   shared:   { label:"Shared rooms",  add:0,   max:25 },
   twin:     { label:"Twin rooms",    add:300, max:20 },
   "private":{ label:"Private rooms", add:700, max:12 }
 };
-/* step 3: the compound. big = the large first tile. pos = where to center the crop. */
+/* step 1: what the trip pays back. The team taps the ones that matter; they go on the quote and to Sarah. */
+var GOALS = [
+  { name:"Alignment",     icon:"🎯", text:"Step away together and agree on what matters. A workshop turns it into a plan." },
+  { name:"Collaboration", icon:"🤝", text:"Activities and team challenges away from the office turn coworkers into teammates." },
+  { name:"Engagement",    icon:"⚡", text:"Something to do together every day, so nobody is half there or on mute." },
+  { name:"Leadership",    icon:"🧭", text:"Someone leads the hike, someone leads the dinner toast. See who steps up." },
+  { name:"Culture",       icon:"🎉", text:"Inside jokes and stories your team still tells years later. That's culture." },
+  { name:"Innovation",    icon:"💡", text:"New place, new routine, new ideas. The best ones show up at sunset." },
+  { name:"Communication", icon:"💬", text:"Long dinners at one table and bonfires with no agenda. People actually talk." },
+  { name:"Productivity",  icon:"🚀", text:"Quiet time and real rest send everyone home sharp and fired up." },
+  { name:"Retention",     icon:"❤️", text:"People stay where their friends are. A retreat is how coworkers become friends." },
+  { name:"Performance",   icon:"📈", text:"Teams that trust each other move faster. You'll see it back at the office." }
+];
+var GOAL_NAMES = GOALS.map(function(g){ return g.name; });
+/* step 4, Ontario: what the retreat is made of. Some or all; Sarah quotes it. */
+var ELEMENTS = [
+  { id:"wellness", name:"Wellness",   img:"el-wellness.jpg", alt:"A group stretching through a morning class in a lodge lounge", desc:"Morning yoga, breathwork or massages, so everyone resets." },
+  { id:"workshop", name:"Workshop",   img:"el-workshop.jpg", alt:"A team watching a presentation on a big screen", desc:"A session on what your team needs most, from strategy to leadership." },
+  { id:"dinners",  name:"Dinners",    img:"el-dinners.jpg",  alt:"A big group at long dinner tables at night", desc:"Long dinners at one table, where the real conversations happen." },
+  { id:"activity", name:"Activity",   img:"el-activity.jpg", alt:"A group hiking a forest trail", desc:"A hike, a paddle or a team challenge, done together." },
+  { id:"quiet",    name:"Quiet time", img:"el-quiet.jpg",    alt:"Someone lying in the moss by a lake", desc:"Unplugged time to think, read or just breathe. Big ideas need space." }
+];
+var EL_IDS = ELEMENTS.map(function(e){ return e.id; });
+/* step 4: the compound. big = the large first tile. pos = where to center the crop. */
 var STAY = [
   { img:"villa-infinity-pool.jpg", name:"Infinity pool", note:"On the cliff edge, facing the sunset", alt:"The infinity pool at sunset with the bay behind it", big:true },
   { img:"villa-cliff.jpg", name:"Gated and private", note:"Security on site 24 hours a day", alt:"The villas on the jungle cliff above the bay" },
@@ -32,7 +57,7 @@ var STAY = [
   { img:"villa-dining.jpg", name:"Dining room", note:"One long table for the whole team", alt:"A long dining table under arched windows", pos:"50% 62%" },
   { img:"villa-terrace.jpg", name:"Terrace", note:"Rocking chairs over the bay", alt:"Rocking chairs on a covered terrace over the jungle and the bay" }
 ];
-/* step 4: included in the base */
+/* step 5: included in the base */
 var INCLUDED = [
   { img:"inc-airport.jpg",   name:"Airport pickups",   note:"Not in the back of a pickup, promise", alt:"An SYB guest riding in the back of a pickup truck on the dirt road to Maderas" },
   { img:"inc-breakfast.jpg", name:"5 breakfasts",      alt:"Breakfast plates: eggs, bacon, gallo pinto, plantains and tortillas" },
@@ -47,7 +72,7 @@ var INCLUDED = [
   { img:"inc-theme.jpg",     name:"Theme parties",     note:"Could include a DJ, live music, entertainment or salsa instructors", alt:"A theme party dance floor under neon lights" },
   { img:"inc-leaders.jpg",   name:"SYB leaders",       note:"Trained through the SYB academy. With the group 24 hours a day.", alt:"An SYB crew with surfboards and the SYB banner" }
 ];
-/* step 5: pick one food package; the drinks upgrade is optional (the villa open bar is already in) */
+/* step 6: pick one food package; the drinks upgrade is optional (the villa open bar is already in) */
 var FOOD = {
   none:    { label:"Lunches on your own", add:0, img:"pk-own.jpg", alt:"A beach restaurant on the sand near the villas", desc:"Grab lunch at the beach spots nearby. Breakfast and dinner are already in." },
   regular: { label:"Regular food package", add:75, img:"pk-regular.jpg", alt:"The group at a long lunch table", desc:"Lunch every day for 5 days, made by our chef." },
@@ -57,7 +82,7 @@ var DRINKS = {
   beer:    { label:"Unlimited beer package", add:85, img:"pk-beer.jpg", alt:"Three beers raised at sunset on the beach", desc:"Ice-cold Nicaraguan beer all week, at the villa and on the beach." },
   fullbar: { label:"Full bar package", add:145, img:"pk-fullbar.jpg", alt:"The crew at a beach bar with drinks", desc:"All the beer, plus Nicaraguan 7-year aged rum, dark and white, tequila, mixers, fresh-squeezed lemon juice and juices. All week." }
 };
-/* step 5 extras, in the order they show. img = photo tile; no img = the emoji tile.
+/* step 6 extras, in the order they show. img = photo tile; no img = the emoji tile.
    type: pp = per person | ppq = per person, per unit | unit = per unit | flat = once for the group
    qauto: the starting amount when added, worked out from the group size */
 var ADDONS = [
@@ -90,9 +115,10 @@ var BYID = {}; ADDONS.forEach(function(a){ BYID[a.id] = a; });
 var WANTS = ["Surf", "Yoga", "Workouts", "Hiking", "Skiing", "Boat day", "Beach time", "Culture and food", "Nightlife", "Massages and recovery", "Work sessions", "Private rooms", "Chef dinners", "Open bar"];
 
 // Sarah's starting package. people: null = the extra covers the whole group.
-var PROPOSAL = { v:2, dest:"nica", people:14, start:"2027-04-12", flexible:false, extra:0, cn:5, room:"twin", food:"deluxe", drinks:"fullbar",
+// Opens on Ontario with every retreat element in; the Nicaragua part is the package she prices.
+var PROPOSAL = { v:2, dest:"ontario", people:14, start:"2027-04-12", flexible:false, extra:0, cn:5, room:"twin", food:"deluxe", drinks:"fullbar",
   addons:{ juice:{on:true,people:null}, massage:{on:true,qty:1,people:null}, work:{on:true,qty:2}, film:{on:true} },
-  cwhere:"", cwants:[], cnote:"" };
+  cwhere:"", cwants:[], cnote:"", goals:[], els:EL_IDS.slice() };
 
 /* ===== helpers ===== */
 var ROOT = document.getElementById("sybp");
@@ -119,16 +145,26 @@ var COMPANY = DEFAULT_COMPANY;
 try { var q = new URLSearchParams(window.location.search).get("for"); if (q && q.trim()) COMPANY = q.trim().slice(0, 60); } catch(e){}
 var KEY = "syb-team-trip:v2:" + COMPANY.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 var S = load();
+// ?trip=nicaragua (or ontario, custom) picks where a first visit opens; a saved build wins.
+try {
+  var tp = (new URLSearchParams(window.location.search).get("trip") || "").toLowerCase(), tmap = { ontario:"ontario", nicaragua:"nica", custom:"custom" };
+  if (tmap[tp] && !sget(KEY)) { S.dest = tmap[tp]; S.people = clamp(S.people, MIN_PEOPLE, maxPeople()); }
+} catch(e){}
 
 function isCustom(){ return S.dest === "custom"; }
-function maxPeople(){ return isCustom() ? CUSTOM_MAX_PEOPLE : ROOMS[S.room].max; }
+function isOnt(){ return S.dest === "ontario"; }
+function isNica(){ return S.dest === "nica"; }
+function goalList(){ return GOAL_NAMES.filter(function(n){ return S.goals.indexOf(n) !== -1; }); }
+function elList(){ return ELEMENTS.filter(function(e){ return S.els.indexOf(e.id) !== -1; }).map(function(e){ return e.name; }); }
+function maxPeople(){ return isNica() ? ROOMS[S.room].max : CUSTOM_MAX_PEOPLE; }
 function qtyStart(d){ return d.qauto === "per6" ? clamp(Math.ceil(S.people / 6), 1, d.qmax) : (d.qdef || 1); }
 function sanitize(s){
   var o = clone(PROPOSAL);
   if (!s || typeof s !== "object" || s.v !== 2) return o;
-  o.dest = s.dest === "custom" ? "custom" : "nica";
+  o.dest = DESTS.indexOf(s.dest) !== -1 ? s.dest : "nica"; // builds saved before Ontario were Nicaragua
   if (ROOMS[s.room]) o.room = s.room;
-  var pmax = o.dest === "custom" ? CUSTOM_MAX_PEOPLE : ROOMS[o.room].max;
+  var pmax = o.dest === "nica" ? ROOMS[o.room].max : CUSTOM_MAX_PEOPLE;
+  if (Array.isArray(s.els)) o.els = EL_IDS.filter(function(id){ return s.els.indexOf(id) !== -1; });
   o.people = clamp(parseInt(s.people, 10) || o.people, MIN_PEOPLE, pmax);
   o.start = parseISO(s.start) ? s.start : "";
   o.flexible = !!s.flexible;
@@ -139,6 +175,7 @@ function sanitize(s){
   o.cwhere = typeof s.cwhere === "string" ? s.cwhere.slice(0, 80) : "";
   o.cnote = typeof s.cnote === "string" ? s.cnote.slice(0, 600) : "";
   o.cwants = Array.isArray(s.cwants) ? s.cwants.filter(function(w){ return WANTS.indexOf(w) !== -1; }) : [];
+  o.goals = Array.isArray(s.goals) ? s.goals.filter(function(g, i, a){ return GOAL_NAMES.indexOf(g) !== -1 && a.indexOf(g) === i; }) : [];
   o.addons = {};
   var a = s.addons || {};
   Object.keys(a).forEach(function(id){
@@ -154,7 +191,7 @@ function load(){ var raw = sget(KEY); if (raw) { try { return sanitize(JSON.pars
 function save(){ $("save-msg").textContent = sset(KEY, JSON.stringify(S)) ? "Your changes save on this device." : "Changes won't be saved on this device, so send your package to Sarah before you close the page."; }
 
 /* ===== pricing ===== */
-function nights(){ return isCustom() ? S.cn : BASE_NIGHTS + S.extra; }
+function nights(){ return isOnt() ? ONT_NIGHTS : isCustom() ? S.cn : BASE_NIGHTS + S.extra; }
 function pplFor(e){ return e.people == null ? S.people : Math.min(e.people, S.people); }
 function people(n){ return n + " " + (n === 1 ? "person" : "people"); }
 function addonLine(d, e){
@@ -195,42 +232,60 @@ function renderTiles(){
   $("stay-grid").innerHTML = STAY.map(function(t){ return tile(t, false); }).join("");
   $("inc-grid").innerHTML = INCLUDED.map(function(t){ return tile(t, true); }).join("");
 }
+function renderGoals(){
+  $("goals").innerHTML = GOALS.map(function(g){
+    var on = S.goals.indexOf(g.name) !== -1;
+    return '<button type="button" class="goal" data-act="goal" data-g="' + esc(g.name) + '" aria-pressed="' + on + '">' +
+      '<span class="g-icon" aria-hidden="true">' + g.icon + '</span><span class="g-name">' + esc(g.name) + '</span>' +
+      '<span class="g-text">' + esc(g.text) + '</span><span class="g-check" aria-hidden="true">' + CHECK + '</span></button>';
+  }).join("");
+}
 function renderMode(){
-  var c = isCustom();
+  var n = isNica(), o = isOnt();
   ROOT.querySelectorAll('[data-act="dest"]').forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.dest === S.dest)); });
-  $("step-custom").hidden = !c;
-  $("step-stay").hidden = c; $("step-inc").hidden = c; $("step-add").hidden = c;
-  $("fly-note").hidden = c;
-  $("rs-base").hidden = c;
-  $("lbl-nights").textContent = c ? "Nights" : "Nights at the villas";
-  $("q-title").textContent = c ? "Your request" : "Your quote";
-  $("q-lines").hidden = c; $("q-totbox").hidden = c; $("q-paybox").hidden = c; $("q-foot").hidden = c;
-  $("q-custom").hidden = !c;
+  $("step-custom").hidden = !isCustom();
+  $("step-ont").hidden = !o; $("why-ontario").hidden = !o;
+  $("step-stay").hidden = !n; $("step-inc").hidden = !n; $("step-add").hidden = !n;
+  $("fly-note").hidden = !n;
+  $("rs-base").hidden = !n;
+  $("lbl-nights").textContent = n ? "Nights at the villas" : "Nights";
+  $("nights-stepper").classList.toggle("fixed", o);
+  $("q-title").textContent = n ? "Your quote" : o ? "Your retreat" : "Your request";
+  $("q-lines").hidden = !n; $("q-totbox").hidden = !n; $("q-paybox").hidden = !n; $("q-foot").hidden = !n;
+  $("q-custom").hidden = n;
+}
+function renderEls(){
+  $("el-grid").innerHTML = ELEMENTS.map(function(e){
+    var on = S.els.indexOf(e.id) !== -1;
+    return '<label class="pkg"><input type="checkbox" name="el" value="' + e.id + '"' + (on ? " checked" : "") + '>' +
+      '<span class="p-media"><img src="' + IMG + e.img + '" alt="' + esc(e.alt) + '" width="900" height="675" loading="lazy"><span class="p-check">' + CHECK + '</span></span>' +
+      '<span class="p-body"><span class="p-name">' + esc(e.name) + '</span><span class="p-desc">' + esc(e.desc) + '</span></span></label>';
+  }).join("");
 }
 function renderGroup(){
-  var max = maxPeople(), c = isCustom();
+  var max = maxPeople(), c = !isNica();
   var pin = $("people-in"); if (document.activeElement !== pin) pin.value = S.people;
   pin.max = max; pin.min = MIN_PEOPLE;
   ROOT.querySelector('[data-act="people"][data-d="-1"]').disabled = S.people <= MIN_PEOPLE;
   ROOT.querySelector('[data-act="people"][data-d="1"]').disabled = S.people >= max;
   var h = $("people-hint"); h.classList.remove("warn");
-  if (c) { h.textContent = S.people >= max ? "Bigger group? Put the number in the notes." : "Team trips start at " + MIN_PEOPLE + " people. Type the number or use the buttons."; }
+  if (c) { h.textContent = S.people >= max ? "Bigger group? Put the number in the notes." : (isOnt() ? "Retreats" : "Team trips") + " start at " + MIN_PEOPLE + " people. Type the number or use the buttons."; }
   else if (S.people >= max) { h.textContent = ROOMS[S.room].label + " fit up to " + max + " people." + (S.room !== "shared" ? " Shared rooms fit up to 25." : ""); h.classList.add("warn"); }
   else if (S.people <= MIN_PEOPLE) { h.textContent = "Team trips start at " + MIN_PEOPLE + " people."; }
   else { h.textContent = MIN_PEOPLE + " to " + max + " people with " + ROOMS[S.room].label.toLowerCase() + "."; }
   $("nights-out").textContent = nights();
-  ROOT.querySelector('[data-act="nights"][data-d="-1"]').disabled = c ? S.cn <= CUSTOM_MIN_NIGHTS : S.extra <= 0;
-  ROOT.querySelector('[data-act="nights"][data-d="1"]').disabled = c ? S.cn >= CUSTOM_MAX_NIGHTS : S.extra >= MAX_EXTRA_NIGHTS;
-  $("nights-hint").textContent = c ? "Most team trips run 4 to 7 nights." : (S.extra ? "Each extra night is " + money(EXTRA_NIGHT) + " per person, with breakfast and dinner." : "5 nights is the standard trip. Extra nights are " + money(EXTRA_NIGHT) + " per person.");
+  ROOT.querySelector('[data-act="nights"][data-d="-1"]').disabled = isOnt() || (isCustom() ? S.cn <= CUSTOM_MIN_NIGHTS : S.extra <= 0);
+  ROOT.querySelector('[data-act="nights"][data-d="1"]').disabled = isOnt() || (isCustom() ? S.cn >= CUSTOM_MAX_NIGHTS : S.extra >= MAX_EXTRA_NIGHTS);
+  $("nights-hint").textContent = isOnt() ? "Ontario retreats are 2 nights, 3 days." : isCustom() ? "Most team trips run 4 to 7 nights." : (S.extra ? "Each extra night is " + money(EXTRA_NIGHT) + " per person, with breakfast and dinner." : "5 nights is the standard trip. Extra nights are " + money(EXTRA_NIGHT) + " per person.");
   var di = $("start-date"); if (di.value !== S.start) di.value = S.start || "";
   $("flexible").checked = S.flexible;
   $("range-out").textContent = S.start ? datesText() + " (" + (nights() + 1) + " days)" : "Pick a first day, or tick flexible and Sarah will suggest weeks.";
   ROOT.querySelectorAll('input[name="room"]').forEach(function(r){ r.checked = (r.value === S.room); });
 }
 function renderCustom(){
-  var w = $("c-where"), n = $("c-note");
+  var w = $("c-where");
   if (document.activeElement !== w) w.value = S.cwhere;
-  if (document.activeElement !== n) n.value = S.cnote;
+  ["c-note", "o-note"].forEach(function(id){ var n = $(id); if (document.activeElement !== n) n.value = S.cnote; });
   $("c-wants").innerHTML = WANTS.map(function(x){
     var on = S.cwants.indexOf(x) !== -1;
     return '<button type="button" class="want" data-act="want" data-w="' + esc(x) + '" aria-pressed="' + on + '">' + CHECK + esc(x) + '</button>';
@@ -283,9 +338,15 @@ function renderCount(){
   var c = $("x-count"); c.hidden = !n; c.textContent = n + " added";
 }
 function renderQuote(){
-  var c = isCustom(), dt = datesText();
+  var c = isCustom(), o = isOnt(), dt = datesText();
   var when = dt ? dt + (S.flexible ? ", flexible" : "") : (S.flexible ? "Flexible" : "To be set");
-  var trip = c ? [
+  var trip = o ? [
+    ["Where", "Ontario, Canada"],
+    ["Dates", when],
+    ["Group", people(S.people)],
+    ["Length", (nights() + 1) + " days, " + nights() + " nights"],
+    ["Includes", elList().join(", ") || "Sarah suggests"]
+  ] : c ? [
     ["Where", "Custom: " + (S.cwhere.trim() || "open to ideas")],
     ["Dates", when],
     ["Group", people(S.people)],
@@ -297,10 +358,11 @@ function renderQuote(){
     ["Length", (nights() + 1) + " days, " + nights() + " nights"]
   ];
   if (c && S.cwants.length) trip.push(["Wants", S.cwants.join(", ")]);
+  if (goalList().length) trip.push(["Goals", goalList().join(", ")]);
   $("q-trip").innerHTML = trip.map(function(r){ return '<div><span>' + r[0] + '</span><span>' + esc(r[1]) + '</span></div>'; }).join("");
   var tb = $("tb-btn");
-  if (c) {
-    $("tb-total").textContent = "Custom trip";
+  if (!isNica()) {
+    $("tb-total").textContent = o ? "Ontario retreat" : "Custom trip";
     $("tb-sub").textContent = people(S.people) + ", " + nights() + " nights";
     tb.textContent = "Send to Sarah"; tb.setAttribute("href", "#send"); tb.dataset.scroll = "send";
     return;
@@ -316,7 +378,7 @@ function renderQuote(){
   $("tb-sub").textContent = people(S.people) + ", " + money(T.pp) + " each";
   tb.textContent = "See quote"; tb.setAttribute("href", "#quote-col"); tb.dataset.scroll = "quote-col";
 }
-function refresh(keepCards){ renderMode(); renderGroup(); if (!keepCards) { renderPkgs(); renderExtras(); renderCustom(); } renderQuote(); save(); }
+function refresh(keepCards){ renderMode(); renderGroup(); if (!keepCards) { renderGoals(); renderEls(); renderPkgs(); renderExtras(); renderCustom(); } renderQuote(); save(); }
 
 /* ===== interactions ===== */
 function setPeople(n){ S.people = clamp(n, MIN_PEOPLE, maxPeople()); }
@@ -338,7 +400,7 @@ ROOT.addEventListener("click", function(ev){
   if (b.dataset.scroll) { ev.preventDefault(); scrollToId(b.dataset.scroll); return; }
   var act = b.dataset.act, id = b.dataset.id, d = parseInt(b.dataset.d || "0", 10);
   if (act === "dest") {
-    var to = b.dataset.dest === "custom" ? "custom" : "nica"; if (to === S.dest) return;
+    var to = DESTS.indexOf(b.dataset.dest) !== -1 ? b.dataset.dest : "nica"; if (to === S.dest) return;
     var before = S.people; S.dest = to; setPeople(S.people); $("room-hint").textContent = "";
     refresh();
     if (before !== S.people) { var h = $("people-hint"); h.textContent = "Nicaragua fits up to " + maxPeople() + " people with " + ROOMS[S.room].label.toLowerCase() + ", so your group is now " + S.people + "."; h.classList.add("warn"); }
@@ -346,9 +408,16 @@ ROOT.addEventListener("click", function(ev){
   }
   if (act === "people") { setPeople(S.people + d); $("room-hint").textContent = ""; refresh(); return; }
   if (act === "nights") {
+    if (isOnt()) return;
     if (isCustom()) S.cn = clamp(S.cn + d, CUSTOM_MIN_NIGHTS, CUSTOM_MAX_NIGHTS);
     else S.extra = clamp(S.extra + d, 0, MAX_EXTRA_NIGHTS);
     refresh(true); return;
+  }
+  if (act === "goal") {
+    var gname = b.dataset.g, gi = S.goals.indexOf(gname);
+    if (GOAL_NAMES.indexOf(gname) === -1) return;
+    if (gi === -1) S.goals.push(gname); else S.goals.splice(gi, 1);
+    b.setAttribute("aria-pressed", String(gi === -1)); renderQuote(); save(); return;
   }
   if (act === "want") {
     var w = b.dataset.w, i = S.cwants.indexOf(w);
@@ -364,7 +433,7 @@ ROOT.addEventListener("click", function(ev){
   if (act === "qty" && S.addons[id]) { var e1 = S.addons[id]; e1.qty = clamp((e1.qty || 1) + d, 1, BYID[id].qmax); rerenderCard(id, "qty", b.dataset.d); renderQuote(); save(); return; }
   if (act === "ppl" && S.addons[id]) { var e2 = S.addons[id]; var n = clamp(pplFor(e2) + d, 1, S.people); e2.people = (n >= S.people) ? null : n; rerenderCard(id, "ppl", b.dataset.d); renderQuote(); save(); return; }
   if (act === "reset-proposal") { S = clone(PROPOSAL); $("room-hint").textContent = ""; refresh(); return; }
-  if (act === "reset-base") { S = { v:2, dest:"nica", people:S.people, start:S.start, flexible:S.flexible, extra:0, cn:S.cn, room:"shared", food:"none", drinks:"none", addons:{}, cwhere:S.cwhere, cwants:S.cwants, cnote:S.cnote }; setPeople(S.people); $("room-hint").textContent = ""; refresh(); return; }
+  if (act === "reset-base") { S = { v:2, dest:"nica", people:S.people, start:S.start, flexible:S.flexible, extra:0, cn:S.cn, room:"shared", food:"none", drinks:"none", addons:{}, cwhere:S.cwhere, cwants:S.cwants, cnote:S.cnote, goals:S.goals, els:S.els }; setPeople(S.people); $("room-hint").textContent = ""; refresh(); return; }
   if (act === "copy-package") { copyPackage(); return; }
   if (act === "copy-contact") { copyContact(b.dataset.which); return; }
 });
@@ -378,6 +447,12 @@ ROOT.addEventListener("change", function(ev){
     refresh(); return;
   }
   if (t.name === "food") { S.food = FOOD[t.value] ? t.value : "none"; renderQuote(); save(); return; }
+  if (t.name === "el") {
+    var ei = S.els.indexOf(t.value);
+    if (t.checked && ei === -1 && EL_IDS.indexOf(t.value) !== -1) S.els.push(t.value);
+    if (!t.checked && ei !== -1) S.els.splice(ei, 1);
+    renderQuote(); save(); return;
+  }
   if (t.name === "drinks") {
     if (t.checked) S.drinks = t.value; else if (S.drinks === t.value) S.drinks = "none";
     ROOT.querySelectorAll('input[name="drinks"]').forEach(function(i){ i.checked = (i.value === S.drinks); });
@@ -389,20 +464,27 @@ ROOT.addEventListener("change", function(ev){
 ROOT.addEventListener("input", function(ev){
   var t = ev.target;
   if (t.id === "c-where") { S.cwhere = t.value.slice(0, 80); renderQuote(); save(); return; }
-  if (t.id === "c-note") { S.cnote = t.value.slice(0, 600); save(); return; }
+  if (t.id === "c-note" || t.id === "o-note") { S.cnote = t.value.slice(0, 600); save(); return; }
 });
 ROOT.addEventListener("keydown", function(ev){ if (ev.target.id === "people-in" && ev.key === "Enter") { ev.preventDefault(); ev.target.blur(); } });
 
 /* ===== send to Sarah: build the package, copy it, offer the email app ===== */
 function packageText(){
-  var c = isCustom(), out = [];
+  var c = isCustom(), o = isOnt(), out = [];
   var name = $("f-name").value.trim(), company = $("f-company").value.trim() || COMPANY, email = $("f-email").value.trim(), notes = $("f-notes").value.trim();
   var dt = datesText(), dates = (dt || "not set yet") + (S.flexible ? " (flexible)" : "");
-  out.push(c ? "Hi Sarah, here is our custom team trip request." : "Hi Sarah, here is our team trip package.");
+  out.push(o ? "Hi Sarah, here is our Ontario retreat request." : c ? "Hi Sarah, here is our custom team trip request." : "Hi Sarah, here is our team trip package.");
   out.push("");
   out.push("Company: " + company);
   if (name || email) out.push("From: " + [name, email].filter(Boolean).join(", "));
-  if (c) {
+  if (goalList().length) out.push("Our goals: " + goalList().join(", "));
+  if (o) {
+    out.push("Where: Ontario, Canada");
+    out.push("Dates: " + dates);
+    out.push("Group: " + people(S.people) + ", " + nights() + " nights");
+    out.push("Include: " + (elList().join(", ") || "Sarah suggests"));
+    if (S.cnote.trim()) out.push("Anything else: " + S.cnote.trim());
+  } else if (c) {
     out.push("Where: " + (S.cwhere.trim() || "Open to ideas"));
     out.push("Dates: " + dates);
     out.push("Group: " + people(S.people) + ", " + nights() + " nights");
@@ -461,7 +543,7 @@ $("send-form").addEventListener("submit", function(ev){
   var text = packageText();
   $("send-text").value = text;
   $("send-email").textContent = CONTACT.email;
-  $("send-mailto").href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent((isCustom() ? "Custom team trip: " : "Team trip: ") + ($("f-company").value.trim() || COMPANY)) + "&body=" + encodeURIComponent(text);
+  $("send-mailto").href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent((isOnt() ? "Ontario retreat: " : isCustom() ? "Custom team trip: " : "Team trip: ") + ($("f-company").value.trim() || COMPANY)) + "&body=" + encodeURIComponent(text);
   var out = $("send-out"); out.hidden = false;
   $("copy-state").textContent = "";
   copyText(text, setCopyState);
