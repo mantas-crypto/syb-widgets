@@ -120,5 +120,5 @@ WhatsApp, once in Easol head HTML (sitewide):
 
 ## Team trip builder
 
-surfyogabeer.com/partner, the B2B page for company team trips, lives in pages/partner (source, photos, build script,
-live CSS and JS). See pages/partner/README.md.
+surfyogabeer.com/partner, the B2B page for corporate retreats (outcomes first; Ontario retreats, Nicaragua team trips,
+custom trips), lives in pages/partner (source, photos, build script, live CSS and JS). See pages/partner/README.md.
