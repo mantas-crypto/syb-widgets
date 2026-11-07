@@ -1,8 +1,14 @@
 {
  "tag": "nicaragua",
  "alt": "SurfYogaBeer Nicaragua",
- "updated": "2026-10-28",
+ "updated": "2026-11-07",
  "posts": [
+  {
+   "code": "Dfcj7isvLz4",
+   "user": "surfyogabeer",
+   "date": "2026-11-07",
+   "img": "p/Dfcj7isvLz4.jpg"
+  },
   {
    "code": "DfAV2InmvBs",
    "user": "surfyogabeer",
@@ -140,12 +146,6 @@
    "user": "surfyogabeer",
    "date": "2026-01-12",
    "img": "p/DTbc4wmgDgf.jpg"
-  },
-  {
-   "code": "DTTYEyWFQwW",
-   "user": "surfyogabeer",
-   "date": "2026-01-09",
-   "img": "p/DTTYEyWFQwW.jpg"
   }
  ]
 }
