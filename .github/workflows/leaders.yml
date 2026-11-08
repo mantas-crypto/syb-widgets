@@ -3,9 +3,7 @@ name: Leader pages data
 # Rebuilds dist/leaders/<leader>.json from the SYB Public Feed (synced from SYB HQ, no guest data), the Google
 # reviews in this repo and data/leaders/ (Trustpilot reviews are added by hand in extra-reviews.json). Leader pages
 # load those files from @main, so a commit here updates every page without touching Easol. Spots left, sold out
-# and prices are not in these files: pages read them live from the Easol calendar. Trip dates come from the booking
-# pages (data/leaders/booking-dates.json, a copy of the surfyogabeer.com/calendar cards) when a card matches, else
-# from HQ (see build-leaders.py, Trip dates).
+# and prices are not in these files: pages read them live from the Easol calendar.
 # No keys needed (the Public Feed is link-shared). A run with nothing new makes no commit.
 
 on:

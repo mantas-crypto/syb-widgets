@@ -1793,11 +1793,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2026-11-16",
-    "2026-11-22"
-   ]
+   "ran": true
   },
   "Nicaragua Surf Yoga Beer Nov 21 '26": {
    "trip": "Surf Yoga Beer",
@@ -1810,11 +1806,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2026-11-21",
-    "2026-11-27"
-   ]
+   "ran": true
   },
   "Nicaragua Surf Yoga Beer (Thx) '26": {
    "trip": "Surf Yoga Beer",
@@ -1828,11 +1820,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2026-11-26",
-    "2026-12-02"
-   ]
+   "ran": true
   },
   "Nicaragua Academy '26": {
    "trip": "SYB Academy",
@@ -1859,11 +1847,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2026-12-01",
-    "2026-12-07"
-   ]
+   "ran": true
   },
   "Nicaragua NYE '26": {
    "trip": "Nicaragua NYE",
@@ -1881,11 +1865,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2026-12-27",
-    "2027-01-03"
-   ]
+   "ran": true
   },
   "Bali #4 Nye '26": {
    "trip": "Bali NYE",
@@ -1913,11 +1893,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2026-12-29",
-    "2027-01-04"
-   ]
+   "ran": true
   },
   "Nicaragua Reset & Recharge '27": {
    "trip": "Reset & Recharge",
@@ -1931,11 +1907,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2027-01-02",
-    "2027-01-17"
-   ]
+   "ran": true
   },
   "Chamonix, France '27": {
    "trip": "Ski Yoga Spritz",
@@ -1974,11 +1946,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2027-02-08",
-    "2027-02-14"
-   ]
+   "ran": true
   },
   "Guatemala '27": {
    "trip": "Guat A Feeling",
@@ -1991,11 +1959,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2027-02-09",
-    "2027-02-16"
-   ]
+   "ran": true
   },
   "Nicaragua SURF YOGA BEER (singles) '27": {
    "trip": "Surf Yoga Beer",
@@ -2007,11 +1971,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2027-02-13",
-    "2027-02-19"
-   ]
+   "ran": true
   },
   "Zermatt Switzerland '27": {
    "trip": "Swiss on the Rocks",
@@ -2036,11 +1996,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2027-02-15",
-    "2027-02-22"
-   ]
+   "ran": true
   },
   "Finland #1 '27": {
    "start": "2027-03-13",
@@ -2104,11 +2060,7 @@
    ],
    "kind": "trip",
    "status": "LIVE",
-   "ran": true,
-   "hq_dates": [
-    "2027-03-19",
-    "2027-03-25"
-   ]
+   "ran": true
   },
   "Nicaragua Surf Yoga Beer Mar 24 '27": {
    "trip": "Surf Yoga Beer",
