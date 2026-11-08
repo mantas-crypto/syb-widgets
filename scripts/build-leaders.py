@@ -11,6 +11,13 @@ Where each part of a leader page comes from
   Upcoming trips   Leader Hub Feed, TRIPS tab (synced from SYB HQ, so adding a leader to a trip tab in HQ
                    adds the trip to their page). Spots left, sold out and prices are NOT here: the page reads
                    those live from Easol on every visit (product_search in the trips block).
+  Trip dates       The booking pages win over HQ (Nov 7 2026: HQ had the end one day late on 11 trips and
+                   Palawan two days early). The full calendar (surfyogabeer.com/calendar) prints every departure
+                   as an article.sc-card with data-name, data-s and data-e; a card with the trip's name and start
+                   date, or failing that the one card with that name starting at most 3 days away, sets the dates.
+                   A trip keeps those dates after it leaves the calendar (it has started) for as long as HQ's
+                   dates stay the same (hq_dates in history.json); when HQ changes them, HQ's new dates are used.
+                   No card (calendar unreadable, trip not on it): HQ's dates.
   Trips led        data/leaders/history.json: every trip since 2023, seeded from SYB HQ on Oct 14 2026
                    (scripts/seed-leader-history.py) and kept current from the feed by this script. A trip is
                    added the first time the feed shows it and is never deleted, so finished trips stay.
@@ -25,10 +32,12 @@ Where each part of a leader page comes from
 
     python3 scripts/build-leaders.py                    # read the feed, update history, write the files
     python3 scripts/build-leaders.py --feed trips.csv   # use a saved copy of the TRIPS tab
+    python3 scripts/build-leaders.py --calendar cal.html  # use a saved copy of surfyogabeer.com/calendar
     python3 scripts/build-leaders.py --dry              # print what would change, write nothing
     python3 scripts/build-leaders.py --today 2026-11-01 # pretend it is another day
 """
-import argparse, csv, datetime, io, json, os, re, sys
+import argparse, csv, datetime, io, json, os, re, sys, unicodedata
+from html.parser import HTMLParser
 from zoneinfo import ZoneInfo
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
@@ -40,8 +49,10 @@ FEED_URLS = [
     "https://docs.google.com/spreadsheets/d/%s/gviz/tq?tqx=out:csv&headers=1&sheet=TRIPS" % FEED_ID,
     "https://docs.google.com/spreadsheets/d/%s/export?format=csv&gid=%s" % (FEED_ID, FEED_GID),
 ]
+CALENDAR_URL = "https://www.surfyogabeer.com/calendar"   # every departure as an article.sc-card (booking-page dates)
+DATE_SLACK = 3             # days a calendar card's start may be off from HQ's and still count as the same trip
 NY = ZoneInfo("America/New_York")
-REVIEW_WINDOW = 45         # days after a trip ends that a review can still be about it (most land within two weeks)
+REVIEW_WINDOW = 45        # days after a trip ends that a review can still be about it (most land within two weeks)
 MAX_REVIEWS = 9          # one big quote plus eight cards
 SKIP_STATUS = {"CANCELLED", "IDEA", "NOT LAUNCHED"}
 
@@ -153,8 +164,67 @@ def read_feed(path=None):
     return rows
 
 
-def update_history(hist, rows):
-    """Merge feed rows into history. Returns the number of trips added or changed."""
+def norm(name):
+    """A trip name compared the way the leader page script does it: no accents, lower case, straight quotes, one space."""
+    s = unicodedata.normalize("NFD", str(name or ""))
+    s = "".join(ch for ch in s if not unicodedata.combining(ch))
+    return re.sub(r"\s+", " ", s.lower().replace("‘", "'").replace("’", "'")).strip()
+
+
+class _Cards(HTMLParser):
+    """Collects the attributes of every <article class="sc-card" data-s=...> on the calendar page."""
+    def __init__(self):
+        super().__init__()
+        self.cards = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "article":
+            a = dict(attrs)
+            if "sc-card" in (a.get("class") or "").split() and a.get("data-s"):
+                self.cards.append(a)
+
+
+def read_calendar(path=None):
+    """Booking-page dates from the full calendar as {name: [(start, end), ...]}, or None when it cannot be read
+    (then HQ's dates are used, and trips that already have booking-page dates keep them)."""
+    text = None
+    if path:
+        with open(path, encoding="utf-8") as f:
+            text = f.read()
+    else:
+        import requests
+        try:
+            r = requests.get(CALENDAR_URL, timeout=30, headers={"User-Agent": "Mozilla/5.0 (compatible; syb-leader-pages)"})
+            if r.status_code == 200:
+                text = r.text
+        except requests.RequestException:
+            pass
+    if not text:
+        return None
+    p = _Cards()
+    p.feed(text)
+    cal = {}
+    for a in p.cards:
+        s, e = iso(a.get("data-s")), iso(a.get("data-e"))
+        if norm(a.get("data-name")) and s and e and e >= s:
+            cal.setdefault(norm(a.get("data-name")), []).append((s, e))
+    return cal if sum(map(len, cal.values())) >= 5 else None       # a cut-short page counts as unreadable
+
+
+def booking_dates(cal, trip, start):
+    """(start, end) of the calendar card for a feed trip: the same name and start, or else the one card with that
+    name starting closest to it, at most DATE_SLACK days away. None when nothing matches or two cards tie."""
+    if not cal or not start:
+        return None
+    near = sorted((abs((s - start).days), (s, e)) for s, e in cal.get(norm(trip), []) if abs((s - start).days) <= DATE_SLACK)
+    if not near or (len(near) > 1 and near[0][0] == near[1][0] and near[0][1] != near[1][1]):
+        return None
+    return near[0][1]
+
+
+def update_history(hist, rows, cal=None, fixed=None):
+    """Merge feed rows into history. Returns the number of trips added or changed. Dates come from the trip's
+    calendar card when there is one; fixed (a list) collects the trips where that differs from HQ."""
     changed = 0
     for r in rows:
         tab = r.get("hub_tab", "")
@@ -164,8 +234,21 @@ def update_history(hist, rows):
         old = hist.get(tab)
         new = dict(old or {})
         span = (e - s).days if e else 0
-        if not old or span <= 21:                  # multi-month programs (Academy) keep their HQ dates
-            new["start"], new["end"] = s.isoformat(), (e or s).isoformat()
+        hq = [s.isoformat(), (e or s).isoformat()]
+        card = booking_dates(cal, r.get("trip"), s)
+        if card:                                   # the booking page's dates
+            new["start"], new["end"] = card[0].isoformat(), card[1].isoformat()
+            if [new["start"], new["end"]] != hq:
+                new["hq_dates"] = hq               # what HQ says, so the fix sticks once the trip leaves the calendar
+                if fixed is not None:
+                    fixed.append("%s: HQ %s to %s, booking page %s to %s" % (tab, hq[0], hq[1], new["start"], new["end"]))
+            else:
+                new.pop("hq_dates", None)
+        elif old and old.get("hq_dates") == hq:
+            pass                                   # off the calendar now, HQ unchanged: keep the booking page's dates
+        elif not old or span <= 21:                # multi-month programs (Academy) keep their HQ dates
+            new["start"], new["end"] = hq
+            new.pop("hq_dates", None)
         new["trip"] = r.get("trip") or new.get("trip") or re.sub(r"\s*'\d\d$", "", tab)
         new["dest"] = dest_of(tab, new.get("dest", ""))
         new.pop("booked", None)                    # traveler numbers are not kept (they are not for the public)
@@ -455,6 +538,7 @@ def write_squad(today, dry=False):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--feed", help="saved copy of the TRIPS tab (CSV)")
+    ap.add_argument("--calendar", help="saved copy of surfyogabeer.com/calendar (HTML)")
     ap.add_argument("--today", help="YYYY-MM-DD")
     ap.add_argument("--dry", action="store_true")
     a = ap.parse_args()
@@ -464,8 +548,13 @@ def main():
     hist_doc = load(os.path.join(DATA, "history.json"), {"trips": {}})
     hist = hist_doc["trips"]
     feed = read_feed(a.feed)
-    log = {"today": today.isoformat(), "feed_rows": len(feed) if feed is not None else "unreadable"}
-    log["history_changed"] = update_history(hist, feed) if feed is not None else 0
+    cal = read_calendar(a.calendar) if feed is not None else None
+    log = {"today": today.isoformat(), "feed_rows": len(feed) if feed is not None else "unreadable",
+           "calendar_cards": sum(map(len, cal.values())) if cal else "unreadable"}
+    fixed = []
+    log["history_changed"] = update_history(hist, feed, cal, fixed) if feed is not None else 0
+    if fixed:
+        log["booking_dates"] = fixed
 
     older = load(os.path.join(DATA, "older-trips.json"), {})
     allhist = merge_older(hist, older)
@@ -514,6 +603,8 @@ def main():
     print(json.dumps(log))
     if feed is None:
         print("WARNING: could not read SYB Public Feed (no guest data); pages keep their trips from history", file=sys.stderr)
+    elif cal is None:
+        print("WARNING: could not read %s; trips not fixed before use HQ's dates" % CALENDAR_URL, file=sys.stderr)
 
 
 if __name__ == "__main__":
