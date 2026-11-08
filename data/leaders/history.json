@@ -1734,7 +1734,7 @@
   "La Lt Days Venice Beach 5k '26": {
    "trip": "Venice Beach 5K + Pilates",
    "start": "2026-10-10",
-   "end": "2026-10-11",
+   "end": "2026-10-10",
    "dest": "LA",
    "leaders": [
     "Matas G.",
@@ -1747,7 +1747,7 @@
   "Nicaragua Surf Camp Oct 13 '26": {
    "trip": "Surf Camp",
    "start": "2026-10-13",
-   "end": "2026-10-19",
+   "end": "2026-10-18",
    "dest": "Nicaragua",
    "leaders": [
     "Bri F."
@@ -1988,8 +1988,8 @@
   },
   "Philippines '27": {
    "trip": "Islands of Palawan",
-   "start": "2027-02-17",
-   "end": "2027-02-23",
+   "start": "2027-02-15",
+   "end": "2027-02-22",
    "dest": "Philippines",
    "leaders": [
     "Lizzie"
