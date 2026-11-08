@@ -184,6 +184,9 @@ class _Cards(HTMLParser):
                 self.cards.append(a)
 
 
+CAL_NOTE = []              # why the calendar could not be read, for the run log
+
+
 def read_calendar(path=None):
     """Booking-page dates from the full calendar as {name: [(start, end), ...]}, or None when it cannot be read
     (then HQ's dates are used, and trips that already have booking-page dates keep them)."""
@@ -194,11 +197,17 @@ def read_calendar(path=None):
     else:
         import requests
         try:
-            r = requests.get(CALENDAR_URL, timeout=30, headers={"User-Agent": "Mozilla/5.0 (compatible; syb-leader-pages)"})
+            r = requests.get(CALENDAR_URL, timeout=30, headers={
+                "User-Agent": "Mozilla/5.0 (compatible; syb-leader-pages)",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "Accept-Language": "en-US,en;q=0.9"})
             if r.status_code == 200:
                 text = r.text
-        except requests.RequestException:
-            pass
+            else:
+                body = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", r.text or ""))[:120]
+                CAL_NOTE.append("http %s from %s, server %s: %s" % (r.status_code, r.url, r.headers.get("server", "?"), body))
+        except requests.RequestException as x:
+            CAL_NOTE.append("%s: %s" % (type(x).__name__, str(x)[:160]))
     if not text:
         return None
     p = _Cards()
@@ -208,7 +217,10 @@ def read_calendar(path=None):
         s, e = iso(a.get("data-s")), iso(a.get("data-e"))
         if norm(a.get("data-name")) and s and e and e >= s:
             cal.setdefault(norm(a.get("data-name")), []).append((s, e))
-    return cal if sum(map(len, cal.values())) >= 5 else None       # a cut-short page counts as unreadable
+    if sum(map(len, cal.values())) < 5:                              # a cut-short page counts as unreadable
+        CAL_NOTE.append("%d cards in %d characters" % (sum(map(len, cal.values())), len(text)))
+        return None
+    return cal
 
 
 def booking_dates(cal, trip, start):
@@ -551,6 +563,8 @@ def main():
     cal = read_calendar(a.calendar) if feed is not None else None
     log = {"today": today.isoformat(), "feed_rows": len(feed) if feed is not None else "unreadable",
            "calendar_cards": sum(map(len, cal.values())) if cal else "unreadable"}
+    if CAL_NOTE:
+        log["calendar_note"] = "; ".join(CAL_NOTE)
     fixed = []
     log["history_changed"] = update_history(hist, feed, cal, fixed) if feed is not None else 0
     if fixed:
