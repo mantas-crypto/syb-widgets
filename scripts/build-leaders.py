@@ -11,13 +11,17 @@ Where each part of a leader page comes from
   Upcoming trips   Leader Hub Feed, TRIPS tab (synced from SYB HQ, so adding a leader to a trip tab in HQ
                    adds the trip to their page). Spots left, sold out and prices are NOT here: the page reads
                    those live from Easol on every visit (product_search in the trips block).
-  Trip dates       The booking pages win over HQ (Nov 7 2026: HQ had the end one day late on 11 trips and
-                   Palawan two days early). The full calendar (surfyogabeer.com/calendar) prints every departure
-                   as an article.sc-card with data-name, data-s and data-e; a card with the trip's name and start
-                   date, or failing that the one card with that name starting at most 3 days away, sets the dates.
-                   A trip keeps those dates after it leaves the calendar (it has started) for as long as HQ's
-                   dates stay the same (hq_dates in history.json); when HQ changes them, HQ's new dates are used.
-                   No card (calendar unreadable, trip not on it): HQ's dates.
+  Trip dates       The booking pages win over HQ (Nov 2026: HQ had the end one day late on 11 trips and
+                   Palawan two days early). data/leaders/booking-dates.json is a copy of the departure cards on
+                   surfyogabeer.com/calendar (article.sc-card: data-name, data-s, data-e, data-url). This job
+                   cannot read that page itself: Cloudflare answers GitHub's servers with a bot check (403).
+                   A card with the trip's name and start date, or failing that the one card with that name
+                   starting at most 3 days away, sets the trip's dates. A trip keeps them after it leaves the
+                   calendar for as long as HQ's dates stay the same (hq_dates in history.json); when HQ changes
+                   them, HQ's new dates are used. A trip with no card (launched after the copy was made, or not
+                   on the calendar) uses HQ's dates, so refresh the copy after launching trips or moving dates:
+                   save the calendar page from a normal browser or computer, then run
+                   python3 scripts/build-leaders.py --calendar saved.html --save-calendar and commit.
   Trips led        data/leaders/history.json: every trip since 2023, seeded from SYB HQ on Oct 14 2026
                    (scripts/seed-leader-history.py) and kept current from the feed by this script. A trip is
                    added the first time the feed shows it and is never deleted, so finished trips stay.
@@ -32,7 +36,8 @@ Where each part of a leader page comes from
 
     python3 scripts/build-leaders.py                    # read the feed, update history, write the files
     python3 scripts/build-leaders.py --feed trips.csv   # use a saved copy of the TRIPS tab
-    python3 scripts/build-leaders.py --calendar cal.html  # use a saved copy of surfyogabeer.com/calendar
+    python3 scripts/build-leaders.py --calendar cal.html  # dates from a saved copy of surfyogabeer.com/calendar
+    python3 scripts/build-leaders.py --calendar cal.html --save-calendar   # ...and keep it as booking-dates.json
     python3 scripts/build-leaders.py --dry              # print what would change, write nothing
     python3 scripts/build-leaders.py --today 2026-11-01 # pretend it is another day
 """
@@ -50,9 +55,10 @@ FEED_URLS = [
     "https://docs.google.com/spreadsheets/d/%s/export?format=csv&gid=%s" % (FEED_ID, FEED_GID),
 ]
 CALENDAR_URL = "https://www.surfyogabeer.com/calendar"   # every departure as an article.sc-card (booking-page dates)
-DATE_SLACK = 3             # days a calendar card's start may be off from HQ's and still count as the same trip
+BOOKING_DATES = os.path.join(DATA, "booking-dates.json")  # the copy of those cards this job reads
+DATE_SLACK = 3            # days a calendar card's start may be off from HQ's and still count as the same trip
 NY = ZoneInfo("America/New_York")
-REVIEW_WINDOW = 45        # days after a trip ends that a review can still be about it (most land within two weeks)
+REVIEW_WINDOW = 45         # days after a trip ends that a review can still be about it (most land within two weeks)
 MAX_REVIEWS = 9          # one big quote plus eight cards
 SKIP_STATUS = {"CANCELLED", "IDEA", "NOT LAUNCHED"}
 
@@ -184,43 +190,41 @@ class _Cards(HTMLParser):
                 self.cards.append(a)
 
 
-CAL_NOTE = []              # why the calendar could not be read, for the run log
+def cards_from_html(text):
+    """The departure cards of a saved calendar page as [{name, s, e, url}]."""
+    p = _Cards()
+    p.feed(text)
+    return [{"name": (a.get("data-name") or "").strip(), "s": a["data-s"], "e": a.get("data-e") or "",
+             "url": re.sub(r"^https?://(www\.)?surfyogabeer\.com", "", a.get("data-url") or "")} for a in p.cards]
 
 
 def read_calendar(path=None):
-    """Booking-page dates from the full calendar as {name: [(start, end), ...]}, or None when it cannot be read
-    (then HQ's dates are used, and trips that already have booking-page dates keep them)."""
-    text = None
+    """Booking-page dates as ({name: [(start, end), ...]}, cards, read on), from a saved calendar page when given,
+    else from booking-dates.json. ({}, [], "") when neither can be read: then HQ's dates are used, and trips that
+    already have booking-page dates keep them."""
     if path:
         with open(path, encoding="utf-8") as f:
-            text = f.read()
+            cards, read = cards_from_html(f.read()), ""
     else:
-        import requests
-        try:
-            r = requests.get(CALENDAR_URL, timeout=30, headers={
-                "User-Agent": "Mozilla/5.0 (compatible; syb-leader-pages)",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                "Accept-Language": "en-US,en;q=0.9"})
-            if r.status_code == 200:
-                text = r.text
-            else:
-                body = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", r.text or ""))[:120]
-                CAL_NOTE.append("http %s from %s, server %s: %s" % (r.status_code, r.url, r.headers.get("server", "?"), body))
-        except requests.RequestException as x:
-            CAL_NOTE.append("%s: %s" % (type(x).__name__, str(x)[:160]))
-    if not text:
-        return None
-    p = _Cards()
-    p.feed(text)
+        doc = load(BOOKING_DATES, {})
+        cards, read = doc.get("cards", []), doc.get("read", "")
     cal = {}
-    for a in p.cards:
-        s, e = iso(a.get("data-s")), iso(a.get("data-e"))
-        if norm(a.get("data-name")) and s and e and e >= s:
-            cal.setdefault(norm(a.get("data-name")), []).append((s, e))
-    if sum(map(len, cal.values())) < 5:                              # a cut-short page counts as unreadable
-        CAL_NOTE.append("%d cards in %d characters" % (sum(map(len, cal.values())), len(text)))
-        return None
-    return cal
+    for c in cards:
+        s, e = iso(c.get("s")), iso(c.get("e"))
+        if norm(c.get("name")) and s and e and e >= s:
+            cal.setdefault(norm(c.get("name")), []).append((s, e))
+    if sum(map(len, cal.values())) < 5:                 # a cut-short page or copy is not used
+        return {}, [], ""
+    return cal, cards, read
+
+
+def save_calendar(cards, read):
+    with open(BOOKING_DATES, "w") as f:
+        json.dump({"about": "Departure cards copied from %s (name, first day s, last day e, booking page). "
+                            "build-leaders.py takes trip dates from here; see its Trip dates note." % CALENDAR_URL,
+                   "read": read, "cards": sorted(cards, key=lambda c: (c["s"], c["name"]))},
+                  f, ensure_ascii=False, indent=1)
+        f.write("\n")
 
 
 def booking_dates(cal, trip, start):
@@ -550,7 +554,8 @@ def write_squad(today, dry=False):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--feed", help="saved copy of the TRIPS tab (CSV)")
-    ap.add_argument("--calendar", help="saved copy of surfyogabeer.com/calendar (HTML)")
+    ap.add_argument("--calendar", help="saved copy of surfyogabeer.com/calendar (HTML) to take trip dates from")
+    ap.add_argument("--save-calendar", action="store_true", help="with --calendar: keep its cards as booking-dates.json")
     ap.add_argument("--today", help="YYYY-MM-DD")
     ap.add_argument("--dry", action="store_true")
     a = ap.parse_args()
@@ -560,11 +565,12 @@ def main():
     hist_doc = load(os.path.join(DATA, "history.json"), {"trips": {}})
     hist = hist_doc["trips"]
     feed = read_feed(a.feed)
-    cal = read_calendar(a.calendar) if feed is not None else None
+    cal, cards, read = read_calendar(a.calendar)
+    if a.calendar and a.save_calendar and cards and not a.dry:
+        read = today.isoformat()
+        save_calendar(cards, read)
     log = {"today": today.isoformat(), "feed_rows": len(feed) if feed is not None else "unreadable",
-           "calendar_cards": sum(map(len, cal.values())) if cal else "unreadable"}
-    if CAL_NOTE:
-        log["calendar_note"] = "; ".join(CAL_NOTE)
+           "calendar_cards": len(cards) or "none", "calendar_read": read or ("saved page" if cards else "")}
     fixed = []
     log["history_changed"] = update_history(hist, feed, cal, fixed) if feed is not None else 0
     if fixed:
@@ -617,8 +623,9 @@ def main():
     print(json.dumps(log))
     if feed is None:
         print("WARNING: could not read SYB Public Feed (no guest data); pages keep their trips from history", file=sys.stderr)
-    elif cal is None:
-        print("WARNING: could not read %s; trips not fixed before use HQ's dates" % CALENDAR_URL, file=sys.stderr)
+    if not cal:
+        print("WARNING: no booking-page dates (%s missing or empty); trips not fixed before use HQ's dates"
+              % os.path.relpath(BOOKING_DATES, ROOT), file=sys.stderr)
 
 
 if __name__ == "__main__":

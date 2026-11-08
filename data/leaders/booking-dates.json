@@ -1,0 +1,252 @@
+{
+ "about": "Departure cards copied from https://www.surfyogabeer.com/calendar (name, first day s, last day e, booking page). build-leaders.py takes trip dates from here; see its Trip dates note.",
+ "read": "2026-11-07",
+ "cards": [
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2026-11-16",
+   "e": "2026-11-21",
+   "url": "/products/nicaragua/2026-11-16"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2026-11-21",
+   "e": "2026-11-26",
+   "url": "/products/nicaragua/2026-11-21"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2026-11-26",
+   "e": "2026-12-01",
+   "url": "/products/nicaragua/2026-11-26"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2026-12-01",
+   "e": "2026-12-06",
+   "url": "/products/nicaragua/2026-12-01"
+  },
+  {
+   "name": "Nicaragua NYE",
+   "s": "2026-12-27",
+   "e": "2027-01-02",
+   "url": "/products/nicaragua/2026-12-27"
+  },
+  {
+   "name": "Bali NYE",
+   "s": "2026-12-28",
+   "e": "2027-01-03",
+   "url": "/products/indonesia/2026-12-28"
+  },
+  {
+   "name": "Belize NYE",
+   "s": "2026-12-29",
+   "e": "2027-01-03",
+   "url": "/products/belize/2026-12-29"
+  },
+  {
+   "name": "Reset & Recharge",
+   "s": "2027-01-02",
+   "e": "2027-01-16",
+   "url": "/products/nicaragua/2027-01-02"
+  },
+  {
+   "name": "Ski Yoga Spritz",
+   "s": "2027-01-16",
+   "e": "2027-01-22",
+   "url": "/products/french-alps/2027-01-16"
+  },
+  {
+   "name": "Japow - wow",
+   "s": "2027-01-30",
+   "e": "2027-02-07",
+   "url": "/products/japan/2027-01-30"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2027-02-08",
+   "e": "2027-02-13",
+   "url": "/products/nicaragua/2027-02-08"
+  },
+  {
+   "name": "Guat A Feeling",
+   "s": "2027-02-09",
+   "e": "2027-02-15",
+   "url": "/products/guatemala/2027-02-09"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2027-02-13",
+   "e": "2027-02-18",
+   "url": "/products/nicaragua/2027-02-13"
+  },
+  {
+   "name": "Swiss on the Rocks",
+   "s": "2027-02-13",
+   "e": "2027-02-19",
+   "url": "/products/switzerland/2027-02-13"
+  },
+  {
+   "name": "Islands of Palawan",
+   "s": "2027-02-17",
+   "e": "2027-02-23",
+   "url": "/products/philippines/2027-02-17"
+  },
+  {
+   "name": "Northern Delights",
+   "s": "2027-03-13",
+   "e": "2027-03-18",
+   "url": "/products/finland-d45616ed-04d1-492a-b13a-ff7d3e66a338/2027-03-13"
+  },
+  {
+   "name": "Surf Yoga Babe",
+   "s": "2027-03-14",
+   "e": "2027-03-19",
+   "url": "/products/nicaragua/2027-03-14"
+  },
+  {
+   "name": "Northern Delights",
+   "s": "2027-03-19",
+   "e": "2027-03-24",
+   "url": "/products/finland-d45616ed-04d1-492a-b13a-ff7d3e66a338/2027-03-19"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2027-03-19",
+   "e": "2027-03-24",
+   "url": "/products/nicaragua/2027-03-19"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2027-03-24",
+   "e": "2027-03-29",
+   "url": "/products/nicaragua/2027-03-24"
+  },
+  {
+   "name": "Surf Yoga Beer",
+   "s": "2027-03-29",
+   "e": "2027-04-03",
+   "url": "/products/nicaragua/2027-03-29"
+  },
+  {
+   "name": "Bali Activated",
+   "s": "2027-04-05",
+   "e": "2027-04-11",
+   "url": "/products/indonesia/2027-04-05"
+  },
+  {
+   "name": "Bali Activated",
+   "s": "2027-04-12",
+   "e": "2027-04-18",
+   "url": "/products/indonesia/2027-04-12"
+  },
+  {
+   "name": "Surf Camp",
+   "s": "2027-05-04",
+   "e": "2027-05-09",
+   "url": "/products/nicaragua/2027-05-04"
+  },
+  {
+   "name": "Surf Camp",
+   "s": "2027-05-09",
+   "e": "2027-05-14",
+   "url": "/products/nicaragua/2027-05-09"
+  },
+  {
+   "name": "Pharaoh's Fiesta",
+   "s": "2027-05-13",
+   "e": "2027-05-22",
+   "url": "/products/egypt/2027-05-13"
+  },
+  {
+   "name": "Desert Dopeness",
+   "s": "2027-05-25",
+   "e": "2027-05-31",
+   "url": "/products/morocco/2027-05-25"
+  },
+  {
+   "name": "Mambo Italiano",
+   "s": "2027-06-13",
+   "e": "2027-06-19",
+   "url": "/products/italy-amalfi/2027-06-13"
+  },
+  {
+   "name": "Fjord Almighty",
+   "s": "2027-06-14",
+   "e": "2027-06-19",
+   "url": "/products/norway/2027-06-14"
+  },
+  {
+   "name": "Safari Stylin'",
+   "s": "2027-06-18",
+   "e": "2027-06-24",
+   "url": "/products/kenya/2027-06-18"
+  },
+  {
+   "name": "Island Takeover",
+   "s": "2027-06-20",
+   "e": "2027-06-26",
+   "url": "/products/croatia/2027-06-20"
+  },
+  {
+   "name": "Twice The Ice",
+   "s": "2027-06-22",
+   "e": "2027-06-28",
+   "url": "/products/iceland/2027-06-22"
+  },
+  {
+   "name": "Safari Stylin'",
+   "s": "2027-06-25",
+   "e": "2027-07-01",
+   "url": "/products/kenya/2027-06-25"
+  },
+  {
+   "name": "Fire & Ice",
+   "s": "2027-06-29",
+   "e": "2027-07-04",
+   "url": "/products/iceland/2027-06-29"
+  },
+  {
+   "name": "Bonjour Cote d'Azur",
+   "s": "2027-06-30",
+   "e": "2027-07-06",
+   "url": "/products/french-riviera/2027-06-30"
+  },
+  {
+   "name": "Bom Dia",
+   "s": "2027-07-05",
+   "e": "2027-07-11",
+   "url": "/products/portugal/2027-07-05"
+  },
+  {
+   "name": "YOLO - MITES",
+   "s": "2027-08-02",
+   "e": "2027-08-08",
+   "url": "/products/italy-dolomites/2027-08-02"
+  },
+  {
+   "name": "Blue Voyage",
+   "s": "2027-08-07",
+   "e": "2027-08-14",
+   "url": "/products/turkey/2027-08-07"
+  },
+  {
+   "name": "YOLO - MITES",
+   "s": "2027-08-23",
+   "e": "2027-08-29",
+   "url": "/products/italy-dolomites/2027-08-23"
+  },
+  {
+   "name": "Mambo Italiano",
+   "s": "2027-08-31",
+   "e": "2027-09-06",
+   "url": "/products/italy-amalfi/2027-08-31"
+  },
+  {
+   "name": "Island Takeover",
+   "s": "2027-09-04",
+   "e": "2027-09-10",
+   "url": "/products/croatia/2027-09-04"
+  }
+ ]
+}
