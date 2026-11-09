@@ -333,11 +333,11 @@
    "h": 770
   },
   "sarahcat": {
-   "uuid": "4eb71a38-badc-4c8d-b22a-cb790e412b87",
-   "hex": "b72d2f4c97c8055d9d6eb05e0458a5d035eff4d3",
-   "name": "syb-leader-sarahcat-about.jpg",
-   "w": 713,
-   "h": 891
+   "uuid": "d75d52c6-0e84-4aa4-a724-e6c1dce2e24d",
+   "hex": "16af1d2e87ddcd48a912d4f50673e9b6360b2855",
+   "name": "syb-sarahcat-about-morocco.jpg",
+   "w": 1196,
+   "h": 1495
   },
   "erin": {
    "uuid": "a2170eeb-0ca8-4a33-b7f0-5645a705253d",
@@ -2474,6 +2474,83 @@
     "name": "syb-ryan-08.jpg",
     "alt": "Ryan showing the crew his trip film on his laptop at night"
    }
+  },
+  "sarahcat": {
+   "hold_pool": true,
+   "slides": [
+    {
+     "uuid": "550f9d80-1679-4740-b1fd-ef6503e8e2e3",
+     "hex": "0e138cd5abb1e50951d7509cb9e0e8dd93660441",
+     "name": "syb-sarahcat-profile.jpg",
+     "cap": "Hi, I’m Sarah Cat.",
+     "alt": "Sarah Catenac, SYB senior trip leader, posing on a wooden lookout with the Dolomites behind her",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "cf3ad19b-9e7f-4cde-85cb-f34f8444d4f4",
+     "hex": "e14070c98c10cd45cf21897f2fa273ecbe3c1877",
+     "name": "syb-sarahcat-amalfi.jpg",
+     "cap": "Amalfi Coast, Italy",
+     "alt": "Sarah and the crew on a boat in front of Positano",
+     "pos": "50% 60%"
+    },
+    {
+     "uuid": "c6c604be-bb35-479f-85ae-14d2206d6738",
+     "hex": "c6c7a86d50f44b4006d03b0fe0a5c900b3566b8d",
+     "name": "syb-sarahcat-croatia-1.jpg",
+     "cap": "Croatia",
+     "alt": "Sarah up on shoulders in the sea in Croatia, arms in the air",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "856053d2-ceea-4659-9f2a-5cc88655453b",
+     "hex": "0ac8245ea4d171544793bace2b1fd32bca7cc9fe",
+     "name": "syb-sarahcat-croatia-2.jpg",
+     "cap": "Croatia",
+     "alt": "Sarah and friends climbing the rigging of a boat in Croatia",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "13c047fb-aaad-4872-b355-9e642a707d79",
+     "hex": "245e3f78775b45381726b8c8318c7682c5fbe92b",
+     "name": "syb-sarahcat-dolomites.jpg",
+     "cap": "Dolomites, Italy",
+     "alt": "Sarah’s crew cheering under a rock tower in the Dolomites",
+     "pos": "50% 60%"
+    },
+    {
+     "uuid": "f3f08048-98da-400b-99a8-a3bbe8e23032",
+     "hex": "b296f80c5dc435dd3f4049879867883d39f7d017",
+     "name": "syb-sarahcat-morocco.jpg",
+     "cap": "Morocco",
+     "alt": "Sarah standing on a quad bike in the Agafay desert, Morocco",
+     "pos": "50% 30%"
+    },
+    {
+     "uuid": "8a67b41f-cae7-4868-b495-1229c45e6172",
+     "hex": "eb389a20264233c34e4c4de6e16add51da436956",
+     "name": "syb-sarahcat-nicaragua-1.jpg",
+     "cap": "Nicaragua",
+     "alt": "Sarah and friends in the sea at sunset in Nicaragua",
+     "pos": "50% 50%"
+    },
+    {
+     "uuid": "8c5614f4-e9b8-478b-9794-23d6367e08b1",
+     "hex": "18f19a6409f73be836ea993d4a9afd4ea57f4a73",
+     "name": "syb-sarahcat-nicaragua-2.jpg",
+     "cap": "Nicaragua",
+     "alt": "Sarah surfing a wave in Nicaragua",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "0658de8f-6d09-4a3a-a147-7e29cc939e08",
+     "hex": "c20eb05b1b9cd4e11f744ce4a78f51b9afa029f1",
+     "name": "syb-sarahcat-gala.jpg",
+     "cap": "SYB Gala",
+     "alt": "Sarah and friends dressed up for the SYB Gala",
+     "pos": "50% 35%"
+    }
+   ]
   }
  },
  "ring": {
