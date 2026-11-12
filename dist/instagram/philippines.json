@@ -1,8 +1,14 @@
 {
  "tag": "philippines",
  "alt": "SurfYogaBeer Philippines",
- "updated": "2026-11-02",
+ "updated": "2026-11-12",
  "posts": [
+  {
+   "code": "DfpYrKIGsh-",
+   "user": "surfyogabeer",
+   "date": "2026-11-12",
+   "img": "p/DfpYrKIGsh-.jpg"
+  },
   {
    "code": "DfQAi65hYKh",
    "user": "surfyogabeer",
@@ -140,12 +146,6 @@
    "user": "surfyogabeer",
    "date": "2024-01-10",
    "img": "p/C170k8QAVtz.jpg"
-  },
-  {
-   "code": "C1AOcjggtlx",
-   "user": "surfyogabeer",
-   "date": "2023-12-18",
-   "img": "p/C1AOcjggtlx.jpg"
   }
  ]
 }
