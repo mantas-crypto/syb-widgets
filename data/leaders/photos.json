@@ -319,11 +319,11 @@
    "h": 735
   },
   "lauren": {
-   "uuid": "2be3b172-c297-42ec-a6ff-a913d8e8d5f4",
-   "hex": "a86b2599cd4d4c49c4b1840e05482172b468ca19",
-   "name": "syb-leader-lauren-about.jpg",
-   "w": 605,
-   "h": 756
+   "uuid": "50563c2b-be73-499d-b477-7bb45a398ebf",
+   "hex": "1b0c99191a48f71fe3ceb36c638ff259700a3833",
+   "name": "syb-lauren-about-yoga.jpg",
+   "w": 1066,
+   "h": 1600
   },
   "meag": {
    "uuid": "2f21f61e-37fc-4a3e-8ea0-a510832973c4",
@@ -2551,6 +2551,113 @@
      "pos": "50% 35%"
     }
    ]
+  },
+  "lauren": {
+   "hold_pool": true,
+   "slides": [
+    {
+     "uuid": "aeabdb8c-76eb-4ca2-bcd9-5ee7f4734ea1",
+     "hex": "e5b1cf6a131623362921fcb20943a18ca2c39083",
+     "name": "syb-lauren-nicaragua-lookout.jpg",
+     "cap": "Hi, I’m Lauren.",
+     "alt": "Lauren smiling on a lookout over the bay in San Juan del Sur, Nicaragua",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "e75e4a10-db0c-4a1e-83d9-5901c59332ce",
+     "hex": "6da4514131f5a3826a23afae3ae11acf365c3080",
+     "name": "syb-lauren-dolomites-seceda.jpg",
+     "cap": "Dolomites, Italy",
+     "alt": "Lauren with her backpack on the Seceda ridge in the Dolomites",
+     "pos": "62% 40%"
+    },
+    {
+     "uuid": "9e08df46-fabb-435d-8f06-ed0fa3ac1676",
+     "hex": "d1acf3c25f9902c720bc6b11d6be8173d4328904",
+     "name": "syb-lauren-apres-ski.jpg",
+     "cap": "Après ski",
+     "alt": "Lauren in a bright ski suit raising a drink at an après ski party",
+     "pos": "40% 35%"
+    },
+    {
+     "uuid": "f99b329a-0711-4b3b-84a7-0b66a2b6e39e",
+     "hex": "d595356462f362b390da6df11688521e27b23575",
+     "name": "syb-lauren-nicaragua-surf.jpg",
+     "cap": "Nicaragua",
+     "alt": "Lauren riding a wave in an SYB Nicaragua rash guard",
+     "pos": "55% 55%"
+    },
+    {
+     "uuid": "ff424e03-6778-47f1-bf79-a9a7be7f8d8a",
+     "hex": "574157366a9f5afb09dfae037b57b11d78e6ca96",
+     "name": "syb-lauren-powder.jpg",
+     "cap": "Powder day",
+     "alt": "Lauren skiing through deep powder",
+     "pos": "55% 40%"
+    },
+    {
+     "uuid": "8a0b6dad-ee95-4349-ba30-593d75e73a8f",
+     "hex": "de8c0d7710512229d3d69f9497fffd1fd4b5515b",
+     "name": "syb-lauren-beach-workout.jpg",
+     "cap": "Beach workouts",
+     "alt": "Lauren squatting with the crew in a beach workout",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "603f4349-e2e8-4f37-ad9d-0aaf0dbe4e98",
+     "hex": "cb96f00cead723f00375253c84da5f5190567248",
+     "name": "syb-lauren-dolomites-hike.jpg",
+     "cap": "Dolomites, Italy",
+     "alt": "Lauren in an SYB top on a rocky trail in the Dolomites",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "9a09a4bb-2df6-4b41-a4ef-dca19681170c",
+     "hex": "cb9b94d20635a174c180e215538cb02f966353e0",
+     "name": "syb-lauren-nye.jpg",
+     "cap": "New Year’s Eve",
+     "alt": "Lauren laughing on the dance floor at an SYB New Year’s Eve party",
+     "pos": "55% 45%"
+    },
+    {
+     "uuid": "78c82c04-3c5b-4fa3-94a2-5c22e14e8018",
+     "hex": "92d0214155af1579e96a950b6a7c5d7eb1b4b868",
+     "name": "syb-lauren-ski-jersey.jpg",
+     "cap": "Ski week",
+     "alt": "Lauren skiing powder in a SKIYOGABEER jersey",
+     "pos": "58% 40%"
+    },
+    {
+     "uuid": "59df7baa-bc82-47b9-866b-9b2329e4b880",
+     "hex": "a19a4d98f8556516d9c7c19d3b87092b451848c0",
+     "name": "syb-lauren-yoga-deck.jpg",
+     "cap": "Morning yoga",
+     "alt": "Lauren moving through yoga on an open air deck by the ocean",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "05f53c23-80f9-4199-b99e-122b508e86ce",
+     "hex": "1064694afc9e34f971d2a1544ff9b8bea049bf32",
+     "name": "syb-lauren-night-ski.jpg",
+     "cap": "Night skiing",
+     "alt": "Lauren skiing at night in the snow, waving the SYB flag",
+     "pos": "55% 45%"
+    },
+    {
+     "uuid": "16b2110b-7a20-4860-851a-a0652bef2cca",
+     "hex": "2b292ae53395f95d4a76d43c0659c07d6166aadf",
+     "name": "syb-lauren-yoga-crew.jpg",
+     "cap": "Yoga with the crew",
+     "alt": "Lauren and a guest in yoga on a deck over the ocean",
+     "pos": "60% 45%"
+    }
+   ],
+   "feature": {
+    "uuid": "a649110d-5342-4234-915a-456f744919d5",
+    "hex": "ee41fb5555fb377cd2e0bb933e628d702f63ac8b",
+    "name": "syb-lauren-philippines-boat.jpg",
+    "alt": "Lauren dressed as a pirate on the bow of a boat in the Philippines, beer raised"
+   }
   }
  },
  "ring": {
