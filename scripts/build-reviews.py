@@ -33,6 +33,7 @@ TRIPS = {
     "greece":      ["greece", "sybgreece", "athens", "hydra", "saronic"],
     "ibiza":       ["ibiza", "sybibiza", "eivissa"],
     "riviera":     ["riviera", "cote d'azur", "côte d'azur", "nice", "cannes", "south of france"],
+    "ireland":     ["ireland", "sybireland", "galway", "killarney", "dingle", "carrauntoohil", "cliffs of moher", "lahinch"],
 }
 
 
