@@ -366,7 +366,8 @@ def lede(data, prof=None):
     up = [u for u in data["upcoming"] if u.get("kind") == "trip" and day(u["end"]) >= TODAY]
     out = []
     if prof and prof.get("lede"):
-        return e(prof["lede"])        # their own line (team members, the founder); the page script leaves it alone (no data-lede)
+        # their own line (team members, the founder); the page script leaves it alone (no data-lede). <b> is kept for bold numbers.
+        return re.sub(r"&lt;(/?)b&gt;", r"<\1b>", e(prof["lede"]))
     if led:
         out.append("%s has led <b>%d SYB %s</b>%s." % (e(first), len(led), "trip" if len(led) == 1 else "trips",
                                                       (" in <b>%d countries</b>" % nc) if nc > 1 else ""))

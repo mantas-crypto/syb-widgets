@@ -328,22 +328,22 @@
    "ig": "deebsontv",
    "chat": "nyc",
    "title": "O’ DannyBoy",
-   "bio": "Originally a TV producer, he gave SYB a little try and then jumped in head first. From helping host our annual SYB Gala in NYC to leading the more adventurous trips like Ireland, Dan brings the organization and the night time vibes on ALL days.",
+   "bio": "Originally a TV producer, he gave SYB a look and was quickly sold, and then jumped in head first. From helping host our annual SYB Gala in NYC to leading the more adventurous trips like Ireland, Dan brings the organization, people-first personality, and the always-dancing party vibes to every trip he’s on.",
    "qa": [
     [
      "How did you find SYB?",
-     "I was a TV producer who gave SYB a little try. Then I jumped in head first.",
+     "I initially developed a TV concept with SYB, and was quickly convinced that I needed to try out these trips myself. Before you know it, I joined the leadership staff and I also help produce trip videos.",
      "real"
     ],
     [
      "Favorite SYB moment?",
-     "Helping host the SYB Gala in New York. A room full of alumni in black tie, and every one of them was a stranger once.",
-     "placeholder"
+     "Being awarded back-to-back “all-star” awards in Chamonix and the first-ever Ireland trip. Returning to Ireland to lead the following year is also a huge highlight, and it continues to be the trip I’m most passionate about.",
+     "real"
     ],
     [
      "Something people wouldn’t guess about you?",
-     "I used to produce TV, so yes, I will make the group photo happen.",
-     "placeholder"
+     "I also host a podcast, so you know the conversation is always flowing when I’m around!",
+     "real"
     ]
    ],
    "chips": [
@@ -351,7 +351,10 @@
     "Organization",
     "Night time vibes",
     "Gala nights"
-   ]
+   ],
+   "role": "Trip leader + video producer",
+   "lede": "Dan has led <b>2 SYB trips</b> in <b>2 countries</b>. Next up: <b>Ireland '27</b>, July 2027.",
+   "lede_note": "Fixed line from Dan's notes (Nov 14 2026) because Ireland '27 is not in SYB HQ yet. Delete 'lede' and this note when Ireland '27 (and Golf Yoga Beer, if Dan leads it) is added to HQ with Dan B. as a leader: the automatic line then shows the next trip and its countdown."
   },
   "darryl": {
    "name": "Darryl Corley",

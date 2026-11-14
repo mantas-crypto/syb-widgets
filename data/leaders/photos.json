@@ -2658,6 +2658,48 @@
     "name": "syb-lauren-philippines-boat.jpg",
     "alt": "Lauren dressed as a pirate on the bow of a boat in the Philippines, beer raised"
    }
+  },
+  "dan": {
+   "hold_pool": true,
+   "total": 7,
+   "note": "Nov 14 2026: interim reel until Dan's own six photos arrive (his notes doc links them in Drive, not shared with mantas@surfyogabeer.com yet: Hi I'm Dan, First trip Croatia, Chamonix All-Star, Ireland, Nicaragua, See ya on the next trip). Squad photo, then Ireland '25 crew photos from the /ireland page, then trip photos.",
+   "slides": [
+    {
+     "squad": true
+    },
+    {
+     "uuid": "85a9a236-fbf4-457c-b238-b9eff17d6629",
+     "hex": "bd24ebc18976133864dc5b409185288290fb959f",
+     "name": "syb-ireland-8623.jpg",
+     "cap": "Cliffs of Moher, Ireland",
+     "alt": "The SurfYogaBeer crew on the edge of the Cliffs of Moher",
+     "pos": "50% 50%"
+    },
+    {
+     "uuid": "651239df-77f9-4a7c-b088-10da93c0ebac",
+     "hex": "9e24627d0434768dd9af713106ef7f82e58d5925",
+     "name": "syb-ireland-f3716.jpg",
+     "cap": "Galway Races, Ireland",
+     "alt": "The SurfYogaBeer crew dressed up for the Galway Races",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "2e7949ad-2b5b-4126-a102-02d92a456c88",
+     "hex": "252198586b3ab4a3435cff0747e24e2ad0b89d99",
+     "name": "syb-ireland-7989.jpg",
+     "cap": "Carrauntoohil, Ireland",
+     "alt": "The SurfYogaBeer crew at the cross on the summit of Carrauntoohil",
+     "pos": "50% 45%"
+    },
+    {
+     "uuid": "c5136899-0635-4fc4-9a3c-d5ba7d4ae62f",
+     "hex": "fd3ae469846bd5a07c3991a4a61067ad55b6d907",
+     "name": "syb-ireland-8477.jpg",
+     "cap": "Dingle, Ireland",
+     "alt": "The SurfYogaBeer crew outside a pub in Dingle",
+     "pos": "50% 45%"
+    }
+   ]
   }
  },
  "ring": {
