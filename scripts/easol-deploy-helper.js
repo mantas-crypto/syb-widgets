@@ -13,9 +13,11 @@
   const enc = slug => encodeURIComponent(slug);
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  function setPin(sha) {
+  /* cdnSha (optional): pin CSS/JS to an older commit. jsDelivr refuses newer commits of this repo
+     (over its 50MB limit), so pass the last commit that changed dist/leader/ (f6b305b as of Nov 14 2026). */
+  function setPin(sha, cdnSha) {
     SHA = sha;
-    CDN = 'https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@' + sha + '/dist/leader/';
+    CDN = 'https://cdn.jsdelivr.net/gh/mantas-crypto/syb-widgets@' + (cdnSha || sha) + '/dist/leader/';
     RAW = 'https://raw.githubusercontent.com/mantas-crypto/syb-widgets/' + sha + '/pages/leaders/';
     return { SHA, CDN, RAW };
   }
