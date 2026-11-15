@@ -2661,43 +2661,56 @@
   },
   "dan": {
    "hold_pool": true,
-   "total": 7,
-   "note": "Nov 14 2026: interim reel until Dan's own six photos arrive (his notes doc links them in Drive, not shared with mantas@surfyogabeer.com yet: Hi I'm Dan, First trip Croatia, Chamonix All-Star, Ireland, Nicaragua, See ya on the next trip). Squad photo, then Ireland '25 crew photos from the /ireland page, then trip photos.",
+   "total": 6,
+   "note": "Nov 14 2026: Dan's own six photos and captions from his notes doc (Drive files, shared after Mantas asked; fetched via Drive's thumbnail service at full size). Chamonix is his first pick (the bar); his alt, dancing in the snow, was not used. Before this the page ran an interim reel of /ireland crew photos.",
    "slides": [
     {
-     "squad": true
+     "uuid": "09d6bef6-8158-4324-ae82-b92f4666de25",
+     "hex": "3e67808c02ff42e3f628d6c98d6e5b5d3bf5e2ca",
+     "name": "syb-dan-hi.jpg",
+     "cap": "Hi, I’m Dan.",
+     "alt": "Dan Brown in a white linen shirt on a terrace by the sea at sunset",
+     "pos": "50% 30%"
     },
     {
-     "uuid": "85a9a236-fbf4-457c-b238-b9eff17d6629",
-     "hex": "bd24ebc18976133864dc5b409185288290fb959f",
-     "name": "syb-ireland-8623.jpg",
-     "cap": "Cliffs of Moher, Ireland",
-     "alt": "The SurfYogaBeer crew on the edge of the Cliffs of Moher",
-     "pos": "50% 50%"
+     "uuid": "196d30a5-e82d-4e14-b726-edef774e2e79",
+     "hex": "9bf8fa351646459df0418c51408e2cee1d4abc33",
+     "name": "syb-dan-croatia.jpg",
+     "cap": "First trip: Croatia",
+     "alt": "Dan in a headband and sunglasses throwing a shaka by the water in Croatia",
+     "pos": "52% 40%"
     },
     {
-     "uuid": "651239df-77f9-4a7c-b088-10da93c0ebac",
-     "hex": "9e24627d0434768dd9af713106ef7f82e58d5925",
-     "name": "syb-ireland-f3716.jpg",
-     "cap": "Galway Races, Ireland",
-     "alt": "The SurfYogaBeer crew dressed up for the Galway Races",
-     "pos": "50% 45%"
+     "uuid": "354e2cd7-7fbb-4ea9-8d82-60b9ac8edec2",
+     "hex": "ca505da103ee63b2168f7514214e7b1c1fde18a6",
+     "name": "syb-dan-chamonix.jpg",
+     "cap": "Chamonix All-Star",
+     "alt": "Dan in an SYB shirt with his arms up in a packed bar in Chamonix",
+     "pos": "45% 45%"
     },
     {
-     "uuid": "2e7949ad-2b5b-4126-a102-02d92a456c88",
-     "hex": "252198586b3ab4a3435cff0747e24e2ad0b89d99",
-     "name": "syb-ireland-7989.jpg",
-     "cap": "Carrauntoohil, Ireland",
-     "alt": "The SurfYogaBeer crew at the cross on the summit of Carrauntoohil",
-     "pos": "50% 45%"
+     "uuid": "0930da3c-5b71-492b-93a7-b0f269f77cac",
+     "hex": "4f53aece433eef01eadae8e95baed19f6038d88e",
+     "name": "syb-dan-ireland.jpg",
+     "cap": "Ireland",
+     "alt": "Dan dressed up in a waistcoat on the Ireland trip",
+     "pos": "50% 30%"
     },
     {
-     "uuid": "c5136899-0635-4fc4-9a3c-d5ba7d4ae62f",
-     "hex": "fd3ae469846bd5a07c3991a4a61067ad55b6d907",
-     "name": "syb-ireland-8477.jpg",
-     "cap": "Dingle, Ireland",
-     "alt": "The SurfYogaBeer crew outside a pub in Dingle",
-     "pos": "50% 45%"
+     "uuid": "72af9cfe-4cb9-4e11-911d-6a23058606e8",
+     "hex": "abd83ebca0f83545b60b048e9dda119bfa981764",
+     "name": "syb-dan-nicaragua.jpg",
+     "cap": "Nicaragua",
+     "alt": "Dan in an SYB tank top on horseback in Nicaragua",
+     "pos": "50% 40%"
+    },
+    {
+     "uuid": "2ae0ba0b-b682-4ac5-b992-d846394e4b09",
+     "hex": "6ad57e5ea8a6109fb83ad5cb93c87085a1a1e688",
+     "name": "syb-dan-see-ya.jpg",
+     "cap": "See ya on the next trip!",
+     "alt": "Dan winking over a spritz with a striped straw",
+     "pos": "50% 35%"
     }
    ]
   }
