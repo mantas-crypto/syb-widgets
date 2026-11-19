@@ -1,8 +1,20 @@
 {
  "tag": "amalfi",
  "alt": "SurfYogaBeer Amalfi",
- "updated": "2026-10-07",
+ "updated": "2026-11-19",
  "posts": [
+  {
+   "code": "Df5yqXQhyJa",
+   "user": "surfyogabeer",
+   "date": "2026-11-19",
+   "img": "p/Df5yqXQhyJa.jpg"
+  },
+  {
+   "code": "Df5xz0dMxa_",
+   "user": "surfyogabeer",
+   "date": "2026-11-19",
+   "img": "p/Df5xz0dMxa_.jpg"
+  },
   {
    "code": "Db87mDhGgLT",
    "user": "surfyogabeer",
@@ -134,18 +146,6 @@
    "user": "surfyogabeer",
    "date": "2024-04-24",
    "img": "p/C6KbyiYAoR9.jpg"
-  },
-  {
-   "code": "C4N8fAfu81u",
-   "user": "surfyogabeer",
-   "date": "2024-03-07",
-   "img": "p/C4N8fAfu81u.jpg"
-  },
-  {
-   "code": "C3yQ7DHOr6S",
-   "user": "surfyogabeer",
-   "date": "2024-02-25",
-   "img": "p/C3yQ7DHOr6S.jpg"
   }
  ]
 }
