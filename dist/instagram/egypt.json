@@ -1,8 +1,14 @@
 {
  "tag": "egypt",
  "alt": "SurfYogaBeer Egypt",
- "updated": "2026-10-07",
+ "updated": "2026-11-24",
  "posts": [
+  {
+   "code": "DgIFdBQBuWz",
+   "user": "surfyogabeer",
+   "date": "2026-11-24",
+   "img": "p/DgIFdBQBuWz.jpg"
+  },
   {
    "code": "DZ0nekVByDP",
    "user": "surfyogabeer",
@@ -140,12 +146,6 @@
    "user": "surfyogabeer",
    "date": "2023-04-18",
    "img": "p/CrL6w5cA7kF.jpg"
-  },
-  {
-   "code": "CrJxfvTAbYT",
-   "user": "surfyogabeer",
-   "date": "2023-04-17",
-   "img": "p/CrJxfvTAbYT.jpg"
   }
  ]
 }
